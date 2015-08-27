@@ -1,0 +1,378 @@
+﻿body
+{
+    background:#ececec;
+    font-family:Segoe UI;
+}
+div
+{
+    /*border:1px solid black;*/
+}
+.logo 
+{
+    height:72px;
+}
+.header 
+{
+    padding-left:96px;
+    padding-top:5px;
+    border-bottom: 2px solid #A4A4A4;
+    background:white;
+    height:119px;
+}
+.logo-text
+{
+    font-size:large;
+    margin-left:-50px;
+    padding-top:35px;
+}
+.search-box
+{
+    border-radius:6px; 
+    height:45px; 
+    width:370px; 
+    border:1px solid black;
+    background: #bdbdbd url(img/searchicon.png) left no-repeat;
+    padding-left:20px;
+}
+#user-name
+{
+    padding-top:20px; 
+    text-align:right; 
+    font-size:large; 
+    width:403px;
+}
+.custom-nav-bar
+{
+    font-size:20px;
+    padding-left: 26px;
+    border:none;
+}
+.custom-nav-bar li a
+{
+    color:Black;
+    margin-top:-25px;
+    padding-top:5px;
+    padding-bottom:0px;
+    padding-right:40px;
+}
+.custom-nav-bar u
+{
+    text-decoration:none;
+    border-bottom:3px solid blue;
+}
+.expand-item-container
+{
+    padding: 30px 0% 0px 0%;
+}
+.expand-item
+{
+    padding:10px 10px 10px 0px;
+}
+.expand-item-title
+{
+    font-size:20px;
+    color:#1f69b9;
+    padding:10px 0px 19px 70px;
+    cursor:pointer;
+}
+.expand-item img
+{
+    float:left;
+}
+.expand-item a:hover
+{
+    text-decoration:none;
+}
+.expand-item-content
+{
+    display:none;
+}
+.expand-item-label
+{
+    
+    padding: 0px 30px 0px 0px;
+    float:left;
+    width: 37%; 
+    text-align: right; 
+    font-size: 20px;
+    color:#8f9194;
+}
+.expand-item-labelusername
+{
+    padding: 0px 30px 0px 0px;
+    float:left;
+    width: 37%; 
+    text-align: right; 
+    font-size: 20px;
+    color:#800102;
+}  
+.expand-item-textbox
+{
+    width:54%;
+    height:28px;
+    padding-left:6px;
+    padding-bottom:2px;
+    font-size:18px;
+    border:1px solid #cacaca;
+}
+.expand-item-row
+{
+    padding:0px 0% 1.6% 17%;
+}
+.expand-item-btn
+{
+    float:right;
+    margin-top:20px;
+    margin-left:10px;
+    background:#1f69b9;
+    color:White;
+    width:120px;
+    height:35px;
+    font-size:20px;
+    border:none;
+}
+.expand-item-btn:hover
+{
+    box-shadow: 0px 1px 8px 0.5px grey;
+}
+.validator-container
+{
+    padding-top:38px;
+    color:Red;
+    font-size:18px;
+}
+.validator
+{
+    margin-bottom:10px;
+    height:28px;
+}
+#responseArea
+{
+    font-family:Segoe UI;
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+.info-div
+{
+    padding-left: 57px; 
+    margin-bottom: 17px;
+    font-size:18px;
+    color:#8f9194;
+}
+/*================================Add user================================*/
+.add-user-icon
+{
+    position:absolute;
+    background:url(/img/addNewUser.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+#AddNewEmpID
+{
+    margin-left: 245px;
+    width:290px;
+    height:28px;
+    padding-left:6px;
+    font-size:18px;
+}
+
+/*================================Update user================================*/
+.update-user-icon
+{
+    position:absolute;
+    background:url(/img/updateUser.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+#updateUserSecondState
+{
+    display:none;
+}
+#UpdateEmpID
+{
+    margin-left: 245px;
+    width:290px;
+    height:28px;
+    padding-left:6px;
+    font-size:18px;
+}
+/*================================Advanced user search================================*/
+.adv-user-search-icon
+{
+    position:absolute;
+    background:url(/img/userSearch.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}  
+
+/*================================Add category================================*/
+.add-categoy-icon
+{
+    position:absolute;
+    background:url(/img/addCategory.png) no-repeat;
+    width:400px;
+    height:400px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}  
+.expand-item-btn-addcategory
+{
+    float:right;
+    margin-top:20px;
+    margin-left:10px;
+    background:#1f69b9;
+    color:White;
+    width:140px;
+    height:35px;
+    font-size:20px;
+    border:none;
+}
+/*================================update category=============================*/
+.update-user-icon
+{
+    position:absolute;
+    background:url(/img/updateCategory.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*================================footer styles================================*/
+
+#footer
+{
+    margin:50px 0px 0px 0px;
+}
+.footer-up
+{
+    background:#212429;
+    height:80px;
+    padding-top:30px;
+    font-size:18px;
+}
+.footer-down
+{
+    background:#181818;
+    height:60px;
+    padding:10px 0px 0px 30px;
+    color:White;
+}
+.footer-nav{
+	text-align: center;
+	list-style: none;
+}
+.footer-nav li{
+	 display: inline;
+}
+.footer-nav li:not(:first-child):before{
+	content: '|';
+	padding: 0px 10px;
+}
+.footer-nav a{
+	color:#b2b2b2;
+}
+.footer-nav a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+.developer-link
+{
+    text-align:right;
+    padding:12px 40px 0px 0px;
+    float:right;
+    width:170px;
+}
+.developer-link a{
+	color:#b2b2b2;
+}
+.developer-link a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+/*================================Login page styles================================*/
+
+.login-box-container
+{
+    padding-left: 114px; 
+    padding-top: 23px;
+}
+.image-container
+{
+    padding-top:54px;
+}
+.login-welcome
+{
+    font-size:21px;
+    color:#1f69b9;
+    font-family:Segoe UI;
+}
+.login-box
+{
+    background-color:#434347;
+    padding:30px 30px 0px 30px;
+    width:360px;
+    height:235px;
+    -webkit-box-shadow:rgb(110,110,110) 4px 4px;
+    border:0.8px solid white;
+    display:block;
+    margin-top:17px;
+    margin-bottom:20px;
+}
+.login-textbox{
+	
+	font-size:20px;
+	height:45px;
+	margin-bottom:10px;
+}
+.form-group, .has-feedback
+{
+    margin-bottom:20px;
+    height:45px;
+}
+.custome-glyphicon
+{
+    padding-top:6px;
+    color:#1f69b9;
+}
+.remember-me-container
+{
+    color:White;
+    padding-left:10px;
+    width:155px;
+    font-size:18px;
+    float:left;
+    margin-bottom:10px;
+}
+.remember-me-container input
+{
+    margin-right:5px;
+}
+.login-btn
+{
+    margin-top:0px;
+    padding-bottom:3px;
+}
+.forgot-password-container
+{
+    color:White;
+    width:155px;
+    font-size:16px;
+    float:left;
+}
+.forgot-password-container a
+{
+    color:White;
+}

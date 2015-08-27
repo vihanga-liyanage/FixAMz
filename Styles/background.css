@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+#body{
+	width:auto;
+	height:auto;
+	color:silver;
+	margin: none;
+}
+
+.overlay { 
+  	color:#BFBFBF;
+  	position:absolute;
+  	z-index:12;
+  	top:50%;
+	left:0;
+  	width:100%;
+  	text-align:center;
+	}
+
+.navbar{
+	height: 95px;
+	background-color: white;
+	border-radius: none;
+	border: 1px solid #BDBDBD;
+	margin-bottom: 0px;
+	padding-left: 130px;
+}
+.no-margin {
+	margin: 0px;
+}
+.no-padding {
+	padding: 0px:;
+}
+.box{
+	
+	display:block;
+	width:400px;
+	padding-top:18px;
+	padding-left: 20px;
+	padding-right: 0px;
+	height:235px;
+	border:0.8px solid white;
+	background:#454545;
+	-webkit-box-shadow:rgb(110,110,110) 4px 4px;
+}
+.login-textbox{
+	
+	font-size:20px;
+	height:49px;
+	margin-bottom:10px;
+	
+	-webkit-border-radius:8px;
+}
+.login-button
+{
+    color:Black;
+    font-weight:bold;
+}
+.footer{
+	background-color:#1C2228 ;
+	padding: ;
+
+}
+
+.up-footer{
+	margin-top: 10px;
+	padding-top: 10px;
+	color: #b2b2b2;
+}
+
+.down-footer{
+	background-color: #12161A; 
+}
+
+.footer-nav{
+	text-align: center;
+	list-style: none;
+
+}
+
+.footer-nav li{
+	 display: inline;
+	 
+}
+
+.footer-nav li:not(:first-child):before{
+	content: '|';
+	padding: 0px 10px;
+}
+.footer-nav a{
+	color:#b2b2b2;
+
+}
+
+.footer-nav a:hover{
+	color: #fff;
+	text-decoration: none;
+
+}
