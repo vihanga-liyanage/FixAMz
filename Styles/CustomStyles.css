@@ -214,6 +214,30 @@ div
     z-index:-1;
 }  
 
+/*================================Delete User=================================*/
+.delete-user-icon
+{
+    position:absolute;
+    background:url(/img/deleteUser.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+#deleteUserSecondState
+{
+    display:none;
+}
+#DeleteEmpID
+{
+    margin-left: 245px;
+    width:290px;
+    height:28px;
+    padding-left:6px;
+    font-size:18px;
+}
+
 /*================================Add category================================*/
 .add-categoy-icon
 {
@@ -249,6 +273,31 @@ div
     z-index:-1;
 }
 
+#updateCategorySecondState
+{
+    display:none;
+}
+#UpdateCatID
+{
+    margin-left: 245px;
+    width:290px;
+    height:28px;
+    padding-left:6px;
+    font-size:18px;
+}
+
+.expand-item-btn-updatecategory
+{
+    float:right;
+    margin-top:20px;
+    margin-left:10px;
+    background:#1f69b9;
+    color:White;
+    width:140px;
+    height:35px;
+    font-size:20px;
+    border:none;
+}
 /*================================footer styles================================*/
 
 #footer

@@ -418,13 +418,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button SearchUserBtn;
         
         /// <summary>
-        /// CancelBtn1 control.
+        /// CancelSearchBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelBtn1;
+        protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
         
         /// <summary>
         /// gvEmployees control.
@@ -436,75 +436,120 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.GridView gvEmployees;
         
         /// <summary>
-        /// TextBox10 control.
+        /// Div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// TextBox11 control.
+        /// deleteUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUser;
         
         /// <summary>
-        /// TextBox12 control.
+        /// deleteUserInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserInitState;
         
         /// <summary>
-        /// TextBox13 control.
+        /// DeleteUserIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox DeleteUserIDTextBox;
         
         /// <summary>
-        /// TextBox14 control.
+        /// EmpIDFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.WebControls.Button EmpIDFindBtn;
         
         /// <summary>
-        /// TextBox15 control.
+        /// deleteUserSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox15;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserSecondState;
         
         /// <summary>
-        /// TextBox16 control.
+        /// DeleteEmpID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox16;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpID;
         
         /// <summary>
-        /// TextBox17 control.
+        /// DeleteFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox17;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteFirstName;
+        
+        /// <summary>
+        /// DeleteLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteLastName;
+        
+        /// <summary>
+        /// DeleteEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmail;
+        
+        /// <summary>
+        /// DeleteContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteContact;
+        
+        /// <summary>
+        /// DeleteUserBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteUserBtn;
+        
+        /// <summary>
+        /// DeleteEmpIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpIDValidator;
     }
 }

@@ -203,82 +203,87 @@
                                     <asp:Button ID="SearchUserBtn" runat="server" Text="Search" 
                                         class="expand-item-btn" onclick="SearchUserBtn_Click"  />
                                          
-                                    <asp:Button ID="CancelBtn1" runat="server" Text="Cancel" class="expand-item-btn" 
-                                        onclick="CancelSearchBtn_Click" />
+                                    <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" 
+                                       onclick="CancelSearchBtn_Click" />
                                         </div>
-                                </div>
+                                    </div>
                                 
-                                
-                
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">
                                 <div class="adv-user-search-icon">
-                                
-                                </div>
                                 </div>
                             </div>
-                            
-                            
-                        </a>
-                    </div>
+                         </div>    
                     <div class="row expand-item">
                         <asp:GridView ID="gvEmployees" runat="server"></asp:GridView>
-                        </div> 
+                    </div> 
                     
                 </div>
 <!--Delete user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
-                        <img src="img/DeleteIcon.png" />
-                        <div class="expand-item-title">
-                            Delete User</div>
-                        <div class="expand-item-content">
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                Employee ID</div>
-                            <asp:TextBox ID="TextBox10" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                First Name</div>
-                            <asp:TextBox ID="TextBox11" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                Last Name</div>
-                            <asp:TextBox ID="TextBox12" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                Email</div>
-                            <asp:TextBox ID="TextBox13" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                Contact</div>
-                            <asp:TextBox ID="TextBox14" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                Username</div>
-                            <asp:TextBox ID="TextBox15" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                                            <div class="expand-item-row">
-                            <div class="expand-item-label">
-                                Password</div>
-                            <asp:TextBox ID="TextBox16" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        </div>
-                            <div class="expand-item-row">
-                                <div class="expand-item-label">
-                                    Confirm Password</div>
-                                <asp:TextBox ID="TextBox17" class="expand-item-textbox" runat="server"></asp:TextBox>
+                    <div id="Div1" runat="server"></div>
+                        <img src="img/UpdateIcon.png" />
+                        <div class="expand-item-title">Delete User</div>
+                        <div class="expand-item-content" id="deleteUser" runat="server">
+                            <div class="col-md-8">
+                                <div id="deleteUserInitState" runat="server">
+                                    <div class="info-div">Enter employee ID to delete the user</div>
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">Employee ID</div>
+                                        <asp:TextBox ID="DeleteUserIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <asp:Button ID="EmpIDFindBtn" runat="server" Text="Find" 
+                                            class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
+                                            onclick="EmpDltFindBtn_Click" />
+                                    </div>
+                                </div>
+                                <div id="deleteUserSecondState" runat="server">
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">Employee ID</div>
+                                        <div id="DeleteEmpID" runat="server"></div>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">First Name</div>
+                                        <div id="DeleteFirstName" runat="server"></div>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">Last Name</div>
+                                        <div id="DeleteLastName" runat="server"></div>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">Email</div>
+                                        <div id="DeleteEmail" runat="server"></div>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">Contact</div>
+                                        <div id="DeleteContact" runat="server"></div>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn" 
+                                             onclick="DeleteUserBtn_Click" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="position:relative; padding-left:0px;">
+                                <div class="delete-user-icon"></div>
+                               <div class="validator-container">
+                                    <div class="validator" id="DeleteEmpIDValidator" runat="server"></div>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
             </div>
+            </div>
+            
             <div class="col-lg-1"></div>
+            
         </div>
+       <!-- </div> -->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">

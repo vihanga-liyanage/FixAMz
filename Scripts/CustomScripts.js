@@ -170,3 +170,60 @@ function addCategoryClearAll() {
 }
 
 
+
+
+
+
+function searchClearAll() {
+    document.forms[0]["SearchEmployeeIDTextBox"].value = "";
+    document.forms[0]["SearchFirstNameTextBox"].value = "";
+    document.forms[0]["SearchLastNameTextBox"].value = "";
+    document.forms[0]["SearchEmailTextBox"].value = "";
+    document.forms[0]["SearchContactTextBox"].value = "";
+    document.forms[0]["SearchUsernameTextBox"].value = "";
+    return false;
+}
+
+
+
+function isValidUpdateCat() {
+    //var isValid = true ;
+    var catname = document.forms[0]["UpdateCatNameTextBox"].value;
+
+    if (catname == "") {
+        document.getElementById("UpdateCategoryNameValidator").innerHTML = "Enter Category Name.";
+        //isValid[0] = false;
+        return false
+    } else {
+        document.getElementById("UpdateCategoryNameValidator").innerHTML = "";
+        //isValid[0] = true;
+        return true;
+    }
+
+}
+
+function updateCategoryClearAll() {
+    document.forms[0]["UpdateCatNameTextBox"].value = "";
+    document.forms[0]["updatecategoryrInitState"].style.display = block;
+    return false;
+}
+
+function isValidDeleteEmpID() {
+    return requiredFieldValidator("DeleteEmpID", "Employee ID cannot be empty.");
+}
+
+function isValidUpdateCat() {
+    //var isValid = true ;
+    var catname = document.forms[0]["UpdateCatNameTextBox"].value;
+
+    if (catname == "") {
+        document.getElementById("UpdateCategoryNameValidator").innerHTML = "Enter Category Name.";
+        //isValid[0] = false;
+        return false
+    } else {
+        document.getElementById("UpdateCategoryNameValidator").innerHTML = "";
+        //isValid[0] = true;
+        return true;
+    }
+
+}

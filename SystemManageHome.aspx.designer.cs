@@ -175,13 +175,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button AddCategoryUserBtn;
         
         /// <summary>
-        /// CancelBtn2 control.
+        /// AddCategoryCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelBtn2;
+        protected global::System.Web.UI.WebControls.Button AddCategoryCancelBtn;
         
         /// <summary>
         /// AddCategoryValidator control.
@@ -292,13 +292,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// updatecategory control.
+        /// updateCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatecategory;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategory;
         
         /// <summary>
         /// updatecategoryrInitState control.
@@ -328,22 +328,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button CatFindBtn;
         
         /// <summary>
-        /// updatecategoryrSecondState control.
+        /// updateCategorySecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatecategoryrSecondState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategorySecondState;
         
         /// <summary>
-        /// UpdateEmpID control.
+        /// UpdateCatID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatID;
         
         /// <summary>
         /// UpdateCatNameTextBox control.
@@ -355,13 +355,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateCatNameTextBox;
         
         /// <summary>
-        /// UpdataCatBtn control.
+        /// UpdateCatBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdataCatBtn;
+        protected global::System.Web.UI.WebControls.Button UpdateCatBtn;
         
         /// <summary>
         /// updateCatCancelBtn control.
@@ -371,5 +371,23 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button updateCatCancelBtn;
+        
+        /// <summary>
+        /// UpdateCatIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatIDValidator;
+        
+        /// <summary>
+        /// UpdateCategoryNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryNameValidator;
     }
 }

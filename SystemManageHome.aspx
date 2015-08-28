@@ -141,9 +141,9 @@
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="AddCategoryUserBtn" runat="server" Text="Add Category"
-                                            class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
-                                        <asp:Button ID="CancelBtn2" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClick="CancelAddcategoryBtn_Click" />
+                                            class="expand-item-btn-addcategory" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
+                                        <asp:Button ID="AddCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
+                                            OnClientClick="return addCategoryClearAll()" />
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -240,13 +240,13 @@
                         </div>
                     </div>
                                    
-                
+<!-- Update Category-->                
                 <div class="row expand-item">
                     <div class="col-md-12">
                     <div id="Div1" runat="server"></div>
                         <img src="img/UpdateIcon.png" />
                         <div class="expand-item-title">Update Category</div>
-                        <div class="expand-item-content" id="updatecategory" runat="server">
+                        <div class="expand-item-content" id="updateCategory" runat="server">
                             <div class="col-md-8">
                                 <div id="updatecategoryrInitState" runat="server">
                                     <div class="info-div">Enter category ID to start </div>                                
@@ -255,34 +255,37 @@
                                     <asp:TextBox ID="UpdateCategoryTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="expand-item-row"> 
-                                    <asp:Button ID="CatFindBtn" runat="server" Text="Find" class="expand-item-btn" onclick="CatFindBtn_Click"  />
+                                    <asp:Button ID="CatFindBtn" runat="server" Text="Find" class="expand-item-btn" OnClientClick="return isValidCategoryCatID()" onclick="CatFindBtn_Click"  />
                                 </div>
                                 </div>
 
-                                <div id="updatecategoryrSecondState" runat="server">
-                                <div class="expand-item-row"> 
-                                    <div class="expand-item-label">Category ID</div>
-                                    <div id="UpdateEmpID" runat="server"></div>
-                                    
+                                <div id="updateCategorySecondState" runat="server">
+                                    <div class="expand-item-row"> 
+                                        <div class="expand-item-label">Category ID</div>
+                                        <div id="UpdateCatID" runat="server"></div>   
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">Category Name</div>
+                                        <asp:TextBox ID="UpdateCatNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="expand-item-row">
+                                        <asp:Button ID="UpdateCatBtn" runat="server" Text="Update Category" class="expand-item-btn-addcategory" 
+                                           OnClientClick="return isValidUpdateCat()"  onclick="UpdateCatBtn_click" />
+                                        <asp:Button ID="updateCatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
+                                            OnClientClick="return updateCategoryClearAll() " />
+                                    </div> 
                                 </div>
-                                <div class="expand-item-row">
-                                    <div class="expand-item-label">Category Name</div>
-                                    <asp:TextBox ID="UpdateCatNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                             </div>
+                        <div class="col-md-4" style="position:relative; padding-left:0px;">
+                                <div class="update-category-icon"></div>
+                                <div class="validator-container">
+                                    <div class="validator" id="UpdateCatIDValidator" runat="server"></div>
+                                    <div class="validator" id="UpdateCategoryNameValidator" runat="server"></div>
                                 </div>
-                                <div class="expand-item-row">
-                                        <asp:Button ID="UpdataCatBtn" runat="server" Text="Update Category" class="expand-item-btn" 
-                                            OnClientClick="return " />
-                                            <asp:Button ID="updateCatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
-                                            OnClientClick="return "/>
-                                </div> 
                             </div>
                         </div>
-                        <div class="col-md-4" style="position:relative; padding-left:0px;">
-                                <div class="update-user-icon"></div>
-                        </div>
+                     </div>
                   </div>
-                </div>
-            </div>
           
             
                 

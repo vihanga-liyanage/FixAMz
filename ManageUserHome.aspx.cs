@@ -297,7 +297,7 @@ namespace FixAMz_WebApplication
                 gvEmployees.Visible = false;
             }
         }
-
+        
         protected void updateUserGoBtn_Click(object sender, EventArgs e)
         {
             try
@@ -382,6 +382,74 @@ namespace FixAMz_WebApplication
             }
         }
 
+
+        protected void EmpDltFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String empID = DeleteUserIDTextBox.Text;
+
+                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query = "SELECT firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        DeleteEmpID.InnerHtml = empID;
+                        DeleteFirstName.InnerHtml = dr["firstName"].ToString();
+                        DeleteLastName.InnerHtml = dr["lastName"].ToString();
+                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
+                        DeleteEmail.InnerHtml = dr["email"].ToString();
+                    }
+                    UpdateEmpID.InnerHtml = empID;
+                    deleteUserInitState.Style.Add("display", "none");
+                    deleteUserSecondState.Style.Add("display", "block");
+                    deleteUser.Style.Add("display", "block");
+                    DeleteEmpIDValidator.InnerHtml = "";
+                }
+                else
+                {
+                    deleteUserInitState.Style.Add("display", "block");
+                    deleteUserSecondState.Style.Add("display", "none");
+                    deleteUser.Style.Add("display", "block");
+                    DeleteEmpIDValidator.InnerHtml = "Invalid employee ID";
+                }
+                conn.Close();
+            }
+            catch (SqlException ex)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+        }
+
+        protected void DeleteUserBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String empID = DeleteUserIDTextBox.Text;
+
+                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                
+                
+            }
+            
+            }
+        }
         
     }
-}
