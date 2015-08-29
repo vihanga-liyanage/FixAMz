@@ -17,6 +17,7 @@
     <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
         SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
     <div class="container-fluid">
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
@@ -42,9 +43,9 @@
                 </div>
             </div>
         </div>
+<!--Main content-->
         <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-md-12 col-lg-10 expand-item-container">
+            <div class="col-md-12 col-lg-11 col-lg-offset-1 expand-item-container">
                 <div id="responseArea" runat="server"></div>
 <!--Add user-->
                 <div class="row expand-item">
@@ -218,6 +219,7 @@
                     </div> 
                     
                 </div>
+                </div>
 <!--Delete user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
@@ -278,12 +280,8 @@
                 </div>
                 
             </div>
-            </div>
-            
-            <div class="col-lg-1"></div>
-            
         </div>
-       <!-- </div> -->
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
