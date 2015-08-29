@@ -238,13 +238,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateEmpIDTextBox;
         
         /// <summary>
-        /// updateUserGoBtn control.
+        /// UpdateUserFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button updateUserGoBtn;
+        protected global::System.Web.UI.WebControls.Button UpdateUserFindBtn;
         
         /// <summary>
         /// updateUserSecondState control.
@@ -472,22 +472,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserInitState;
         
         /// <summary>
-        /// DeleteUserIDTextBox control.
+        /// DeleteUserEmpIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DeleteUserIDTextBox;
+        protected global::System.Web.UI.WebControls.TextBox DeleteUserEmpIDTextBox;
         
         /// <summary>
-        /// EmpIDFindBtn control.
+        /// DeleteUserFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EmpIDFindBtn;
+        protected global::System.Web.UI.WebControls.Button DeleteUserFindBtn;
         
         /// <summary>
         /// deleteUserSecondState control.
@@ -551,6 +551,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DeleteUserBtn;
+        
+        /// <summary>
+        /// DeleteUserCancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteUserCancelBtn;
         
         /// <summary>
         /// DeleteEmpIDValidator control.

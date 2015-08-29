@@ -159,6 +159,14 @@ div
     font-size:18px;
     color:#8f9194;
 }
+.custom-label
+{
+    margin-left: 245px;
+    width:290px;
+    height:28px;
+    padding-left:6px;
+    font-size:18px;
+}
 /*================================Add user================================*/
 .add-user-icon
 {
@@ -169,14 +177,6 @@ div
     opacity:0.1;
     background-size:contain;
     z-index:-1;
-}
-#AddNewEmpID
-{
-    margin-left: 245px;
-    width:290px;
-    height:28px;
-    padding-left:6px;
-    font-size:18px;
 }
 
 /*================================Update user================================*/
@@ -193,14 +193,6 @@ div
 #updateUserSecondState
 {
     display:none;
-}
-#UpdateEmpID
-{
-    margin-left: 245px;
-    width:290px;
-    height:28px;
-    padding-left:6px;
-    font-size:18px;
 }
 /*================================Advanced user search================================*/
 .adv-user-search-icon
@@ -228,14 +220,6 @@ div
 #deleteUserSecondState
 {
     display:none;
-}
-#DeleteEmpID
-{
-    margin-left: 245px;
-    width:290px;
-    height:28px;
-    padding-left:6px;
-    font-size:18px;
 }
 
 /*================================Add category================================*/

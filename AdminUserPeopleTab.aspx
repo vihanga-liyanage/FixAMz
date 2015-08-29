@@ -56,7 +56,7 @@
                             <div class="col-md-8">
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Employee ID</div>
-                                    <div id="AddNewEmpID" runat="server"></div>
+                                    <div id="AddNewEmpID" runat="server" class="custom-label"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">First Name</div>
@@ -123,16 +123,16 @@
                                         <asp:TextBox ID="UpdateEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
-                                        <asp:Button ID="updateUserGoBtn" runat="server" Text="Go" 
+                                        <asp:Button ID="UpdateUserFindBtn" runat="server" Text="Go" 
                                             class="expand-item-btn" OnClientClick="return isValidUpdateEmpID()" 
-                                            onclick="updateUserGoBtn_Click" />
+                                            onclick="UpdateUserFindBtn_Click" />
                                     </div>
                                 </div>
                                 <div id="updateUserSecondState" runat="server">
                                     <div class="info-div">Edit the fields and press update to update the user.</div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
-                                        <div id="UpdateEmpID" runat="server"></div>
+                                        <div id="UpdateEmpID" runat="server"  class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">First Name</div>
@@ -234,39 +234,40 @@
                                     <div class="info-div">Enter employee ID to delete the user</div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
-                                        <asp:TextBox ID="DeleteUserIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="DeleteUserEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
-                                        <asp:Button ID="EmpIDFindBtn" runat="server" Text="Find" 
+                                        <asp:Button ID="DeleteUserFindBtn" runat="server" Text="Go" 
                                             class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
-                                            onclick="EmpDltFindBtn_Click" />
+                                            onclick="DeleteUserFindBtn_Click" />
                                     </div>
                                 </div>
                                 <div id="deleteUserSecondState" runat="server">
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
-                                        <div id="DeleteEmpID" runat="server"></div>
+                                        <div id="DeleteEmpID" runat="server"  class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">First Name</div>
-                                        <div id="DeleteFirstName" runat="server"></div>
+                                        <div id="DeleteFirstName" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Last Name</div>
-                                        <div id="DeleteLastName" runat="server"></div>
+                                        <div id="DeleteLastName" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Email</div>
-                                        <div id="DeleteEmail" runat="server"></div>
+                                        <div id="DeleteEmail" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Contact</div>
-                                        <div id="DeleteContact" runat="server"></div>
+                                        <div id="DeleteContact" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn" 
                                              onclick="DeleteUserBtn_Click" />
-                                        
+                                        <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
+                                            OnClientClick="return " />
                                     </div>
                                 </div>
                             </div>

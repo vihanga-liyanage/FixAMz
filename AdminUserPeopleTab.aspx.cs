@@ -16,6 +16,8 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             setEmpID();
+            responseArea.InnerHtml = "";
+            Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
         }
 
         protected void AddUserBtn_Click(object sender, EventArgs e)
@@ -298,7 +300,7 @@ namespace FixAMz_WebApplication
             }
         }
         
-        protected void updateUserGoBtn_Click(object sender, EventArgs e)
+        protected void UpdateUserFindBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -382,15 +384,14 @@ namespace FixAMz_WebApplication
             }
         }
 
-
-        protected void EmpDltFindBtn_Click(object sender, EventArgs e)
+        protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String empID = DeleteUserIDTextBox.Text;
+                String empID = DeleteUserEmpIDTextBox.Text;
 
                 string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
@@ -414,6 +415,7 @@ namespace FixAMz_WebApplication
                     deleteUserSecondState.Style.Add("display", "block");
                     deleteUser.Style.Add("display", "block");
                     DeleteEmpIDValidator.InnerHtml = "";
+                    DeleteUserEmpIDTextBox.Focus();
                 }
                 else
                 {
@@ -421,6 +423,7 @@ namespace FixAMz_WebApplication
                     deleteUserSecondState.Style.Add("display", "none");
                     deleteUser.Style.Add("display", "block");
                     DeleteEmpIDValidator.InnerHtml = "Invalid employee ID";
+                    DeleteEmpID.Focus();
                 }
                 conn.Close();
             }
@@ -439,17 +442,29 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String empID = DeleteUserIDTextBox.Text;
+                String empID = DeleteUserEmpIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
-                SqlCommand cmd = new SqlCommand(check, conn);
-                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                string deleteQuerySystemUser = "DELETE FROM SystemUser WHERE empID='" + empID + "'";
+                string deleteQueryEmployee = "DELETE FROM Employee WHERE empID='" + empID + "'";
+                SqlCommand cmd = new SqlCommand(deleteQuerySystemUser, conn);
+                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand(deleteQueryEmployee, conn);
+                cmd.ExecuteNonQuery();
 
+                conn.Close();
 
-
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Employee '" + empID + "' deleted successfully!";
+                deleteUserInitState.Style.Add("display", "block");
+                deleteUserSecondState.Style.Add("display", "none");
+                deleteUser.Style.Add("display", "block");
+                DeleteUserEmpIDTextBox.Text = "";
             }
             catch (SqlException)
             {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
             }
             
         }
