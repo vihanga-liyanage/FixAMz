@@ -445,11 +445,14 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
-                
-                
+
+
+            }
+            catch (SqlException)
+            {
             }
             
-            }
         }
-        
     }
+        
+}
