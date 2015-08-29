@@ -110,7 +110,7 @@ function isValidUpdate() {
     var isValid = [true, true, true, true];
     var email = document.forms[0]["UpdateEmailTextBox"].value;
     var contact = document.forms[0]["UpdateContactTextBox"].value;
-
+    
     isValid[0] = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.");
     isValid[1] = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.");
 
