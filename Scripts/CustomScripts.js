@@ -33,62 +33,62 @@ function addNewClearAll() {
 }
 
 function isValidAddNew() { //try to write functions for overlaps
-    var isValid = [true, true, true, true, true, true, true];
     var email = document.forms[0]["AddNewEmailTextBox"].value;
     var contact = document.forms[0]["AddNewContactTextBox"].value;
     var confirmPassword = document.forms[0]["AddNewConfirmPasswordTextBox"].value;
+    var password = document.forms[0]["AddNewPasswordTextBox"].value;
 
-    isValid[0] = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.");
-    isValid[1] = requiredFieldValidator("AddNewLasttName", "Last name cannot be empty.");
+    var isValidFirstName = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.");
+    var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.");
 
+    var isValidEmail = true;
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (email == "") {
         document.getElementById("AddNewEmailValidator").innerHTML = "Email cannot be empty.";
-        isValid[2] = false;
+        isValidEmail = false;
     } else if (!re.test(email)) {
         document.getElementById("AddNewEmailValidator").innerHTML = "Enter a valid email address.";
-        isValid[2] = false;
+        isValidEmail = false;
     } else {
         document.getElementById("AddNewEmailValidator").innerHTML = "";
-        isValid[2] = true;
+        isValidEmail = true;
     }
 
+    var isValidContact = true;
     var prefix = contact.substring(0, 3);
     if (contact == "") {
         document.getElementById("AddNewContactValidator").innerHTML = "Contact cannot be empty.";
-        isValid[3] = false;
+        isValidContact = false;
     } else if (contact.length != 10) {
         document.getElementById("AddNewContactValidator").innerHTML = "Please enter a valid contact.";
-        isValid[3] = false;
+        isValidContact = false;
     } else if (!contact.match(/^\d{10}$/)) {
         document.getElementById("AddNewContactValidator").innerHTML = "Contact cannot have non-digits.";
-        isValid[3] = false;
+        isValidContact = false;
     } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
         document.getElementById("AddNewContactValidator").innerHTML = "Please enter a valid contact.";
-        isValid[3] = false;
+        isValidContact = false;
     } else {
         document.getElementById("AddNewContactValidator").innerHTML = "";
-        isValid[3] = true;
+        isValidContact = true;
     }
 
-    isValid[4] = requiredFieldValidator("AddNewUserName", "User name cannot be empty.");
-    isValid[5] = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
+    var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
+    var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
 
+    var isValidConfirmPassword = true;
     if (confirmPassword == "") {
         document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
-        isValid[6] = false;
+        isValidConfirmPassword = false;
     } else if (confirmPassword != password) {
         document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
-        isValid[6] = false;
+        isValidConfirmPassword = false;
     } else {
         document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "";
-        isValid[6] = true;
+        isValidConfirmPassword = true;
     }
 
-    for (var i = 0; i < isValid.length; i++) {
-        if (!isValid[i]) { return false; }
-    }
-    return true;
+    return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
 }
 
 //Update user functions ===================================================================
@@ -106,10 +106,8 @@ function isValidUpdateEmpID() {
     return requiredFieldValidator("UpdateEmpID", "Employee ID cannot be empty.");
 }
 
-function isValiUpdate() {
+function isValidUpdate() {
     var isValid = [true, true, true, true];
-    var firstname = document.forms[0]["UpdateFirstNameTextBox"].value;
-    var lastname = document.forms[0]["UpdateLastNameTextBox"].value;
     var email = document.forms[0]["UpdateEmailTextBox"].value;
     var contact = document.forms[0]["UpdateContactTextBox"].value;
 
