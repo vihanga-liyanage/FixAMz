@@ -8,26 +8,6 @@
 
 });
 
-function addNewClearAll() {
-    document.forms[0]["AddNewFirstNameTextBox"].value = "";
-    document.forms[0]["AddNewLastNameTextBox"].value = "";
-    document.forms[0]["AddNewEmailTextBox"].value = "";
-    document.forms[0]["AddNewContactTextBox"].value = "";
-    document.forms[0]["AddNewUsernameTextBox"].value = "";
-    document.forms[0]["AddNewPasswordTextBox"].value = "";
-    document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
-    return false;
-}
-
-function updateClearAll() {
-    document.forms[0]["UpdateFirstNameTextBox"].value = "";
-    document.forms[0]["UpdateLastNameTextBox"].value = "";
-    document.forms[0]["UpdateEmailTextBox"].value = "";
-    document.forms[0]["UpdateContactTextBox"].value = "";
-    document.forms[0]["updateUserInitState"].style.display = block;
-    return false;
-}
-
 function requiredFieldValidator(controller, msg) {
     var content = document.forms[0][controller + "TextBox"].value;
     if (content == "") {
@@ -37,6 +17,19 @@ function requiredFieldValidator(controller, msg) {
         document.getElementById(controller + "Validator").innerHTML = "";
         return true;
     }
+}
+
+//Add new user functions ===================================================================
+
+function addNewClearAll() {
+    document.forms[0]["AddNewFirstNameTextBox"].value = "";
+    document.forms[0]["AddNewLastNameTextBox"].value = "";
+    document.forms[0]["AddNewEmailTextBox"].value = "";
+    document.forms[0]["AddNewContactTextBox"].value = "";
+    document.forms[0]["AddNewUsernameTextBox"].value = "";
+    document.forms[0]["AddNewPasswordTextBox"].value = "";
+    document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
+    return false;
 }
 
 function isValidAddNew() { //try to write functions for overlaps
@@ -98,6 +91,17 @@ function isValidAddNew() { //try to write functions for overlaps
     return true;
 }
 
+//Update user functions ===================================================================
+
+function updateClearAll() {
+    document.forms[0]["UpdateFirstNameTextBox"].value = "";
+    document.forms[0]["UpdateLastNameTextBox"].value = "";
+    document.forms[0]["UpdateEmailTextBox"].value = "";
+    document.forms[0]["UpdateContactTextBox"].value = "";
+    document.forms[0]["updateUserInitState"].style.display = block;
+    return false;
+}
+
 function isValidUpdateEmpID() {
     return requiredFieldValidator("UpdateEmpID", "Employee ID cannot be empty.");
 }
@@ -148,31 +152,7 @@ function isValiUpdate() {
     return true;
 }
 
-function isValidAddCat() {
-    //var isValid = true ;
-    var catname = document.forms[0]["AddCategoryNameTextBox"].value;
-    
-    if (catname == "") {
-        document.getElementById("AddCategoryValidator").innerHTML = "Enter Category Name.";
-        //isValid[0] = false;
-        return false
-    } else {
-        document.getElementById("AddCategoryValidator").innerHTML = "";
-        //isValid[0] = true;
-        return true;
-    }
-    
-}
-
-function addCategoryClearAll() {
-    document.forms[0]["AddCategoryNameTextBox"].value = "";
-    return false;
-}
-
-
-
-
-
+//Advanced user search functions ===================================================================
 
 function searchClearAll() {
     document.forms[0]["SearchEmployeeIDTextBox"].value = "";
@@ -184,46 +164,46 @@ function searchClearAll() {
     return false;
 }
 
+//Delete user functions ===================================================================
 
+function isValidDeleteEmpID() {
+    return requiredFieldValidator("DeleteEmpID", "Employee ID cannot be empty.");
+}
+
+//Add new category functions ===================================================================
+
+function isValidAddCat() {
+    //var isValid = true ;
+    var catname = document.forms[0]["AddCategoryNameTextBox"].value;
+    if (catname == "") {
+        document.getElementById("AddCategoryValidator").innerHTML = "Enter Category Name.";
+        return false
+    } else {
+        document.getElementById("AddCategoryValidator").innerHTML = "";
+        return true;
+    }
+}
+
+function addCategoryClearAll() {
+    document.forms[0]["AddCategoryNameTextBox"].value = "";
+    return false;
+}
+
+//Update category functions ===================================================================
 
 function isValidUpdateCat() {
-    //var isValid = true ;
     var catname = document.forms[0]["UpdateCatNameTextBox"].value;
-
     if (catname == "") {
         document.getElementById("UpdateCategoryNameValidator").innerHTML = "Enter Category Name.";
-        //isValid[0] = false;
         return false
     } else {
         document.getElementById("UpdateCategoryNameValidator").innerHTML = "";
-        //isValid[0] = true;
         return true;
     }
-
 }
 
 function updateCategoryClearAll() {
     document.forms[0]["UpdateCatNameTextBox"].value = "";
     document.forms[0]["updatecategoryrInitState"].style.display = block;
     return false;
-}
-
-function isValidDeleteEmpID() {
-    return requiredFieldValidator("DeleteEmpID", "Employee ID cannot be empty.");
-}
-
-function isValidUpdateCat() {
-    //var isValid = true ;
-    var catname = document.forms[0]["UpdateCatNameTextBox"].value;
-
-    if (catname == "") {
-        document.getElementById("UpdateCategoryNameValidator").innerHTML = "Enter Category Name.";
-        //isValid[0] = false;
-        return false
-    } else {
-        document.getElementById("UpdateCategoryNameValidator").innerHTML = "";
-        //isValid[0] = true;
-        return true;
-    }
-
 }
