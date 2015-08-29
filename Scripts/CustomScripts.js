@@ -20,6 +20,41 @@ function requiredFieldValidator(controller, msg) {
     }
 }
 
+//Ajax functions for client side database calling
+var usernameNotExists = false;
+function usernameValidator(){
+    $.ajax({
+        type: "POST",
+        url: "AdminUserPeopleTab.aspx/checkUsername",
+        data: "{'Username':'" + document.forms[0]["AddNewUsernameTextBox"].value + "'}",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (success) {
+            //called on ajax call success
+            if (success.d == 0) {
+                document.getElementById("AddNewUsernameValidator").innerHTML = "";
+                usernameNotExists = true;
+            } else {
+                document.getElementById("AddNewUsernameValidator").innerHTML = "User name already exists.";
+                usernameNotExists = false;
+            }
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+            return false;
+        }
+    });
+}
+
+//Function to pause the execution
+function pause(millis) {
+    var date = new Date();
+    var curDate = null;
+
+    do { curDate = new Date(); }
+    while (curDate - date < millis);
+} 
+
 //Add new user functions ===================================================================
 
 function addNewClearAll() {
@@ -75,6 +110,13 @@ function isValidAddNew() { //try to write functions for overlaps
     }
 
     var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
+    if (isValidUsername) {
+        usernameValidator();
+        pause(300);
+        isValidUsername = usernameNotExists;
+        
+        //alert(isValidUsername);
+    }
     var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
 
     var isValidConfirmPassword = true;

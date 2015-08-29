@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
+using System.Web.Services;
 
 namespace FixAMz_WebApplication
 {
@@ -18,49 +19,6 @@ namespace FixAMz_WebApplication
             setEmpID();
             responseArea.InnerHtml = "";
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
-        }
-
-        protected void AddUserBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                string insertion_Employee = "insert into Employee (empID, firstName, lastName, contactNo, email) values (@empid, @firstname, @lastname, @contact, @email)";
-                SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
-                cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text);
-
-                cmd.ExecuteNonQuery();
-
-                string insertion_User = "insert into SystemUser (empID, username, password) values (@empid, @username, @password)";
-                cmd = new SqlCommand(insertion_User, conn);
-
-                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
-
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
-                cmd.Parameters.AddWithValue("@password", encriptedPassword);
-
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
-                setEmpID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
-                
-
-            }
-            catch (Exception ex)
-            {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
         }
 
         protected void setEmpID() //Reads the last empID from DB, calculates the next and set it in the web page.
@@ -102,6 +60,68 @@ namespace FixAMz_WebApplication
                 responseArea.Style.Add("color", "Yellow");
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
+            }
+        }
+
+        [WebMethod]
+        public static int checkUsername(string Username)
+        {
+            //To send a JSON object -> HttpContext.Current.Response.Write("{'response' : '" + res + "'}");
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT COUNT(*) FROM SystemUser WHERE username='" + Username + "'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                return res;
+            }
+            catch (SqlException)
+            {
+                return 2;
+            }
+        } 
+        
+        protected void AddUserBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Employee = "insert into Employee (empID, firstName, lastName, contactNo, email) values (@empid, @firstname, @lastname, @contact, @email)";
+                SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
+                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
+                cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text);
+
+                cmd.ExecuteNonQuery();
+
+                string insertion_User = "insert into SystemUser (empID, username, password) values (@empid, @username, @password)";
+                cmd = new SqlCommand(insertion_User, conn);
+
+                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
+
+                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
+                cmd.Parameters.AddWithValue("@password", encriptedPassword);
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
+                setEmpID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
+                
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
             }
         }
 
