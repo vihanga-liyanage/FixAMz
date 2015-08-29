@@ -51,8 +51,8 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
-                        <div class="expand-item-title">Add New User</div>
-                        <div class="expand-item-content">
+                        <div class="expand-item-title" id="AddNewUserHeader">Add New User</div>
+                        <div class="expand-item-content" id="AddNewUserContent">
                             <div class="col-md-8">
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Employee ID</div>
@@ -113,8 +113,8 @@
                     <div class="col-md-12">
                     <div id="Div2" runat="server"></div>
                         <img src="img/UpdateIcon.png" />
-                        <div class="expand-item-title">Update User</div>
-                        <div class="expand-item-content" id="updateUser" runat="server">
+                        <div class="expand-item-title" id="UpdateUserHeader">Update User</div>
+                        <div class="expand-item-content" id="UpdateUserContent" runat="server">
                             <div class="col-md-8">
                                 <div id="updateUserInitState" runat="server">
                                     <div class="info-div">Enter employee ID to start or use the advanced search below.</div>
@@ -175,8 +175,8 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
-                        <div class="expand-item-title">Advanced User Search</div>
-                        <div class="expand-item-content">
+                        <div class="expand-item-title" id="AdvancedSearchHeader">Advanced User Search</div>
+                        <div class="expand-item-content" id="AdvancedSearchContent">
                             <div class="col-md-8">
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Employee ID</div>
@@ -227,8 +227,8 @@
                     <div class="col-md-12">
                     <div id="Div1" runat="server"></div>
                         <img src="img/UpdateIcon.png" />
-                        <div class="expand-item-title">Delete User</div>
-                        <div class="expand-item-content" id="deleteUser" runat="server">
+                        <div class="expand-item-title" id="DeleteUserHeader">Delete User</div>
+                        <div class="expand-item-content" id="DeleteUserContent" runat="server">
                             <div class="col-md-8">
                                 <div id="deleteUserInitState" runat="server">
                                     <div class="info-div">Enter employee ID to delete the user</div>
@@ -280,8 +280,9 @@
                             </div>
                         </div>
                     </div>
+<!--Ectra div for space-->                
+                    <div class="row"></div>
                 </div>
-                
             </div>
         </div>
 <!--Footer-->

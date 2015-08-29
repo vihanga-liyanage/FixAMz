@@ -328,14 +328,14 @@ namespace FixAMz_WebApplication
                     UpdateEmpID.InnerHtml = empID;
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
-                    updateUser.Style.Add("display", "block");
+                    UpdateUserContent.Style.Add("display", "block");
                     UpdateEmpIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     updateUserInitState.Style.Add("display", "block");
                     updateUserSecondState.Style.Add("display", "none");
-                    updateUser.Style.Add("display", "block");
+                    UpdateUserContent.Style.Add("display", "block");
                     UpdateEmpIDValidator.InnerHtml = "Invalid employee ID";
                 }
                 conn.Close();
@@ -372,7 +372,7 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "Employee '" + empID + "' updated successfully!";
                 updateUserInitState.Style.Add("display", "block");
                 updateUserSecondState.Style.Add("display", "none");
-                updateUser.Style.Add("display", "block");
+                UpdateUserContent.Style.Add("display", "block");
                 UpdateEmpIDTextBox.Text = "";
 
             }
@@ -413,7 +413,7 @@ namespace FixAMz_WebApplication
                     UpdateEmpID.InnerHtml = empID;
                     deleteUserInitState.Style.Add("display", "none");
                     deleteUserSecondState.Style.Add("display", "block");
-                    deleteUser.Style.Add("display", "block");
+                    DeleteUserContent.Style.Add("display", "block");
                     DeleteEmpIDValidator.InnerHtml = "";
                     DeleteUserEmpIDTextBox.Focus();
                 }
@@ -421,7 +421,7 @@ namespace FixAMz_WebApplication
                 {
                     deleteUserInitState.Style.Add("display", "block");
                     deleteUserSecondState.Style.Add("display", "none");
-                    deleteUser.Style.Add("display", "block");
+                    DeleteUserContent.Style.Add("display", "block");
                     DeleteEmpIDValidator.InnerHtml = "Invalid employee ID";
                     DeleteEmpID.Focus();
                 }
@@ -457,7 +457,7 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "Employee '" + empID + "' deleted successfully!";
                 deleteUserInitState.Style.Add("display", "block");
                 deleteUserSecondState.Style.Add("display", "none");
-                deleteUser.Style.Add("display", "block");
+                DeleteUserContent.Style.Add("display", "block");
                 DeleteUserEmpIDTextBox.Text = "";
             }
             catch (SqlException)

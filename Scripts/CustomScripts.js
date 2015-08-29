@@ -1,13 +1,14 @@
-﻿$(".expand-item-title").click(function () {
+﻿//Exapand content function
+$(".expand-item-title").click(function () {
 
     $header = $(this);
     //getting the next element
     $content = $header.next();
     //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(800, function () {});
-
+    $content.slideToggle(800, function () { });
 });
 
+//Global validation function for required field
 function requiredFieldValidator(controller, msg) {
     var content = document.forms[0][controller + "TextBox"].value;
     if (content == "") {

@@ -211,13 +211,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
         
         /// <summary>
-        /// updateUser control.
+        /// UpdateUserContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateUserContent;
         
         /// <summary>
         /// updateUserInitState control.
@@ -454,13 +454,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// deleteUser control.
+        /// DeleteUserContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteUserContent;
         
         /// <summary>
         /// deleteUserInitState control.
