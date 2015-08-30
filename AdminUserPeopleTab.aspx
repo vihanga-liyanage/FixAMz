@@ -45,7 +45,7 @@
         </div>
 <!--Main content-->
         <div class="row">
-            <div class="col-md-12 col-lg-11 col-lg-offset-1 expand-item-container">
+            <div class="col-md-10 col-md-offset-1 expand-item-container">
                 <div id="responseArea" runat="server"></div>
 <!--Add user-->
                 <div class="row expand-item">

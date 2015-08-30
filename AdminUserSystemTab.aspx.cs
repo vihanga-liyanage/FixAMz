@@ -12,16 +12,16 @@ namespace FixAMz_WebApplication
 {
     public partial class AdminUserSystemTab : System.Web.UI.Page
     {
-       // protected void Page_Load_loc(object sender, EventArgs e)
-       // {
-       //    setLocID();
-       // }
+        protected void Page_Load_loc(object sender, EventArgs e)
+        {
+            setLocID();
+            responseArea.InnerHtml = "";
+        }
 
         protected void AddLocationBtn_Click(object sender, EventArgs e)
         {
             try
             {
-
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 string insertion_Location = "insert into Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) values (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
