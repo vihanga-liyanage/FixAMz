@@ -61,30 +61,37 @@
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">First Name</div>
                                     <asp:TextBox ID="AddNewFirstNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddNewFirstNameValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Last Name</div>
                                     <asp:TextBox ID="AddNewLastNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddNewLastNameValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Email</div>
                                     <asp:TextBox ID="AddNewEmailTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddNewEmailValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Contact</div>
                                     <asp:TextBox ID="AddNewContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddNewContactValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Username</div>
                                     <asp:TextBox ID="AddNewUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddNewUsernameValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Password</div>
                                     <asp:TextBox ID="AddNewPasswordTextBox" class="expand-item-textbox" runat="server" type="password"></asp:TextBox>
+                                    <div class="validator" id="AddNewPasswordValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Confirm Password</div>
-                                <asp:TextBox ID="AddNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server" type="password"></asp:TextBox>
+                                    <asp:TextBox ID="AddNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server" type="password"></asp:TextBox>
+                                    <div class="validator" id="AddNewConfirmPasswordValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" onclick="AddUserBtn_Click"
@@ -96,13 +103,13 @@
                             <div class="col-md-4" style="position:relative; padding-left:0px;">
                                 <div class="add-user-icon hidden-sm hidden-xs"></div>
                                 <div class="validator-container">
-                                    <div class="validator" id="AddNewFirstNameValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewLastNameValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewEmailValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewContactValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewUsernameValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewPasswordValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewConfirmPasswordValidator" runat="server"></div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                         </div>

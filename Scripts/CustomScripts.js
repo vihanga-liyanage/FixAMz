@@ -211,10 +211,53 @@ function isValidDeleteEmpID() {
     return requiredFieldValidator("DeleteEmpID", "Employee ID cannot be empty.");
 }
 
+//Add new location functions ===================================================================
+
+function isValidAddLoc() {
+    var catname = document.forms[0]["AddLocationNameTextBox"].value;
+    if (catname == "") {
+        document.getElementById("AddLocationValidator").innerHTML = "Enter Location Name";
+        return false
+    } else {
+        document.getElementById("AddLocationValidator").innerHTML = "";
+        return true;
+    }
+}
+
+function addLocationClearAll() {
+    document.forms[0]["AddLocationNameTextBox"].value = "";
+    document.forms[0]["AddLocationAddressTextBox"].value = "";
+    document.forms[0]["AddLocationContactTextBox"].value = "";
+    document.forms[0]["AddLocationTypeTextBox"].value = "";
+    document.forms[0]["AddLocationManagerOfficeTextBox"].value = "";
+    document.forms[0]["AddLocationDepartmentTextBox"].value = "";
+    document.forms[0]["AddLocationBranchTextBox"].value = "";
+    document.forms[0]["AddLocationZonalOfficeTextBox"].value = "";
+    return false;
+}
+
+//Update location functions ===================================================================
+
+function isValidUpdateLoc() {
+    var locname = document.forms[0]["UpdateLocNameTextBox"].value;
+    if (locname == "") {
+        document.getElementById("UpdateLocationNameValidator").innerHTML = "Enter Location Name.";
+        return false
+    } else {
+        document.getElementById("UpdateLocationNameValidator").innerHTML = "";
+        return true;
+    }
+}
+
+function updateLocationClearAll() {
+    document.forms[0]["UpdateLocNameTextBox"].value = "";
+    document.forms[0]["updatelocationInitState"].style.display = block;
+    return false;
+}
+
 //Add new category functions ===================================================================
 
 function isValidAddCat() {
-    //var isValid = true ;
     var catname = document.forms[0]["AddCategoryNameTextBox"].value;
     if (catname == "") {
         document.getElementById("AddCategoryValidator").innerHTML = "Enter Category Name.";
@@ -249,56 +292,3 @@ function updateCategoryClearAll() {
     return false;
 }
 
-//Add new location functions ===================================================================
-
-function isValidAddLoc() {
-    //var isValid = true ;
-    var catname = document.forms[0]["AddLocationNameTextBox"].value;
-
-    if (catname == "") {
-        document.getElementById("AddLocationValidator").innerHTML = "Enter Location Name";
-        //isValid[0] = false;
-        return false
-    } else {
-        document.getElementById("AddLocationValidator").innerHTML = "";
-        //isValid[0] = true;
-        return true;
-    }
-
-}
-
-function addLocationClearAll() {
-    document.forms[0]["AddLocationNameTextBox"].value = "";
-    document.forms[0]["AddLocationAddressTextBox"].value = "";
-    document.forms[0]["AddLocationContactTextBox"].value = "";
-    document.forms[0]["AddLocationTypeTextBox"].value = "";
-    document.forms[0]["AddLocationManagerOfficeTextBox"].value = "";
-    document.forms[0]["AddLocationDepartmentTextBox"].value = "";
-    document.forms[0]["AddLocationBranchTextBox"].value = "";
-    document.forms[0]["AddLocationZonalOfficeTextBox"].value = "";
-    return false;
-}
-
-//Update location functions ===================================================================
-
-function isValidUpdateLoc() {
-    //var isValid = true ;
-    var locname = document.forms[0]["UpdateLocNameTextBox"].value;
-
-    if (locname == "") {
-        document.getElementById("UpdateLocationNameValidator").innerHTML = "Enter Location Name.";
-        //isValid[0] = false;
-        return false
-    } else {
-        document.getElementById("UpdateLocationNameValidator").innerHTML = "";
-        //isValid[0] = true;
-        return true;
-    }
-
-}
-
-function updateLocationClearAll() {
-    document.forms[0]["UpdateLocNameTextBox"].value = "";
-    document.forms[0]["updatelocationInitState"].style.display = block;
-    return false;
-}
