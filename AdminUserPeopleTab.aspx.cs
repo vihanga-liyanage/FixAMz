@@ -335,17 +335,17 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
+                        UpdateEmpID.InnerHtml = dr["empID"].ToString();
                         UpdateFirstNameTextBox.Text = dr["firstName"].ToString();
                         UpdateLastNameTextBox.Text = dr["lastName"].ToString();
                         UpdateContactTextBox.Text = dr["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr["email"].ToString();
                     }
-                    UpdateEmpID.InnerHtml = empID;
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
                     UpdateUserContent.Style.Add("display", "block");
@@ -419,18 +419,17 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        DeleteEmpID.InnerHtml = empID;
+                        DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
                         DeleteContact.InnerHtml = dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
-                    UpdateEmpID.InnerHtml = empID;
                     deleteUserInitState.Style.Add("display", "none");
                     deleteUserSecondState.Style.Add("display", "block");
                     DeleteUserContent.Style.Add("display", "block");
