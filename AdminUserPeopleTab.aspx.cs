@@ -8,57 +8,17 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
+using System.Web.Services;
 
 namespace FixAMz_WebApplication
 {
-    public partial class ManageUserHome : System.Web.UI.Page
+    public partial class AdminUserPeopleTab : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             setEmpID();
-        }
-
-        protected void AddUserBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                string insertion_Employee = "insert into Employee (empID, firstName, lastName, contactNo, email) values (@empid, @firstname, @lastname, @contact, @email)";
-                SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
-                cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text);
-
-                cmd.ExecuteNonQuery();
-
-                string insertion_User = "insert into SystemUser (empID, username, password) values (@empid, @username, @password)";
-                cmd = new SqlCommand(insertion_User, conn);
-
-                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
-
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
-                cmd.Parameters.AddWithValue("@password", encriptedPassword);
-
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
-                setEmpID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
-                
-
-            }
-            catch (Exception ex)
-            {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
+            responseArea.InnerHtml = "";
+            Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
         }
 
         protected void setEmpID() //Reads the last empID from DB, calculates the next and set it in the web page.
@@ -100,6 +60,68 @@ namespace FixAMz_WebApplication
                 responseArea.Style.Add("color", "Yellow");
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
+            }
+        }
+
+        [WebMethod]
+        public static int checkUsername(string Username)
+        {
+            //To send a JSON object -> HttpContext.Current.Response.Write("{'response' : '" + res + "'}");
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT COUNT(*) FROM SystemUser WHERE username='" + Username + "'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                return res;
+            }
+            catch (SqlException)
+            {
+                return 2;
+            }
+        } 
+        
+        protected void AddUserBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Employee = "insert into Employee (empID, firstName, lastName, contactNo, email) values (@empid, @firstname, @lastname, @contact, @email)";
+                SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
+                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
+                cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text);
+
+                cmd.ExecuteNonQuery();
+
+                string insertion_User = "insert into SystemUser (empID, username, password) values (@empid, @username, @password)";
+                cmd = new SqlCommand(insertion_User, conn);
+
+                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
+
+                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
+                cmd.Parameters.AddWithValue("@password", encriptedPassword);
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
+                setEmpID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
+                
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
             }
         }
 
@@ -298,7 +320,7 @@ namespace FixAMz_WebApplication
             }
         }
         
-        protected void updateUserGoBtn_Click(object sender, EventArgs e)
+        protected void UpdateUserFindBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -326,14 +348,14 @@ namespace FixAMz_WebApplication
                     UpdateEmpID.InnerHtml = empID;
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
-                    updateUser.Style.Add("display", "block");
+                    UpdateUserContent.Style.Add("display", "block");
                     UpdateEmpIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     updateUserInitState.Style.Add("display", "block");
                     updateUserSecondState.Style.Add("display", "none");
-                    updateUser.Style.Add("display", "block");
+                    UpdateUserContent.Style.Add("display", "block");
                     UpdateEmpIDValidator.InnerHtml = "Invalid employee ID";
                 }
                 conn.Close();
@@ -370,7 +392,7 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "Employee '" + empID + "' updated successfully!";
                 updateUserInitState.Style.Add("display", "block");
                 updateUserSecondState.Style.Add("display", "none");
-                updateUser.Style.Add("display", "block");
+                UpdateUserContent.Style.Add("display", "block");
                 UpdateEmpIDTextBox.Text = "";
 
             }
@@ -382,15 +404,14 @@ namespace FixAMz_WebApplication
             }
         }
 
-
-        protected void EmpDltFindBtn_Click(object sender, EventArgs e)
+        protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String empID = DeleteUserIDTextBox.Text;
+                String empID = DeleteUserEmpIDTextBox.Text;
 
                 string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
@@ -412,15 +433,17 @@ namespace FixAMz_WebApplication
                     UpdateEmpID.InnerHtml = empID;
                     deleteUserInitState.Style.Add("display", "none");
                     deleteUserSecondState.Style.Add("display", "block");
-                    deleteUser.Style.Add("display", "block");
+                    DeleteUserContent.Style.Add("display", "block");
                     DeleteEmpIDValidator.InnerHtml = "";
+                    DeleteUserEmpIDTextBox.Focus();
                 }
                 else
                 {
                     deleteUserInitState.Style.Add("display", "block");
                     deleteUserSecondState.Style.Add("display", "none");
-                    deleteUser.Style.Add("display", "block");
+                    DeleteUserContent.Style.Add("display", "block");
                     DeleteEmpIDValidator.InnerHtml = "Invalid employee ID";
+                    DeleteEmpID.Focus();
                 }
                 conn.Close();
             }
@@ -439,30 +462,32 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String empID = DeleteUserIDTextBox.Text;
+                String empID = DeleteUserEmpIDTextBox.Text;
 
-                string delete_Employee = "DELETE from Employee WHERE empID=@empID";
-                SqlCommand cmd = new SqlCommand(delete_Employee, conn);
-
+                string deleteQuerySystemUser = "DELETE FROM SystemUser WHERE empID='" + empID + "'";
+                string deleteQueryEmployee = "DELETE FROM Employee WHERE empID='" + empID + "'";
+                SqlCommand cmd = new SqlCommand(deleteQuerySystemUser, conn);
+                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand(deleteQueryEmployee, conn);
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
 
                 responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Employee '" + empID + "' updated successfully!";
+                responseArea.InnerHtml = "Employee '" + empID + "' deleted successfully!";
                 deleteUserInitState.Style.Add("display", "block");
                 deleteUserSecondState.Style.Add("display", "none");
-                deleteUser.Style.Add("display", "block");
-                DeleteUserIDTextBox.Text = "";
-                  
+                DeleteUserContent.Style.Add("display", "block");
+                DeleteUserEmpIDTextBox.Text = "";
             }
-            catch (Exception ex)
+            catch (SqlException)
             {
-                responseArea.Style.Add("color", "orangered");
+                responseArea.Style.Add("color", "Yellow");
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
+                Response.Write(e.ToString());
             }
-            }
+            
         }
-        
     }
+        
+}

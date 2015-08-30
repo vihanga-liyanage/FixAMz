@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class ManageUserHome {
+    public partial class AdminUserSystemTab {
         
         /// <summary>
         /// form1 control.
@@ -49,157 +49,112 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseArea;
         
         /// <summary>
-        /// AddNewEmpID control.
+        /// AddNewLocID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewLocID;
         
         /// <summary>
-        /// AddNewFirstNameTextBox control.
+        /// AddLocationNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewFirstNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationNameTextBox;
         
         /// <summary>
-        /// AddNewLastNameTextBox control.
+        /// AddLocationAddressTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewLastNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationAddressTextBox;
         
         /// <summary>
-        /// AddNewEmailTextBox control.
+        /// AddLocationContactTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewEmailTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationContactTextBox;
         
         /// <summary>
-        /// AddNewContactTextBox control.
+        /// AddLocationTypeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewContactTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationTypeTextBox;
         
         /// <summary>
-        /// AddNewUsernameTextBox control.
+        /// AddLocationManagerOfficeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewUsernameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationManagerOfficeTextBox;
         
         /// <summary>
-        /// AddNewPasswordTextBox control.
+        /// AddLocationDepartmentTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewPasswordTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationDepartmentTextBox;
         
         /// <summary>
-        /// AddNewConfirmPasswordTextBox control.
+        /// AddLocationBranchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewConfirmPasswordTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationBranchTextBox;
         
         /// <summary>
-        /// AddUserBtn control.
+        /// AddLocationZonalOfficeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddUserBtn;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationZonalOfficeTextBox;
         
         /// <summary>
-        /// AddNewCancelBtn control.
+        /// AddLocationUserBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddNewCancelBtn;
+        protected global::System.Web.UI.WebControls.Button AddLocationUserBtn;
         
         /// <summary>
-        /// AddNewFirstNameValidator control.
+        /// AddLocationCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewFirstNameValidator;
+        protected global::System.Web.UI.WebControls.Button AddLocationCancelBtn;
         
         /// <summary>
-        /// AddNewLastNameValidator control.
+        /// AddLocationValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewLastNameValidator;
-        
-        /// <summary>
-        /// AddNewEmailValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewEmailValidator;
-        
-        /// <summary>
-        /// AddNewContactValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
-        
-        /// <summary>
-        /// AddNewUserNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewUserNameValidator;
-        
-        /// <summary>
-        /// AddNewPasswordValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewPasswordValidator;
-        
-        /// <summary>
-        /// AddNewConfirmPasswordValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewConfirmPasswordValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationValidator;
         
         /// <summary>
         /// Div2 control.
@@ -211,229 +166,157 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
         
         /// <summary>
-        /// updateUser control.
+        /// AddNewCatID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewCatID;
         
         /// <summary>
-        /// updateUserInitState control.
+        /// AddCategoryNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateUserInitState;
+        protected global::System.Web.UI.WebControls.TextBox AddCategoryNameTextBox;
         
         /// <summary>
-        /// UpdateEmpIDTextBox control.
+        /// AddCategoryUserBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateEmpIDTextBox;
+        protected global::System.Web.UI.WebControls.Button AddCategoryUserBtn;
         
         /// <summary>
-        /// updateUserGoBtn control.
+        /// AddCategoryCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button updateUserGoBtn;
+        protected global::System.Web.UI.WebControls.Button AddCategoryCancelBtn;
         
         /// <summary>
-        /// updateUserSecondState control.
+        /// AddCategoryValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateUserSecondState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddCategoryValidator;
         
         /// <summary>
-        /// UpdateEmpID control.
+        /// Div3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div3;
         
         /// <summary>
-        /// UpdateFirstNameTextBox control.
+        /// updateLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateFirstNameTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateLocation;
         
         /// <summary>
-        /// UpdateLastNameTextBox control.
+        /// updatelocationInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateLastNameTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatelocationInitState;
         
         /// <summary>
-        /// UpdateEmailTextBox control.
+        /// UpdateLocationTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateEmailTextBox;
+        protected global::System.Web.UI.WebControls.TextBox UpdateLocationTextBox;
         
         /// <summary>
-        /// UpdateContactTextBox control.
+        /// LocFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateContactTextBox;
+        protected global::System.Web.UI.WebControls.Button LocFindBtn;
         
         /// <summary>
-        /// UpdateUserBtn control.
+        /// updatelocationSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateUserBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatelocationSecondState;
         
         /// <summary>
-        /// UpdateUserCancelBtn control.
+        /// UpdateLocID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateUserCancelBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocID;
         
         /// <summary>
-        /// UpdateEmpIDValidator control.
+        /// UpdateLocNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpIDValidator;
+        protected global::System.Web.UI.WebControls.TextBox UpdateLocNameTextBox;
         
         /// <summary>
-        /// UpdateFirstNameValidator control.
+        /// UpdateLocBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateFirstNameValidator;
+        protected global::System.Web.UI.WebControls.Button UpdateLocBtn;
         
         /// <summary>
-        /// UpdateLastNameValidator control.
+        /// updateLocCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLastNameValidator;
+        protected global::System.Web.UI.WebControls.Button updateLocCancelBtn;
         
         /// <summary>
-        /// UpdateEmailValidator control.
+        /// UpdateLocIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmailValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocIDValidator;
         
         /// <summary>
-        /// SearchEmployeeIDTextBox control.
+        /// UpdateLocationNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchEmployeeIDTextBox;
-        
-        /// <summary>
-        /// SearchFirstNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchFirstNameTextBox;
-        
-        /// <summary>
-        /// SearchLastNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchLastNameTextBox;
-        
-        /// <summary>
-        /// SearchEmailTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchEmailTextBox;
-        
-        /// <summary>
-        /// SearchContactTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchContactTextBox;
-        
-        /// <summary>
-        /// SearchUsernameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchUsernameTextBox;
-        
-        /// <summary>
-        /// SearchUserBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchUserBtn;
-        
-        /// <summary>
-        /// CancelSearchBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
-        
-        /// <summary>
-        /// gvEmployees control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEmployees;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocationNameValidator;
         
         /// <summary>
         /// Div1 control.
@@ -445,111 +328,102 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// deleteUser control.
+        /// updateCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategory;
         
         /// <summary>
-        /// deleteUserInitState control.
+        /// updatecategoryrInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserInitState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatecategoryrInitState;
         
         /// <summary>
-        /// DeleteUserIDTextBox control.
+        /// UpdateCategoryTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DeleteUserIDTextBox;
+        protected global::System.Web.UI.WebControls.TextBox UpdateCategoryTextBox;
         
         /// <summary>
-        /// EmpIDFindBtn control.
+        /// CatFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EmpIDFindBtn;
+        protected global::System.Web.UI.WebControls.Button CatFindBtn;
         
         /// <summary>
-        /// deleteUserSecondState control.
+        /// updateCategorySecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserSecondState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategorySecondState;
         
         /// <summary>
-        /// DeleteEmpID control.
+        /// UpdateCatID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatID;
         
         /// <summary>
-        /// DeleteFirstName control.
+        /// UpdateCatNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteFirstName;
+        protected global::System.Web.UI.WebControls.TextBox UpdateCatNameTextBox;
         
         /// <summary>
-        /// DeleteLastName control.
+        /// UpdateCatBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteLastName;
+        protected global::System.Web.UI.WebControls.Button UpdateCatBtn;
         
         /// <summary>
-        /// DeleteEmail control.
+        /// updateCatCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmail;
+        protected global::System.Web.UI.WebControls.Button updateCatCancelBtn;
         
         /// <summary>
-        /// DeleteContact control.
+        /// UpdateCatIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteContact;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatIDValidator;
         
         /// <summary>
-        /// DeleteUserBtn control.
+        /// UpdateCategoryNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteUserBtn;
-        
-        /// <summary>
-        /// DeleteEmpIDValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpIDValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryNameValidator;
     }
 }

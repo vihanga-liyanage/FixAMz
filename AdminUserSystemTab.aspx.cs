@@ -10,7 +10,7 @@ using System.Configuration;
 using System.Web.Security;
 namespace FixAMz_WebApplication
 {
-    public partial class SystemManageHome : System.Web.UI.Page
+    public partial class AdminUserSystemTab : System.Web.UI.Page
     {
        // protected void Page_Load_loc(object sender, EventArgs e)
        // {

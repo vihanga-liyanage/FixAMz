@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SystemManageHome.aspx.cs" Inherits="FixAMz_WebApplication.SystemManageHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminUserSystemTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserSystemTab" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -37,7 +37,7 @@
                         </div>
                         <ul class="custom-nav-bar nav nav-tabs">
                             <li><a href="#">HOME</a> </li>
-                            <li><a href="#">PEOPLE</a> </li>
+                            <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a></li>
                             <li><a href="#"><u>SYSTEM</u></a> </li>
                             <li><a href="#">ABOUT</a> </li>
                             <li><a href="#">HELP</a> </li>

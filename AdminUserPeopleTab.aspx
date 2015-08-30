@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="ManageUserHome.aspx.cs" Inherits="FixAMz_WebApplication.ManageUserHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="AdminUserPeopleTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserPeopleTab" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +17,7 @@
     <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
         SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
     <div class="container-fluid">
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
@@ -35,27 +36,27 @@
                     <ul class="custom-nav-bar nav nav-tabs">
                         <li><a href="#">HOME</a> </li>
                         <li><a href="#"><u>PEOPLE</u></a> </li>
-                        <li><a href="#">SYSTEM</a> </li>
+                        <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
                         <li><a href="#">ABOUT</a> </li>
                         <li><a href="#">HELP</a> </li>
                     </ul>
                 </div>
             </div>
         </div>
+<!--Main content-->
         <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-md-12 col-lg-10 expand-item-container">
+            <div class="col-md-12 col-lg-11 col-lg-offset-1 expand-item-container">
                 <div id="responseArea" runat="server"></div>
 <!--Add user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
-                        <div class="expand-item-title">Add New User</div>
-                        <div class="expand-item-content">
+                        <div class="expand-item-title" id="AddNewUserHeader">Add New User</div>
+                        <div class="expand-item-content" id="AddNewUserContent">
                             <div class="col-md-8">
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Employee ID</div>
-                                    <div id="AddNewEmpID" runat="server"></div>
+                                    <div id="AddNewEmpID" runat="server" class="custom-label"></div>
                                 </div>
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">First Name</div>
@@ -86,8 +87,8 @@
                                 <asp:TextBox ID="AddNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server" type="password"></asp:TextBox>
                                 </div>
                                 <div class="expand-item-row">
-                                    <asp:Button ID="AddUserBtn" runat="server" Text="Add User" 
-                                        class="expand-item-btn" onclick="AddUserBtn_Click" OnClientClick="return isValidAddNew()" />
+                                    <asp:Button ID="AddUserBtn" runat="server" Text="Add User" onclick="AddUserBtn_Click"
+                                        class="expand-item-btn" OnClientClick="return isValidAddNew()" />
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
                                         OnClientClick="return addNewClearAll()"/>
                                 </div>
@@ -99,7 +100,7 @@
                                     <div class="validator" id="AddNewLastNameValidator" runat="server"></div>
                                     <div class="validator" id="AddNewEmailValidator" runat="server"></div>
                                     <div class="validator" id="AddNewContactValidator" runat="server"></div>
-                                    <div class="validator" id="AddNewUserNameValidator" runat="server"></div>
+                                    <div class="validator" id="AddNewUsernameValidator" runat="server"></div>
                                     <div class="validator" id="AddNewPasswordValidator" runat="server"></div>
                                     <div class="validator" id="AddNewConfirmPasswordValidator" runat="server"></div>
                                 </div>
@@ -112,8 +113,8 @@
                     <div class="col-md-12">
                     <div id="Div2" runat="server"></div>
                         <img src="img/UpdateIcon.png" />
-                        <div class="expand-item-title">Update User</div>
-                        <div class="expand-item-content" id="updateUser" runat="server">
+                        <div class="expand-item-title" id="UpdateUserHeader">Update User</div>
+                        <div class="expand-item-content" id="UpdateUserContent" runat="server">
                             <div class="col-md-8">
                                 <div id="updateUserInitState" runat="server">
                                     <div class="info-div">Enter employee ID to start or use the advanced search below.</div>
@@ -122,15 +123,16 @@
                                         <asp:TextBox ID="UpdateEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
-                                        <asp:Button ID="updateUserGoBtn" runat="server" Text="Go" 
+                                        <asp:Button ID="UpdateUserFindBtn" runat="server" Text="Go" 
                                             class="expand-item-btn" OnClientClick="return isValidUpdateEmpID()" 
-                                            onclick="updateUserGoBtn_Click" />
+                                            onclick="UpdateUserFindBtn_Click" />
                                     </div>
                                 </div>
                                 <div id="updateUserSecondState" runat="server">
+                                    <div class="info-div">Edit the fields and press update to update the user.</div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
-                                        <div id="UpdateEmpID" runat="server"></div>
+                                        <div id="UpdateEmpID" runat="server"  class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">First Name</div>
@@ -150,7 +152,7 @@
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn" 
-                                            OnClientClick="return isValiUpdate()" onclick="UpdateUserBtn_Click" />
+                                            OnClientClick="return isValidUpdate()" onclick="UpdateUserBtn_Click"/>
                                         <asp:Button ID="UpdateUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
                                             OnClientClick="return updateClearAll()"/>
                                     </div>
@@ -163,6 +165,7 @@
                                     <div class="validator" id="UpdateFirstNameValidator" runat="server"></div>
                                     <div class="validator" id="UpdateLastNameValidator" runat="server"></div>
                                     <div class="validator" id="UpdateEmailValidator" runat="server"></div>
+                                    <div class="validator" id="UpdateContactValidator" runat="server"></div>
                                 </div>
                             </div>
                         </div>
@@ -172,8 +175,8 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
-                        <div class="expand-item-title">Advanced User Search</div>
-                        <div class="expand-item-content">
+                        <div class="expand-item-title" id="AdvancedSearchHeader">Advanced User Search</div>
+                        <div class="expand-item-content" id="AdvancedSearchContent">
                             <div class="col-md-8">
                                 <div class="expand-item-row">
                                     <div class="expand-item-label">Employee ID</div>
@@ -218,51 +221,53 @@
                     </div> 
                     
                 </div>
+                </div>
 <!--Delete user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                     <div id="Div1" runat="server"></div>
                         <img src="img/UpdateIcon.png" />
-                        <div class="expand-item-title">Delete User</div>
-                        <div class="expand-item-content" id="deleteUser" runat="server">
+                        <div class="expand-item-title" id="DeleteUserHeader">Delete User</div>
+                        <div class="expand-item-content" id="DeleteUserContent" runat="server">
                             <div class="col-md-8">
                                 <div id="deleteUserInitState" runat="server">
                                     <div class="info-div">Enter employee ID to delete the user</div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
-                                        <asp:TextBox ID="DeleteUserIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="DeleteUserEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
-                                        <asp:Button ID="EmpIDFindBtn" runat="server" Text="Find" 
+                                        <asp:Button ID="DeleteUserFindBtn" runat="server" Text="Go" 
                                             class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
-                                            onclick="EmpDltFindBtn_Click" />
+                                            onclick="DeleteUserFindBtn_Click" />
                                     </div>
                                 </div>
                                 <div id="deleteUserSecondState" runat="server">
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
-                                        <div id="DeleteEmpID" runat="server"></div>
+                                        <div id="DeleteEmpID" runat="server"  class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">First Name</div>
-                                        <div id="DeleteFirstName" runat="server"></div>
+                                        <div id="DeleteFirstName" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Last Name</div>
-                                        <div id="DeleteLastName" runat="server"></div>
+                                        <div id="DeleteLastName" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Email</div>
-                                        <div id="DeleteEmail" runat="server"></div>
+                                        <div id="DeleteEmail" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Contact</div>
-                                        <div id="DeleteContact" runat="server"></div>
+                                        <div id="DeleteContact" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn" 
                                              onclick="DeleteUserBtn_Click" />
-                                        
+                                        <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
+                                            OnClientClick="return " />
                                     </div>
                                 </div>
                             </div>
@@ -275,15 +280,12 @@
                             </div>
                         </div>
                     </div>
+<!--Ectra div for space-->                
+                    <div class="row"></div>
                 </div>
-                
             </div>
-            </div>
-            
-            <div class="col-lg-1"></div>
-            
         </div>
-       <!-- </div> -->
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">

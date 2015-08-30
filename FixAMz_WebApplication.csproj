@@ -131,8 +131,8 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="ManageUserHome.aspx" />
-    <Content Include="SystemManageHome.aspx" />
+    <Content Include="AdminUserPeopleTab.aspx" />
+    <Content Include="AdminUserSystemTab.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -182,8 +182,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ManageUserHome.aspx.designer.cs">
-      <DependentUpon>ManageUserHome.aspx</DependentUpon>
+    <Compile Include="AdminUserPeopleTab.aspx.designer.cs">
+      <DependentUpon>AdminUserPeopleTab.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResults.aspx.cs">
@@ -200,16 +200,16 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="ManageUserHome.aspx.cs">
-      <DependentUpon>ManageUserHome.aspx</DependentUpon>
+    <Compile Include="AdminUserPeopleTab.aspx.cs">
+      <DependentUpon>AdminUserPeopleTab.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManageHome.aspx.cs">
-      <DependentUpon>SystemManageHome.aspx</DependentUpon>
+    <Compile Include="AdminUserSystemTab.aspx.cs">
+      <DependentUpon>AdminUserSystemTab.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManageHome.aspx.designer.cs">
-      <DependentUpon>SystemManageHome.aspx</DependentUpon>
+    <Compile Include="AdminUserSystemTab.aspx.designer.cs">
+      <DependentUpon>AdminUserSystemTab.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
