@@ -67,6 +67,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddNewFirstNameTextBox;
         
         /// <summary>
+        /// AddNewFirstNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewFirstNameValidator;
+        
+        /// <summary>
         /// AddNewLastNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddNewLastNameTextBox;
+        
+        /// <summary>
+        /// AddNewLastNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewLastNameValidator;
         
         /// <summary>
         /// AddNewEmailTextBox control.
@@ -85,6 +103,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddNewEmailTextBox;
         
         /// <summary>
+        /// AddNewEmailValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewEmailValidator;
+        
+        /// <summary>
         /// AddNewContactTextBox control.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddNewContactTextBox;
+        
+        /// <summary>
+        /// AddNewContactValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
         
         /// <summary>
         /// AddNewUsernameTextBox control.
@@ -103,6 +139,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddNewUsernameTextBox;
         
         /// <summary>
+        /// AddNewUsernameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewUsernameValidator;
+        
+        /// <summary>
         /// AddNewPasswordTextBox control.
         /// </summary>
         /// <remarks>
@@ -112,6 +157,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddNewPasswordTextBox;
         
         /// <summary>
+        /// AddNewPasswordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewPasswordValidator;
+        
+        /// <summary>
         /// AddNewConfirmPasswordTextBox control.
         /// </summary>
         /// <remarks>
@@ -119,6 +173,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddNewConfirmPasswordTextBox;
+        
+        /// <summary>
+        /// AddNewConfirmPasswordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewConfirmPasswordValidator;
         
         /// <summary>
         /// AddUserBtn control.
@@ -137,69 +200,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddNewCancelBtn;
-        
-        /// <summary>
-        /// AddNewFirstNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewFirstNameValidator;
-        
-        /// <summary>
-        /// AddNewLastNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewLastNameValidator;
-        
-        /// <summary>
-        /// AddNewEmailValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewEmailValidator;
-        
-        /// <summary>
-        /// AddNewContactValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
-        
-        /// <summary>
-        /// AddNewUsernameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewUsernameValidator;
-        
-        /// <summary>
-        /// AddNewPasswordValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewPasswordValidator;
-        
-        /// <summary>
-        /// AddNewConfirmPasswordValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewConfirmPasswordValidator;
         
         /// <summary>
         /// Div2 control.
