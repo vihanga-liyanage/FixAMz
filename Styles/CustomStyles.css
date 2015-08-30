@@ -226,7 +226,7 @@ div
 .add-location-icon
 {
     position:absolute;
-    background:url(/img/addNewAsset.png) no-repeat;
+    background:url(/img/add-location.png) no-repeat;
     width:350px;
     height:350px;
     opacity:0.1;
@@ -269,7 +269,7 @@ div
     z-index:-1;
 }
 
-#updateCategorySecondState
+#updateCategorySecondState, #updatelocationSecondState
 {
     display:none;
 }
