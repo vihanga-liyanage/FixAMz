@@ -164,14 +164,39 @@ function isValidAddCat() {
     
 }
 
+function isValidAddLoc() {
+    //var isValid = true ;
+    var catname = document.forms[0]["AddLocationNameTextBox"].value;
+
+    if (catname == "") {
+        document.getElementById("AddLocationValidator").innerHTML = "Enter Location Name";
+        //isValid[0] = false;
+        return false
+    } else {
+        document.getElementById("AddLocationValidator").innerHTML = "";
+        //isValid[0] = true;
+        return true;
+    }
+
+}
+
+
 function addCategoryClearAll() {
     document.forms[0]["AddCategoryNameTextBox"].value = "";
     return false;
 }
 
-
-
-
+function addLocationClearAll() {
+    document.forms[0]["AddLocationNameTextBox"].value = "";
+    document.forms[0]["AddLocationAddressTextBox"].value = "";
+    document.forms[0]["AddLocationContactTextBox"].value = "";
+    document.forms[0]["AddLocationTypeTextBox"].value = "";
+    document.forms[0]["AddLocationManagerOfficeTextBox"].value = "";
+    document.forms[0]["AddLocationDepartmentTextBox"].value = "";
+    document.forms[0]["AddLocationBranchTextBox"].value = "";
+    document.forms[0]["AddLocationZonalOfficeTextBox"].value = "";
+    return false;
+}
 
 
 function searchClearAll() {
@@ -202,9 +227,31 @@ function isValidUpdateCat() {
 
 }
 
+function isValidUpdateLoc() {
+    //var isValid = true ;
+    var locname = document.forms[0]["UpdateLocNameTextBox"].value;
+
+    if (locname == "") {
+        document.getElementById("UpdateLocationNameValidator").innerHTML = "Enter Location Name.";
+        //isValid[0] = false;
+        return false
+    } else {
+        document.getElementById("UpdateLocationNameValidator").innerHTML = "";
+        //isValid[0] = true;
+        return true;
+    }
+
+}
+
 function updateCategoryClearAll() {
     document.forms[0]["UpdateCatNameTextBox"].value = "";
     document.forms[0]["updatecategoryrInitState"].style.display = block;
+    return false;
+}
+
+function updateLocationClearAll() {
+    document.forms[0]["UpdateLocNameTextBox"].value = "";
+    document.forms[0]["updatelocationInitState"].style.display = block;
     return false;
 }
 

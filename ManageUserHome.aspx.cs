@@ -441,14 +441,27 @@ namespace FixAMz_WebApplication
 
                 String empID = DeleteUserIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
-                SqlCommand cmd = new SqlCommand(check, conn);
-                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                string delete_Employee = "DELETE from Employee WHERE empID=@empID";
+                SqlCommand cmd = new SqlCommand(delete_Employee, conn);
 
-                
-                
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Employee '" + empID + "' updated successfully!";
+                deleteUserInitState.Style.Add("display", "block");
+                deleteUserSecondState.Style.Add("display", "none");
+                deleteUser.Style.Add("display", "block");
+                DeleteUserIDTextBox.Text = "";
+                  
             }
-            
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
             }
         }
         

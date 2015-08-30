@@ -238,6 +238,18 @@ div
     font-size:18px;
 }
 
+/*================================Add location================================*/
+.add-location-icon
+{
+    position:absolute;
+    background:url(/img/addNewAsset.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+} 
+
 /*================================Add category================================*/
 .add-categoy-icon
 {

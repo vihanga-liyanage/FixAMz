@@ -64,6 +64,10 @@
                             <div class="expand-item-content">
                                 <div class="col-md-8">
                                     <div class="expand-item-row">
+                                        <div class="expand-item-label">Location ID</div>
+                                        <div id="AddNewLocID" runat="server"></div>
+                                    </div>
+                                    <div class="expand-item-row">
                                         <div class="expand-item-label">Name</div>
                                         <asp:TextBox ID="AddLocationNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
@@ -75,49 +79,37 @@
                                         <div class="expand-item-label">Contact</div>
                                         <asp:TextBox ID="AddLocationContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
-                                    <div class="expand-item-row">
+                                    <!--<div class="expand-item-row">
                                         <div class="expand-item-label">Type</div>
-                                        <asp:DropDownList ID="AddLocationTypeList" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="Select Type" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Branch" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Head Office" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
+                                        <asp:TextBox ID="AddLocationTypeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>-->
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Manager Office</div>
-                                        <asp:DropDownList ID="AddLocationManagerOfficeList" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="Select Manager Office" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Head Office, Rathmalana" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Colombo" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="AddLocationManagerOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Department</div>
-                                        <asp:DropDownList ID="AddLocationDepartmentList" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="IT" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Finance" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="AddLocationDepartmentTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Branch</div>
-                                        <asp:DropDownList ID="AddLocationBranchList" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="-" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="AddLocationBranchTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Zonal Office</div>
-                                        <asp:DropDownList ID="AddLocationZonalOfficeList" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="Western" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="AddLocationZonalOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="expand-item-row">
-                                        <asp:Button ID="AddUserBtn" runat="server" Text="Add Location" class="expand-item-btn" />
-                                        <asp:Button ID="CancelBtn" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        <asp:Button ID="AddLocationUserBtn" runat="server" Text="Add Location" class="expand-item-btn"
+                                            OnClick="AddLocationBtn_Click" OnClientClick="return isValidAddLoc()" />
+                                        <asp:Button ID="AddLocationCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
+                                            OnClick="CancelAddcategoryBtn_Click" OnClientClick="return addLocationClearAll()" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                    <div class="add-categoy-icon"></div>
+                                    <div class="validator-container">
+                                        <div class="validator" id="AddLocationValidator" runat="server"></div>
                                     </div>
                                 </div>
 
@@ -174,67 +166,45 @@
 
                     <div class="row expand-item">
                         <div class="col-md-12">
+                        <div id="Div3" runat="server"></div>
                             <img src="img/UpdateIcon.png" />
                             <div class="expand-item-title">Update Location</div>
-                            <div class="expand-item-content">
+                            <div class="expand-item-content" id="updateLocation" runat="server">
                                 <div class="col-md-8">
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Name</div>
-                                        <asp:TextBox ID="TextBox1" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Address</div>
-                                        <asp:TextBox ID="TextBox2" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Contact</div>
-                                        <asp:TextBox ID="TextBox3" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Type</div>
-                                        <asp:DropDownList ID="DropDownList1" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="Select Type" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Branch" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Head Office" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Manager Office</div>
-                                        <asp:DropDownList ID="DropDownList2" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="Select Manager Office" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Head Office, Rathmalana" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Colombo" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Department</div>
-                                        <asp:DropDownList ID="DropDownList3" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="IT" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Finance" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Branch</div>
-                                        <asp:DropDownList ID="DropDownList4" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="-" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <div class="expand-item-label">Zonal Office</div>
-                                        <asp:DropDownList ID="DropDownList5" class="expand-item-textbox" runat="server">
-                                            <asp:ListItem Text="Western" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="" Value="2"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="expand-item-row">
-                                        <asp:Button ID="Button1" runat="server" Text="Add Location" class="expand-item-btn" />
-                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
+                                    <div id="updatelocationInitState" runat="server">
+                                        <div class="info-div">Enter Location ID to start </div>
+                                        <div class="expand-item-row">
+                                            <div class="expand-item-label">Location ID</div>
+                                            <asp:TextBox ID="UpdateLocationTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="expand-item-row">
+                                            <asp:Button ID="LocFindBtn" runat="server" Text="Find" class="expand-item-btn" onclick="LocFindBtn_Click" OnClientClick="return isValidCategoryCatID()"/>
+                                        </div>
                                     </div>
 
+                                    <div id="updatelocationSecondState" runat="server">
+                                        <div class="expand-item-row">
+                                            <div class="expand-item-label">Location ID</div>
+                                            <div id="UpdateLocID" runat="server"></div>
+                                        </div>
+                                        <div class="expand-item-row">
+                                            <div class="expand-item-label">Location Name</div>
+                                            <asp:TextBox ID="UpdateLocNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="expand-item-row">
+                                            <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn-addcategory"
+                                                OnClientClick="return isValidUpdateLoc()" OnClick="UpdateLocBtn_click" />
+                                            <asp:Button ID="updateLocCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
+                                                OnClientClick="return updateLocationClearAll() " />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                    <div class="update-category-icon"></div>
+                                    <div class="validator-container">
+                                        <div class="validator" id="UpdateLocIDValidator" runat="server"></div>
+                                        <div class="validator" id="UpdateLocationNameValidator" runat="server"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

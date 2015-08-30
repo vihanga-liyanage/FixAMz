@@ -49,6 +49,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseArea;
         
         /// <summary>
+        /// AddNewLocID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewLocID;
+        
+        /// <summary>
         /// AddLocationNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -76,67 +85,76 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddLocationContactTextBox;
         
         /// <summary>
-        /// AddLocationTypeList control.
+        /// AddLocationTypeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AddLocationTypeList;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationTypeTextBox;
         
         /// <summary>
-        /// AddLocationManagerOfficeList control.
+        /// AddLocationManagerOfficeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AddLocationManagerOfficeList;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationManagerOfficeTextBox;
         
         /// <summary>
-        /// AddLocationDepartmentList control.
+        /// AddLocationDepartmentTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AddLocationDepartmentList;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationDepartmentTextBox;
         
         /// <summary>
-        /// AddLocationBranchList control.
+        /// AddLocationBranchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AddLocationBranchList;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationBranchTextBox;
         
         /// <summary>
-        /// AddLocationZonalOfficeList control.
+        /// AddLocationZonalOfficeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AddLocationZonalOfficeList;
+        protected global::System.Web.UI.WebControls.TextBox AddLocationZonalOfficeTextBox;
         
         /// <summary>
-        /// AddUserBtn control.
+        /// AddLocationUserBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddUserBtn;
+        protected global::System.Web.UI.WebControls.Button AddLocationUserBtn;
         
         /// <summary>
-        /// CancelBtn control.
+        /// AddLocationCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelBtn;
+        protected global::System.Web.UI.WebControls.Button AddLocationCancelBtn;
+        
+        /// <summary>
+        /// AddLocationValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationValidator;
         
         /// <summary>
         /// Div2 control.
@@ -193,94 +211,112 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddCategoryValidator;
         
         /// <summary>
-        /// TextBox1 control.
+        /// Div3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div3;
         
         /// <summary>
-        /// TextBox2 control.
+        /// updateLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateLocation;
         
         /// <summary>
-        /// TextBox3 control.
+        /// updatelocationInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatelocationInitState;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// UpdateLocationTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.TextBox UpdateLocationTextBox;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// LocFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.Button LocFindBtn;
         
         /// <summary>
-        /// DropDownList3 control.
+        /// updatelocationSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatelocationSecondState;
         
         /// <summary>
-        /// DropDownList4 control.
+        /// UpdateLocID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocID;
         
         /// <summary>
-        /// DropDownList5 control.
+        /// UpdateLocNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList5;
+        protected global::System.Web.UI.WebControls.TextBox UpdateLocNameTextBox;
         
         /// <summary>
-        /// Button1 control.
+        /// UpdateLocBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button UpdateLocBtn;
         
         /// <summary>
-        /// Button2 control.
+        /// updateLocCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button updateLocCancelBtn;
+        
+        /// <summary>
+        /// UpdateLocIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocIDValidator;
+        
+        /// <summary>
+        /// UpdateLocationNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocationNameValidator;
         
         /// <summary>
         /// Div1 control.
