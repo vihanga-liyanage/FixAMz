@@ -238,6 +238,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateEmpIDTextBox;
         
         /// <summary>
+        /// UpdateEmpIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpIDValidator;
+        
+        /// <summary>
         /// UpdateUserFindBtn control.
         /// </summary>
         /// <remarks>
@@ -274,6 +283,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateFirstNameTextBox;
         
         /// <summary>
+        /// UpdateFirstNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateFirstNameValidator;
+        
+        /// <summary>
         /// UpdateLastNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -281,6 +299,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UpdateLastNameTextBox;
+        
+        /// <summary>
+        /// UpdateLastNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLastNameValidator;
         
         /// <summary>
         /// UpdateEmailTextBox control.
@@ -292,6 +319,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateEmailTextBox;
         
         /// <summary>
+        /// UpdateEmailValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmailValidator;
+        
+        /// <summary>
         /// UpdateContactTextBox control.
         /// </summary>
         /// <remarks>
@@ -299,6 +335,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UpdateContactTextBox;
+        
+        /// <summary>
+        /// UpdateContactValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateContactValidator;
         
         /// <summary>
         /// UpdateUserBtn control.
@@ -317,51 +362,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UpdateUserCancelBtn;
-        
-        /// <summary>
-        /// UpdateEmpIDValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpIDValidator;
-        
-        /// <summary>
-        /// UpdateFirstNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateFirstNameValidator;
-        
-        /// <summary>
-        /// UpdateLastNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLastNameValidator;
-        
-        /// <summary>
-        /// UpdateEmailValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmailValidator;
-        
-        /// <summary>
-        /// UpdateContactValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateContactValidator;
         
         /// <summary>
         /// SearchEmployeeIDTextBox control.
@@ -481,6 +481,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox DeleteUserEmpIDTextBox;
         
         /// <summary>
+        /// DeleteEmpIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpIDValidator;
+        
+        /// <summary>
         /// DeleteUserFindBtn control.
         /// </summary>
         /// <remarks>
@@ -560,14 +569,5 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DeleteUserCancelBtn;
-        
-        /// <summary>
-        /// DeleteEmpIDValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpIDValidator;
     }
 }
