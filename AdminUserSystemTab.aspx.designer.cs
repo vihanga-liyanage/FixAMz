@@ -418,93 +418,84 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryNameValidator;
         
         /// <summary>
-        /// Div4 control.
+        /// AddSubCategoryID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryID;
         
         /// <summary>
-        /// UpdateSubCategoryEmpIDTextBox control.
+        /// AddSubCategoryNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateSubCategoryEmpIDTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddSubCategoryNameTextBox;
         
         /// <summary>
-        /// UpdateSubCategoryGoBtn control.
+        /// AddSubCategoryNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateSubCategoryGoBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryNameValidator;
         
         /// <summary>
-        /// Div5 control.
+        /// AddSubCategoryDepreciationRateTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div5;
+        protected global::System.Web.UI.WebControls.TextBox AddSubCategoryDepreciationRateTextBox;
         
         /// <summary>
-        /// Div6 control.
+        /// AddSubCategoryDepreciationRateValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryDepreciationRateValidator;
         
         /// <summary>
-        /// TextBox2 control.
+        /// AddSubCategoryLifetimeTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox AddSubCategoryLifetimeTextBox;
         
         /// <summary>
-        /// Button2 control.
+        /// AddSubCategoryLifetimeValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryLifetimeValidator;
         
         /// <summary>
-        /// Button3 control.
+        /// AddSubCategorySubmitBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button AddSubCategorySubmitBtn;
         
         /// <summary>
-        /// Div7 control.
+        /// AddSubCategoryCancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div7;
-        
-        /// <summary>
-        /// Div8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div8;
+        protected global::System.Web.UI.WebControls.Button AddSubCategoryCancelBtn;
     }
 }
