@@ -150,7 +150,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                        <div class="update-category-icon hidden-sm hidden-xs"></div>
+                                        <div class="update-location-icon hidden-sm hidden-xs"></div>
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +297,7 @@
                                     </div>
                                 </div>
                                  <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                    <div class="add-categoy-icon hidden-sm hidden-xs"></div>
+                                    <div class="update-sub-category-icon hidden-sm hidden-xs"></div>
                                     <div class="validator-container">
                                         <div class="validator" id="Div5" runat="server"></div>
                                     </div>
