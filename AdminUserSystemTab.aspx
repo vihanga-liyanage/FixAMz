@@ -180,7 +180,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                        <div class="add-categoy-icon"></div>
+                                        <div class="add-categoy-icon hidden-sm hidden-xs"></div>
                                         <div class="validator-container">
                                             <div class="validator" id="AddCategoryValidator" runat="server"></div>
                                         </div>
@@ -225,7 +225,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position:relative; padding-left:0px;">
-                                        <div class="update-category-icon"></div>
+                                        <div class="update-category-icon hidden-sm hidden-xs"></div>
                                         <div class="validator-container">
                                             <div class="validator" id="UpdateCatIDValidator" runat="server"></div>
                                             <div class="validator" id="UpdateCategoryNameValidator" runat="server"></div>
@@ -253,22 +253,24 @@
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Depreciation Rate</div>
                                             <asp:TextBox ID="AddSubCategoryDepreciationRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            %
                                             <div class="validator" id="AddSubCategoryDepreciationRateValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Life Time</div>
                                             <asp:TextBox ID="AddSubCategoryLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            years
                                             <div class="validator" id="AddSubCategoryLifetimeValidator" runat="server"></div>
                                         </div>
-<<<<<<< HEAD
+
                                         <div class="row expand-item-row">
                                             <asp:Button ID="AddSubCategorySubmitBtn" runat="server" Text="Add Sub Category"
                                                 class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
-=======
+
                                         <div class="expand-item-row">
                                             <asp:Button ID="AddSubCategoryBtn" runat="server" Text="Add Sub Category" OnClick="AddSubCategoryBtn_click"
                                                 class="expand-item-btn" OnClientClick="return isValidAddSubCategory()" />
->>>>>>> a26c55ce243f6f79118126330266e3ea336c7e52
+
                                             <asp:Button ID="AddSubCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                                 OnClientClick="return addCategoryClearAll()" />
                                         </div>
@@ -278,6 +280,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
 <!--Update sub category-->
                         <div class="row expand-item">
@@ -304,19 +307,20 @@
                                         <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
-                                <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                     <div class="add-categoy-icon hidden-sm hidden-xs"></div>
                                     <div class="validator-container">
                                         <div class="validator" id="Div5" runat="server"></div>
                                     </div>
                                 </div>
 
-                            </div>
+                            
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                
                  <div class="col-lg-1"></div>
+            </div>
             </div>
 <!--Footer-->
             <div id="footer" class="row">
