@@ -249,14 +249,14 @@ namespace FixAMz_WebApplication
         }
 
         //Update category
-        protected void CatFindBtn_Click(object sender, EventArgs e)
+        protected void UpdateCategoryGoBtn_click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String catID = UpdateCategoryTextBox.Text;
+                String catID = UpdateCategoryIDTextBox.Text;
 
                 string check = "select count(*) from Category WHERE catID='" + catID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
@@ -264,22 +264,22 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT name FROM Category WHERE catID='" + catID + "'";
+                    String query = "SELECT catID, name FROM Category WHERE catID='" + catID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        UpdateCatNameTextBox.Text = dr["name"].ToString();
+                        UpdateCatID.InnerHtml = dr["catID"].ToString();
+                        UpdateCategoryNameTextBox.Text = dr["name"].ToString();
                     }
-                    UpdateCatID.InnerHtml = catID;
-                    updatecategoryrInitState.Style.Add("display", "none");
+                    updateCategoryInitState.Style.Add("display", "none");
                     updateCategorySecondState.Style.Add("display", "block");
                     updateCategory.Style.Add("display", "block");
-                    UpdateCatIDValidator.InnerHtml = "";
+                    UpdateCategoryIDValidator.InnerHtml = "";
                 }
                 else
                 {
-                    updatecategoryrInitState.Style.Add("display", "block");
+                    updateCategoryInitState.Style.Add("display", "block");
                     updateCategorySecondState.Style.Add("display", "none");
                     updateCategory.Style.Add("display", "block");
                     UpdateCategoryNameValidator.InnerHtml = "Invalid Category ID";
@@ -300,10 +300,11 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String catID = UpdateCategoryTextBox.Text;
-                string insertion_Category = "UPDATE Category SET name = @name WHERE catID='" + catID + "'";
+                String catID = UpdateCategoryIDTextBox.Text;
+                String name = UpdateCategoryNameTextBox.Text;
+
+                String insertion_Category = "UPDATE Category SET name = '" + name + "' WHERE catID='" + catID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Category, conn);
-                cmd.Parameters.AddWithValue("@name", UpdateCatNameTextBox.Text);
 
                 cmd.ExecuteNonQuery();
 
@@ -311,11 +312,11 @@ namespace FixAMz_WebApplication
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateCategoryClearAll", "updateCategoryClearAll()", true);
 
                 responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Category '" + catID + "' updated successfully!";
-                updatecategoryrInitState.Style.Add("display", "block");
+                responseArea.InnerHtml = "Category '" + name + "' updated successfully!";
+                updateCategoryInitState.Style.Add("display", "block");
                 updateCategorySecondState.Style.Add("display", "none");
                 updateCategory.Style.Add("display", "block");
-                UpdateCategoryTextBox.Text = "";
+                UpdateCategoryIDTextBox.Text = "";
             }
             catch (Exception ex)
             {
