@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="AdminUserPeopleTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserPeopleTab" %>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
     <meta charset="utf-8">

@@ -207,13 +207,13 @@ function isValidDeleteEmpID() {
 //Add new location functions ===================================================================
 
 function isValidAddLoc() {
-    var contact = document.forms[0]["AddLocationContactTextBox"].value;
+    //var contact = document.forms[0]["AddLocationContactTextBox"].value;
 
     var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
 
-    var isValidContact = true;
-    var prefix = contact.substring(0, 3);
+    var isValidContact = contactValidator("AddLocationContact");
+    /*var prefix = contact.substring(0, 3);
     if (contact == "") {
         document.getElementById("AddLocationContactValidator").innerHTML = "Contact cannot be empty.";
         isValidContact = false;
@@ -229,7 +229,7 @@ function isValidAddLoc() {
     } else {
         document.getElementById("AddLocationContactValidator").innerHTML = "";
         isValidContact = true;
-    }
+    }*/
 
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");

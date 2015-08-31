@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminUserSystemTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserSystemTab" %>
+﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="AdminUserSystemTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserSystemTab" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
 
        <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
@@ -34,7 +33,7 @@
                             <div id="user-name">
                                 System Admin | <a href="#">Sign out</a>
                             </div>
-                            
+                            </div>
                             <ul class="custom-nav-bar nav nav-tabs">
                                 <li><a href="#">HOME</a> </li>
                                 <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a></li>
