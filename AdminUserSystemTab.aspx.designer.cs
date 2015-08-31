@@ -67,6 +67,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddLocationNameTextBox;
         
         /// <summary>
+        /// AddLocationNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationNameValidator;
+        
+        /// <summary>
         /// AddLocationAddressTextBox control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddLocationAddressTextBox;
+        
+        /// <summary>
+        /// AddLocationAddressValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationAddressValidator;
         
         /// <summary>
         /// AddLocationContactTextBox control.
@@ -85,6 +103,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddLocationContactTextBox;
         
         /// <summary>
+        /// AddLocationContactValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationContactValidator;
+        
+        /// <summary>
         /// AddLocationManagerOfficeTextBox control.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddLocationManagerOfficeTextBox;
+        
+        /// <summary>
+        /// AddLocationManagerOfficeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationManagerOfficeValidator;
         
         /// <summary>
         /// AddLocationDepartmentTextBox control.
@@ -103,6 +139,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddLocationDepartmentTextBox;
         
         /// <summary>
+        /// AddLocationDepartmentValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationDepartmentValidator;
+        
+        /// <summary>
         /// AddLocationBranchTextBox control.
         /// </summary>
         /// <remarks>
@@ -112,6 +157,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddLocationBranchTextBox;
         
         /// <summary>
+        /// AddLocationBranchValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationBranchValidator;
+        
+        /// <summary>
         /// AddLocationZonalOfficeTextBox control.
         /// </summary>
         /// <remarks>
@@ -119,6 +173,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddLocationZonalOfficeTextBox;
+        
+        /// <summary>
+        /// AddLocationZonalOfficeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationZonalOfficeValidator;
         
         /// <summary>
         /// AddLocationUserBtn control.
@@ -137,15 +200,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddLocationCancelBtn;
-        
-        /// <summary>
-        /// AddLocationValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddLocationValidator;
         
         /// <summary>
         /// Div3 control.
@@ -481,13 +535,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryLifetimeValidator;
         
         /// <summary>
-        /// AddSubCategorySubmitBtn control.
+        /// AddSubCategoryBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddSubCategorySubmitBtn;
+        protected global::System.Web.UI.WebControls.Button AddSubCategoryBtn;
         
         /// <summary>
         /// AddSubCategoryCancelBtn control.

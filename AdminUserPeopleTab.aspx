@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="AdminUserPeopleTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserPeopleTab" %>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -94,7 +94,7 @@
                                     <div class="validator" id="AddNewConfirmPasswordValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
-                                    <asp:Button ID="AddUserBtn" runat="server" Text="Add User" onclick="AddUserBtn_Click"
+                                    <asp:Button ID="AddUserBtn" runat="server" Text="Add User" onclick="AddUserBtn_Click" 
                                         class="expand-item-btn" OnClientClick="return isValidAddNew()" />
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
                                         OnClientClick="return addNewClearAll()"/>
