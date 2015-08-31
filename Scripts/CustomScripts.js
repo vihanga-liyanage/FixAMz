@@ -114,7 +114,7 @@ function addNewClearAll() {
     document.forms[0]["AddNewUsernameTextBox"].value = "";
     document.forms[0]["AddNewPasswordTextBox"].value = "";
     document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
-    return false;
+    return true;
 }
 
 function isValidAddNew() {
@@ -162,7 +162,7 @@ function updateClearAll() {
     document.getElementById("updateUserInitState").style.display = "block";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    return false;
+    return true;
 }
 
 function isValidUpdateEmpID() {
@@ -187,7 +187,7 @@ function searchClearAll() {
     document.forms[0]["SearchEmailTextBox"].value = "";
     document.forms[0]["SearchContactTextBox"].value = "";
     document.forms[0]["SearchUsernameTextBox"].value = "";
-    return false;
+    return true;
 }
 
 //Delete user functions ===================================================================
@@ -240,7 +240,7 @@ function addLocationClearAll() {
     document.forms[0]["AddLocationDepartmentTextBox"].value = "";
     document.forms[0]["AddLocationBranchTextBox"].value = "";
     document.forms[0]["AddLocationZonalOfficeTextBox"].value = "";
-    return false;
+    return true;
 }
 
 //Update location functions ===================================================================
@@ -259,7 +259,7 @@ function isValidUpdateLoc() {
 function updateLocationClearAll() {
     document.forms[0]["UpdateLocNameTextBox"].value = "";
     document.forms[0]["updatelocationInitState"].style.display = block;
-    return false;
+    return true;
 }
 
 //Add new category functions ===================================================================
@@ -277,7 +277,7 @@ function isValidAddCat() {
 
 function addCategoryClearAll() {
     document.forms[0]["AddCategoryNameTextBox"].value = "";
-    return false;
+    return true;
 }
 
 //Update category functions ===================================================================
@@ -296,7 +296,7 @@ function isValidUpdateCat() {
 function updateCategoryClearAll() {
     document.forms[0]["UpdateCatNameTextBox"].value = "";
     document.forms[0]["updatecategoryrInitState"].style.display = block;
-    return false;
+    return true;
 }
 
 //Add new sub category functions ===================================================================

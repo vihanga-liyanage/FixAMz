@@ -20,42 +20,8 @@ namespace FixAMz_WebApplication
             responseArea.InnerHtml = "";
         }
 
-        protected void AddLocationBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                string insertion_Location = "insert into Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) values (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
-                SqlCommand cmd = new SqlCommand(insertion_Location, conn);
-                cmd.Parameters.AddWithValue("@locid", AddNewLocID.InnerHtml);
-                cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@department", AddLocationDepartmentTextBox.Text);
-                cmd.Parameters.AddWithValue("@zonaloffice", AddLocationZonalOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@manageroffice", AddLocationManagerOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@branch", AddLocationBranchTextBox.Text);
-                cmd.Parameters.AddWithValue("@address", AddLocationAddressTextBox.Text);
-                cmd.Parameters.AddWithValue("@contactno", AddLocationContactTextBox.Text);
-
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "addLocationClearAll", "addLocationClearAll();", true);
-                setCatID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Location " + AddLocationNameTextBox.Text + " added successfully!";
-
-
-            }
-            catch (Exception ex)
-            {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again lateer.";
-                Response.Write(ex.ToString());
-            }
-        }
-
-        protected void setLocID() //Reads the last empID from DB, calculates the next and set it in the web page.
+        //Add new location
+        protected void setLocID()
         {
             try
             {
@@ -95,29 +61,111 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "There were some issues with the database. Please try again lateeer.";
                 Response.Write(e.ToString());
             }
-        } 
+        }
         
-        protected void AddCategoryBtn_Click(object sender, EventArgs e)
+        protected void AddLocationBtn_Click(object sender, EventArgs e)
         {
             try
             {
-               
-                    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                    conn.Open();
-                    string insertion_Category = "insert into Category (catID, name) values (@catid, @name)";
-                    SqlCommand cmd = new SqlCommand(insertion_Category, conn);
-                    cmd.Parameters.AddWithValue("@catid", AddNewCatID.InnerHtml);
-                    cmd.Parameters.AddWithValue("@name", AddCategoryNameTextBox.Text);
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Location = "insert into Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) values (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
+                SqlCommand cmd = new SqlCommand(insertion_Location, conn);
+                cmd.Parameters.AddWithValue("@locid", AddNewLocID.InnerHtml);
+                cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@department", AddLocationDepartmentTextBox.Text);
+                cmd.Parameters.AddWithValue("@zonaloffice", AddLocationZonalOfficeTextBox.Text);
+                cmd.Parameters.AddWithValue("@manageroffice", AddLocationManagerOfficeTextBox.Text);
+                cmd.Parameters.AddWithValue("@branch", AddLocationBranchTextBox.Text);
+                cmd.Parameters.AddWithValue("@address", AddLocationAddressTextBox.Text);
+                cmd.Parameters.AddWithValue("@contactno", AddLocationContactTextBox.Text);
 
-                    cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-                    conn.Close();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "addCategoryClearAll", "addCategoryClearAll();", true);
-                    setCatID();
-                    responseArea.Style.Add("color", "green");
-                    responseArea.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addLocationClearAll", "addLocationClearAll();", true);
+                setCatID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Location " + AddLocationNameTextBox.Text + " added successfully!";
 
-                
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again lateer.";
+                Response.Write(ex.ToString());
+            }
+        }
+
+        //Update location
+        protected void LocFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String locID = UpdateLocationIDTextBox.Text;
+
+                string check = "select count(*) from Location WHERE locID='" + locID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query = "SELECT name FROM Location WHERE locID='" + locID + "'";
+                    cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        UpdateLocNameTextBox.Text = dr["name"].ToString();
+                    }
+                    UpdateLocID.InnerHtml = locID;
+                    updatelocationInitState.Style.Add("display", "none");
+                    updatelocationSecondState.Style.Add("display", "block");
+                    updateLocation.Style.Add("display", "block");
+                    UpdateLocationIDValidator.InnerHtml = "";
+                }
+                else
+                {
+                    updatelocationInitState.Style.Add("display", "block");
+                    updatelocationSecondState.Style.Add("display", "none");
+                    updateLocation.Style.Add("display", "block");
+                    UpdateLocationNameValidator.InnerHtml = "Invalid Location ID";
+                }
+                conn.Close();
+            }
+            catch (SqlException ex)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+        }
+
+        protected void UpdateLocBtn_click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String locID = UpdateLocationIDTextBox.Text;
+                string insertion_Location = "UPDATE Location SET name = @name WHERE locID='" + locID + "'";
+                SqlCommand cmd = new SqlCommand(insertion_Location, conn);
+                cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll()", true);
+
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Location '" + locID + "' updated successfully!";
+                updatelocationInitState.Style.Add("display", "block");
+                updatelocationSecondState.Style.Add("display", "none");
+                updateLocation.Style.Add("display", "block");
+                UpdateLocationIDTextBox.Text = "";
             }
             catch (Exception ex)
             {
@@ -126,19 +174,9 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
- 
-      /*  protected void CancelAddcategoryBtn_Click(object sender, EventArgs e)
-        {
-            var tbs = new List<TextBox>() { AddCategoryNameTextBox };
-            foreach (var textBox in tbs)
-            {
-                textBox.Text = "";
-                responseArea.InnerHtml = "";
-                
-            }
-        }*/
 
-        protected void setCatID() //Reads the last empID from DB, calculates the next and set it in the web page.
+        //Add new category
+        protected void setCatID()
         {
             try
             {
@@ -179,12 +217,38 @@ namespace FixAMz_WebApplication
                 Response.Write(e.ToString());
             }
         }
-        
-        protected void CancelAddcategoryBtn_Click(object sender, EventArgs e) //Clears all text boxes
+
+        protected void AddCategoryBtn_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "myFunction", "myFunction();", true);
+            try
+            {
+               
+                    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                    conn.Open();
+                    string insertion_Category = "insert into Category (catID, name) values (@catid, @name)";
+                    SqlCommand cmd = new SqlCommand(insertion_Category, conn);
+                    cmd.Parameters.AddWithValue("@catid", AddNewCatID.InnerHtml);
+                    cmd.Parameters.AddWithValue("@name", AddCategoryNameTextBox.Text);
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "addCategoryClearAll", "addCategoryClearAll();", true);
+                    setCatID();
+                    responseArea.Style.Add("color", "green");
+                    responseArea.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
+
+                
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
         }
 
+        //Update category
         protected void CatFindBtn_Click(object sender, EventArgs e)
         {
             try
@@ -230,51 +294,6 @@ namespace FixAMz_WebApplication
             }
         }
 
-        protected void LocFindBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-
-                String locID = UpdateLocationTextBox.Text;
-
-                string check = "select count(*) from Location WHERE locID='" + locID + "'";
-                SqlCommand cmd = new SqlCommand(check, conn);
-                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-
-                if (res == 1)
-                {
-                    String query = "SELECT name FROM Location WHERE locID='" + locID + "'";
-                    cmd = new SqlCommand(query, conn);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        UpdateLocNameTextBox.Text = dr["name"].ToString();
-                    }
-                    UpdateLocID.InnerHtml = locID;
-                    updatelocationInitState.Style.Add("display", "none");
-                    updatelocationSecondState.Style.Add("display", "block");
-                    updateLocation.Style.Add("display", "block");
-                    UpdateLocIDValidator.InnerHtml = "";
-                }
-                else
-                {
-                    updatelocationInitState.Style.Add("display", "block");
-                    updatelocationSecondState.Style.Add("display", "none");
-                    updateLocation.Style.Add("display", "block");
-                    UpdateLocationNameValidator.InnerHtml = "Invalid Location ID";
-                }
-                conn.Close();
-            }
-            catch (SqlException ex)
-            {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
-            }
-        }
-
         protected void UpdateCatBtn_click(object sender, EventArgs e)
         {
             try
@@ -306,38 +325,8 @@ namespace FixAMz_WebApplication
             }
         }
 
-        protected void UpdateLocBtn_click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                String locID = UpdateLocationTextBox.Text;
-                string insertion_Location = "UPDATE Location SET name = @name WHERE locID='" + locID + "'";
-                SqlCommand cmd = new SqlCommand(insertion_Location, conn);
-                cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
-
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll()", true);
-
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Location '" + locID + "' updated successfully!";
-                updatelocationInitState.Style.Add("display", "block");
-                updatelocationSecondState.Style.Add("display", "none");
-                updateLocation.Style.Add("display", "block");
-                UpdateLocationTextBox.Text = "";
-            }
-            catch (Exception ex)
-            {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
-        }
-
-        protected void setSubCategoryID() //Reads the last scatID from DB, calculates the next and set it in the web page.
+        //Add new sub category
+        protected void setSubCategoryID()
         {
             try
             {

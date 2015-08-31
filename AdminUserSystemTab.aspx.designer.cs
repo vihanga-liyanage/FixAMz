@@ -229,13 +229,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatelocationInitState;
         
         /// <summary>
-        /// UpdateLocationTextBox control.
+        /// UpdateLocationIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateLocationTextBox;
+        protected global::System.Web.UI.WebControls.TextBox UpdateLocationIDTextBox;
+        
+        /// <summary>
+        /// UpdateLocationIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocationIDValidator;
         
         /// <summary>
         /// LocFindBtn control.
@@ -274,6 +283,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateLocNameTextBox;
         
         /// <summary>
+        /// UpdateLocationNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocationNameValidator;
+        
+        /// <summary>
         /// UpdateLocBtn control.
         /// </summary>
         /// <remarks>
@@ -290,24 +308,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button updateLocCancelBtn;
-        
-        /// <summary>
-        /// UpdateLocIDValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocIDValidator;
-        
-        /// <summary>
-        /// UpdateLocationNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocationNameValidator;
         
         /// <summary>
         /// Div2 control.
@@ -337,6 +337,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddCategoryNameTextBox;
         
         /// <summary>
+        /// AddCategoryValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddCategoryValidator;
+        
+        /// <summary>
         /// AddCategoryUserBtn control.
         /// </summary>
         /// <remarks>
@@ -353,15 +362,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddCategoryCancelBtn;
-        
-        /// <summary>
-        /// AddCategoryValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddCategoryValidator;
         
         /// <summary>
         /// Div1 control.
@@ -400,6 +400,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateCategoryTextBox;
         
         /// <summary>
+        /// UpdateCatIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatIDValidator;
+        
+        /// <summary>
         /// CatFindBtn control.
         /// </summary>
         /// <remarks>
@@ -436,6 +445,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpdateCatNameTextBox;
         
         /// <summary>
+        /// UpdateCategoryNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryNameValidator;
+        
+        /// <summary>
         /// UpdateCatBtn control.
         /// </summary>
         /// <remarks>
@@ -452,24 +470,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button updateCatCancelBtn;
-        
-        /// <summary>
-        /// UpdateCatIDValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatIDValidator;
-        
-        /// <summary>
-        /// UpdateCategoryNameValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryNameValidator;
         
         /// <summary>
         /// AddSubCategoryID control.
