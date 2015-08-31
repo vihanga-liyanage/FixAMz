@@ -69,7 +69,7 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Location = "insert into Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) values (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
+                string insertion_Location = "INSERT INTO Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) VALUES (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
                 cmd.Parameters.AddWithValue("@locid", AddNewLocID.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
@@ -87,7 +87,6 @@ namespace FixAMz_WebApplication
                 setCatID();
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Location " + AddLocationNameTextBox.Text + " added successfully!";
-
 
             }
             catch (Exception ex)
@@ -124,15 +123,15 @@ namespace FixAMz_WebApplication
                     UpdateLocID.InnerHtml = locID;
                     updatelocationInitState.Style.Add("display", "none");
                     updatelocationSecondState.Style.Add("display", "block");
-                    updateLocation.Style.Add("display", "block");
+                    UpdateLocationContent.Style.Add("display", "block");
                     UpdateLocationIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     updatelocationInitState.Style.Add("display", "block");
                     updatelocationSecondState.Style.Add("display", "none");
-                    updateLocation.Style.Add("display", "block");
-                    UpdateLocationNameValidator.InnerHtml = "Invalid Location ID";
+                    UpdateLocationContent.Style.Add("display", "block");
+                    UpdateLocationIDValidator.InnerHtml = "Invalid Location ID";
                 }
                 conn.Close();
             }
@@ -151,21 +150,30 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String locID = UpdateLocationIDTextBox.Text;
-                string insertion_Location = "UPDATE Location SET name = @name WHERE locID='" + locID + "'";
+                string insertion_Location = "UPDATE Location SET name = @name, address = @address, contactNo = @contact, department = @department, branch = @branch, zonalOffice = @ZonalOffice, managerOffice = @ManagerOffice WHERE locID='" + locID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
+
                 cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@address", UpdateLocAddressTextBox.Text);
+                cmd.Parameters.AddWithValue("@contact", UpdateLocContactTextBox.Text);
+                cmd.Parameters.AddWithValue("@department", UpdateLocDepartmentTextBox.Text);
+                cmd.Parameters.AddWithValue("@branch", UpdateLocBranchTextBox.Text);
+                cmd.Parameters.AddWithValue("@ZonalOffice", UpdateLocZonalOfficeTextBox.Text);
+                cmd.Parameters.AddWithValue("@ManagerOffice", UpdateLocManagerOfficeTextBox.Text);
+
 
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll()", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll();", true);
 
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Location '" + locID + "' updated successfully!";
                 updatelocationInitState.Style.Add("display", "block");
                 updatelocationSecondState.Style.Add("display", "none");
-                updateLocation.Style.Add("display", "block");
+                UpdateLocationContent.Style.Add("display", "block");
                 UpdateLocationIDTextBox.Text = "";
+
             }
             catch (Exception ex)
             {
@@ -300,11 +308,13 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
+
                 String catID = UpdateCategoryIDTextBox.Text;
                 String name = UpdateCategoryNameTextBox.Text;
 
                 String insertion_Category = "UPDATE Category SET name = '" + name + "' WHERE catID='" + catID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Category, conn);
+
 
                 cmd.ExecuteNonQuery();
 

@@ -18,6 +18,7 @@
        <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
         <div class="container-fluid">
+<!--Header-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="row header">
@@ -33,17 +34,17 @@
                             <div id="user-name">
                                 System Admin | <a href="#">Sign out</a>
                             </div>
-                            </div>
-                            <ul class="custom-nav-bar nav nav-tabs">
-                                <li><a href="#">HOME</a> </li>
-                                <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a></li>
-                                <li><a href="#"><u>SYSTEM</u></a> </li>
-                                <li><a href="#">ABOUT</a> </li>
-                                <li><a href="#">HELP</a> </li>
-                            </ul>
                         </div>
+                        <ul class="custom-nav-bar nav nav-tabs">
+                            <li><a href="#">HOME</a> </li>
+                            <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a></li>
+                            <li><a href="#"><u>SYSTEM</u></a> </li>
+                            <li><a href="#">ABOUT</a> </li>
+                            <li><a href="#">HELP</a> </li>
+                        </ul>
                     </div>
-                </div>               
+                </div>
+            </div>               
 <!--Main content-->
                 <div class="row">
                     <div class="col-md-10 col-xs-offset-1 expand-item-container">
@@ -115,8 +116,8 @@
                             <div class="col-md-12">
                             <div id="Div3" runat="server"></div>
                                 <img src="img/UpdateIcon.png" />
-                                <div class="expand-item-title">Update Location</div>
-                                <div class="expand-item-content" id="updateLocation" runat="server">
+                                <div class="expand-item-title" id="UpdateLocationHeader">Update Location</div>
+                                <div class="expand-item-content" id="UpdateLocationContent" runat="server">
                                     <div class="col-md-8">
                                         <div id="updatelocationInitState" runat="server">
                                             <div class="info-div">Enter Location ID to start </div>
@@ -127,7 +128,7 @@
                                             </div>
                                             <div class="row expand-item-row">
                                                 <asp:Button ID="LocFindBtn" runat="server" Text="Go" class="expand-item-btn" 
-                                                onclick="LocFindBtn_Click" OnClientClick="return isValidUpdateLoc()"/>
+                                                onclick="LocFindBtn_Click" OnClientClick="return isValidUpdateLocID()"/>
                                             </div>
                                         </div>
 
@@ -137,9 +138,39 @@
                                                 <div id="UpdateLocID" runat="server" class="custom-label"></div>
                                             </div>
                                             <div class="row expand-item-row">
-                                                <div class="expand-item-label">Location Name</div>
+                                                <div class="expand-item-label">Name</div>
                                                 <asp:TextBox ID="UpdateLocNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                                <div class="validator" id="UpdateLocationNameValidator" runat="server"></div>
+                                                <div class="validator" id="UpdateLocNameValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Address</div>
+                                                <asp:TextBox ID="UpdateLocAddressTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocAddressValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Contact</div>
+                                                <asp:TextBox ID="UpdateLocContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocContactValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Manager Office</div>
+                                                <asp:TextBox ID="UpdateLocManagerOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocManagerOfficeValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Department</div>
+                                                <asp:TextBox ID="UpdateLocDepartmentTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocDepartmentValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Branch</div>
+                                                <asp:TextBox ID="UpdateLocBranchTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocBranchValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Zonal Office</div>
+                                                <asp:TextBox ID="UpdateLocZonalOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocZonalOfficeValidator" runat="server"></div>
                                             </div>
                                             <div class="row expand-item-row">
                                                 <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn"
