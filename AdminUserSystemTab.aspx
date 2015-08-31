@@ -148,7 +148,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                        <div class="update-category-icon"></div>
+                                        <div class="update-category-icon hidden-sm hidden-xs"></div>
                                         <div class="validator-container">
                                             <div class="validator" id="UpdateLocIDValidator" runat="server"></div>
                                             <div class="validator" id="UpdateLocationNameValidator" runat="server"></div>
