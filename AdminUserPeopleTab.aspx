@@ -102,15 +102,6 @@
                             </div>
                             <div class="col-md-4" style="position:relative; padding-left:0px;">
                                 <div class="add-user-icon hidden-sm hidden-xs"></div>
-                                <div class="validator-container">
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,6 +119,7 @@
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
                                         <asp:TextBox ID="UpdateEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateEmpIDValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="UpdateUserFindBtn" runat="server" Text="Go" 
@@ -136,7 +128,6 @@
                                     </div>
                                 </div>
                                 <div id="updateUserSecondState" runat="server">
-                                    <div class="info-div">Edit the fields and press update to update the user.</div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
                                         <div id="UpdateEmpID" runat="server"  class="custom-label"></div>
@@ -144,18 +135,22 @@
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">First Name</div>
                                         <asp:TextBox ID="UpdateFirstNameTextBox" class="expand-item-textbox" runat="server" ></asp:TextBox>
+                                        <div class="validator" id="UpdateFirstNameValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Last Name</div>
                                         <asp:TextBox ID="UpdateLastNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateLastNameValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Email</div>
                                         <asp:TextBox ID="UpdateEmailTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateEmailValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Contact</div>
                                         <asp:TextBox ID="UpdateContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateContactValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn" 
@@ -167,13 +162,6 @@
                             </div>
                             <div class="col-md-4" style="position:relative; padding-left:0px;">
                                 <div class="update-user-icon"></div>
-                                <div class="validator-container">
-                                    <div class="validator" id="UpdateEmpIDValidator" runat="server"></div>
-                                    <div class="validator" id="UpdateFirstNameValidator" runat="server"></div>
-                                    <div class="validator" id="UpdateLastNameValidator" runat="server"></div>
-                                    <div class="validator" id="UpdateEmailValidator" runat="server"></div>
-                                    <div class="validator" id="UpdateContactValidator" runat="server"></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,17 +200,15 @@
                                 <div class="expand-item-row">
                                     <asp:Button ID="SearchUserBtn" runat="server" Text="Search" 
                                         class="expand-item-btn" onclick="SearchUserBtn_Click"  />
-                                         
                                     <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" 
                                        onclick="CancelSearchBtn_Click" />
-                                        </div>
-                                    </div>
-                                
-                                <div class="col-md-4" style="position:relative; padding-left:0px;">
-                                <div class="adv-user-search-icon">
                                 </div>
+                                </div>
+                            <div class="col-md-4" style="position:relative; padding-left:0px;">
+                            <div class="adv-user-search-icon">
                             </div>
-                         </div>    
+                        </div>
+                    </div>    
                     <div class="row expand-item">
                         <asp:GridView ID="gvEmployees" runat="server"></asp:GridView>
                     </div> 
@@ -242,6 +228,7 @@
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
                                         <asp:TextBox ID="DeleteUserEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="DeleteUserEmpIDValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="DeleteUserFindBtn" runat="server" Text="Go" 
@@ -280,10 +267,6 @@
                             </div>
                             <div class="col-md-4" style="position:relative; padding-left:0px;">
                                 <div class="delete-user-icon"></div>
-                               <div class="validator-container">
-                                    <div class="validator" id="DeleteEmpIDValidator" runat="server"></div>
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>

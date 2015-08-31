@@ -8,15 +8,62 @@ $(".expand-item-title").click(function () {
     $content.slideToggle(800, function () { });
 });
 
-//Global validation function for required field
+//Global validation functions===========================================================================
 function requiredFieldValidator(controller, msg) {
     var content = document.forms[0][controller + "TextBox"].value;
     if (content == "") {
         document.getElementById(controller + "Validator").innerHTML = msg;
+        document.forms[0][controller + "TextBox"].style.border="1px solid red";
         return false;
     } else {
         document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
         return true;
+    }
+}
+
+function emailValidator(controller) {
+    var content = document.forms[0][controller + "TextBox"].value;
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (content == "") {
+        document.getElementById(controller + "Validator").innerHTML = "Email cannot be empty.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid email address.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
+function contactValidator(controller) {
+    var contact = document.forms[0][controller + "TextBox"].value;
+    var prefix = contact.substring(0, 3);
+    if (contact == "") {
+        document.getElementById(controller + "Validator").innerHTML = "Contact cannot be empty.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        isValidContact = false;
+    } else if (contact.length != 10) {
+        document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        isValidContact = false;
+    } else if (!contact.match(/^\d{10}$/)) {
+        document.getElementById(controller + "Validator").innerHTML = "Contact cannot have non-digits.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        isValidContact = false;
+    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
+        document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        isValidContact = false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        isValidContact = true;
     }
 }
 
@@ -33,9 +80,11 @@ function usernameValidator(){
             //called on ajax call success
             if (success.d == 0) {
                 document.getElementById("AddNewUsernameValidator").innerHTML = "";
+                document.forms[0]["AddNewUsernameTextBox"].style.border = "1px solid #cacaca";
                 usernameNotExists = true;
             } else {
                 document.getElementById("AddNewUsernameValidator").innerHTML = "User name already exists.";
+                document.forms[0]["AddNewUsernameTextBox"].style.border = "1px solid red";
                 usernameNotExists = false;
             }
         },
@@ -68,53 +117,20 @@ function addNewClearAll() {
     return false;
 }
 
-function isValidAddNew() { //try to write functions for overlaps
-    var email = document.forms[0]["AddNewEmailTextBox"].value;
-    var contact = document.forms[0]["AddNewContactTextBox"].value;
+function isValidAddNew() {
     var confirmPassword = document.forms[0]["AddNewConfirmPasswordTextBox"].value;
     var password = document.forms[0]["AddNewPasswordTextBox"].value;
 
     var isValidFirstName = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.");
     var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.");
-
-    var isValidEmail = true;
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email == "") {
-        document.getElementById("AddNewEmailValidator").innerHTML = "Email cannot be empty.";
-        isValidEmail = false;
-    } else if (!re.test(email)) {
-        document.getElementById("AddNewEmailValidator").innerHTML = "Enter a valid email address.";
-        isValidEmail = false;
-    } else {
-        document.getElementById("AddNewEmailValidator").innerHTML = "";
-        isValidEmail = true;
-    }
-
-    var isValidContact = true;
-    var prefix = contact.substring(0, 3);
-    if (contact == "") {
-        document.getElementById("AddNewContactValidator").innerHTML = "Contact cannot be empty.";
-        isValidContact = false;
-    } else if (contact.length != 10) {
-        document.getElementById("AddNewContactValidator").innerHTML = "Please enter a valid contact.";
-        isValidContact = false;
-    } else if (!contact.match(/^\d{10}$/)) {
-        document.getElementById("AddNewContactValidator").innerHTML = "Contact cannot have non-digits.";
-        isValidContact = false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
-        document.getElementById("AddNewContactValidator").innerHTML = "Please enter a valid contact.";
-        isValidContact = false;
-    } else {
-        document.getElementById("AddNewContactValidator").innerHTML = "";
-        isValidContact = true;
-    }
+    var isValidEmail = emailValidator("AddNewEmail");
+    var isValidContact = contactValidator("AddNewContact");
 
     var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
     if (isValidUsername) {
         usernameValidator();
         pause(300);
         isValidUsername = usernameNotExists;
-        
         //alert(isValidUsername);
     }
     var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
@@ -122,12 +138,15 @@ function isValidAddNew() { //try to write functions for overlaps
     var isValidConfirmPassword = true;
     if (confirmPassword == "") {
         document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
+        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
         isValidConfirmPassword = false;
     } else if (confirmPassword != password) {
         document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
+        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
         isValidConfirmPassword = false;
     } else {
         document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "";
+        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
         isValidConfirmPassword = true;
     }
 
@@ -141,7 +160,9 @@ function updateClearAll() {
     document.forms[0]["UpdateLastNameTextBox"].value = "";
     document.forms[0]["UpdateEmailTextBox"].value = "";
     document.forms[0]["UpdateContactTextBox"].value = "";
-    document.forms[0]["updateUserInitState"].style.display = block;
+    document.getElementById("updateUserInitState").style.display = "block";
+    document.getElementById("updateUserSecondState").style.display = "none";
+    document.forms[0]["UpdateEmpIDTextBox"].value = "";
     return false;
 }
 
@@ -156,36 +177,8 @@ function isValidUpdate() {
     
     isValid[0] = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.");
     isValid[1] = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.");
-
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email == "") {
-        document.getElementById("UpdateEmailValidator").innerHTML = "Email cannot be empty.";
-        isValid[2] = false;
-    } else if (!re.test(email)) {
-        document.getElementById("UpdateEmailValidator").innerHTML = "Enter a valid email address.";
-        isValid[2] = false;
-    } else {
-        document.getElementById("UpdateEmailValidator").innerHTML = "";
-        isValid[2] = true;
-    }
-
-    var prefix = contact.substring(0, 3);
-    if (contact == "") {
-        document.getElementById("UpdateContactValidator").innerHTML = "Contact cannot be empty.";
-        isValid[3] = false;
-    } else if (contact.length != 10) {
-        document.getElementById("UpdateContactValidator").innerHTML = "Please enter a valid contact.";
-        isValid[3] = false;
-    } else if (!contact.match(/^\d{10}$/)) {
-        document.getElementById("UpdateContactValidator").innerHTML = "Contact cannot have non-digits.";
-        isValid[3] = false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
-        document.getElementById("UpdateContactValidator").innerHTML = "Please enter a valid contact.";
-        isValid[3] = false;
-    } else {
-        document.getElementById("UpdateContactValidator").innerHTML = "";
-        isValid[3] = true;
-    }
+    isValid[2] = emailValidator("UpdateEmail");
+    isValid[3] = contactValidator("UpdateContact");
 
     for (var i = 0; i < isValid.length; i++) {
         if (!isValid[i]) { return false; }
@@ -208,7 +201,7 @@ function searchClearAll() {
 //Delete user functions ===================================================================
 
 function isValidDeleteEmpID() {
-    return requiredFieldValidator("DeleteEmpID", "Employee ID cannot be empty.");
+    return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
 }
 
 //Add new location functions ===================================================================

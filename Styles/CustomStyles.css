@@ -126,7 +126,7 @@ div
     margin-left:10px;
     background:#1f69b9;
     color:White;
-    width:120px;
+    padding: 0px 10px;
     height:35px;
     font-size:20px;
     border:none;
@@ -239,18 +239,7 @@ div
     background-size:contain;
     z-index:-1;
 }  
-.expand-item-btn-addcategory
-{
-    float:right;
-    margin-top:20px;
-    margin-left:10px;
-    background:#1f69b9;
-    color:White;
-    width:140px;
-    height:35px;
-    font-size:20px;
-    border:none;
-}
+
 /*================================update category=============================*/
 .update-category-icon
 {
@@ -276,18 +265,6 @@ div
     font-size:18px;
 }
 
-.expand-item-btn-updatecategory
-{
-    float:right;
-    margin-top:20px;
-    margin-left:10px;
-    background:#1f69b9;
-    color:White;
-    width:140px;
-    height:35px;
-    font-size:20px;
-    border:none;
-}
 /*================================footer styles================================*/
 
 #footer
