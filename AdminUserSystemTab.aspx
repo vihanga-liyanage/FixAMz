@@ -115,17 +115,19 @@
                             <div class="col-md-12">
                             <div id="Div3" runat="server"></div>
                                 <img src="img/UpdateIcon.png" />
-                                <div class="expand-item-title">Update Location</div>
-                                <div class="expand-item-content" id="updateLocation" runat="server">
+                                <div class="expand-item-title" id="UpdateLocationHeader">Update Location</div>
+                                <div class="expand-item-content" id="UpdateLocationContent" runat="server">
                                     <div class="col-md-8">
                                         <div id="updatelocationInitState" runat="server">
                                             <div class="info-div">Enter Location ID to start </div>
                                             <div class="row expand-item-row">
                                                 <div class="expand-item-label">Location ID</div>
-                                                <asp:TextBox ID="UpdateLocationTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="UpdateLocIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocIDValidator" runat="server"></div>
                                             </div>
                                             <div class="row expand-item-row">
-                                                <asp:Button ID="LocFindBtn" runat="server" Text="Find" class="expand-item-btn" onclick="LocFindBtn_Click" OnClientClick="return isValidCategoryCatID()"/>
+                                                <asp:Button ID="LocFindBtn" runat="server" Text="Find" class="expand-item-btn" 
+                                                    onclick="LocFindBtn_Click" OnClientClick="return isValidUpdateLocID()"/>
                                             </div>
                                         </div>
 
@@ -135,8 +137,39 @@
                                                 <div id="UpdateLocID" runat="server" class="custom-label"></div>
                                             </div>
                                             <div class="row expand-item-row">
-                                                <div class="expand-item-label">Location Name</div>
+                                                <div class="expand-item-label">Name</div>
                                                 <asp:TextBox ID="UpdateLocNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocNameValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Address</div>
+                                                <asp:TextBox ID="UpdateLocAddressTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocAddressValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Contact</div>
+                                                <asp:TextBox ID="UpdateLocContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocContactValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Manager Office</div>
+                                                <asp:TextBox ID="UpdateLocManagerOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocManagerOfficeValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Department</div>
+                                                <asp:TextBox ID="UpdateLocDepartmentTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocDepartmentValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Branch</div>
+                                                <asp:TextBox ID="UpdateLocBranchTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocBranchValidator" runat="server"></div>
+                                            </div>
+                                            <div class="row expand-item-row">
+                                                <div class="expand-item-label">Zonal Office</div>
+                                                <asp:TextBox ID="UpdateLocZonalOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                                <div class="validator" id="UpdateLocZonalOfficeValidator" runat="server"></div>
                                             </div>
                                             <div class="row expand-item-row">
                                                 <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn"
@@ -147,10 +180,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                        <div class="update-category-icon hidden-sm hidden-xs"></div>
+                                        <div class="update-location-icon hidden-sm hidden-xs"></div>
                                         <div class="validator-container">
-                                            <div class="validator" id="UpdateLocIDValidator" runat="server"></div>
-                                            <div class="validator" id="UpdateLocationNameValidator" runat="server"></div>
                                         </div>
                                     </div>
                                 </div>

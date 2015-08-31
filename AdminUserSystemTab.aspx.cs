@@ -237,7 +237,7 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String locID = UpdateLocationTextBox.Text;
+                String locID = UpdateLocIDTextBox.Text;
 
                 string check = "select count(*) from Location WHERE locID='" + locID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
@@ -245,31 +245,37 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT name FROM Location WHERE locID='" + locID + "'";
+                    String query = "SELECT locID, name, department, zonalOffice, managerOffice, branch, address, contactNo FROM Location WHERE locID='" + locID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
+                        UpdateLocID.InnerHtml = dr["locID"].ToString();
                         UpdateLocNameTextBox.Text = dr["name"].ToString();
+                        UpdateLocAddressTextBox.Text = dr["address"].ToString();
+                        UpdateLocContactTextBox.Text = dr["contactNo"].ToString();
+                        UpdateLocManagerOfficeTextBox.Text = dr["managerOffice"].ToString();
+                        UpdateLocZonalOfficeTextBox.Text = dr["zonalOffice"].ToString();
+                        UpdateLocBranchTextBox.Text = dr["branch"].ToString();
+                        UpdateLocDepartmentTextBox.Text = dr["department"].ToString();
                     }
-                    UpdateLocID.InnerHtml = locID;
                     updatelocationInitState.Style.Add("display", "none");
                     updatelocationSecondState.Style.Add("display", "block");
-                    updateLocation.Style.Add("display", "block");
+                    UpdateLocationContent.Style.Add("display", "block");
                     UpdateLocIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     updatelocationInitState.Style.Add("display", "block");
                     updatelocationSecondState.Style.Add("display", "none");
-                    updateLocation.Style.Add("display", "block");
-                    UpdateLocationNameValidator.InnerHtml = "Invalid Location ID";
+                    UpdateLocationContent.Style.Add("display", "block");
+                    UpdateLocIDValidator.InnerHtml = "Invalid location ID";
                 }
                 conn.Close();
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
+                responseArea.Style.Add("color", "orange");
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
@@ -282,8 +288,8 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String catID = UpdateCategoryTextBox.Text;
-                string insertion_Category = "UPDATE Category SET name = @name WHERE catID='" + catID + "'";
-                SqlCommand cmd = new SqlCommand(insertion_Category, conn);
+                string insertion_Location = "UPDATE Category SET name = @name WHERE catID='" + catID + "'";
+                SqlCommand cmd = new SqlCommand(insertion_Location, conn);
                 cmd.Parameters.AddWithValue("@name", UpdateCatNameTextBox.Text);
 
                 cmd.ExecuteNonQuery();
@@ -312,22 +318,31 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String locID = UpdateLocationTextBox.Text;
-                string insertion_Location = "UPDATE Location SET name = @name WHERE locID='" + locID + "'";
+                String locID = UpdateLocIDTextBox.Text;
+                string insertion_Location = "UPDATE Location SET name = @name, address = @address, contactNo = @contact, department = @department, branch = @branch, zonalOffice = @ZonalOffice, managerOffice = @ManagerOffice WHERE locID='" + locID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
+
                 cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@address", UpdateLocAddressTextBox.Text);
+                cmd.Parameters.AddWithValue("@contact", UpdateLocContactTextBox.Text);
+                cmd.Parameters.AddWithValue("@department", UpdateLocDepartmentTextBox.Text);
+                cmd.Parameters.AddWithValue("@branch", UpdateLocBranchTextBox.Text);
+                cmd.Parameters.AddWithValue("@ZonalOffice", UpdateLocZonalOfficeTextBox.Text);
+                cmd.Parameters.AddWithValue("@ManagerOffice", UpdateLocManagerOfficeTextBox.Text);
+
 
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll()", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll();", true);
 
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Location '" + locID + "' updated successfully!";
                 updatelocationInitState.Style.Add("display", "block");
                 updatelocationSecondState.Style.Add("display", "none");
-                updateLocation.Style.Add("display", "block");
-                UpdateLocationTextBox.Text = "";
+                UpdateLocationContent.Style.Add("display", "block");
+                UpdateLocIDTextBox.Text = "";
+
             }
             catch (Exception ex)
             {

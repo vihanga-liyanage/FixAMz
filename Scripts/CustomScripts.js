@@ -246,19 +246,32 @@ function addLocationClearAll() {
 //Update location functions ===================================================================
 
 function isValidUpdateLoc() {
-    var locname = document.forms[0]["UpdateLocNameTextBox"].value;
-    if (locname == "") {
-        document.getElementById("UpdateLocationNameValidator").innerHTML = "Enter Location Name.";
-        return false
-    } else {
-        document.getElementById("UpdateLocationNameValidator").innerHTML = "";
-        return true;
-    }
+    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.");
+    var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
+    var isValidUpLoccontact = contactValidator("UpdateLocContact");
+    var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.");
+    var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.");
+    var isValidUpLoczonaloffice = requiredFieldValidator("UpdateLocZonalOffice", "Zonal Office cannot be empty.");
+    var isValidUpLocmanageroffice = requiredFieldValidator("UpdateLocManagerOffice", "Manager Office cannot be empty.");
+
+    return (isValidUpLocname && isValidUpLocaddress && isValidUpLoccontact && isValidUpLocdepartment && isValidUpLocbranch && isValidUpLoczonaloffice && isValidUpLocmanageroffice);
+}
+
+function isValidUpdateLocID() {
+    return requiredFieldValidator("UpdateLocID", "Location ID cannot be empty.");
 }
 
 function updateLocationClearAll() {
     document.forms[0]["UpdateLocNameTextBox"].value = "";
-    document.forms[0]["updatelocationInitState"].style.display = block;
+    document.forms[0]["UpdateLocAddressTextBox"].value = "";
+    document.forms[0]["UpdateLocContactTextBox"].value = "";
+    document.forms[0]["UpdateLocDepartmentTextBox"].value = "";
+    document.forms[0]["UpdateLocManagerOfficeTextBox"].value = "";
+    document.forms[0]["UpdateLocBranchTextBox"].value = "";
+    document.forms[0]["UpdateLocZonalOfficeTextBox"].value = "";
+    document.getElementById("updatelocationInitState").style.display = "block";
+    document.getElementById("updatelocationSecondState").style.display = "none";
+    document.forms[0]["UpdateLocIDTextBox"].value = "";
     return false;
 }
 
