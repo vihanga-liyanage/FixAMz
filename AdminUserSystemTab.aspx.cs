@@ -12,9 +12,11 @@ namespace FixAMz_WebApplication
 {
     public partial class AdminUserSystemTab : System.Web.UI.Page
     {
-        protected void Page_Load_loc(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
+            setCatID();
             setLocID();
+            setSubCategoryID();
             responseArea.InnerHtml = "";
         }
 
@@ -95,12 +97,6 @@ namespace FixAMz_WebApplication
             }
         } 
         
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            setCatID();
-            setLocID();
-        }
-
         protected void AddCategoryBtn_Click(object sender, EventArgs e)
         {
             try
@@ -234,7 +230,6 @@ namespace FixAMz_WebApplication
             }
         }
 
-
         protected void LocFindBtn_Click(object sender, EventArgs e)
         {
             try
@@ -340,6 +335,53 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
+        }
+
+        protected void setSubCategoryID() //Reads the last scatID from DB, calculates the next and set it in the web page.
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 scatID FROM SubCategory ORDER BY scatID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newEmpID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastEmpID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastEmpID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastEmpID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastEmpID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newEmpID = chr;
+                    for (int i = 1; i < lastEmpID.Length - temp.Length; i++)
+                    {
+                        newEmpID += "0";
+                    }
+                    newEmpID += temp;
+                }
+                else
+                {
+                    newEmpID = "SC00001";
+                }
+
+                AddSubCategoryID.InnerHtml = newEmpID;
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+        }
+
+        protected void AddSubCategoryBtn_click(object sender, EventArgs e)
+        {
+
         }
     }
 }
