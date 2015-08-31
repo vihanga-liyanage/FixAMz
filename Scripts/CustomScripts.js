@@ -263,7 +263,6 @@ function isValidUpdateLocID() {
 
 function updateLocationClearAll() {
     document.forms[0]["UpdateLocNameTextBox"].value = "";
-<<<<<<< HEAD
     document.forms[0]["UpdateLocAddressTextBox"].value = "";
     document.forms[0]["UpdateLocContactTextBox"].value = "";
     document.forms[0]["UpdateLocDepartmentTextBox"].value = "";
@@ -274,10 +273,6 @@ function updateLocationClearAll() {
     document.getElementById("updatelocationSecondState").style.display = "none";
     document.forms[0]["UpdateLocIDTextBox"].value = "";
     return false;
-=======
-    document.forms[0]["updatelocationInitState"].style.display = block;
-    return true;
->>>>>>> db5f34fbc15530307d5f6577494317da3b843228
 }
 
 //Add new category functions ===================================================================

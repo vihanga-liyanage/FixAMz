@@ -122,21 +122,12 @@
                                             <div class="info-div">Enter Location ID to start </div>
                                             <div class="row expand-item-row">
                                                 <div class="expand-item-label">Location ID</div>
-<<<<<<< HEAD
                                                 <asp:TextBox ID="UpdateLocIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                                 <div class="validator" id="UpdateLocIDValidator" runat="server"></div>
                                             </div>
                                             <div class="row expand-item-row">
                                                 <asp:Button ID="LocFindBtn" runat="server" Text="Find" class="expand-item-btn" 
                                                     onclick="LocFindBtn_Click" OnClientClick="return isValidUpdateLocID()"/>
-=======
-                                                <asp:TextBox ID="UpdateLocationIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                                <div class="validator" id="UpdateLocationIDValidator" runat="server"></div>
-                                            </div>
-                                            <div class="row expand-item-row">
-                                                <asp:Button ID="LocFindBtn" runat="server" Text="Go" class="expand-item-btn" 
-                                                onclick="LocFindBtn_Click" OnClientClick="return isValidUpdateLoc()"/>
->>>>>>> db5f34fbc15530307d5f6577494317da3b843228
                                             </div>
                                         </div>
 
@@ -148,7 +139,6 @@
                                             <div class="row expand-item-row">
                                                 <div class="expand-item-label">Name</div>
                                                 <asp:TextBox ID="UpdateLocNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-<<<<<<< HEAD
                                                 <div class="validator" id="UpdateLocNameValidator" runat="server"></div>
                                             </div>
                                             <div class="row expand-item-row">
@@ -180,9 +170,6 @@
                                                 <div class="expand-item-label">Zonal Office</div>
                                                 <asp:TextBox ID="UpdateLocZonalOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                                 <div class="validator" id="UpdateLocZonalOfficeValidator" runat="server"></div>
-=======
-                                                <div class="validator" id="UpdateLocationNameValidator" runat="server"></div>
->>>>>>> db5f34fbc15530307d5f6577494317da3b843228
                                             </div>
                                             <div class="row expand-item-row">
                                                 <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn"
@@ -193,13 +180,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
-<<<<<<< HEAD
                                         <div class="update-location-icon hidden-sm hidden-xs"></div>
                                         <div class="validator-container">
                                         </div>
-=======
-                                        <div class="update-category-icon hidden-sm hidden-xs"></div>
->>>>>>> db5f34fbc15530307d5f6577494317da3b843228
                                     </div>
                                 </div>
                             </div>
