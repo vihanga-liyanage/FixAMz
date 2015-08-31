@@ -142,13 +142,17 @@ namespace FixAMz_WebApplication
             {
                 if (empidLength != 0) 
                 {
-                    string Search_User = "Select * FROM Employee WHERE (empID=@SearchEmployeeIDTextBox)"; //select data from database
+               
+                    //string pattern =  SearchEmployeeIDTextBox.Text;
+                    string Search_User = "Select * FROM Employee WHERE empID LIKE '%'+ @SearchEmployeeIDTextBox +'%'"; //select data from database
                    
                     SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    SqlParameter search = new SqlParameter();
+                    /*SqlParameter search = new SqlParameter();
                     search.ParameterName = "@SearchEmployeeIDTextBox";
                     search.Value = SearchEmployeeIDTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);
+                    cmd.Parameters.Add(search);*/
+                    cmd.Parameters.AddWithValue("@SearchEmployeeIDTextBox", SearchEmployeeIDTextBox.Text);
+
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader != null && reader.HasRows) //if search results found
