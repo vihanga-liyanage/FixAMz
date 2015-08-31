@@ -433,7 +433,7 @@ namespace FixAMz_WebApplication
                     deleteUserInitState.Style.Add("display", "none");
                     deleteUserSecondState.Style.Add("display", "block");
                     DeleteUserContent.Style.Add("display", "block");
-                    DeleteEmpIDValidator.InnerHtml = "";
+                    DeleteUserEmpIDValidator.InnerHtml = "";
                     DeleteUserEmpIDTextBox.Focus();
                 }
                 else
@@ -441,7 +441,7 @@ namespace FixAMz_WebApplication
                     deleteUserInitState.Style.Add("display", "block");
                     deleteUserSecondState.Style.Add("display", "none");
                     DeleteUserContent.Style.Add("display", "block");
-                    DeleteEmpIDValidator.InnerHtml = "Invalid employee ID";
+                    DeleteUserEmpIDValidator.InnerHtml = "Employee ID not found!";
                     DeleteEmpID.Focus();
                 }
                 conn.Close();

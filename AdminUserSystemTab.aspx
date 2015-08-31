@@ -234,8 +234,8 @@
                                 <div class="expand-item-title">Add Sub Category</div>
                                 <div class="expand-item-content">
                                     <div class="col-md-8">
-                                 </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>

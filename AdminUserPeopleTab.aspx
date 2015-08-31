@@ -128,7 +128,6 @@
                                     </div>
                                 </div>
                                 <div id="updateUserSecondState" runat="server">
-                                    <div class="info-div">Edit the fields and press update to update the user.</div>
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
                                         <div id="UpdateEmpID" runat="server"  class="custom-label"></div>
@@ -229,7 +228,7 @@
                                     <div class="expand-item-row">
                                         <div class="expand-item-label">Employee ID</div>
                                         <asp:TextBox ID="DeleteUserEmpIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                        <div class="validator" id="DeleteEmpIDValidator" runat="server"></div>
+                                        <div class="validator" id="DeleteUserEmpIDValidator" runat="server"></div>
                                     </div>
                                     <div class="expand-item-row">
                                         <asp:Button ID="DeleteUserFindBtn" runat="server" Text="Go" 

@@ -80,9 +80,11 @@ function usernameValidator(){
             //called on ajax call success
             if (success.d == 0) {
                 document.getElementById("AddNewUsernameValidator").innerHTML = "";
+                document.forms[0]["AddNewUsernameTextBox"].style.border = "1px solid #cacaca";
                 usernameNotExists = true;
             } else {
                 document.getElementById("AddNewUsernameValidator").innerHTML = "User name already exists.";
+                document.forms[0]["AddNewUsernameTextBox"].style.border = "1px solid red";
                 usernameNotExists = false;
             }
         },
@@ -199,7 +201,7 @@ function searchClearAll() {
 //Delete user functions ===================================================================
 
 function isValidDeleteEmpID() {
-    return requiredFieldValidator("DeleteEmpID", "Employee ID cannot be empty.");
+    return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
 }
 
 //Add new location functions ===================================================================
