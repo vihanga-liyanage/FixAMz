@@ -302,6 +302,40 @@ function updateCategoryClearAll() {
 //Add new sub category functions ===================================================================
 
 function isValidAddSubCategory() {
+
     var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.");
-    return false;
+    var isValidDepreciation = requiredFieldValidator("AddSubCategoryDepreciationRate", "Depreciation rate cannot be empty.");
+
+    if (isValidDepreciation) {
+        var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
+        var intVal = parseFloat(depre);
+        if (!depre.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else if (intVal > 100.0) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid #cacaca";
+            isValidDepreciation = true;
+        }
+    }
+
+    var isValidLifetime = requiredFieldValidator("AddSubCategoryLifetime", "Lifetime cannot be empty.");
+    if (isValidLifetime) {
+        var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;
+        if (!lifetime.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "Lifetime cannot have non-digits.";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid red";
+            isValidLifetime = false;
+        } else {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid #cacaca";
+            isValidLifetime = true;
+        }
+    }
+    return (isValidName && isValidDepreciation && isValidLifetime);
 }

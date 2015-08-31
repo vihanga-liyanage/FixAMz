@@ -381,7 +381,7 @@ namespace FixAMz_WebApplication
 
         protected void AddSubCategoryBtn_click(object sender, EventArgs e)
         {
-
+            responseArea.InnerHtml = "Done";
         }
     }
 }

@@ -253,11 +253,13 @@
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Depreciation Rate</div>
                                             <asp:TextBox ID="AddSubCategoryDepreciationRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            %
                                             <div class="validator" id="AddSubCategoryDepreciationRateValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Life Time</div>
                                             <asp:TextBox ID="AddSubCategoryLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            years
                                             <div class="validator" id="AddSubCategoryLifetimeValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
