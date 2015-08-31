@@ -339,3 +339,10 @@ function isValidAddSubCategory() {
     }
     return (isValidName && isValidDepreciation && isValidLifetime);
 }
+
+function addSubCategoryClearAll() {
+    document.forms[0]["AddSubCategoryNameTextBox"].value = "";
+    document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value = "";
+    document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
+    return true;
+}

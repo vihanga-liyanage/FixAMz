@@ -262,17 +262,11 @@
                                             years
                                             <div class="validator" id="AddSubCategoryLifetimeValidator" runat="server"></div>
                                         </div>
-
-                                        <div class="row expand-item-row">
-                                            <asp:Button ID="AddSubCategorySubmitBtn" runat="server" Text="Add Sub Category"
-                                                class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
-
                                         <div class="expand-item-row">
                                             <asp:Button ID="AddSubCategoryBtn" runat="server" Text="Add Sub Category" OnClick="AddSubCategoryBtn_click"
                                                 class="expand-item-btn" OnClientClick="return isValidAddSubCategory()" />
-
                                             <asp:Button ID="AddSubCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                                OnClientClick="return addCategoryClearAll()" />
+                                                OnClientClick="return addSubCategoryClearAll()" />
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -280,7 +274,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
 <!--Update sub category-->
                         <div class="row expand-item">

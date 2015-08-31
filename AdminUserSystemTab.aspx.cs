@@ -125,7 +125,7 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
-            }
+        }
  
       /*  protected void CancelAddcategoryBtn_Click(object sender, EventArgs e)
         {
@@ -349,15 +349,15 @@ namespace FixAMz_WebApplication
                 if (cmd.ExecuteScalar() != null)
                 {
                     String lastEmpID = (cmd.ExecuteScalar().ToString()).Trim();
-                    String chr = Convert.ToString(lastEmpID[0]);
+                    String chr = Convert.ToString(lastEmpID.Substring(0, 2));
                     String temp = "";
-                    for (int i = 1; i < lastEmpID.Length; i++)
+                    for (int i = 2; i < lastEmpID.Length; i++)
                     {
                         temp += Convert.ToString(lastEmpID[i]);
                     }
                     temp = Convert.ToString(Convert.ToInt16(temp) + 1);
                     newEmpID = chr;
-                    for (int i = 1; i < lastEmpID.Length - temp.Length; i++)
+                    for (int i = 2; i < lastEmpID.Length - temp.Length; i++)
                     {
                         newEmpID += "0";
                     }
@@ -381,7 +381,32 @@ namespace FixAMz_WebApplication
 
         protected void AddSubCategoryBtn_click(object sender, EventArgs e)
         {
-            responseArea.InnerHtml = "Done";
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Category = "insert into SubCategory (scatID, name, depreciationRate, lifetime) values (@scatid, @name, @depre, @lifetime)";
+                SqlCommand cmd = new SqlCommand(insertion_Category, conn);
+
+                cmd.Parameters.AddWithValue("@scatid", AddSubCategoryID.InnerHtml);
+                cmd.Parameters.AddWithValue("@name", AddSubCategoryNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@depre", Convert.ToInt16(AddSubCategoryDepreciationRateTextBox.Text));
+                cmd.Parameters.AddWithValue("@lifetime", Convert.ToInt16(AddSubCategoryLifetimeTextBox.Text));
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addSubCategoryClearAll", "addSubCategoryClearAll();", true);
+                setSubCategoryID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Sub Category " + AddSubCategoryNameTextBox.Text + " added successfully!";
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
         }
     }
 }
