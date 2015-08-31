@@ -34,15 +34,7 @@
                             <div id="user-name">
                                 System Admin | <a href="#">Sign out</a>
                             </div>
-                            <div class="col-md-5 logo-text hidden-xs hidden-sm">
-                                The Web Based Asset Management System
-                            </div>
-                            <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
-                                <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
-                                <div id="user-name">
-                                    System Admin | <a href="#">Sign out</a>
-                                </div>
-                            </div>
+                            
                             <ul class="custom-nav-bar nav nav-tabs">
                                 <li><a href="#">HOME</a> </li>
                                 <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a></li>
@@ -71,30 +63,37 @@
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Name</div>
                                             <asp:TextBox ID="AddLocationNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationNameValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Address</div>
                                             <asp:TextBox ID="AddLocationAddressTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationAddressValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Contact</div>
                                             <asp:TextBox ID="AddLocationContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationContactValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Manager Office</div>
                                             <asp:TextBox ID="AddLocationManagerOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationManagerOfficeValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Department</div>
                                             <asp:TextBox ID="AddLocationDepartmentTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationDepartmentValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Branch</div>
                                             <asp:TextBox ID="AddLocationBranchTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationBranchValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Zonal Office</div>
                                             <asp:TextBox ID="AddLocationZonalOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="AddLocationZonalOfficeValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <asp:Button ID="AddLocationUserBtn" runat="server" Text="Add Location" class="expand-item-btn"
@@ -104,9 +103,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                        <div class="add-categoy-icon"></div>
+                                        <div class="add-location-icon hidden-sm hidden-xs"></div>
                                         <div class="validator-container">
-                                            <div class="validator" id="AddLocationValidator" runat="server"></div>
                                         </div>
                                     </div>
 
