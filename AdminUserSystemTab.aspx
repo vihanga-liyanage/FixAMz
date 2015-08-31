@@ -45,7 +45,7 @@
                 </div>               
 <!--Main content-->
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1 expand-item-container">
+                    <div class="col-md-10 col-xs-offset-1 expand-item-container">
                         <div id="responseArea" runat="server"></div>
 <!--Add location-->
                         <div class="row expand-item">
@@ -54,39 +54,39 @@
                                 <div class="expand-item-title">Add Location</div>
                                 <div class="expand-item-content">
                                     <div class="col-md-8">
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Location ID</div>
                                             <div id="AddNewLocID" runat="server" class="custom-label"></div>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Name</div>
                                             <asp:TextBox ID="AddLocationNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Address</div>
                                             <asp:TextBox ID="AddLocationAddressTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Contact</div>
                                             <asp:TextBox ID="AddLocationContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Manager Office</div>
                                             <asp:TextBox ID="AddLocationManagerOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Department</div>
                                             <asp:TextBox ID="AddLocationDepartmentTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Branch</div>
                                             <asp:TextBox ID="AddLocationBranchTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Zonal Office</div>
                                             <asp:TextBox ID="AddLocationZonalOfficeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <asp:Button ID="AddLocationUserBtn" runat="server" Text="Add Location" class="expand-item-btn"
                                                 OnClick="AddLocationBtn_Click" OnClientClick="return isValidAddLoc()" />
                                             <asp:Button ID="AddLocationCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -113,25 +113,25 @@
                                     <div class="col-md-8">
                                         <div id="updatelocationInitState" runat="server">
                                             <div class="info-div">Enter Location ID to start </div>
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <div class="expand-item-label">Location ID</div>
                                                 <asp:TextBox ID="UpdateLocationTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             </div>
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <asp:Button ID="LocFindBtn" runat="server" Text="Find" class="expand-item-btn" onclick="LocFindBtn_Click" OnClientClick="return isValidCategoryCatID()"/>
                                             </div>
                                         </div>
 
                                         <div id="updatelocationSecondState" runat="server">
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <div class="expand-item-label">Location ID</div>
                                                 <div id="UpdateLocID" runat="server"></div>
                                             </div>
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <div class="expand-item-label">Location Name</div>
                                                 <asp:TextBox ID="UpdateLocNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             </div>
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn"
                                                     OnClientClick="return isValidUpdateLoc()" OnClick="UpdateLocBtn_click" />
                                                 <asp:Button ID="updateLocCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -157,15 +157,15 @@
                                 <div class="expand-item-title">Add Category</div>
                                 <div class="expand-item-content">
                                     <div class="col-md-8">
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Category ID</div>
                                             <div id="AddNewCatID" runat="server"></div>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Name</div>
                                             <asp:TextBox ID="AddCategoryNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <asp:Button ID="AddCategoryUserBtn" runat="server" Text="Add Category"
                                                 class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
                                             <asp:Button ID="AddCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -191,11 +191,11 @@
                                     <div class="col-md-8">
                                         <div id="updatecategoryrInitState" runat="server">
                                             <div class="info-div">Enter category ID to start </div>                                
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Category ID</div>
                                             <asp:TextBox ID="UpdateCategoryTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="expand-item-row"> 
+                                        <div class="row expand-item-row"> 
                                             <asp:Button ID="CatFindBtn" runat="server" Text="Find" class="expand-item-btn" OnClientClick="return isValidCategoryCatID()" onclick="CatFindBtn_Click"  />
                                         </div>
                                         </div>
@@ -205,11 +205,11 @@
                                                 <div class="expand-item-label">Category ID</div>
                                                 <div id="UpdateCatID" runat="server"></div>   
                                             </div>
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <div class="expand-item-label">Category Name</div>
                                                 <asp:TextBox ID="UpdateCatNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             </div>
-                                            <div class="expand-item-row">
+                                            <div class="row expand-item-row">
                                                 <asp:Button ID="UpdateCatBtn" runat="server" Text="Update Category" class="expand-item-btn" 
                                                    OnClientClick="return isValidUpdateCat()"  onclick="UpdateCatBtn_click" />
                                                 <asp:Button ID="updateCatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
@@ -234,26 +234,26 @@
                                 <div class="expand-item-title">Add Sub Category</div>
                                 <div class="expand-item-content">
                                     <div class="col-md-8">
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub Category ID</div>
                                             <div id="AddSubCategoryID" runat="server"></div>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub Category Name</div>
                                             <asp:TextBox ID="AddSubCategoryNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="AddSubCategoryNameValidator" runat="server"></div>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Depreciation Rate</div>
                                             <asp:TextBox ID="AddSubCategoryDepreciationRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="AddSubCategoryDepreciationRateValidator" runat="server"></div>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Life Time</div>
                                             <asp:TextBox ID="AddSubCategoryLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="AddSubCategoryLifetimeValidator" runat="server"></div>
                                         </div>
-                                        <div class="expand-item-row">
+                                        <div class="row expand-item-row">
                                             <asp:Button ID="AddSubCategorySubmitBtn" runat="server" Text="Add Sub Category"
                                                 class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
                                             <asp:Button ID="AddSubCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -272,10 +272,33 @@
                                 <img src="img/UpdateIcon.png" />
                                 <div class="expand-item-title">Update Sub Category</div>
                                 <div class="expand-item-content">
-                                    <div class="col-md-8">
-
+                                 <div class="col-md-8">
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Name</div>
+                                        <asp:TextBox ID="TextBox6" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Category</div>
+                                        <asp:TextBox ID="DropDownList7" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Depreciation rate</div>
+                                        <asp:TextBox ID="TextBox7" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <asp:Button ID="Button5" runat="server" Text="Add sub category" class="expand-item-btn" />
+                                        <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
+                                <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                    <div class="add-categoy-icon hidden-sm hidden-xs"></div>
+                                    <div class="validator-container">
+                                        <div class="validator" id="Div5" runat="server"></div>
+                                    </div>
+                                </div>
+
+                            </div>
                             </div>
                         </div>
                     </div>
