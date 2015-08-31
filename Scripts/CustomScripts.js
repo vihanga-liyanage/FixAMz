@@ -47,23 +47,23 @@ function contactValidator(controller) {
     if (contact == "") {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot be empty.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
-        isValidContact = false;
+        return false;
     } else if (contact.length != 10) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
-        isValidContact = false;
+        return false;
     } else if (!contact.match(/^\d{10}$/)) {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot have non-digits.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
-        isValidContact = false;
+        return false;
     } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
-        isValidContact = false;
+        return false;
     } else {
         document.getElementById(controller + "Validator").innerHTML = "";
         document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
-        isValidContact = true;
+        return true;
     }
 }
 
@@ -149,7 +149,6 @@ function isValidAddNew() {
         document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
         isValidConfirmPassword = true;
     }
-
     return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
 }
 
@@ -170,20 +169,13 @@ function isValidUpdateEmpID() {
     return requiredFieldValidator("UpdateEmpID", "Employee ID cannot be empty.");
 }
 
-function isValidUpdate() {
-    var isValid = [true, true, true, true];
-    var email = document.forms[0]["UpdateEmailTextBox"].value;
-    var contact = document.forms[0]["UpdateContactTextBox"].value;
-    
-    isValid[0] = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.");
-    isValid[1] = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.");
-    isValid[2] = emailValidator("UpdateEmail");
-    isValid[3] = contactValidator("UpdateContact");
+function isValidUpdate() {    
+    var isValidFirstname = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.");
+    var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.");
+    var isValidEmail = emailValidator("UpdateEmail");
+    var isValidContact = contactValidator("UpdateContact");
 
-    for (var i = 0; i < isValid.length; i++) {
-        if (!isValid[i]) { return false; }
-    }
-    return true;
+    return (isValidFirstname && isValidLastname && isValidEmail && isValidContact);
 }
 
 //Advanced user search functions ===================================================================
@@ -285,3 +277,9 @@ function updateCategoryClearAll() {
     return false;
 }
 
+//Add new sub category functions ===================================================================
+
+function isValidAddSubCategory() {
+    var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.");
+    return false;
+}

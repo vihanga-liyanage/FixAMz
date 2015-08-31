@@ -481,13 +481,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryLifetimeValidator;
         
         /// <summary>
-        /// AddSubCategorySubmitBtn control.
+        /// AddSubCategoryBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddSubCategorySubmitBtn;
+        protected global::System.Web.UI.WebControls.Button AddSubCategoryBtn;
         
         /// <summary>
         /// AddSubCategoryCancelBtn control.

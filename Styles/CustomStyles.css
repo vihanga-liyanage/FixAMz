@@ -85,7 +85,7 @@ div
 }
 .expand-item-content
 {
-    display:none;
+    display: none;
 }
 .expand-item-label
 {
@@ -155,8 +155,6 @@ div
 }
 .custom-label
 {
-    margin-left: 245px;
-    width:290px;
     height:28px;
     padding-left:6px;
     font-size:18px;

@@ -125,7 +125,7 @@
                                         <div id="updatelocationSecondState" runat="server">
                                             <div class="expand-item-row">
                                                 <div class="expand-item-label">Location ID</div>
-                                                <div id="UpdateLocID" runat="server"></div>
+                                                <div id="UpdateLocID" runat="server" class="custom-label"></div>
                                             </div>
                                             <div class="expand-item-row">
                                                 <div class="expand-item-label">Location Name</div>
@@ -159,7 +159,7 @@
                                     <div class="col-md-8">
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Category ID</div>
-                                            <div id="AddNewCatID" runat="server"></div>
+                                            <div id="AddNewCatID" runat="server" class="custom-label">></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Name</div>
@@ -203,7 +203,7 @@
                                         <div id="updateCategorySecondState" runat="server">
                                             <div class="expand-item-row"> 
                                                 <div class="expand-item-label">Category ID</div>
-                                                <div id="UpdateCatID" runat="server"></div>   
+                                                <div id="UpdateCatID" runat="server" class="custom-label">></div>   
                                             </div>
                                             <div class="expand-item-row">
                                                 <div class="expand-item-label">Category Name</div>
@@ -236,7 +236,7 @@
                                     <div class="col-md-8">
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Sub Category ID</div>
-                                            <div id="AddSubCategoryID" runat="server"></div>
+                                            <div id="AddSubCategoryID" runat="server" class="custom-label"></div>
                                         </div>
                                         <div class="expand-item-row">
                                             <div class="expand-item-label">Sub Category Name</div>
@@ -254,8 +254,8 @@
                                             <div class="validator" id="AddSubCategoryLifetimeValidator" runat="server"></div>
                                         </div>
                                         <div class="expand-item-row">
-                                            <asp:Button ID="AddSubCategorySubmitBtn" runat="server" Text="Add Sub Category"
-                                                class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
+                                            <asp:Button ID="AddSubCategoryBtn" runat="server" Text="Add Sub Category" OnClick="AddSubCategoryBtn_click"
+                                                class="expand-item-btn" OnClientClick="return isValidAddSubCategory()" />
                                             <asp:Button ID="AddSubCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                                 OnClientClick="return addCategoryClearAll()" />
                                         </div>

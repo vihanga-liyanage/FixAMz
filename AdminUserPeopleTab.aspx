@@ -94,7 +94,7 @@
                                     <div class="validator" id="AddNewConfirmPasswordValidator" runat="server"></div>
                                 </div>
                                 <div class="expand-item-row">
-                                    <asp:Button ID="AddUserBtn" runat="server" Text="Add User" onclick="AddUserBtn_Click"
+                                    <asp:Button ID="AddUserBtn" runat="server" Text="Add User" onclick="AddUserBtn_Click" 
                                         class="expand-item-btn" OnClientClick="return isValidAddNew()" />
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
                                         OnClientClick="return addNewClearAll()"/>
