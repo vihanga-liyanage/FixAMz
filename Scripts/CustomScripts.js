@@ -235,7 +235,6 @@ function addLocationClearAll() {
     document.forms[0]["AddLocationNameTextBox"].value = "";
     document.forms[0]["AddLocationAddressTextBox"].value = "";
     document.forms[0]["AddLocationContactTextBox"].value = "";
-    document.forms[0]["AddLocationTypeTextBox"].value = "";
     document.forms[0]["AddLocationManagerOfficeTextBox"].value = "";
     document.forms[0]["AddLocationDepartmentTextBox"].value = "";
     document.forms[0]["AddLocationBranchTextBox"].value = "";
