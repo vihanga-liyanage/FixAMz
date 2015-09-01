@@ -113,14 +113,20 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT name FROM Location WHERE locID='" + locID + "'";
+                    String query = "SELECT locID, name, department, zonalOffice, managerOffice, branch, address, contactNo FROM Location WHERE locID='" + locID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
+                        UpdateLocID.InnerHtml = dr["locID"].ToString();
                         UpdateLocNameTextBox.Text = dr["name"].ToString();
+                        UpdateLocAddressTextBox.Text = dr["address"].ToString();
+                        UpdateLocContactTextBox.Text = dr["contactNo"].ToString();
+                        UpdateLocManagerOfficeTextBox.Text = dr["managerOffice"].ToString();
+                        UpdateLocZonalOfficeTextBox.Text = dr["zonalOffice"].ToString();
+                        UpdateLocBranchTextBox.Text = dr["branch"].ToString();
+                        UpdateLocDepartmentTextBox.Text = dr["department"].ToString();
                     }
-                    UpdateLocID.InnerHtml = locID;
                     updatelocationInitState.Style.Add("display", "none");
                     updatelocationSecondState.Style.Add("display", "block");
                     UpdateLocationContent.Style.Add("display", "block");
@@ -137,7 +143,7 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
+                responseArea.Style.Add("color", "orange");
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
@@ -173,7 +179,6 @@ namespace FixAMz_WebApplication
                 updatelocationSecondState.Style.Add("display", "none");
                 UpdateLocationContent.Style.Add("display", "block");
                 UpdateLocationIDTextBox.Text = "";
-
             }
             catch (Exception ex)
             {
@@ -230,7 +235,6 @@ namespace FixAMz_WebApplication
         {
             try
             {
-               
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     string insertion_Category = "insert into Category (catID, name) values (@catid, @name)";
@@ -315,7 +319,6 @@ namespace FixAMz_WebApplication
                 String insertion_Category = "UPDATE Category SET name = '" + name + "' WHERE catID='" + catID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Category, conn);
 
-
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
@@ -335,7 +338,6 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
-
         //Add new sub category
         protected void setSubCategoryID()
         {
