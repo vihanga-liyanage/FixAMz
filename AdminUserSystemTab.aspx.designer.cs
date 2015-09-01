@@ -229,22 +229,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatelocationInitState;
         
         /// <summary>
-        /// UpdateLocIDTextBox control.
+        /// UpdateLocationIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateLocIDTextBox;
+        protected global::System.Web.UI.WebControls.TextBox UpdateLocationIDTextBox;
         
         /// <summary>
-        /// UpdateLocIDValidator control.
+        /// UpdateLocationIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocIDValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLocationIDValidator;
         
         /// <summary>
         /// LocFindBtn control.
@@ -490,40 +490,40 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategory;
         
         /// <summary>
-        /// updatecategoryrInitState control.
+        /// updateCategoryInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updatecategoryrInitState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategoryInitState;
         
         /// <summary>
-        /// UpdateCategoryTextBox control.
+        /// UpdateCategoryIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateCategoryTextBox;
+        protected global::System.Web.UI.WebControls.TextBox UpdateCategoryIDTextBox;
         
         /// <summary>
-        /// UpdateCatIDValidator control.
+        /// UpdateCategoryIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatIDValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryIDValidator;
         
         /// <summary>
-        /// CatFindBtn control.
+        /// UpdateCategoryGoBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CatFindBtn;
+        protected global::System.Web.UI.WebControls.Button UpdateCategoryGoBtn;
         
         /// <summary>
         /// updateCategorySecondState control.
@@ -544,13 +544,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCatID;
         
         /// <summary>
-        /// UpdateCatNameTextBox control.
+        /// UpdateCategoryNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateCatNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox UpdateCategoryNameTextBox;
         
         /// <summary>
         /// UpdateCategoryNameValidator control.

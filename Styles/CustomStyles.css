@@ -226,6 +226,18 @@ div
     z-index:-1;
 } 
 
+/*================================update location=============================*/
+.update-location-icon
+{
+    position:absolute;
+    background:url(/img/updateLocation.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
 /*================================Add category================================*/
 .add-categoy-icon
 {
@@ -254,15 +266,30 @@ div
 {
     display:none;
 }
-#UpdateCatID
-{
-    margin-left: 245px;
-    width:290px;
-    height:28px;
-    padding-left:6px;
-    font-size:18px;
-}
 
+/*================================Add sub category================================*/
+.add-sub-categoy-icon
+{
+    position:absolute;
+    background:url(/img/addSubCategory.png) no-repeat;
+    width:400px;
+    height:400px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}  
+
+/*================================update sub category=============================*/
+.update-sub-category-icon
+{
+    position:absolute;
+    background:url(/img/updateSubCategory.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
 /*================================footer styles================================*/
 
 #footer

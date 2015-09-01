@@ -199,30 +199,9 @@ function isValidDeleteEmpID() {
 //Add new location functions ===================================================================
 
 function isValidAddLoc() {
-    //var contact = document.forms[0]["AddLocationContactTextBox"].value;
-
     var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
-
     var isValidContact = contactValidator("AddLocationContact");
-    /*var prefix = contact.substring(0, 3);
-    if (contact == "") {
-        document.getElementById("AddLocationContactValidator").innerHTML = "Contact cannot be empty.";
-        isValidContact = false;
-    } else if (contact.length != 10) {
-        document.getElementById("AddLocationContactValidator").innerHTML = "Please enter a valid contact.";
-        isValidContact = false;
-    } else if (!contact.match(/^\d{10}$/)) {
-        document.getElementById("AddLocationContactValidator").innerHTML = "Contact cannot have non-digits.";
-        isValidContact = false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
-        document.getElementById("AddLocationContactValidator").innerHTML = "Please enter a valid contact.";
-        isValidContact = false;
-    } else {
-        document.getElementById("AddLocationContactValidator").innerHTML = "";
-        isValidContact = true;
-    }*/
-
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");
     var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.");
@@ -257,7 +236,7 @@ function isValidUpdateLoc() {
 }
 
 function isValidUpdateLocID() {
-    return requiredFieldValidator("UpdateLocID", "Location ID cannot be empty.");
+    return requiredFieldValidator("UpdateLocationID", "Location ID cannot be empty.");
 }
 
 function updateLocationClearAll() {
@@ -271,7 +250,7 @@ function updateLocationClearAll() {
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
     document.forms[0]["UpdateLocIDTextBox"].value = "";
-    return false;
+    return true;
 }
 
 //Add new category functions ===================================================================
@@ -294,15 +273,12 @@ function addCategoryClearAll() {
 
 //Update category functions ===================================================================
 
+function isValidCategoryCatID() {
+    return requiredFieldValidator("UpdateCategoryID", "Enter category ID");
+}
+
 function isValidUpdateCat() {
-    var catname = document.forms[0]["UpdateCatNameTextBox"].value;
-    if (catname == "") {
-        document.getElementById("UpdateCategoryNameValidator").innerHTML = "Enter Category Name.";
-        return false
-    } else {
-        document.getElementById("UpdateCategoryNameValidator").innerHTML = "";
-        return true;
-    }
+    return requiredFieldValidator("UpdateCategoryName", "Enter Category Name.");
 }
 
 function updateCategoryClearAll() {

@@ -259,7 +259,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn" 
-                                             onclick="DeleteUserBtn_Click" />
+                                             onclick="DeleteUserBtn_Click" OnClientClick="return window.confirm('Confirm user deletion.')" />
                                         <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
                                             OnClientClick="return " />
                                     </div>
