@@ -56,7 +56,7 @@ function contactValidator(controller) {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot have non-digits.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
+    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076" || prefix == "078")) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
@@ -247,10 +247,11 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocManagerOfficeTextBox"].value = "";
     document.forms[0]["UpdateLocBranchTextBox"].value = "";
     document.forms[0]["UpdateLocZonalOfficeTextBox"].value = "";
+    document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-    document.forms[0]["UpdateLocIDTextBox"].value = "";
-    return true;
+    
+    return false;
 }
 
 //Add new category functions ===================================================================
@@ -275,8 +276,9 @@ function isValidUpdateCat() {
 }
 
 function updateCategoryClearAll() {
-    document.forms[0]["UpdateCatNameTextBox"].value = "";
-    document.forms[0]["updatecategoryrInitState"].style.display = block;
+    document.forms[0]["UpdateCategoryNameTextBox"].value = "";
+    document.forms[0]["updateCategorySecondState"].style.display = "none";
+    document.forms[0]["updateCategoryInitState"].style.display = "block";
     return true;
 }
 
