@@ -162,7 +162,7 @@ function updateClearAll() {
     document.getElementById("updateUserInitState").style.display = "block";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    return true;
+    return false;
 }
 
 function isValidUpdateEmpID() {
@@ -257,14 +257,7 @@ function updateLocationClearAll() {
 //Add new category functions ===================================================================
 
 function isValidAddCat() {
-    var catname = document.forms[0]["AddCategoryNameTextBox"].value;
-    if (catname == "") {
-        document.getElementById("AddCategoryValidator").innerHTML = "Enter Category Name.";
-        return false
-    } else {
-        document.getElementById("AddCategoryValidator").innerHTML = "";
-        return true;
-    }
+    return requiredFieldValidator("AddCategoryName", "Enter Category Name.");
 }
 
 function addCategoryClearAll() {

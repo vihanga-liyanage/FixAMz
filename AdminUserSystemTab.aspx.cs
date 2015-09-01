@@ -235,20 +235,20 @@ namespace FixAMz_WebApplication
         {
             try
             {
-                    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                    conn.Open();
-                    string insertion_Category = "insert into Category (catID, name) values (@catid, @name)";
-                    SqlCommand cmd = new SqlCommand(insertion_Category, conn);
-                    cmd.Parameters.AddWithValue("@catid", AddNewCatID.InnerHtml);
-                    cmd.Parameters.AddWithValue("@name", AddCategoryNameTextBox.Text);
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Category = "insert into Category (catID, name) values (@catid, @name)";
+                SqlCommand cmd = new SqlCommand(insertion_Category, conn);
+                cmd.Parameters.AddWithValue("@catid", AddNewCatID.InnerHtml);
+                cmd.Parameters.AddWithValue("@name", AddCategoryNameTextBox.Text);
 
-                    cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-                    conn.Close();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "addCategoryClearAll", "addCategoryClearAll();", true);
-                    setCatID();
-                    responseArea.Style.Add("color", "green");
-                    responseArea.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addCategoryClearAll", "addCategoryClearAll();", true);
+                setCatID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
 
                 
             }

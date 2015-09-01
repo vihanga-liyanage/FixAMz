@@ -201,7 +201,7 @@
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Name</div>
                                             <asp:TextBox ID="AddCategoryNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                            <div class="validator" id="AddCategoryValidator" runat="server"></div>
+                                            <div class="validator" id="AddCategoryNameValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <asp:Button ID="AddCategoryUserBtn" runat="server" Text="Add Category"
