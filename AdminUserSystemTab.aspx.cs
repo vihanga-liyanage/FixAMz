@@ -286,14 +286,14 @@ namespace FixAMz_WebApplication
                     }
                     updateCategoryInitState.Style.Add("display", "none");
                     updateCategorySecondState.Style.Add("display", "block");
-                    updateCategory.Style.Add("display", "block");
+                    UpdateCategoryContent.Style.Add("display", "block");
                     UpdateCategoryIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     updateCategoryInitState.Style.Add("display", "block");
                     updateCategorySecondState.Style.Add("display", "none");
-                    updateCategory.Style.Add("display", "block");
+                    UpdateCategoryContent.Style.Add("display", "block");
                     UpdateCategoryNameValidator.InnerHtml = "Invalid Category ID";
                 }
                 conn.Close();
@@ -328,7 +328,7 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "Category '" + name + "' updated successfully!";
                 updateCategoryInitState.Style.Add("display", "block");
                 updateCategorySecondState.Style.Add("display", "none");
-                updateCategory.Style.Add("display", "block");
+                UpdateCategoryContent.Style.Add("display", "block");
                 UpdateCategoryIDTextBox.Text = "";
             }
             catch (Exception ex)
@@ -338,6 +338,7 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
+       
         //Add new sub category
         protected void setSubCategoryID()
         {

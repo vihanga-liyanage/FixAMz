@@ -53,8 +53,8 @@
                         <div class="row expand-item">
                             <div class="col-md-12">
                                 <img src="img/AddNewIcon.png" />
-                                <div class="expand-item-title">Add Location</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="AddLocationHeader">Add Location</div>
+                                <div class="expand-item-content" id="AddLocationContent">
                                     <div class="col-md-8">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Location ID</div>
@@ -191,8 +191,8 @@
                             <div class="col-md-12">
                                 <div id="Div2" runat="server"></div>
                                 <img src="img/AddNewIcon.png" />
-                                <div class="expand-item-title">Add Category</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="AddCategoryHeader">Add Category</div>
+                                <div class="expand-item-content" id="AddCategoryContent">
                                     <div class="col-md-8">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Category ID</div>
@@ -221,8 +221,8 @@
                             <div class="col-md-12">
                             <div id="Div1" runat="server"></div>
                                 <img src="img/UpdateIcon.png" />
-                                <div class="expand-item-title">Update Category</div>
-                                <div class="expand-item-content" id="updateCategory" runat="server">
+                                <div class="expand-item-title" id="UpdateCategoryHeader">Update Category</div>
+                                <div class="expand-item-content" id="UpdateCategoryContent" runat="server">
                                     <div class="col-md-8">
                                         <div id="updateCategoryInitState" runat="server">
                                             <div class="info-div">Enter category ID to start </div>                                
@@ -265,8 +265,8 @@
                         <div class="row expand-item">
                             <div class="col-md-12">
                                 <img src="img/AddNewIcon.png" />
-                                <div class="expand-item-title">Add Sub Category</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="AddSubCategoryHeader">Add Sub Category</div>
+                                <div class="expand-item-content" id="AddSubCategoryContent">
                                     <div class="col-md-8">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub Category ID</div>
@@ -306,8 +306,8 @@
                         <div class="row expand-item">
                             <div class="col-md-12">
                                 <img src="img/UpdateIcon.png" />
-                                <div class="expand-item-title">Update Sub Category</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="UpdateSubCategoryHeader">Update Sub Category</div>
+                                <div class="expand-item-content" id="UpdateSubCategoryContent">
                                  <div class="col-md-8">
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
