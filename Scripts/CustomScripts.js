@@ -1,4 +1,5 @@
 ﻿//Exapand content function
+var expandingItems = {};
 $(".expand-item-title").click(function () {
 
     $header = $(this);
@@ -6,6 +7,24 @@ $(".expand-item-title").click(function () {
     $content = $header.next();
     //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
     $content.slideToggle(800, function () { });
+
+    //extracting the expand content id
+    var headerId = this.id;
+    var contentId = headerId.slice(0, headerId.length - 6) + "Content";
+    //store the status of expand item in expandedItems object
+    if (expandingItems[contentId] != null) {
+        expandingItems[contentId] = !expandingItems[contentId];
+    } else {
+        expandingItems[contentId] = true;
+    }
+    //get one by one, inactive if active
+    for (var item in expandingItems) {
+        if (item != contentId && expandingItems[item] == true) {
+            $(document.getElementById(item)).slideToggle(800, function () { });
+            expandingItems[item] = false;
+        }
+    }
+    
 });
 
 //Global validation functions===========================================================================
