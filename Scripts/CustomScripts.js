@@ -18,13 +18,15 @@ $(".expand-item-title").click(function () {
         expandingItems[contentId] = true;
     }
     //get one by one, inactive if active
+    var out = "";
     for (var item in expandingItems) {
         if (item != contentId && expandingItems[item] == true) {
             $(document.getElementById(item)).slideToggle(800, function () { });
             expandingItems[item] = false;
         }
+        out += item + " : " + expandingItems[item] + "\n";
     }
-    
+    alert(out);
 });
 
 //Global validation functions===========================================================================
@@ -77,6 +79,20 @@ function contactValidator(controller) {
         return false;
     } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076" || prefix == "078")) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
+function nameValidator(controller) { //A name can only have a-zA-Z
+    var content = document.forms[0][controller + "TextBox"].value;
+    var re = /^[a-zA-Z\s]+$/;
+    if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid name.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
     } else {
@@ -140,8 +156,8 @@ function isValidAddNew() {
     var confirmPassword = document.forms[0]["AddNewConfirmPasswordTextBox"].value;
     var password = document.forms[0]["AddNewPasswordTextBox"].value;
 
-    var isValidFirstName = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.");
-    var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.");
+    var isValidFirstName = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.") && nameValidator("AddNewFirstName");
+    var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.") && nameValidator("AddNewLastName");
     var isValidEmail = emailValidator("AddNewEmail");
     var isValidContact = contactValidator("AddNewContact");
 
@@ -188,9 +204,9 @@ function isValidUpdateEmpID() {
     return requiredFieldValidator("UpdateEmpID", "Employee ID cannot be empty.");
 }
 
-function isValidUpdate() {    
-    var isValidFirstname = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.");
-    var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.");
+function isValidUpdate() {
+    var isValidFirstname = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.") && nameValidator("UpdateFirstName");
+    var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.") && nameValidator("UpdateLastName");
     var isValidEmail = emailValidator("UpdateEmail");
     var isValidContact = contactValidator("UpdateContact");
 
@@ -218,7 +234,7 @@ function isValidDeleteEmpID() {
 //Add new location functions ===================================================================
 
 function isValidAddLoc() {
-    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.");
+    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
     var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
@@ -243,7 +259,7 @@ function addLocationClearAll() {
 //Update location functions ===================================================================
 
 function isValidUpdateLoc() {
-    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.");
+    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
     var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.");
@@ -276,7 +292,7 @@ function updateLocationClearAll() {
 //Add new category functions ===================================================================
 
 function isValidAddCat() {
-    return requiredFieldValidator("AddCategoryName", "Enter Category Name.");
+    return requiredFieldValidator("AddCategoryName", "Enter Category Name.") && nameValidator("AddCategoryName");
 }
 
 function addCategoryClearAll() {
@@ -291,7 +307,7 @@ function isValidCategoryCatID() {
 }
 
 function isValidUpdateCat() {
-    return requiredFieldValidator("UpdateCategoryName", "Enter Category Name.");
+    return requiredFieldValidator("UpdateCategoryName", "Enter Category Name.") && nameValidator("UpdateCategoryName");
 }
 
 function updateCategoryClearAll() {
@@ -305,7 +321,7 @@ function updateCategoryClearAll() {
 
 function isValidAddSubCategory() {
 
-    var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.");
+    var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.") && nameValidator("AddSubCategoryName");
     var isValidDepreciation = requiredFieldValidator("AddSubCategoryDepreciationRate", "Depreciation rate cannot be empty.");
 
     if (isValidDepreciation) {
