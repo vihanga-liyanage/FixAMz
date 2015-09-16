@@ -14,7 +14,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
        <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
         <div class="container-fluid">
@@ -236,7 +235,6 @@
                                             OnClientClick="return isValidCategoryCatID()" onclick="UpdateCategoryGoBtn_click"  />
                                         </div>
                                         </div>
-
                                         <div id="updateCategorySecondState" runat="server">
                                             <div class="expand-item-row"> 
                                                 <div class="expand-item-label">Category ID</div>

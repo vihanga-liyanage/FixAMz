@@ -26,8 +26,14 @@ $(".expand-item-title").click(function () {
         }
         out += item + " : " + expandingItems[item] + "\n";
     }
+    document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
     alert(out);
 });
+
+//Function to call above .click function manually by code behind, when page reloads occur
+function setExpandingItem(id) {
+    expandingItems[id] = true;
+}
 
 //Global validation functions===========================================================================
 function requiredFieldValidator(controller, msg) {

@@ -140,6 +140,8 @@ namespace FixAMz_WebApplication
                     UpdateLocationIDValidator.InnerHtml = "Invalid Location ID";
                 }
                 conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateLocationContent');", true);
             }
             catch (SqlException ex)
             {
@@ -297,6 +299,8 @@ namespace FixAMz_WebApplication
                     UpdateCategoryNameValidator.InnerHtml = "Invalid Category ID";
                 }
                 conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
             }
             catch (SqlException ex)
             {
