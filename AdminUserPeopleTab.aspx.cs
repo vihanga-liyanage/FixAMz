@@ -19,6 +19,40 @@ namespace FixAMz_WebApplication
             setEmpID();
             responseArea.InnerHtml = "";
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
+            setUserName();
+        }
+
+        //Setting user name
+        protected void setUserName()
+        {
+            try
+            {
+                String username = HttpContext.Current.User.Identity.Name;
+                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                String output = "";
+                while (dr.Read())
+                {
+                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
+                }
+                userName.InnerHtml = output;
+            }
+            catch (SqlException exx)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(exx.ToString());
+            }
+        }
+
+        //Signing out
+        protected void SignOutLink_clicked(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
         }
 
         protected void setEmpID() //Reads the last empID from DB, calculates the next and set it in the web page.
@@ -399,7 +433,9 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                Response.Write(ex.Message);
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
             }
             finally
             {

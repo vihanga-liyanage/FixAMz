@@ -18,6 +18,40 @@ namespace FixAMz_WebApplication
             setLocID();
             setSubCategoryID();
             responseArea.InnerHtml = "";
+            setUserName();
+        }
+
+        //Setting user name
+        protected void setUserName()
+        {
+            try
+            {
+                String username = HttpContext.Current.User.Identity.Name;
+                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                String output = "";
+                while (dr.Read())
+                {
+                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
+                }
+                userName.InnerHtml = output;
+            }
+            catch (SqlException exx)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                //Response.Write(ex.ToString());
+            }
+        }
+
+        //Signing out
+        protected void SignOutLink_clicked(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
         }
 
         //Add new location
@@ -58,7 +92,7 @@ namespace FixAMz_WebApplication
             catch (SqlException e)
             {
                 responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again lateeer.";
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -92,7 +126,7 @@ namespace FixAMz_WebApplication
             catch (Exception ex)
             {
                 responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again lateer.";
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
