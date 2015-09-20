@@ -22,7 +22,7 @@ namespace FixAMz_WebApplication
             setUserName();
         }
 
-        //Setting user name
+        //Setting user name on header
         protected void setUserName()
         {
             try
