@@ -101,7 +101,7 @@
 <!--Advanced Assets Search-->
                     <div class="row expand-item">
                         <div class="col-md-12">
-                            <img src="img\SearchIcon.png" />
+                            <img src="img/SearchIcon.png" />
                             <div class="expand-item-title" id="Div1">Advanced assets search</div>
                             <div class="expand-item-content" id="Div2">
                                 <div class="col-md-8">
@@ -117,7 +117,7 @@
 <!--Transfer Assets-->
                     <div class="row expand-item">
                         <div class="col-md-12">
-                            <img src="img/AddNewIcon.png" />
+                            <img src="img/TransferIcon.png" />
                             <div class="expand-item-title" id="TransferAssetHeader">Transfer assets</div>
                             <div class="expand-item-content" id="TransferAssetContent">
                                 <div class="col-md-8">
@@ -174,7 +174,7 @@
 <!--Upgrade Asset-->
                     <div class="row expand-item">
                         <div class="col-md-12">
-                            <img src="img\UpdateIcon.png" />
+                            <img src="img/UpdateIcon.png" />
                             <div class="expand-item-title" id="UpdateAssetHeader">Upgrade asset</div>
                             <div class="expand-item-content" id="UpdateAssetContent">
                                 <div class="col-md-8">
@@ -229,7 +229,7 @@
 <!--Dispose Asset-->
                     <div class="row expand-item">
                         <div class="col-md-12">
-                            <img src="img\DeleteIcon.png" />
+                            <img src="img/DeleteIcon.png" />
                             <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
                             <div class="expand-item-content" id="DisposeAssetContent">
                                 <div class="col-md-8">
