@@ -18,7 +18,7 @@
         <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
         <div class="container-fluid">
-    <!--Header-->
+<!--Header-->
             <div class="row">
                     <div class="col-md-12">
                         <div class="row header">
@@ -43,16 +43,16 @@
                         </div>
                     </div>
                 </div> 
-    <!--Main content-->
-         <div class="row">
+<!--Main content-->
+            <div class="row">
                 <div class="col-md-10 col-xs-offset-1 expand-item-container">
                     <div id="responseArea" runat="server"></div>
-    <!--Register New Asset-->
+<!--Register New Asset-->
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img/AddNewIcon.png" />
-                            <div class="expand-item-title" id="AddNewUserHeader">Register new asset</div>
-                            <div class="expand-item-content" id="AddNewUserContent">
+                            <div class="expand-item-title" id="AddNewAssetHeader">Register new asset</div>
+                            <div class="expand-item-content" id="AddNewAssetContent">
                                 <div class="col-md-8">
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
@@ -98,14 +98,14 @@
                         </div>
                     </div>
 
-    <!--Advanced Assets Search-->
+<!--Advanced Assets Search-->
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img\SearchIcon.png" />
                             <div class="expand-item-title" id="Div1">Advanced assets search</div>
                             <div class="expand-item-content" id="Div2">
                                 <div class="col-md-8">
-                                
+                                    Moda charee thama meka hadala neeee!!!
                                 </div>
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">
                                     <div class="advanced-asset-search-icon hidden-sm hidden-xs"></div>
@@ -114,12 +114,12 @@
                         </div>
                     </div>
 
-    <!--Transfer Assets-->
+<!--Transfer Assets-->
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img/AddNewIcon.png" />
-                            <div class="expand-item-title" id="Div3">Transfer assets</div>
-                            <div class="expand-item-content" id="Div4">
+                            <div class="expand-item-title" id="TransferAssetHeader">Transfer assets</div>
+                            <div class="expand-item-content" id="TransferAssetContent">
                                 <div class="col-md-8">
                                     <div class="info-div">You can update the owner or the location of the asset.</div>
                                     <div class="row expand-item-row">
@@ -171,12 +171,12 @@
                         </div>
                     </div>
 
-    <!--Upgrade Asset-->
+<!--Upgrade Asset-->
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img\UpdateIcon.png" />
-                            <div class="expand-item-title" id="Div5">Upgrade asset</div>
-                            <div class="expand-item-content" id="Div6">
+                            <div class="expand-item-title" id="UpdateAssetHeader">Upgrade asset</div>
+                            <div class="expand-item-content" id="UpdateAssetContent">
                                 <div class="col-md-8">
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
@@ -226,12 +226,12 @@
                         </div>
                     </div>
 
-    <!--Dispose Asset-->
+<!--Dispose Asset-->
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img\DeleteIcon.png" />
-                            <div class="expand-item-title" id="Div7">Dispose asset</div>
-                            <div class="expand-item-content" id="Div8">
+                            <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
+                            <div class="expand-item-content" id="DisposeAssetContent">
                                 <div class="col-md-8">
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
@@ -277,14 +277,10 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
-        </div>
+            </div>
 
-    <!--Footer-->
+<!--Footer-->
                 <div id="footer" class="row">
                     <div class="row footer-up">
                         <ul class="footer-nav">
@@ -306,6 +302,6 @@
             <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
             <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
             <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
-            </form>
+        </form>
     </body>
 </html>
