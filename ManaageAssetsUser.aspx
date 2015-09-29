@@ -229,9 +229,24 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img\DeleteIcon.png" />
-                        <div class="expand-item-title" id="Div7">Dispose asset</div>
-                        <div class="expand-item-content" id="Div8">
+                        <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
+                        <div class="expand-item-content" id="DisposeAssetContent">
                             <div class="col-md-8">
+                                <div id="disposeAssetInitState" runat="server">
+                                    <div class="info-div">Enter employee ID to delete the user</div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Employee ID</div>
+                                        <asp:TextBox ID="DisposeAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="DisposeAssetIDValidator" runat="server"></div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <asp:Button ID="DisposeAssetFindBtn" runat="server" Text="Go" 
+                                            class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
+                                            onclick="DisposeAssetFindBtn_Click" />
+                                    </div>
+                                </div>
+
+                            <div id="disposeAssetSecondState" runat="server">
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Name</div>
                                     <div id="DisposeItemName" runat="server" class="custom-label"></div>
@@ -268,7 +283,7 @@
                                         <asp:Button ID="Button1" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                         <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
-                                        
+                            </div>  
                             </div>
                             <div class="col-md-4" style="position:relative; padding-left:0px;">
                                 <div class="dispose-asset-icon hidden-sm hidden-xs"></div>

@@ -209,7 +209,7 @@
                             </div>
                         </div>
                     </div>    
-                    <div class="row expand-item">
+                    <div class="row expand-item" style="border=0">
                         <asp:GridView ID="gvEmployees" runat="server"></asp:GridView>
                     </div> 
                     
