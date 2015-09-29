@@ -25,7 +25,7 @@ namespace FixAMz_WebApplication
 
         // Dispose
         protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
-        {
+        {/*
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -64,5 +64,7 @@ namespace FixAMz_WebApplication
                     DeleteUserEmpIDValidator.InnerHtml = "Employee ID not found!";
                     DeleteEmpID.Focus();
                 }
+          * */
+        }
     }
 }
