@@ -290,6 +290,70 @@ div
     background-size:contain;
     z-index:-1;
 }
+
+
+/*================================register new asset icon=============================*/
+.register-new-asset-icon
+{
+    position:absolute;
+    background:url(/img/addNewAsset.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*================================advanced assets search icon=============================*/
+.advanced-asset-search-icon
+{
+    position:absolute;
+    background:url(/img/assetSearch.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+
+/*================================transfer asset icon=============================*/
+.transfer-asset-icon
+{
+    position:absolute;
+    background:url(/img/transferAsset.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*================================upgrade asset icon=============================*/
+.upgrade-asset-icon
+{
+    position:absolute;
+    background:url(/img/upgradeAsset.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+
+/*================================dispose asset icon=============================*/
+.dispose-asset-icon
+{
+    position:absolute;
+    background:url(/img/disposeAsset.png) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
 /*================================footer styles================================*/
 
 #footer

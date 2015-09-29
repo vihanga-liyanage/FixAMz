@@ -112,6 +112,7 @@
     <Content Include="img\userSearch.png" />
     <Content Include="img\ViewAssetUserHome.png" />
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
+    <Content Include="ManaageAssetsUser.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CustomScripts.js" />
@@ -184,6 +185,13 @@
     </Compile>
     <Compile Include="AdminUserPeopleTab.aspx.designer.cs">
       <DependentUpon>AdminUserPeopleTab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManaageAssetsUser.aspx.cs">
+      <DependentUpon>ManaageAssetsUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManaageAssetsUser.aspx.designer.cs">
+      <DependentUpon>ManaageAssetsUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResults.aspx.cs">
