@@ -277,7 +277,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Person to recommend</div>
-                                            <asp:TextBox ID="TextBox6" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                         </div>
                                         <div class="row expand-item-row">
                                                 <asp:Button ID="Button1" runat="server" Text="Send for recommendation" class="expand-item-btn" />
