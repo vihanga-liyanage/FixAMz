@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManaageAssetsUser.aspx.cs" Inherits="FixAMz_WebApplication.ManaageAssetsUser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageAssetsUser.aspx.cs" Inherits="FixAMz_WebApplication.ManaageAssetsUser" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -228,20 +228,21 @@
 <!--Dispose Asset-->
                 <div class="row expand-item">
                     <div class="col-md-12">
+                        <div id="Dispose" runat="server"></div>
                         <img src="img\DeleteIcon.png" />
                         <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
                         <div class="expand-item-content" id="DisposeAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="disposeAssetInitState" runat="server">
-                                    <div class="info-div">Enter employee ID to delete the user</div>
+                                    <div class="info-div">Enter asset ID to dispose the asset</div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">Employee ID</div>
+                                        <div class="expand-item-label">Asset ID</div>
                                         <asp:TextBox ID="DisposeAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="DisposeAssetIDValidator" runat="server"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="DisposeAssetFindBtn" runat="server" Text="Go" 
-                                            class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
+                                            class="expand-item-btn" 
                                             onclick="DisposeAssetFindBtn_Click" />
                                     </div>
                                 </div>

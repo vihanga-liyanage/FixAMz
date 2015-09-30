@@ -21,22 +21,9 @@ namespace FixAMz_WebApplication
 
 
 
-<<<<<<< HEAD:ManaageAssetsUser.aspx.cs
         // Dispose Asset
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
-        {
-=======
-
-
-
-
-
-
-
-        // Dispose
-        protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
-        {/*
->>>>>>> 26337023d7c381673a790997dfc7cc1216464f96:ManageAssetsUser.aspx.cs
+        {  
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -76,7 +63,7 @@ namespace FixAMz_WebApplication
                     DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
                     DisposeItemName.Focus();
                 }
-<<<<<<< HEAD:ManaageAssetsUser.aspx.cs
+
          
                 conn.Close();
                 //updating expandingItems dictionary in javascript
@@ -88,45 +75,6 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
-        }
-
-       /* protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-
-                String assetID = DisposeAssetIDTextBox.Text;
-
-                string deleteQuerySystemUser = "DELETE FROM SystemUser WHERE empID='" + empID + "'";
-                string deleteQueryEmployee = "DELETE FROM Employee WHERE empID='" + empID + "'";
-                SqlCommand cmd = new SqlCommand(deleteQuerySystemUser, conn);
-                cmd.ExecuteNonQuery();
-                cmd = new SqlCommand(deleteQueryEmployee, conn);
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
-
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Employee '" + empID + "' deleted successfully!";
-                deleteUserInitState.Style.Add("display", "block");
-                deleteUserSecondState.Style.Add("display", "none");
-                DeleteUserContent.Style.Add("display", "block");
-                DeleteUserEmpIDTextBox.Text = "";
-            }
-            catch (SqlException)
-            {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
-            }
-            
-        }*/
-=======
-          * */
-        }
->>>>>>> 26337023d7c381673a790997dfc7cc1216464f96:ManageAssetsUser.aspx.cs
-    }
-        
+        }        
+}
 }
