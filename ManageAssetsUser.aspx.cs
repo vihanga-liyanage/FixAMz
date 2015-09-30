@@ -128,6 +128,11 @@ namespace FixAMz_WebApplication
                 PersonToRecommendDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
                 PersonToRecommendDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
                 PersonToRecommendDropDownList.DataBind();  //binding dropdownlist
+                //person to recommend dropdown in dispose asset
+                DisposeAssetPersonToRecommendDropDownList.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
+                DisposeAssetPersonToRecommendDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();
+                DisposeAssetPersonToRecommendDropDownList.DataSource = ds.Tables[0];
+                DisposeAssetPersonToRecommendDropDownList.DataBind();
             }
             catch (Exception ex)
             {
@@ -143,6 +148,7 @@ namespace FixAMz_WebApplication
         }
 
         // Dispose asset =======================================================
+
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
         {
             try
