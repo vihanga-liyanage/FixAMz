@@ -236,7 +236,7 @@
                                     <div id="disposeAssetInitState" runat="server">
                                         <div class="info-div">Enter asset ID to dispose the asset</div>
                                         <div class="row expand-item-row">
-                                            <div class="expand-item-label">Employee ID</div>
+                                            <div class="expand-item-label">Asset ID</div>
                                             <asp:TextBox ID="DisposeAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="DisposeAssetIDValidator" runat="server"></div>
                                         </div>
