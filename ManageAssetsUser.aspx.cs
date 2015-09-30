@@ -90,7 +90,6 @@ namespace FixAMz_WebApplication
             {
                 Response.Write("Error:" + ex.Message.ToString());
             }
-
         }
         //Loading owner dropdown
         protected void View_Owner()
@@ -151,40 +150,53 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String empID = DeleteUserEmpIDTextBox.Text;
+                String assetID = DisposeAssetIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                string check = "select count(*) from Asset WHERE asssetID='" + assetID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (res == 1)
                 {
-                    String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE asssetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        DeleteEmpID.InnerHtml = dr["empID"].ToString();
-                        DeleteFirstName.InnerHtml = dr["firstName"].ToString();
-                        DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
-                        DeleteEmail.InnerHtml = dr["email"].ToString();
+                        DisposeItemName.InnerHtml = dr["name"].ToString();
+                        DisposeCategory.InnerHtml = dr["category"].ToString();
+                        DisposeSubcategory.InnerHtml = dr["subcategory"].ToString();
+                        DisposeLocation.InnerHtml = dr["location"].ToString();
+                        DisposeOwner.InnerHtml = dr["owner"].ToString();
+                        DisposeValue.InnerHtml = dr["value"].ToString();
                     }
-                    deleteUserInitState.Style.Add("display", "none");
-                    deleteUserSecondState.Style.Add("display", "block");
-                    DeleteUserContent.Style.Add("display", "block");
-                    DeleteUserEmpIDValidator.InnerHtml = "";
-                    DeleteUserEmpIDTextBox.Focus();
+                    disposeAssetInitState.Style.Add("display", "none");
+                    disposeAssetSecondState.Style.Add("display", "block");
+                    DisposeAssetContent.Style.Add("display", "block");
+                    DisposeAssetIDValidator.InnerHtml = "";
+                    DisposeAssetIDTextBox.Focus();
                 }
                 else
                 {
-                    deleteUserInitState.Style.Add("display", "block");
-                    deleteUserSecondState.Style.Add("display", "none");
-                    DeleteUserContent.Style.Add("display", "block");
-                    DeleteUserEmpIDValidator.InnerHtml = "Employee ID not found!";
-                    DeleteEmpID.Focus();
+                    disposeAssetInitState.Style.Add("display", "block");
+                    disposeAssetSecondState.Style.Add("display", "none");
+                    DisposeAssetContent.Style.Add("display", "block");
+                    DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
+                    DisposeItemName.Focus();
                 }
-          * */
-        }
+
+         
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DisposeAssetContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+          */
+        }        
     }
 }

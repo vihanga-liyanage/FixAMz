@@ -355,6 +355,60 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button8;
         
         /// <summary>
+        /// DisposeAssetContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetContent;
+        
+        /// <summary>
+        /// disposeAssetInitState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl disposeAssetInitState;
+        
+        /// <summary>
+        /// DisposeAssetIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetIDTextBox;
+        
+        /// <summary>
+        /// DisposeAssetIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetIDValidator;
+        
+        /// <summary>
+        /// DisposeAssetFindBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DisposeAssetFindBtn;
+        
+        /// <summary>
+        /// disposeAssetSecondState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl disposeAssetSecondState;
+        
+        /// <summary>
         /// DisposeItemName control.
         /// </summary>
         /// <remarks>
