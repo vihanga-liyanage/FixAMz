@@ -21,9 +21,22 @@ namespace FixAMz_WebApplication
 
 
 
+<<<<<<< HEAD:ManaageAssetsUser.aspx.cs
         // Dispose Asset
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
         {
+=======
+
+
+
+
+
+
+
+        // Dispose
+        protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
+        {/*
+>>>>>>> 26337023d7c381673a790997dfc7cc1216464f96:ManageAssetsUser.aspx.cs
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -63,6 +76,7 @@ namespace FixAMz_WebApplication
                     DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
                     DisposeItemName.Focus();
                 }
+<<<<<<< HEAD:ManaageAssetsUser.aspx.cs
          
                 conn.Close();
                 //updating expandingItems dictionary in javascript
@@ -109,6 +123,10 @@ namespace FixAMz_WebApplication
             }
             
         }*/
+=======
+          * */
+        }
+>>>>>>> 26337023d7c381673a790997dfc7cc1216464f96:ManageAssetsUser.aspx.cs
     }
         
 }
