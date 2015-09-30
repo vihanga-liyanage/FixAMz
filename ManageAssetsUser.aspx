@@ -231,45 +231,59 @@
                         <div class="col-md-12">
                             <img src="img/DeleteIcon.png" />
                             <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
-                            <div class="expand-item-content" id="DisposeAssetContent">
+                            <div class="expand-item-content" id="DisposeAssetContent" runat="server">
                                 <div class="col-md-8">
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Name</div>
-                                        <div id="DisposeItemName" runat="server" class="custom-label"></div>
+                                    <div id="disposeAssetInitState" runat="server">
+                                        <div class="info-div">Enter asset ID to dispose the asset</div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Employee ID</div>
+                                            <asp:TextBox ID="DisposeAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="DisposeAssetIDValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <asp:Button ID="DisposeAssetFindBtn" runat="server" Text="Go" 
+                                                class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
+                                                onclick="DisposeAssetFindBtn_Click" />
+                                        </div>
                                     </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Category</div>
-                                        <div id="DisposeCategory" runat="server" class="custom-label"></div>
+                                    <div id="disposeAssetSecondState" runat="server">
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Name</div>
+                                            <div id="DisposeItemName" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Category</div>
+                                            <div id="DisposeCategory" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Sub category</div>
+                                            <div id="DisposeSubcategory" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Location</div>
+                                            <div id="DisposeLocation" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Owner</div>
+                                            <div id="DisposeOwner" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Value</div>
+                                            <div id="DisposeValue" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Description</div>
+                                            <asp:TextBox ID="TextBox5" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Person to recommend</div>
+                                            <asp:TextBox ID="TextBox6" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                                <asp:Button ID="Button1" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                                <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        </div>
                                     </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Sub category</div>
-                                        <div id="DisposeSubcategory" runat="server" class="custom-label"></div>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Location</div>
-                                        <div id="DisposeLocation" runat="server" class="custom-label"></div>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Owner</div>
-                                        <div id="DisposeOwner" runat="server" class="custom-label"></div>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Value</div>
-                                        <div id="DisposeValue" runat="server" class="custom-label"></div>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Description</div>
-                                        <asp:TextBox ID="TextBox5" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Person to recommend</div>
-                                        <asp:TextBox ID="TextBox6" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                            <asp:Button ID="Button1" runat="server" Text="Send for recommendation" class="expand-item-btn" />
-                                            <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
-                                    </div>
-                                        
                                 </div>
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">
                                     <div class="dispose-asset-icon hidden-sm hidden-xs"></div>
