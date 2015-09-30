@@ -51,7 +51,7 @@ namespace FixAMz_WebApplication
                     }
                     disposeAssetInitState.Style.Add("display", "none");
                     disposeAssetSecondState.Style.Add("display", "block");
-                    //DisposeAssetContent.Style.Add("display", "block");
+                    DisposeAssetContent.Style.Add("display", "block");
                     DisposeAssetIDValidator.InnerHtml = "";
                     DisposeAssetIDTextBox.Focus();
                 }
@@ -59,7 +59,7 @@ namespace FixAMz_WebApplication
                 {
                     disposeAssetInitState.Style.Add("display", "block");
                     disposeAssetSecondState.Style.Add("display", "none");
-                    //DisposeAssetContent.Style.Add("display", "block");
+                    DisposeAssetContent.Style.Add("display", "block");
                     DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
                     DisposeItemName.Focus();
                 }

@@ -262,7 +262,7 @@ div
     z-index:-1;
 }
 
-#updateCategorySecondState, #updatelocationSecondState
+#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState
 {
     display:none;
 }

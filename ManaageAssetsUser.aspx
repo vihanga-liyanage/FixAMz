@@ -230,7 +230,7 @@
                     <div class="col-md-12">
                         <img src="img\DeleteIcon.png" />
                         <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
-                        <div class="expand-item-content" id="DisposeAssetContent">
+                        <div class="expand-item-content" id="DisposeAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="disposeAssetInitState" runat="server">
                                     <div class="info-div">Enter employee ID to delete the user</div>
