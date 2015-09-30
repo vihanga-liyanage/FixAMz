@@ -32,7 +32,7 @@
                             <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
                                 <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
                                 <div id="user-name-box">
-                                    <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                                    <span id="userName" runat="server"></span> | <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                                 </div>
                             </div>
                             <ul class="custom-nav-bar nav nav-tabs">

@@ -79,6 +79,14 @@
                                     <div class="validator" id="AddNewContactValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
+                                    <div class="expand-item-label">Access Level</div>
+                                    <asp:DropDownList ID="TypeDropDownList" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="Admin" Value="admin"></asp:ListItem>
+                                        <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="row expand-item-row">
                                     <div class="expand-item-label">Username</div>
                                     <asp:TextBox ID="AddNewUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="AddNewUsernameValidator" runat="server"></div>
