@@ -201,6 +201,14 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
-        }        
+        }
+
+        protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "disposeClearAll", "disposeClearAll();", true);
+            responseArea.Style.Add("color", "Green");
+            responseArea.InnerHtml = "Asset is sent for recommendation.";
+        }
+
     }
 }

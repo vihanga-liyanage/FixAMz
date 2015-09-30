@@ -370,3 +370,13 @@ function addSubCategoryClearAll() {
     document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
     return true;
 }
+
+
+//Dispose Asset functions ===================================================================
+
+function disposeClearAll() {
+    document.forms[0]["DisposeAssetIDTextBox"].value = "";
+    document.getElementById("disposeAssetSecondState").style.display = "none";
+    document.getElementById("disposeAssetInitState").style.display = "block";
+    return true;
+}

@@ -280,7 +280,7 @@
                                             <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                         </div>
                                         <div class="row expand-item-row">
-                                                <asp:Button ID="Button1" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                                <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                                 <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
                                         </div>
                                     </div>
