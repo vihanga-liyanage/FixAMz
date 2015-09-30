@@ -51,40 +51,40 @@
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img/AddNewIcon.png" />
-                            <div class="expand-item-title" id="AddNewAssetHeader">Register new asset</div>
-                            <div class="expand-item-content" id="AddNewAssetContent">
+                            <div class="expand-item-title" id="AddNewUserHeader">Register New Asset</div>
+                            <div class="expand-item-content" id="AddNewUserContent">
                                 <div class="col-md-8">
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Name</div>
-                                        <asp:TextBox ID="SearchEmployeeIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Category</div>
-                                        <asp:TextBox ID="SearchFirstNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Subcategory</div>
-                                        <asp:TextBox ID="SearchLastNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Asset ID</div>
                                         <div id="AssetId" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
+                                        <div class="expand-item-label">Name</div>
+                                        <asp:TextBox ID="RegisterAssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Subcategory</div>
+                                        <asp:DropDownList ID="SubCategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Category</div>
+                                        <asp:DropDownList ID="CategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
-                                        <asp:TextBox ID="TextBox1" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="AddValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
-                                        <asp:TextBox ID="TextBox2" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="LocationDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
-                                        <asp:TextBox ID="TextBox3" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="OwnerDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Person to recommend</div>
-                                        <asp:TextBox ID="TextBox4" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="PersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                             <asp:Button ID="Button5" runat="server" Text="Send for recommendation" class="expand-item-btn" />
@@ -105,7 +105,7 @@
                             <div class="expand-item-title" id="Div1">Advanced assets search</div>
                             <div class="expand-item-content" id="Div2">
                                 <div class="col-md-8">
-                                    Moda charee thama meka hadala neeee!!!
+
                                 </div>
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">
                                     <div class="advanced-asset-search-icon hidden-sm hidden-xs"></div>

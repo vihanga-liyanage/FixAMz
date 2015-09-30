@@ -67,33 +67,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseArea;
         
         /// <summary>
-        /// SearchEmployeeIDTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchEmployeeIDTextBox;
-        
-        /// <summary>
-        /// SearchFirstNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchFirstNameTextBox;
-        
-        /// <summary>
-        /// SearchLastNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchLastNameTextBox;
-        
-        /// <summary>
         /// AssetId control.
         /// </summary>
         /// <remarks>
@@ -103,40 +76,67 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetId;
         
         /// <summary>
-        /// TextBox1 control.
+        /// RegisterAssetNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox RegisterAssetNameTextBox;
         
         /// <summary>
-        /// TextBox2 control.
+        /// SubCategoryDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.DropDownList SubCategoryDropDownList;
         
         /// <summary>
-        /// TextBox3 control.
+        /// CategoryDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.DropDownList CategoryDropDownList;
         
         /// <summary>
-        /// TextBox4 control.
+        /// AddValueTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox AddValueTextBox;
+        
+        /// <summary>
+        /// LocationDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList LocationDropDownList;
+        
+        /// <summary>
+        /// OwnerDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList OwnerDropDownList;
+        
+        /// <summary>
+        /// PersonToRecommendDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList PersonToRecommendDropDownList;
         
         /// <summary>
         /// Button5 control.
