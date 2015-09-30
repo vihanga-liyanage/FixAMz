@@ -102,8 +102,8 @@
                     <div class="row expand-item">
                         <div class="col-md-12">
                             <img src="img/SearchIcon.png" />
-                            <div class="expand-item-title" id="Div1">Advanced assets search</div>
-                            <div class="expand-item-content" id="Div2">
+                            <div class="expand-item-title" id="AdvancedAssetSearchHeader">Advanced assets search</div>
+                            <div class="expand-item-content" id="AdvancedAssetSearchContent">
                                 <div class="col-md-8">
 
                                 </div>
