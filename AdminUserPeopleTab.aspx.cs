@@ -133,7 +133,7 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
-                string insertion_User = "insert into SystemUser (empID, username, password) values (@empid, @username, @password)";
+                string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
                 cmd = new SqlCommand(insertion_User, conn);
 
                 String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
@@ -141,6 +141,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
                 cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@password", encriptedPassword);
+                cmd.Parameters.AddWithValue("@type", TypeDropDownList.SelectedValue);
 
                 cmd.ExecuteNonQuery();
 
