@@ -317,7 +317,7 @@ div
 }
 
 
-/*================================transfer asset icon=============================*/
+/*================================transfer asset=============================*/
 .transfer-asset-icon
 {
     position:absolute;
@@ -328,6 +328,12 @@ div
     background-size:contain;
     z-index:-1;
 }
+
+#transferAssetSecondState
+{
+    display:none;
+}
+
 
 /*================================upgrade asset icon=============================*/
 .upgrade-asset-icon
