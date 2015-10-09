@@ -21,7 +21,22 @@ namespace FixAMz_WebApplication
         {
             if (AuthenticateUser(UsernameTextBox.Text, PasswordTextBox.Text))
             {
-                FormsAuthentication.RedirectFromLoginPage(UsernameTextBox.Text, RememberMeCheckBox.Checked);
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String check = "select type from SystemUser where username='" + UsernameTextBox.Text + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                String type = (cmd.ExecuteScalar().ToString()).Trim();
+                conn.Close();
+
+                FormsAuthentication.SetAuthCookie(UsernameTextBox.Text, RememberMeCheckBox.Checked);
+                if (type == "admin")
+                {
+                    Response.Redirect("AdminUserPeopleTab.aspx");
+                }
+                else if (type == "manageAssetUser")
+                {
+                    Response.Redirect("ManageAssetsUser.aspx");
+                }
             }
             else
             {

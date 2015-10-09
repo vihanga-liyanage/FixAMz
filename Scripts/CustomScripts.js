@@ -1,4 +1,5 @@
 ﻿//Exapand content function
+var expandingItems = {};
 $(".expand-item-title").click(function () {
 
     $header = $(this);
@@ -6,7 +7,33 @@ $(".expand-item-title").click(function () {
     $content = $header.next();
     //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
     $content.slideToggle(800, function () { });
+
+    //extracting the expand content id
+    var headerId = this.id;
+    var contentId = headerId.slice(0, headerId.length - 6) + "Content";
+    //store the status of expand item in expandedItems object
+    if (expandingItems[contentId] != null) {
+        expandingItems[contentId] = !expandingItems[contentId];
+    } else {
+        expandingItems[contentId] = true;
+    }
+    //get one by one, inactive if active
+    var out = "";
+    for (var item in expandingItems) {
+        if (item != contentId && expandingItems[item] == true) {
+            $(document.getElementById(item)).slideToggle(800, function () { });
+            expandingItems[item] = false;
+        }
+        out += item + " : " + expandingItems[item] + "\n";
+    }
+    document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
+    alert(out);
 });
+
+//Function to call above .click function manually by code behind, when page reloads occur
+function setExpandingItem(id) {
+    expandingItems[id] = true;
+}
 
 //Global validation functions===========================================================================
 function requiredFieldValidator(controller, msg) {
@@ -56,8 +83,22 @@ function contactValidator(controller) {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot have non-digits.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076")) {
+    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076" || prefix == "078")) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
+function nameValidator(controller) { //A name can only have a-zA-Z
+    var content = document.forms[0][controller + "TextBox"].value;
+    var re = /^[a-zA-Z\s]+$/;
+    if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid name.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
     } else {
@@ -121,8 +162,8 @@ function isValidAddNew() {
     var confirmPassword = document.forms[0]["AddNewConfirmPasswordTextBox"].value;
     var password = document.forms[0]["AddNewPasswordTextBox"].value;
 
-    var isValidFirstName = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.");
-    var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.");
+    var isValidFirstName = requiredFieldValidator("AddNewFirstName", "First name cannot be empty.") && nameValidator("AddNewFirstName");
+    var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.") && nameValidator("AddNewLastName");
     var isValidEmail = emailValidator("AddNewEmail");
     var isValidContact = contactValidator("AddNewContact");
 
@@ -162,16 +203,16 @@ function updateClearAll() {
     document.getElementById("updateUserInitState").style.display = "block";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    return true;
+    return false;
 }
 
 function isValidUpdateEmpID() {
     return requiredFieldValidator("UpdateEmpID", "Employee ID cannot be empty.");
 }
 
-function isValidUpdate() {    
-    var isValidFirstname = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.");
-    var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.");
+function isValidUpdate() {
+    var isValidFirstname = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.") && nameValidator("UpdateFirstName");
+    var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.") && nameValidator("UpdateLastName");
     var isValidEmail = emailValidator("UpdateEmail");
     var isValidContact = contactValidator("UpdateContact");
 
@@ -199,7 +240,7 @@ function isValidDeleteEmpID() {
 //Add new location functions ===================================================================
 
 function isValidAddLoc() {
-    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.");
+    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
     var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
@@ -224,7 +265,7 @@ function addLocationClearAll() {
 //Update location functions ===================================================================
 
 function isValidUpdateLoc() {
-    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.");
+    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
     var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.");
@@ -247,23 +288,17 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocManagerOfficeTextBox"].value = "";
     document.forms[0]["UpdateLocBranchTextBox"].value = "";
     document.forms[0]["UpdateLocZonalOfficeTextBox"].value = "";
+    document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-    document.forms[0]["UpdateLocIDTextBox"].value = "";
-    return true;
+    
+    return false;
 }
 
 //Add new category functions ===================================================================
 
 function isValidAddCat() {
-    var catname = document.forms[0]["AddCategoryNameTextBox"].value;
-    if (catname == "") {
-        document.getElementById("AddCategoryValidator").innerHTML = "Enter Category Name.";
-        return false
-    } else {
-        document.getElementById("AddCategoryValidator").innerHTML = "";
-        return true;
-    }
+    return requiredFieldValidator("AddCategoryName", "Enter Category Name.") && nameValidator("AddCategoryName");
 }
 
 function addCategoryClearAll() {
@@ -278,12 +313,13 @@ function isValidCategoryCatID() {
 }
 
 function isValidUpdateCat() {
-    return requiredFieldValidator("UpdateCategoryName", "Enter Category Name.");
+    return requiredFieldValidator("UpdateCategoryName", "Enter Category Name.") && nameValidator("UpdateCategoryName");
 }
 
 function updateCategoryClearAll() {
-    document.forms[0]["UpdateCatNameTextBox"].value = "";
-    document.forms[0]["updatecategoryrInitState"].style.display = block;
+    document.forms[0]["UpdateCategoryNameTextBox"].value = "";
+    document.forms[0]["updateCategorySecondState"].style.display = "none";
+    document.forms[0]["updateCategoryInitState"].style.display = "block";
     return true;
 }
 
@@ -291,7 +327,7 @@ function updateCategoryClearAll() {
 
 function isValidAddSubCategory() {
 
-    var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.");
+    var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.") && nameValidator("AddSubCategoryName");
     var isValidDepreciation = requiredFieldValidator("AddSubCategoryDepreciationRate", "Depreciation rate cannot be empty.");
 
     if (isValidDepreciation) {
@@ -332,5 +368,22 @@ function addSubCategoryClearAll() {
     document.forms[0]["AddSubCategoryNameTextBox"].value = "";
     document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value = "";
     document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
+    return true;
+}
+
+//Transfer Asset functions ===================================================================
+
+function isValidTransferAssetID() {
+    return requiredFieldValidator("TransferAssetID", "Asset ID cannot be empty.");
+}
+
+
+
+//Dispose Asset functions ===================================================================
+
+function disposeClearAll() {
+    document.forms[0]["DisposeAssetIDTextBox"].value = "";
+    document.getElementById("disposeAssetSecondState").style.display = "none";
+    document.getElementById("disposeAssetInitState").style.display = "block";
     return true;
 }

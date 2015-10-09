@@ -40,6 +40,24 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
         
         /// <summary>
+        /// userName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userName;
+        
+        /// <summary>
+        /// A1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
+        
+        /// <summary>
         /// responseArea control.
         /// </summary>
         /// <remarks>
@@ -445,13 +463,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AddCategoryNameTextBox;
         
         /// <summary>
-        /// AddCategoryValidator control.
+        /// AddCategoryNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddCategoryValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddCategoryNameValidator;
         
         /// <summary>
         /// AddCategoryUserBtn control.
@@ -481,13 +499,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
-        /// updateCategory control.
+        /// UpdateCategoryContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateCategory;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategoryContent;
         
         /// <summary>
         /// updateCategoryInitState control.

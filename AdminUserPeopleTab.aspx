@@ -29,8 +29,8 @@
                     </div>
                     <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
                         <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
-                        <div id="user-name">
-                            Vihanga Liyanage | <a href="#">Sign out</a>
+                        <div id="user-name-box">
+                            <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                         </div>
                     </div>
                     <ul class="custom-nav-bar nav nav-tabs">
@@ -77,6 +77,14 @@
                                     <div class="expand-item-label">Contact</div>
                                     <asp:TextBox ID="AddNewContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="AddNewContactValidator" runat="server"></div>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">Access Level</div>
+                                    <asp:DropDownList ID="TypeDropDownList" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="Admin" Value="admin"></asp:ListItem>
+                                        <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Username</div>
@@ -209,7 +217,7 @@
                             </div>
                         </div>
                     </div>    
-                    <div class="row expand-item">
+                    <div class="row expand-item" style="border=0">
                         <asp:GridView ID="gvEmployees" runat="server"></asp:GridView>
                     </div> 
                     

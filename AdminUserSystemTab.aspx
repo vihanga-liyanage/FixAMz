@@ -14,7 +14,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
        <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
         <div class="container-fluid">
@@ -31,8 +30,8 @@
                         </div>
                         <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
                             <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
-                            <div id="user-name">
-                                System Admin | <a href="#">Sign out</a>
+                            <div id="user-name-box">
+                                <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                             </div>
                         </div>
                         <ul class="custom-nav-bar nav nav-tabs">
@@ -53,8 +52,8 @@
                         <div class="row expand-item">
                             <div class="col-md-12">
                                 <img src="img/AddNewIcon.png" />
-                                <div class="expand-item-title">Add Location</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="AddLocationHeader">Add Location</div>
+                                <div class="expand-item-content" id="AddLocationContent">
                                     <div class="col-md-8">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Location ID</div>
@@ -191,8 +190,8 @@
                             <div class="col-md-12">
                                 <div id="Div2" runat="server"></div>
                                 <img src="img/AddNewIcon.png" />
-                                <div class="expand-item-title">Add Category</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="AddCategoryHeader">Add Category</div>
+                                <div class="expand-item-content" id="AddCategoryContent">
                                     <div class="col-md-8">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Category ID</div>
@@ -201,7 +200,7 @@
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Name</div>
                                             <asp:TextBox ID="AddCategoryNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                            <div class="validator" id="AddCategoryValidator" runat="server"></div>
+                                            <div class="validator" id="AddCategoryNameValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <asp:Button ID="AddCategoryUserBtn" runat="server" Text="Add Category"
@@ -221,8 +220,8 @@
                             <div class="col-md-12">
                             <div id="Div1" runat="server"></div>
                                 <img src="img/UpdateIcon.png" />
-                                <div class="expand-item-title">Update Category</div>
-                                <div class="expand-item-content" id="updateCategory" runat="server">
+                                <div class="expand-item-title" id="UpdateCategoryHeader">Update Category</div>
+                                <div class="expand-item-content" id="UpdateCategoryContent" runat="server">
                                     <div class="col-md-8">
                                         <div id="updateCategoryInitState" runat="server">
                                             <div class="info-div">Enter category ID to start </div>                                
@@ -236,7 +235,6 @@
                                             OnClientClick="return isValidCategoryCatID()" onclick="UpdateCategoryGoBtn_click"  />
                                         </div>
                                         </div>
-
                                         <div id="updateCategorySecondState" runat="server">
                                             <div class="expand-item-row"> 
                                                 <div class="expand-item-label">Category ID</div>
@@ -265,8 +263,8 @@
                         <div class="row expand-item">
                             <div class="col-md-12">
                                 <img src="img/AddNewIcon.png" />
-                                <div class="expand-item-title">Add Sub Category</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="AddSubCategoryHeader">Add Sub Category</div>
+                                <div class="expand-item-content" id="AddSubCategoryContent">
                                     <div class="col-md-8">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub Category ID</div>
@@ -306,8 +304,8 @@
                         <div class="row expand-item">
                             <div class="col-md-12">
                                 <img src="img/UpdateIcon.png" />
-                                <div class="expand-item-title">Update Sub Category</div>
-                                <div class="expand-item-content">
+                                <div class="expand-item-title" id="UpdateSubCategoryHeader">Update Sub Category</div>
+                                <div class="expand-item-content" id="UpdateSubCategoryContent">
                                  <div class="col-md-8">
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
