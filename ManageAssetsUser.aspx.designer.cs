@@ -167,6 +167,7 @@ namespace FixAMz_WebApplication {
         
         /// <summary>
         /// AssetSearchSubcategoryDropDownList control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -176,6 +177,7 @@ namespace FixAMz_WebApplication {
         
         /// <summary>
         /// AssetSearchCategoryDropDownList control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -194,6 +196,7 @@ namespace FixAMz_WebApplication {
         
         /// <summary>
         /// AssetSearchLocationDropDownList control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -203,12 +206,14 @@ namespace FixAMz_WebApplication {
         
         /// <summary>
         /// AssetSearchOwnerDropDownList control.
+
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList AssetSearchOwnerDropDownList;
+
         
         /// <summary>
         /// SearchAssetBtn control.

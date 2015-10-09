@@ -134,6 +134,7 @@
                                     <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn" 
                                         onclick="SearchAssetBtn_Click"  />
                                     <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" />
+
                                 </div>
                                 </div>
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">

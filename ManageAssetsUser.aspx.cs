@@ -182,6 +182,7 @@ namespace FixAMz_WebApplication
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             conn.Open();
             conn.Close();
+
         }
 
         // Dispose asset =======================================================
