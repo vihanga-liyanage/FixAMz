@@ -80,14 +80,14 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
-                                        <asp:TextBox ID="OwnerDropDownList" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:DropDownList ID="OwnerDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Person to recommend</div>
                                         <asp:DropDownList ID="PersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
-                                            <asp:Button ID="Button5" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                            <asp:Button ID="recommendDisposeBtn" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                             <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>

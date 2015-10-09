@@ -233,12 +233,33 @@ namespace FixAMz_WebApplication
             }
         }
 
-        protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
+       /* protected void DeleteUserBtn_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "disposeClearAll", "disposeClearAll();", true);
-            responseArea.Style.Add("color", "Green");
-            responseArea.InnerHtml = "Asset is sent for recommendation.";
-        }
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String assetID = AssetId.Text;
+
+                string insertDisposeAsset = "insert into Notification (empID,) values (@empid,)";
+                SqlCommand cmd = new SqlCommand(insertDisposeAsset, conn);
+                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
+        }*/
 
 
         // Transfer asset =======================================================
