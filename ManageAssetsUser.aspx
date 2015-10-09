@@ -105,7 +105,37 @@
                             <div class="expand-item-title" id="AdvancedAssetSearchHeader">Advanced assets search</div>
                             <div class="expand-item-content" id="AdvancedAssetSearchContent">
                                 <div class="col-md-8">
-
+                                    <div class="info-div">Enter any information you have on the asset to search.</div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Name</div>
+                                        <asp:TextBox ID="TextBox1" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Subcategory</div>
+                                        <asp:DropDownList ID="DropDownList1" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Category</div>
+                                        <asp:DropDownList ID="DropDownList2" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Value</div>
+                                        <asp:TextBox ID="TextBox2" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Location</div>
+                                        <asp:DropDownList ID="DropDownList3" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Owner</div>
+                                        <asp:DropDownList ID="DropDownList4" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                    <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn" 
+                                        onclick="SearchAssetBtn_Click"  />
+                                    <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" 
+                                        onclick="CancelSearchBtn_Click" />
+                                </div>
                                 </div>
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">
                                     <div class="advanced-asset-search-icon hidden-sm hidden-xs"></div>
