@@ -53,6 +53,13 @@ namespace FixAMz_WebApplication
             }
         }
 
+        //Signing out ==========================================================
+        protected void SignOutLink_clicked(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
+        }
+
         // Regester new asset ==================================================
 
         //Loading category dropdown
@@ -167,18 +174,17 @@ namespace FixAMz_WebApplication
             }
         }
 
-        //Signing out ==========================================================
-        protected void SignOutLink_clicked(object sender, EventArgs e)
-        {
-            FormsAuthentication.SignOut();
-            Response.Redirect("Login.aspx");
-        }
-
-
         
 
-        // Dispose asset =======================================================
+        //Advanced asset search ================================================
+        protected void SearchAssetBtn_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
+            conn.Open();
+            conn.Close();
+        }
 
+        // Dispose asset =======================================================
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
         {
             try
@@ -241,7 +247,6 @@ namespace FixAMz_WebApplication
         }
 
         // Transfer asset =======================================================
-
         protected void TransferAssetFindBtn_Click(object sender, EventArgs e)
         {
             try
