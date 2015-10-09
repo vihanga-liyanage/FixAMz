@@ -174,6 +174,9 @@ namespace FixAMz_WebApplication
             Response.Redirect("Login.aspx");
         }
 
+
+        
+
         // Dispose asset =======================================================
 
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
@@ -237,6 +240,62 @@ namespace FixAMz_WebApplication
             responseArea.InnerHtml = "Asset is sent for recommendation.";
         }
 
+
+        // Transfer asset =======================================================
+
+        protected void TransferAssetFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String assetID = TransferAssetIDTextBox.Text;
+
+                string check = "select count(*) from Asset WHERE assetID='" + assetID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        TransferItemName.InnerHtml = dr["name"].ToString();
+                        TransferCategory.InnerHtml = dr["category"].ToString();
+                        TransferSubcategory.InnerHtml = dr["subcategory"].ToString();
+                        TransferLocation.InnerHtml = dr["location"].ToString();
+                        TransferOwner.InnerHtml = dr["owner"].ToString();
+                        TransferValue.InnerHtml = dr["value"].ToString();
+                    }
+                    transferAssetInitState.Style.Add("display", "none");
+                    transferAssetSecondState.Style.Add("display", "block");
+                    TransferAssetContent.Style.Add("display", "block");
+                    TransferAssetIDValidator.InnerHtml = "";
+                    TransferAssetIDTextBox.Focus();
+                }
+                else
+                {
+                    transferAssetInitState.Style.Add("display", "block");
+                    transferAssetSecondState.Style.Add("display", "none");
+                    TransferAssetContent.Style.Add("display", "block");
+                    TransferAssetIDValidator.InnerHtml = "Asset ID not found!";
+                    TransferItemName.Focus();
+                }
+
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('TransferAssetContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }        
 
     }
 }

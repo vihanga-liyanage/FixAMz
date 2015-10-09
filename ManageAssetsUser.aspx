@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
-                                        <asp:TextBox ID="CategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="CategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
@@ -119,32 +119,46 @@
                         <div class="col-md-12">
                             <img src="img/TransferIcon.png" />
                             <div class="expand-item-title" id="TransferAssetHeader">Transfer assets</div>
-                            <div class="expand-item-content" id="TransferAssetContent">
+                            <div class="expand-item-content" id="TransferAssetContent" runat="server">
                                 <div class="col-md-8">
+                                     <div id="transferAssetInitState" runat="server">
+                                        <div class="info-div">Enter asset ID to transfer the asset</div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Asset ID</div>
+                                            <asp:TextBox ID="TransferAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="TransferAssetIDValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <asp:Button ID="TransferAssetFindBtn" runat="server" Text="Go" 
+                                                class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
+                                                onclick="TransferAssetFindBtn_Click" />
+                                        </div>
+                                    </div> 
+                                    <div id="transferAssetSecondState" runat="server">
                                     <div class="info-div">You can update the owner or the location of the asset.</div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
-                                        <div id="Div14" runat="server" class="custom-label"></div>
+                                        <div id="TransferItemName" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
-                                        <div id="Div15" runat="server" class="custom-label"></div>
+                                        <div id="TransferCategory" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Sub category</div>
-                                        <div id="Div16" runat="server" class="custom-label"></div>
+                                        <div id="TransferSubcategory" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
-                                        <div id="Div17" runat="server" class="custom-label"></div>
+                                        <div id="TransferLocation" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
-                                        <div id="Div18" runat="server" class="custom-label"></div>
+                                        <div id="TransferOwner" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
-                                        <div id="Div19" runat="server" class="custom-label"></div>
+                                        <div id="TransferValue" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">New owner</div>
@@ -163,6 +177,7 @@
                                             <asp:Button ID="Button4" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 
+                                </div>
                                 </div>
                                 <div class="col-md-4" style="position:relative; padding-left:0px;">
                                     <div class="transfer-asset-icon hidden-sm hidden-xs"></div>

@@ -100,7 +100,7 @@ namespace FixAMz_WebApplication {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CategoryDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList CategoryDropDownList;
         
         /// <summary>
         /// AddValueTextBox control.
@@ -157,58 +157,112 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button6;
         
         /// <summary>
-        /// Div14 control.
+        /// TransferAssetContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div14;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferAssetContent;
         
         /// <summary>
-        /// Div15 control.
+        /// transferAssetInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div15;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl transferAssetInitState;
         
         /// <summary>
-        /// Div16 control.
+        /// TransferAssetIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div16;
+        protected global::System.Web.UI.WebControls.TextBox TransferAssetIDTextBox;
         
         /// <summary>
-        /// Div17 control.
+        /// TransferAssetIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div17;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferAssetIDValidator;
         
         /// <summary>
-        /// Div18 control.
+        /// TransferAssetFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div18;
+        protected global::System.Web.UI.WebControls.Button TransferAssetFindBtn;
         
         /// <summary>
-        /// Div19 control.
+        /// transferAssetSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div19;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl transferAssetSecondState;
+        
+        /// <summary>
+        /// TransferItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferItemName;
+        
+        /// <summary>
+        /// TransferCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferCategory;
+        
+        /// <summary>
+        /// TransferSubcategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferSubcategory;
+        
+        /// <summary>
+        /// TransferLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferLocation;
+        
+        /// <summary>
+        /// TransferOwner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferOwner;
+        
+        /// <summary>
+        /// TransferValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferValue;
         
         /// <summary>
         /// TextBox9 control.
