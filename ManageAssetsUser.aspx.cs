@@ -237,5 +237,6 @@ namespace FixAMz_WebApplication
             responseArea.InnerHtml = "Asset is sent for recommendation.";
         }
 
+
     }
 }

@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
-                                        <asp:DropDownList ID="CategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:TextBox ID="CategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
-                                        <asp:DropDownList ID="OwnerDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:TextBox ID="OwnerDropDownList" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Person to recommend</div>

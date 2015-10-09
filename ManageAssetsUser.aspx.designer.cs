@@ -100,7 +100,7 @@ namespace FixAMz_WebApplication {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CategoryDropDownList;
+        protected global::System.Web.UI.WebControls.TextBox CategoryDropDownList;
         
         /// <summary>
         /// AddValueTextBox control.
@@ -127,7 +127,7 @@ namespace FixAMz_WebApplication {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList OwnerDropDownList;
+        protected global::System.Web.UI.WebControls.TextBox OwnerDropDownList;
         
         /// <summary>
         /// PersonToRecommendDropDownList control.
