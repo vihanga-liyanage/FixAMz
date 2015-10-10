@@ -56,7 +56,7 @@
                                 <div class="col-md-8">
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Asset ID</div>
-                                        <div id="AssetId" runat="server" class="custom-label"></div>
+                                        <div id="AddNewAssetId" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
@@ -87,7 +87,7 @@
                                         <asp:DropDownList ID="PersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
-                                            <asp:Button ID="Button5" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                            <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation" onclick="SendForRecommendationBtn_Click" class="expand-item-btn" />
                                             <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
