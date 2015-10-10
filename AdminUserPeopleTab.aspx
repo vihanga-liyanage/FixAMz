@@ -181,6 +181,7 @@
                         <div class="expand-item-title" id="AdvancedSearchHeader">Advanced User Search</div>
                         <div class="expand-item-content" id="AdvancedSearchContent">
                             <div class="col-md-8">
+                                <div class="info-div">Enter any information you have on the user to search.</div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Employee ID</div>
                                     <asp:TextBox ID="SearchEmployeeIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
