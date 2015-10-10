@@ -233,18 +233,22 @@ namespace FixAMz_WebApplication
             }
         }
 
-       /* protected void DeleteUserBtn_Click(object sender, EventArgs e)
+        protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                String assetID = AssetId.Text;
+                String assetID = DisposeAssetIDTextBox.Text;
 
-                string insertDisposeAsset = "insert into Notification (empID,) values (@empid,)";
+                string insertDisposeAsset = "INSERT INTO Notification (assetID) VALUES (@assetid)";
                 SqlCommand cmd = new SqlCommand(insertDisposeAsset, conn);
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@assetid", DisposeAssetIDTextBox.Text);
+                
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
 
 
 
@@ -259,7 +263,7 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
 
-        }*/
+        }
 
 
         // Transfer asset =======================================================
