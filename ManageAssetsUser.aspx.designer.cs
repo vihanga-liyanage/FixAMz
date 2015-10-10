@@ -67,13 +67,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseArea;
         
         /// <summary>
-        /// AssetId control.
+        /// AddNewAssetId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetId;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetId;
         
         /// <summary>
         /// RegisterAssetNameTextBox control.
@@ -139,13 +139,21 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.DropDownList PersonToRecommendDropDownList;
         
         /// <summary>
+<<<<<<< HEAD
         /// recommendDisposeBtn control.
+=======
+        /// AddAssetButttonReco control.
+>>>>>>> 992eb5c82506fc0142098094a2a717f76db26e1a
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< HEAD
         protected global::System.Web.UI.WebControls.Button recommendDisposeBtn;
+=======
+        protected global::System.Web.UI.WebControls.Button AddAssetButttonReco;
+>>>>>>> 992eb5c82506fc0142098094a2a717f76db26e1a
         
         /// <summary>
         /// Button6 control.

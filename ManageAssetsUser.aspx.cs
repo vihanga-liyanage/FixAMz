@@ -24,6 +24,7 @@ namespace FixAMz_WebApplication
                 View_Owner();
                 View_Person_To_Recommend();
                 setUserName();
+                setAssetID();
             }
         }
 
@@ -174,7 +175,89 @@ namespace FixAMz_WebApplication
             }
         }
 
-        
+        // Register New Asset
+
+        protected void setAssetID() //Reads the last empID from DB, calculates the next and set it in the web page.
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 assetID FROM Asset ORDER BY assetID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newAssetID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastAssetID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastAssetID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastAssetID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastAssetID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newAssetID = chr;
+                    for (int i = 1; i < lastAssetID.Length - temp.Length; i++)
+                    {
+                        newAssetID += "0";
+                    }
+                    newAssetID += temp;
+                }
+                else
+                {
+                    newAssetID = "A00001";
+                }
+
+                AddNewAssetId.InnerHtml = newAssetID;
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+        }
+        protected void SendForRecommendationBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner,location,status) values (@assetid, @name, @value, @category, @subcategory,@owner, @location, @status)";
+                SqlCommand cmd = new SqlCommand(insertion_Asset, conn);
+                cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@category", CategoryDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@subcategory", SubCategoryDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@owner", OwnerDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@location", LocationDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@status", 0);
+                /* cmd.Parameters.AddWithValue("@value", CategoryDropDownList.SelectedValue);
+                 cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
+                 cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text); */
+
+                cmd.ExecuteNonQuery();
+
+
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
+                setAssetID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Asset added successfully!";
+
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
+       
 
         //Advanced asset search ================================================
         protected void SearchAssetBtn_Click(object sender, EventArgs e)
