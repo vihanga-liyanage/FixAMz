@@ -107,14 +107,18 @@
                             <div class="expand-item-title" id="AdvancedAssetSearchHeader">Advanced assets search</div>
                             <div class="expand-item-content" id="AdvancedAssetSearchContent">
                                 <div class="col-md-8">
-                                    <div class="info-div">Enter any information you have on the asset to search.</div>
+                                    <div class="info-div">Enter any information you have on the asset, to begin.</div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Asset ID</div>
+                                        <asp:TextBox ID="AssetSearchIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
                                         <asp:TextBox ID="AssetSearchNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
-                                        <asp:DropDownList ID="AssetSearchSubcategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AssetSearchSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>

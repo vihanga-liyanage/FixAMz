@@ -61,27 +61,6 @@ namespace FixAMz_WebApplication
         }
 
         // Loading data to drop downs ==================================================
-        //Loading category dropdown
-        protected void Load_Category()
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT name, catID FROM Category", conn);
-
-                AddAssetCategoryDropDown.DataSource = cmd.ExecuteReader();
-                AddAssetCategoryDropDown.DataTextField = "name";
-                AddAssetCategoryDropDown.DataValueField = "catID";
-                AddAssetCategoryDropDown.DataBind();
-
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                Response.Write("Error:" + ex.Message.ToString());
-            }
-        }
         //Loading sub category dropdown
         protected void Load_SubCategory()
         {
@@ -90,11 +69,50 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory", conn);
+                SqlDataReader data = cmd.ExecuteReader();
 
-                AddAssetSubCategoryDropDown.DataSource = cmd.ExecuteReader();
+                AddAssetSubCategoryDropDown.DataSource = data;
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
                 AddAssetSubCategoryDropDown.DataBind();
+                data.Close();
+
+                data = cmd.ExecuteReader();
+                AssetSearchSubCategoryDropDown.DataSource = data;
+                AssetSearchSubCategoryDropDown.DataTextField = "name";
+                AssetSearchSubCategoryDropDown.DataValueField = "scatID";
+                AssetSearchSubCategoryDropDown.DataBind();
+                data.Close();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
+        }
+        //Loading category dropdown
+        protected void Load_Category()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, catID FROM Category", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddAssetCategoryDropDown.DataSource = data;
+                AddAssetCategoryDropDown.DataTextField = "name";
+                AddAssetCategoryDropDown.DataValueField = "catID";
+                AddAssetCategoryDropDown.DataBind();
+                data.Close();
+
+                data = cmd.ExecuteReader();
+                AssetSearchCategoryDropDown.DataSource = data;
+                AssetSearchCategoryDropDown.DataTextField = "name";
+                AssetSearchCategoryDropDown.DataValueField = "catID";
+                AssetSearchCategoryDropDown.DataBind();
+                data.Close();
 
                 conn.Close();
             }
@@ -111,11 +129,20 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT name, locID FROM Location", conn);
+                SqlDataReader data = cmd.ExecuteReader();
 
-                AddAssetLocationDropDown.DataSource = cmd.ExecuteReader();
+                AddAssetLocationDropDown.DataSource = data;
                 AddAssetLocationDropDown.DataTextField = "name";
                 AddAssetLocationDropDown.DataValueField = "locID";
                 AddAssetLocationDropDown.DataBind();
+                data.Close();
+
+                data = cmd.ExecuteReader();
+                AssetSearchLocationDropDown.DataSource = data;
+                AssetSearchLocationDropDown.DataTextField = "name";
+                AssetSearchLocationDropDown.DataValueField = "locID";
+                AssetSearchLocationDropDown.DataBind();
+                data.Close();
 
                 conn.Close();
             }
@@ -148,7 +175,15 @@ namespace FixAMz_WebApplication
                 AddAssetPersonToRecommendDropDown.DataValueField = "empID";
                 AddAssetPersonToRecommendDropDown.DataBind();
                 data.Close();
-                
+
+                //Asset search owner drop down
+                data = cmd.ExecuteReader();
+                AssetSearchOwnerDropDown.DataSource = data;
+                AssetSearchOwnerDropDown.DataTextField = "name";
+                AssetSearchOwnerDropDown.DataValueField = "empID";
+                AssetSearchOwnerDropDown.DataBind();
+                data.Close();
+
                 //Dispose asset recommend person drop down
                 data = cmd.ExecuteReader(); 
                 DisposeAssetPersonToRecommendDropDown.DataSource = data;

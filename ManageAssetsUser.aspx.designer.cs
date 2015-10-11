@@ -157,6 +157,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button6;
         
         /// <summary>
+        /// AssetSearchIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchIDTextBox;
+        
+        /// <summary>
         /// AssetSearchNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -166,13 +175,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AssetSearchNameTextBox;
         
         /// <summary>
-        /// AssetSearchSubcategoryDropDown control.
+        /// AssetSearchSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubcategoryDropDown;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubCategoryDropDown;
         
         /// <summary>
         /// AssetSearchCategoryDropDown control.
