@@ -339,15 +339,15 @@ namespace FixAMz_WebApplication
                         newNotID += "0";
                     }
                     newNotID += temp;
+                    conn.Close();
                     return newNotID;
                 }
                 else
                 {
                     newNotID = "N00001";
+                    conn.Close();
                     return newNotID;
                 }
-
-                conn.Close();
             }
             catch (SqlException e)
             {
@@ -356,7 +356,7 @@ namespace FixAMz_WebApplication
                 Response.Write(e.ToString());
                 return "";
             }
-        }//set notid
+        }
 
         protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
         {
@@ -365,20 +365,29 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
+                // Getting new notification ID
                 String notID = setNotID();
+                
+                // Getting logged in user's ID
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid,@type,@assetid,@notcontent,@senduser,@receiveuser,@status)";
-                SqlCommand cmd = new SqlCommand(insertDisposeAsset, conn);
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertDisposeAsset, conn);
+
                 cmd.Parameters.AddWithValue("@notid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@type","Dispose");
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescription.Text);
-                cmd.Parameters.AddWithValue("@senduser", userName.InnerHtml);
+                cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
-                //cmd.Parameters.AddWithValue("@date",  DateTime);
-                cmd.Parameters.AddWithValue("@status", "no");
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@date",  DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
 
+                cmd.ExecuteNonQuery();
+                
                 conn.Close();
               
             }
