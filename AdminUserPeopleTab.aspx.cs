@@ -253,8 +253,7 @@ namespace FixAMz_WebApplication
         protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-            conn.Open();
-
+            
             gvEmployees.Visible = true;
             int empidLength = SearchEmployeeIDTextBox.Text.Length; //Get length of textbox value
             int firstnameLength = SearchFirstNameTextBox.Text.Length;
@@ -267,7 +266,7 @@ namespace FixAMz_WebApplication
             {
                 if (empidLength != 0)
                 {
-
+                    conn.Open();
                     //string pattern =  SearchEmployeeIDTextBox.Text;
                     string Search_User = "Select * FROM Employee WHERE empID LIKE '%'+ @SearchEmployeeIDTextBox +'%'"; //select data from database
 

@@ -85,6 +85,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox RegisterAssetNameTextBox;
         
         /// <summary>
+        /// RegisterAssetNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterAssetNameValidator;
+        
+        /// <summary>
         /// AddAssetSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddValueTextBox;
+        
+        /// <summary>
+        /// AddValueValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddValueValidator;
         
         /// <summary>
         /// AddAssetLocationDropDown control.
@@ -391,6 +409,42 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
+        /// upgradeAssetInitState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upgradeAssetInitState;
+        
+        /// <summary>
+        /// UpgradeAssetIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpgradeAssetIDTextBox;
+        
+        /// <summary>
+        /// UpgradeAssetIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetIDValidator;
+        
+        /// <summary>
+        /// UpgradeAssetFindBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpgradeAssetFindBtn;
+        
+        /// <summary>
         /// Div20 control.
         /// </summary>
         /// <remarks>
@@ -607,13 +661,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeValue;
         
         /// <summary>
-        /// DisposeAssetDescription control.
+        /// DisposeAssetDescriptionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescription;
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescriptionTextBox;
+        
+        /// <summary>
+        /// DisposeAssetDescriptionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetDescriptionValidator;
         
         /// <summary>
         /// DisposeAssetPersonToRecommendDropDown control.
