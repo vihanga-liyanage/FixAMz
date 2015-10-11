@@ -18,7 +18,7 @@
     <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
         SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
     <div class="container-fluid">
-        <!--Header-->
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
@@ -43,12 +43,12 @@
                 </div>
             </div>
         </div>
-        <!--Main content-->
+<!--Main content-->
         <div class="row">
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
                 <div id="responseArea" runat="server">
                 </div>
-                <!--Register New Asset-->
+<!--Register New Asset-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Advanced Assets Search-->
+<!--Advanced Assets Search-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
@@ -128,52 +128,56 @@
                             Advanced assets search</div>
                         <div class="expand-item-content" id="AdvancedAssetSearchContent">
                             <div class="col-md-8">
-                                <div class="info-div">
-                                    Enter any information you have on the asset, to begin.</div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Asset ID</div>
-                                    <asp:TextBox ID="AssetSearchIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                <div id="AssetSearchInitState" runat="server">
+                                    <div class="info-div">Enter any information you have on the asset, to begin.</div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Asset ID</div>
+                                        <asp:TextBox ID="AssetSearchIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Name</div>
+                                        <asp:TextBox ID="AssetSearchNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Subcategory</div>
+                                        <asp:DropDownList ID="AssetSearchSubCategoryDropDown" class="expand-item-textbox"
+                                            runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Category</div>
+                                        <asp:DropDownList ID="AssetSearchCategoryDropDown" class="expand-item-textbox" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Value</div>
+                                        <asp:TextBox ID="AssetSearchValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Location</div>
+                                        <asp:DropDownList ID="AssetSearchLocationDropDown" class="expand-item-textbox" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Owner</div>
+                                        <asp:DropDownList ID="AssetSearchOwnerDropDown" class="expand-item-textbox" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
+                                            OnClick="SearchAssetBtn_Click" />
+                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" />
+                                    </div>
                                 </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Name</div>
-                                    <asp:TextBox ID="AssetSearchNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Subcategory</div>
-                                    <asp:DropDownList ID="AssetSearchSubCategoryDropDown" class="expand-item-textbox"
-                                        runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Category</div>
-                                    <asp:DropDownList ID="AssetSearchCategoryDropDown" class="expand-item-textbox" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Value</div>
-                                    <asp:TextBox ID="AssetSearchValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Location</div>
-                                    <asp:DropDownList ID="AssetSearchLocationDropDown" class="expand-item-textbox" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Owner</div>
-                                    <asp:DropDownList ID="AssetSearchOwnerDropDown" class="expand-item-textbox" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
-                                        OnClick="SearchAssetBtn_Click" />
-                                    <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" />
+                                <div id="AssetSearchSecondState" runat="server">
+                                    <asp:GridView ID="AssetSearchGridView" runat="server"></asp:GridView>
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -183,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Transfer Assets-->
+<!--Transfer Assets-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/TransferIcon.png" />
@@ -273,7 +277,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Upgrade Asset-->
+<!--Upgrade Asset-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/UpdateIcon.png" />
@@ -359,7 +363,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Dispose Asset-->
+<!--Dispose Asset-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/DeleteIcon.png" />
@@ -368,8 +372,7 @@
                         <div class="expand-item-content" id="DisposeAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="disposeAssetInitState" runat="server">
-                                    <div class="info-div">
-                                        Enter asset ID to dispose the asset</div>
+                                    <div class="info-div">Enter asset ID to dispose the asset</div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">
                                             Asset ID</div>
@@ -456,7 +459,7 @@
                 </div>
             </div>
         </div>
-        <!--Footer-->
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
