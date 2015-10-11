@@ -25,6 +25,13 @@ namespace FixAMz_WebApplication
                 View_Person_To_Recommend();
                 setUserName();
                 setAssetID();
+                responseArea.InnerHtml = "";
+                Page.MaintainScrollPositionOnPostBack = true;
+                CategoryDropDownList.Items.Insert(0, new ListItem("--Select Category--", "0"));
+                SubCategoryDropDownList.Items.Insert(0, new ListItem("--Select Sub Category--", "0"));
+                LocationDropDownList.Items.Insert(0, new ListItem("--Select Location--", "0"));
+                OwnerDropDownList.Items.Insert(0, new ListItem("--Select Owner--", "0"));
+                PersonToRecommendDropDownList.Items.Insert(0, new ListItem("--Select Person--", "0"));
             }
         }
 
@@ -243,7 +250,7 @@ namespace FixAMz_WebApplication
 
 
                 conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewAssetClearAll", "addNewAssetClearAll();", true);
                 setAssetID();
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Asset added successfully!";

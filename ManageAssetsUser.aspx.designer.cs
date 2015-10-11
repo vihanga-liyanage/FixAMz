@@ -85,6 +85,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox RegisterAssetNameTextBox;
         
         /// <summary>
+        /// RegisterAssetNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterAssetNameValidator;
+        
+        /// <summary>
         /// SubCategoryDropDownList control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddValueTextBox;
+        
+        /// <summary>
+        /// AddValueValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddValueValidator;
         
         /// <summary>
         /// LocationDropDownList control.
