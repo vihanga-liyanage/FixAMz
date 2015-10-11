@@ -263,16 +263,13 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@value", Convert.ToInt16(AddValueTextBox.Text));
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
                 cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
-                /* cmd.Parameters.AddWithValue("@value", CategoryDropDown.SelectedValue);
-                 cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
-                 cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text); */
 
                 cmd.ExecuteNonQuery();
 
@@ -297,6 +294,32 @@ namespace FixAMz_WebApplication
         // Advanced asset search =======================================================
         protected void SearchAssetBtn_Click(object sender, EventArgs e)
         {
+            String assetID = AssetSearchIDTextBox.Text.Trim();
+            String name = AssetSearchNameTextBox.Text.Trim();
+            String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
+            String categoryID = AssetSearchCategoryDropDown.SelectedValue;
+            int value = Convert.ToInt16(AssetSearchValueTextBox.Text);
+            String locationID = AssetSearchLocationDropDown.SelectedValue;
+            String ownerID = AssetSearchOwnerDropDown.SelectedValue;
+
+            String query = "SELCT * FROM Asset WHERE";
+            if (assetID != "")
+                query += " assetID='" + assetID + "'";
+            if (name != "")
+                query += " AND name='" + name + "'";
+            if (subCategoryID != "")
+                query += " AND scatID='" + subCategoryID + "'";
+            if (categoryID != "")
+                query += " AND catID='" + categoryID + "'";
+            if (value != 0)
+                query += " AND value='" + value + "'";
+            if (locationID != "")
+                query += " AND locID='" + locationID + "'";
+            if (ownerID != "")
+                query += " AND owner='" + ownerID + "'";
+
+            query = query.Replace("WHERE AND", "WHERE");
+            Response.Write(query);
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             conn.Open();
             conn.Close();
