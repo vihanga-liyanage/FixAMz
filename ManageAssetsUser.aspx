@@ -64,7 +64,9 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
-                                        <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server">
+                                            <asp:ListItem Selected = "True" Text = "select something" Value = "0"></asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>

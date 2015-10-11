@@ -75,6 +75,7 @@ namespace FixAMz_WebApplication
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
                 AddAssetSubCategoryDropDown.DataBind();
+                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -82,6 +83,7 @@ namespace FixAMz_WebApplication
                 AssetSearchSubCategoryDropDown.DataTextField = "name";
                 AssetSearchSubCategoryDropDown.DataValueField = "scatID";
                 AssetSearchSubCategoryDropDown.DataBind();
+                AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 conn.Close();
@@ -105,6 +107,7 @@ namespace FixAMz_WebApplication
                 AddAssetCategoryDropDown.DataTextField = "name";
                 AddAssetCategoryDropDown.DataValueField = "catID";
                 AddAssetCategoryDropDown.DataBind();
+                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -112,6 +115,7 @@ namespace FixAMz_WebApplication
                 AssetSearchCategoryDropDown.DataTextField = "name";
                 AssetSearchCategoryDropDown.DataValueField = "catID";
                 AssetSearchCategoryDropDown.DataBind();
+                AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();
@@ -135,6 +139,7 @@ namespace FixAMz_WebApplication
                 AddAssetLocationDropDown.DataTextField = "name";
                 AddAssetLocationDropDown.DataValueField = "locID";
                 AddAssetLocationDropDown.DataBind();
+                AddAssetLocationDropDown.Items.Insert(0, new ListItem("-- Select a location --", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -142,6 +147,7 @@ namespace FixAMz_WebApplication
                 AssetSearchLocationDropDown.DataTextField = "name";
                 AssetSearchLocationDropDown.DataValueField = "locID";
                 AssetSearchLocationDropDown.DataBind();
+                AssetSearchLocationDropDown.Items.Insert(0, new ListItem("-- Select a sub location --", ""));
                 data.Close();
 
                 conn.Close();
@@ -166,6 +172,7 @@ namespace FixAMz_WebApplication
                 AddAssetOwnerDropDown.DataTextField = "name";
                 AddAssetOwnerDropDown.DataValueField = "empID";
                 AddAssetOwnerDropDown.DataBind();
+                AddAssetOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
                 
                 //Register new asset recommend person drop down
@@ -174,6 +181,7 @@ namespace FixAMz_WebApplication
                 AddAssetPersonToRecommendDropDown.DataTextField = "name";
                 AddAssetPersonToRecommendDropDown.DataValueField = "empID";
                 AddAssetPersonToRecommendDropDown.DataBind();
+                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
                 //Asset search owner drop down
@@ -182,6 +190,7 @@ namespace FixAMz_WebApplication
                 AssetSearchOwnerDropDown.DataTextField = "name";
                 AssetSearchOwnerDropDown.DataValueField = "empID";
                 AssetSearchOwnerDropDown.DataBind();
+                AssetSearchOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
                 //Dispose asset recommend person drop down
@@ -190,6 +199,7 @@ namespace FixAMz_WebApplication
                 DisposeAssetPersonToRecommendDropDown.DataTextField = "name";
                 DisposeAssetPersonToRecommendDropDown.DataValueField = "empID";
                 DisposeAssetPersonToRecommendDropDown.DataBind();
+                DisposeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
                 conn.Close();
