@@ -370,8 +370,43 @@ function addSubCategoryClearAll() {
     document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
     return true;
 }
+//Register Asset functions================================================================================================
+function addNewAssetClearAll() {
+    document.forms[0]["RegisterAssetNameTextBox"].value = "";
+    //document.forms[0]["SubCategoryDropDownList"].value = "";
+    //document.forms[0]["CategoryDropDownList"].value = "";
+    document.forms[0]["AddValueTextBox"].value = "";
+    /*document.forms[0]["LocationDropDownList"].value = "";
+    document.forms[0]["OwnerDropDownList"].value = "";
+    document.forms[0]["PersonToRecommendDropDownList"].value = "";*/
+    return true;
+}
 
+/*function requiredFieldValidatorValue(controller, msg) {
+    var content = document.forms[0][controller + "TextBox"].value;
+    if (content == "" || content == 0) {
+        document.getElementById(controller + "Validator").innerHTML = msg;
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}*/
 
+function isValidAddAsset() {
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
+    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    /*var isValidContact = contactValidator("AddLocationContact");
+    var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
+    var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");
+    var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.");
+    var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.");
+
+    return (isValidLocName && isValidLocAddress && isValidContact && isValidLocManagerOffice && isValidLocDepartment && isValidLocZonalOffice && isValidLocBranch);*/
+    return (isValidAssetName && isValidValue);
+}
 //Dispose Asset functions ===================================================================
 
 function disposeClearAll() {

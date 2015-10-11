@@ -24,6 +24,13 @@ namespace FixAMz_WebApplication
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
+                responseArea.InnerHtml = "";
+                Page.MaintainScrollPositionOnPostBack = true;
+                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
+                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("--Select Sub Category--", "0"));
+                AddAssetLocationDropDown.Items.Insert(0, new ListItem("--Select Location--", "0"));
+                AddAssetOwnerDropDown.Items.Insert(0, new ListItem("--Select Owner--", "0"));
+                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));
             }
         }
 
@@ -234,7 +241,7 @@ namespace FixAMz_WebApplication
 
 
                 conn.Close();
-                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewAssetClearAll", "addNewAssetClearAll();", true);
                 setAssetID();
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Asset added successfully!";
@@ -274,6 +281,11 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
+                    String disposeAssetCategoryID = "";
+                    String disposeAssetSubCategoryID = "";
+                    String disposeAssetLocationID = "";
+                    String disposeAssetOwnerID = "";
+
                     String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -281,12 +293,30 @@ namespace FixAMz_WebApplication
                     {
                         DisposeAssetID.InnerHtml = dr["assetID"].ToString();
                         DisposeItemName.InnerHtml = dr["name"].ToString();
-                        DisposeCategory.InnerHtml = dr["category"].ToString();
-                        DisposeSubcategory.InnerHtml = dr["subcategory"].ToString();
-                        DisposeLocation.InnerHtml = dr["location"].ToString();
-                        DisposeOwner.InnerHtml = dr["owner"].ToString();
-                        DisposeValue.InnerHtml = dr["value"].ToString();
+                        disposeAssetCategoryID = dr["category"].ToString();
+                        disposeAssetSubCategoryID = dr["subcategory"].ToString();
+                        disposeAssetLocationID = dr["location"].ToString();
+                        disposeAssetOwnerID = dr["owner"].ToString();
+                        DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
                     }
+                    dr.Close();
+                    // Get category name
+                    String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + disposeAssetCategoryID + "'";
+                    cmd = new SqlCommand(getCatNameQuery, conn); 
+                    DisposeCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get sub category name
+                    String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
+                    cmd = new SqlCommand(getSubCatNameQuery, conn);
+                    DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get location name
+                    String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
+                    cmd = new SqlCommand(getLocationNameQuery, conn);
+                    DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get owner name
+                    String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
+                    cmd = new SqlCommand(getOwnerNameQuery, conn);
+                    DisposeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+
                     disposeAssetInitState.Style.Add("display", "none");
                     disposeAssetSecondState.Style.Add("display", "block");
                     DisposeAssetContent.Style.Add("display", "block");
@@ -339,15 +369,15 @@ namespace FixAMz_WebApplication
                         newNotID += "0";
                     }
                     newNotID += temp;
+                    conn.Close();
                     return newNotID;
                 }
                 else
                 {
                     newNotID = "N00001";
+                    conn.Close();
                     return newNotID;
                 }
-
-                conn.Close();
             }
             catch (SqlException e)
             {
@@ -356,7 +386,7 @@ namespace FixAMz_WebApplication
                 Response.Write(e.ToString());
                 return "";
             }
-        }//set notid
+        }
 
         protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
         {
@@ -365,20 +395,29 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
+                // Getting new notification ID
                 String notID = setNotID();
+                
+                // Getting logged in user's ID
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid,@type,@assetid,@notcontent,@senduser,@receiveuser,@status)";
-                SqlCommand cmd = new SqlCommand(insertDisposeAsset, conn);
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertDisposeAsset, conn);
+
                 cmd.Parameters.AddWithValue("@notid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@type","Dispose");
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescription.Text);
-                cmd.Parameters.AddWithValue("@senduser", userName.InnerHtml);
+                cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
-                //cmd.Parameters.AddWithValue("@date",  DateTime);
-                cmd.Parameters.AddWithValue("@status", "no");
-                cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@date",  DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
 
+                cmd.ExecuteNonQuery();
+                
                 conn.Close();
               
             }

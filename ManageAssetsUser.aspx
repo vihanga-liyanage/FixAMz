@@ -61,10 +61,14 @@
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
                                         <asp:TextBox ID="RegisterAssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="RegisterAssetNameValidator" runat="server"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
+
+
                                         <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
@@ -73,6 +77,7 @@
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
                                         <asp:TextBox ID="AddValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="AddValueValidator" runat="server"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
@@ -88,8 +93,8 @@
                                     </div>
                                     <div class="row expand-item-row">
 
-                                            <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation" onclick="SendForRecommendationBtn_Click" class="expand-item-btn" />
-
+                                            <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation" onclick="SendForRecommendationBtn_Click" 
+                                            OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
                                             <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
@@ -308,7 +313,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub category</div>
-                                            <div id="DisposeSubcategory" runat="server" class="custom-label"></div>
+                                            <div id="DisposeSubCategory" runat="server" class="custom-label"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Location</div>
