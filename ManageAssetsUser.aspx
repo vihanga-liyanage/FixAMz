@@ -225,6 +225,21 @@
                             <div class="expand-item-title" id="UpdateAssetHeader">Upgrade asset</div>
                             <div class="expand-item-content" id="UpdateAssetContent">
                                 <div class="col-md-8">
+                                    <div id="upgradeAssetInitState" runat="server">
+                                        <div class="info-div">Enter asset ID to upgrade the asset</div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Asset ID</div>
+                                            <asp:TextBox ID="UpgradeAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="UpgradeAssetIDValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <asp:Button ID="UpgradeAssetFindBtn" runat="server" Text="Go" 
+                                                class="expand-item-btn" OnClientClick="return isValidDeleteEmpID()" 
+                                                onclick="DisposeAssetFindBtn_Click" />
+                                        </div>
+                                    </div>
+
+
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
                                         <div id="Div20" runat="server" class="custom-label"></div>
@@ -324,14 +339,15 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Description</div>
-                                            <asp:TextBox ID="DisposeAssetDescription" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="DisposeAssetDescriptionTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="DisposeAssetDescriptionValidator" runat="server" ></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Person to recommend</div>
                                             <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                         </div>
                                         <div class="row expand-item-row">
-                                                <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                                <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click" OnClientClick="return isValidDisposeAssetDescription()" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                                 <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
                                         </div>
                                     </div>

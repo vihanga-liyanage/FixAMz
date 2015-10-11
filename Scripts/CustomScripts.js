@@ -380,3 +380,7 @@ function disposeClearAll() {
     document.getElementById("disposeAssetInitState").style.display = "block";
     return true;
 }
+function isValidDisposeAssetDescription() {
+    var DisposeAssetDescription = requiredFieldValidator("DisposeAssetDescription", "Description cannot be empty.");
+    return (DisposeAssetDescription);
+}

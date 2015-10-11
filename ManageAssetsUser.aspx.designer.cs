@@ -382,6 +382,42 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
+        /// upgradeAssetInitState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upgradeAssetInitState;
+        
+        /// <summary>
+        /// UpgradeAssetIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpgradeAssetIDTextBox;
+        
+        /// <summary>
+        /// UpgradeAssetIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetIDValidator;
+        
+        /// <summary>
+        /// UpgradeAssetFindBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpgradeAssetFindBtn;
+        
+        /// <summary>
         /// Div20 control.
         /// </summary>
         /// <remarks>
@@ -598,13 +634,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeValue;
         
         /// <summary>
-        /// DisposeAssetDescription control.
+        /// DisposeAssetDescriptionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescription;
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescriptionTextBox;
+        
+        /// <summary>
+        /// DisposeAssetDescriptionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetDescriptionValidator;
         
         /// <summary>
         /// DisposeAssetPersonToRecommendDropDownList control.
