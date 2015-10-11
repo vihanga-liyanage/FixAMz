@@ -94,22 +94,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterAssetNameValidator;
         
         /// <summary>
-        /// SubCategoryDropDownList control.
+        /// AddAssetSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SubCategoryDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetSubCategoryDropDown;
         
         /// <summary>
-        /// CategoryDropDownList control.
+        /// AddAssetCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CategoryDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetCategoryDropDown;
         
         /// <summary>
         /// AddValueTextBox control.
@@ -130,31 +130,31 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddValueValidator;
         
         /// <summary>
-        /// LocationDropDownList control.
+        /// AddAssetLocationDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList LocationDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetLocationDropDown;
         
         /// <summary>
-        /// OwnerDropDownList control.
+        /// AddAssetOwnerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList OwnerDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetOwnerDropDown;
         
         /// <summary>
-        /// PersonToRecommendDropDownList control.
+        /// AddAssetPersonToRecommendDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PersonToRecommendDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetPersonToRecommendDropDown;
         
         /// <summary>
         /// AddAssetButttonReco control.
@@ -184,22 +184,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AssetSearchNameTextBox;
         
         /// <summary>
-        /// AssetSearchSubcategoryDropDownList control.
+        /// AssetSearchSubcategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubcategoryDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubcategoryDropDown;
         
         /// <summary>
-        /// AssetSearchCategoryDropDownList control.
+        /// AssetSearchCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchCategoryDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchCategoryDropDown;
         
         /// <summary>
         /// AssetSearchValueTextBox control.
@@ -211,22 +211,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AssetSearchValueTextBox;
         
         /// <summary>
-        /// AssetSearchLocationDropDownList control.
+        /// AssetSearchLocationDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchLocationDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchLocationDropDown;
         
         /// <summary>
-        /// AssetSearchOwnerDropDownList control.
+        /// AssetSearchOwnerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchOwnerDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchOwnerDropDown;
         
         /// <summary>
         /// SearchAssetBtn control.
@@ -580,13 +580,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeCategory;
         
         /// <summary>
-        /// DisposeSubcategory control.
+        /// DisposeSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeSubcategory;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeSubCategory;
         
         /// <summary>
         /// DisposeLocation control.
@@ -625,13 +625,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescription;
         
         /// <summary>
-        /// DisposeAssetPersonToRecommendDropDownList control.
+        /// DisposeAssetPersonToRecommendDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DisposeAssetPersonToRecommendDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList DisposeAssetPersonToRecommendDropDown;
         
         /// <summary>
         /// DisposeAssetRecommendBtn control.

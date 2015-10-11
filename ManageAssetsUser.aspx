@@ -65,11 +65,14 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
-                                        <asp:DropDownList ID="SubCategoryDropDownList" class="expand-item-textbox" InitialValue="--select--"  runat="server"></asp:DropDownList>
+
+
+                                        <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
-                                        <asp:DropDownList ID="CategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
@@ -78,15 +81,15 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
-                                        <asp:DropDownList ID="LocationDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
-                                        <asp:DropDownList ID="OwnerDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AddAssetOwnerDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Person to recommend</div>
-                                        <asp:DropDownList ID="PersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AddAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
 
@@ -116,11 +119,11 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
-                                        <asp:DropDownList ID="AssetSearchSubcategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AssetSearchSubcategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
-                                        <asp:DropDownList ID="AssetSearchCategoryDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AssetSearchCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Value</div>
@@ -128,11 +131,11 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
-                                        <asp:DropDownList ID="AssetSearchLocationDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AssetSearchLocationDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
-                                        <asp:DropDownList ID="AssetSearchOwnerDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="AssetSearchOwnerDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                     <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn" 
@@ -310,7 +313,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub category</div>
-                                            <div id="DisposeSubcategory" runat="server" class="custom-label"></div>
+                                            <div id="DisposeSubCategory" runat="server" class="custom-label"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Location</div>
@@ -330,7 +333,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Person to recommend</div>
-                                            <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                         </div>
                                         <div class="row expand-item-row">
                                                 <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" />
