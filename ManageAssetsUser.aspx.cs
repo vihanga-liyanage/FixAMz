@@ -74,10 +74,10 @@ namespace FixAMz_WebApplication
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataSet ds = new DataSet();
                 da.Fill(ds);  // fill dataset
-                CategoryDropDownList.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
-                CategoryDropDownList.DataValueField = ds.Tables[0].Columns["catID"].ToString();             // to retrive specific  textfield name 
-                CategoryDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                CategoryDropDownList.DataBind();  //binding dropdownlist
+                AddAssetCategoryDropDown.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
+                AddAssetCategoryDropDown.DataValueField = ds.Tables[0].Columns["catID"].ToString();             // to retrive specific  textfield name 
+                AddAssetCategoryDropDown.DataSource = ds.Tables[0];      //assigning datasource to the DropDown
+                AddAssetCategoryDropDown.DataBind();  //binding DropDown
             }
             catch (Exception ex)
             {
@@ -95,10 +95,10 @@ namespace FixAMz_WebApplication
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataSet ds = new DataSet();
                 da.Fill(ds);  // fill dataset
-                SubCategoryDropDownList.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
-                SubCategoryDropDownList.DataValueField = ds.Tables[0].Columns["scatID"].ToString();             // to retrive specific  textfield name 
-                SubCategoryDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                SubCategoryDropDownList.DataBind();  //binding dropdownlist
+                AddAssetSubCategoryDropDown.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
+                AddAssetSubCategoryDropDown.DataValueField = ds.Tables[0].Columns["scatID"].ToString();             // to retrive specific  textfield name 
+                AddAssetSubCategoryDropDown.DataSource = ds.Tables[0];      //assigning datasource to the DropDown
+                AddAssetSubCategoryDropDown.DataBind();  //binding dropdownlist
             }
             catch (Exception ex)
             {
@@ -116,10 +116,10 @@ namespace FixAMz_WebApplication
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataSet ds = new DataSet();
                 da.Fill(ds);  // fill dataset
-                LocationDropDownList.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
-                LocationDropDownList.DataValueField = ds.Tables[0].Columns["locID"].ToString();             // to retrive specific  textfield name 
-                LocationDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                LocationDropDownList.DataBind();  //binding dropdownlist
+                AddAssetLocationDropDown.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
+                AddAssetLocationDropDown.DataValueField = ds.Tables[0].Columns["locID"].ToString();             // to retrive specific  textfield name 
+                AddAssetLocationDropDown.DataSource = ds.Tables[0];      //assigning datasource to the DropDown
+                AddAssetLocationDropDown.DataBind();  //binding DropDown
             }
             catch (Exception ex)
             {
@@ -138,10 +138,10 @@ namespace FixAMz_WebApplication
                 DataSet ds = new DataSet();
                 da.Fill(ds);  // fill dataset
                 String ownerName = ds.Tables[0].Columns["firstName"].ToString();
-                OwnerDropDownList.DataTextField = ownerName; // text field name of table dispalyed in dropdown
-                OwnerDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
-                OwnerDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                OwnerDropDownList.DataBind();  //binding dropdownlist
+                AddAssetOwnerDropDown.DataTextField = ownerName; // text field name of table dispalyed in dropdown
+                AddAssetOwnerDropDown.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
+                AddAssetOwnerDropDown.DataSource = ds.Tables[0];      //assigning datasource to the DropDown
+                AddAssetOwnerDropDown.DataBind();  //binding DropDown
             }
             catch (Exception ex)
             {
@@ -159,15 +159,15 @@ namespace FixAMz_WebApplication
                 SqlDataAdapter da = new SqlDataAdapter(com);
                 DataSet ds = new DataSet();
                 da.Fill(ds);  // fill dataset
-                PersonToRecommendDropDownList.DataTextField = ds.Tables[0].Columns["firstname"].ToString(); // text field name of table dispalyed in dropdown
-                PersonToRecommendDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
-                PersonToRecommendDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                PersonToRecommendDropDownList.DataBind();  //binding dropdownlist
+                AddAssetPersonToRecommendDropDown.DataTextField = ds.Tables[0].Columns["firstname"].ToString(); // text field name of table dispalyed in dropdown
+                AddAssetPersonToRecommendDropDown.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
+                AddAssetPersonToRecommendDropDown.DataSource = ds.Tables[0];      //assigning datasource to the DropDown
+                AddAssetPersonToRecommendDropDown.DataBind();  //binding DropDown
                 //person to recommend dropdown in dispose asset
-                DisposeAssetPersonToRecommendDropDownList.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
-                DisposeAssetPersonToRecommendDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();
-                DisposeAssetPersonToRecommendDropDownList.DataSource = ds.Tables[0];
-                DisposeAssetPersonToRecommendDropDownList.DataBind();
+                DisposeAssetPersonToRecommendDropDown.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
+                DisposeAssetPersonToRecommendDropDown.DataValueField = ds.Tables[0].Columns["empID"].ToString();
+                DisposeAssetPersonToRecommendDropDown.DataSource = ds.Tables[0];
+                DisposeAssetPersonToRecommendDropDown.DataBind();
             }
             catch (Exception ex)
             {
@@ -229,13 +229,13 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
-                cmd.Parameters.AddWithValue("@category", CategoryDropDownList.SelectedValue);
-                cmd.Parameters.AddWithValue("@subcategory", SubCategoryDropDownList.SelectedValue);
-                cmd.Parameters.AddWithValue("@owner", OwnerDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
-                cmd.Parameters.AddWithValue("@location", LocationDropDownList.SelectedValue);
-                cmd.Parameters.AddWithValue("@recommend", PersonToRecommendDropDownList.SelectedValue);
-                /* cmd.Parameters.AddWithValue("@value", CategoryDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
+                /* cmd.Parameters.AddWithValue("@value", CategoryDropDown.SelectedValue);
                  cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
                  cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text); */
 
