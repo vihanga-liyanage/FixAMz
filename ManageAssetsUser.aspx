@@ -65,10 +65,8 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
-
-
                                         <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
-
+                                        <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator" runat="server" ControlToValidate="AddAssetSubCategoryDropDown"></asp:RequiredFieldValidator> -->
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>

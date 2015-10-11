@@ -26,11 +26,11 @@ namespace FixAMz_WebApplication
                 setAssetID();
                 responseArea.InnerHtml = "";
                 Page.MaintainScrollPositionOnPostBack = true;
-                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
+                /*AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
                 AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("--Select Sub Category--", "0"));
                 AddAssetLocationDropDown.Items.Insert(0, new ListItem("--Select Location--", "0"));
                 AddAssetOwnerDropDown.Items.Insert(0, new ListItem("--Select Owner--", "0"));
-                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));
+                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));*/
             }
         }
 
