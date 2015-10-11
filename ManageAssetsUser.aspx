@@ -87,7 +87,9 @@
                                         <asp:DropDownList ID="AddAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
+
                                             <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation" onclick="SendForRecommendationBtn_Click" class="expand-item-btn" />
+
                                             <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
@@ -293,6 +295,10 @@
                                     </div>
                                     <div id="disposeAssetSecondState" runat="server">
                                         <div class="row expand-item-row">
+                                            <div class="expand-item-label">AssetID</div>
+                                            <div id="DisposeAssetID" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Name</div>
                                             <div id="DisposeItemName" runat="server" class="custom-label"></div>
                                         </div>
@@ -318,7 +324,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Description</div>
-                                            <asp:TextBox ID="TextBox5" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="DisposeAssetDescription" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Person to recommend</div>

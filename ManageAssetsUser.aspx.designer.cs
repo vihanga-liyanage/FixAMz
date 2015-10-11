@@ -535,6 +535,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl disposeAssetSecondState;
         
         /// <summary>
+        /// DisposeAssetID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetID;
+        
+        /// <summary>
         /// DisposeItemName control.
         /// </summary>
         /// <remarks>
@@ -589,13 +598,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeValue;
         
         /// <summary>
-        /// TextBox5 control.
+        /// DisposeAssetDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescription;
         
         /// <summary>
         /// DisposeAssetPersonToRecommendDropDown control.
