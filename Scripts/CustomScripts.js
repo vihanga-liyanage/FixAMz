@@ -394,7 +394,13 @@ function addNewAssetClearAll() {
         return true;
     }
 }*/
-
+function validate() {
+    if (document.getElementById("ddlList").value == "") {
+        alert("Please select value"); // prompt user
+        document.getElementById("ddlList").focus(); //set focus back to control
+        return false;
+    }
+}
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");

@@ -204,6 +204,7 @@
                                         <asp:TextBox ID="TransferAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="TransferAssetIDValidator" runat="server">
                                         </div>
+
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="TransferAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
@@ -281,13 +282,11 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/UpdateIcon.png" />
-                        <div class="expand-item-title" id="UpdateAssetHeader">
-                            Upgrade asset</div>
-                        <div class="expand-item-content" id="UpdateAssetContent">
+                        <div class="expand-item-title" id="UpdateAssetHeader">Upgrade asset</div>
+                        <div class="expand-item-content" id="UpdateAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="upgradeAssetInitState" runat="server">
-                                    <div class="info-div">
-                                        Enter asset ID to upgrade the asset</div>
+                                    <div class="info-div">Enter asset ID to upgrade the asset</div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">
                                             Asset ID</div>
@@ -297,64 +296,57 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="UpgradeAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
-                                            OnClientClick="return isValidDeleteEmpID()" OnClick="DisposeAssetFindBtn_Click" />
+                                            OnClientClick="return isValidDeleteEmpID()" OnClick="UpgradeAssetFindBtn_Click" />
+                                    </div>
+                                </div>
+                                <div id="upgradeAssetSecondState" runat="server">
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">Name</div>
+                                    <div id="UpgradeAssetName" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Name</div>
-                                    <div id="Div20" runat="server" class="custom-label">
+                                    <div class="expand-item-label">Category</div>
+                                    <div id="UpgradeAssetCategory" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Category</div>
-                                    <div id="Div21" runat="server" class="custom-label">
+                                    <div class="expand-item-label">Sub category</div>
+                                    <div id="UpgradeAssetSubcategory" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Sub category</div>
-                                    <div id="Div22" runat="server" class="custom-label">
+                                    <div class="expand-item-label">Location</div>
+                                    <div id="UpgradeLocation" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Location</div>
-                                    <div id="Div23" runat="server" class="custom-label">
+                                    <div class="expand-item-label">Owner</div>
+                                    <div id="UpgradeOwner" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Owner</div>
-                                    <div id="Div24" runat="server" class="custom-label">
+                                    <div class="expand-item-label">Value</div>
+                                    <div id="UpgradeValue" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Value</div>
-                                    <div id="Div25" runat="server" class="custom-label">
-                                    </div>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Updated value</div>
+                                    <div class="expand-item-label">Updated value</div>
                                     <asp:TextBox ID="TextBox10" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Description</div>
+                                    <div class="expand-item-label">Description</div>
                                     <asp:TextBox ID="TextBox11" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Person to recommend</div>
+                                    <div class="expand-item-label">Person to recommend</div>
                                     <asp:TextBox ID="TextBox12" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
                                     <asp:Button ID="Button7" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                     <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
+                            </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                 <div class="upgrade-asset-icon hidden-sm hidden-xs">

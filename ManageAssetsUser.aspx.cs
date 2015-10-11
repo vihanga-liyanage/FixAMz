@@ -24,7 +24,6 @@ namespace FixAMz_WebApplication
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
-                
                 Page.MaintainScrollPositionOnPostBack = true;
             }
             responseArea.InnerHtml = "";
@@ -78,7 +77,7 @@ namespace FixAMz_WebApplication
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
                 AddAssetSubCategoryDropDown.DataBind();
-                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                //AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -86,7 +85,7 @@ namespace FixAMz_WebApplication
                 AssetSearchSubCategoryDropDown.DataTextField = "name";
                 AssetSearchSubCategoryDropDown.DataValueField = "scatID";
                 AssetSearchSubCategoryDropDown.DataBind();
-                AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                //AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 conn.Close();
@@ -110,7 +109,7 @@ namespace FixAMz_WebApplication
                 AddAssetCategoryDropDown.DataTextField = "name";
                 AddAssetCategoryDropDown.DataValueField = "catID";
                 AddAssetCategoryDropDown.DataBind();
-                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                //AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -118,7 +117,7 @@ namespace FixAMz_WebApplication
                 AssetSearchCategoryDropDown.DataTextField = "name";
                 AssetSearchCategoryDropDown.DataValueField = "catID";
                 AssetSearchCategoryDropDown.DataBind();
-                AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                //AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();
@@ -381,7 +380,57 @@ namespace FixAMz_WebApplication
         }
 
         // Upgrade asset ===============================================================
+        protected void UpgradeAssetFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
 
+                String assetID = UpgradeAssetIDTextBox.Text;
+
+                string check = "SELECT count(*) from Asset WHERE assetID='" + assetID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query = "SELECT name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        UpgradeAssetName.InnerHtml = dr["name"].ToString();
+                        UpgradeAssetCategory.InnerHtml = dr["category"].ToString();
+                        UpgradeAssetSubcategory.InnerHtml = dr["subcategory"].ToString();
+                        UpgradeLocation.InnerHtml = dr["location"].ToString();
+                        UpgradeOwner.InnerHtml = dr["owner"].ToString();
+                        UpgradeValue.InnerHtml = dr["value"].ToString();
+                    }
+                    upgradeAssetInitState.Style.Add("display", "none");
+                    upgradeAssetSecondState.Style.Add("display", "block");
+                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetIDValidator.InnerHtml = "";
+                }
+                else
+                {
+                    upgradeAssetInitState.Style.Add("display", "block");
+                    upgradeAssetSecondState.Style.Add("display", "none");
+                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetIDValidator.InnerHtml = "Invalid asset ID";
+                }
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+
+        }
         // Dispose asset ===============================================================
 
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
