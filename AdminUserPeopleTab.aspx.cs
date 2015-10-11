@@ -272,12 +272,7 @@ namespace FixAMz_WebApplication
                     string Search_User = "Select * FROM Employee WHERE empID LIKE '%'+ @SearchEmployeeIDTextBox +'%'"; //select data from database
 
                     SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    /*SqlParameter search = new SqlParameter();
-                    search.ParameterName = "@SearchEmployeeIDTextBox";
-                    search.Value = SearchEmployeeIDTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);*/
                     cmd.Parameters.AddWithValue("@SearchEmployeeIDTextBox", SearchEmployeeIDTextBox.Text);
-
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader != null && reader.HasRows) //if search results found
@@ -292,17 +287,13 @@ namespace FixAMz_WebApplication
                     }
                     else //search results not found
                     {
-                        responseArea.InnerHtml = "Search Error No Results";
+                        responseArea.InnerHtml = "No results found!";
                     }
                 }
                 else if (firstnameLength != 0)
                 {
                     string Search_User = "Select * FROM Employee WHERE firstname LIKE '%'+ @SearchFirstNameTextBox +'%'";
                     SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    /*SqlParameter search = new SqlParameter();
-                    search.ParameterName = "@SearchFirstNameTextBox";
-                    search.Value = SearchFirstNameTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);*/
                     cmd.Parameters.AddWithValue("@SearchFirstNameTextBox", SearchFirstNameTextBox.Text);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -318,17 +309,13 @@ namespace FixAMz_WebApplication
                     }
                     else
                     {
-                        responseArea.InnerHtml = "Search Error No Results";
+                        responseArea.InnerHtml = "No results found!";
                     }
                 }
                 else if (lastnameLength != 0)
                 {
                     string Search_User = "Select * FROM Employee WHERE lastname LIKE '%'+ @SearchLastNameTextBox +'%'";
                     SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    /*SqlParameter search = new SqlParameter();
-                    search.ParameterName = "@SearchLastNameTextBox";
-                    search.Value = SearchLastNameTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);*/
                     cmd.Parameters.AddWithValue("@SearchLastNameTextBox", SearchLastNameTextBox.Text);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -344,7 +331,7 @@ namespace FixAMz_WebApplication
                     }
                     else
                     {
-                        responseArea.InnerHtml = "Search Error No Results";
+                        responseArea.InnerHtml = "No results found!";
                     }
                 }
 
@@ -352,10 +339,6 @@ namespace FixAMz_WebApplication
                 {
                     string Search_User = "Select * FROM Employee WHERE email LIKE '%'+ @SearchEmailTextBox +'%'";
                     SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    /*SqlParameter search = new SqlParameter();
-                    search.ParameterName = "@SearchEmailTextBox";
-                    search.Value = SearchEmailTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);*/
                     cmd.Parameters.AddWithValue("@SearchEmailTextBox", SearchEmailTextBox.Text);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -371,7 +354,7 @@ namespace FixAMz_WebApplication
                     }
                     else
                     {
-                        responseArea.InnerHtml = "Search Error No Results";
+                        responseArea.InnerHtml = "No results found!";
                     }
                 }
 
@@ -379,10 +362,6 @@ namespace FixAMz_WebApplication
                 {
                     string Search_User = "Select * FROM Employee WHERE contact LIKE '%'+ @SearchContactTextBox +'%'";
                     SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    /*SqlParameter search = new SqlParameter();
-                    search.ParameterName = "@SearchContactTextBox";
-                    search.Value = SearchContactTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);*/
                     cmd.Parameters.AddWithValue("@SearchContactTextBox", SearchContactTextBox.Text);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -398,7 +377,7 @@ namespace FixAMz_WebApplication
                     }
                     else
                     {
-                        responseArea.InnerHtml = "Search Error No Results";
+                        responseArea.InnerHtml = "No results found!";
                     }
                 }
                 else if (usernameLength != 0)
@@ -423,7 +402,7 @@ namespace FixAMz_WebApplication
                     }
                     else
                     {
-                        responseArea.InnerHtml = "Search Error No Results";
+                        responseArea.InnerHtml = "No results found!";
                     }
                 }
 
