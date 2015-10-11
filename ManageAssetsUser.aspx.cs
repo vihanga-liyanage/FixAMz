@@ -175,9 +175,8 @@ namespace FixAMz_WebApplication
             }
         }
 
-        // Register New Asset
-
-        protected void setAssetID() //Reads the last empID from DB, calculates the next and set it in the web page.
+        //Reads the last assetID from DB, calculates the next and set it in the web page.
+        protected void setAssetID() 
         {
             try
             {
@@ -218,13 +217,14 @@ namespace FixAMz_WebApplication
                 Response.Write(e.ToString());
             }
         }
+
         protected void SendForRecommendationBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner,location,status) values (@assetid, @name, @value, @category, @subcategory,@owner, @location, @status)";
+                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
                 SqlCommand cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
@@ -232,8 +232,9 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@category", CategoryDropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", SubCategoryDropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", OwnerDropDownList.SelectedValue);
-                cmd.Parameters.AddWithValue("@location", LocationDropDownList.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
+                cmd.Parameters.AddWithValue("@location", LocationDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", PersonToRecommendDropDownList.SelectedValue);
                 /* cmd.Parameters.AddWithValue("@value", CategoryDropDownList.SelectedValue);
                  cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
                  cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text); */
