@@ -429,11 +429,11 @@ namespace FixAMz_WebApplication
                 String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
-
+                String notID = setNotID();
                 String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
-                cmd.Parameters.AddWithValue("@notid", DisposeAssetID.InnerHtml);
+                cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type","Dispose");
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
@@ -446,6 +446,13 @@ namespace FixAMz_WebApplication
                 cmd.ExecuteNonQuery();
                 
                 conn.Close();
+
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Asset'" + DisposeAssetIDTextBox.Text + "' recommend!";
+                disposeAssetInitState.Style.Add("display", "block");
+                disposeAssetSecondState.Style.Add("display", "none");
+                DisposeAssetContent.Style.Add("display", "block");
+                DisposeAssetIDTextBox.Text = "";
 
             }
             catch (Exception ex)
