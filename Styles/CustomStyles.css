@@ -347,6 +347,10 @@ div
     z-index:-1;
 }
 
+#upgradeAssetSecondState
+{
+    display:none;
+}
 
 /*================================dispose asset icon=============================*/
 .dispose-asset-icon
