@@ -308,7 +308,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub category</div>
-                                            <div id="DisposeSubcategory" runat="server" class="custom-label"></div>
+                                            <div id="DisposeSubCategory" runat="server" class="custom-label"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Location</div>

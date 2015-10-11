@@ -562,13 +562,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeCategory;
         
         /// <summary>
-        /// DisposeSubcategory control.
+        /// DisposeSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeSubcategory;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeSubCategory;
         
         /// <summary>
         /// DisposeLocation control.

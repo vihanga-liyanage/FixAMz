@@ -274,6 +274,11 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
+                    String disposeAssetCategoryID = "";
+                    String disposeAssetSubCategoryID = "";
+                    String disposeAssetLocationID = "";
+                    String disposeAssetOwnerID = "";
+
                     String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -281,12 +286,30 @@ namespace FixAMz_WebApplication
                     {
                         DisposeAssetID.InnerHtml = dr["assetID"].ToString();
                         DisposeItemName.InnerHtml = dr["name"].ToString();
-                        DisposeCategory.InnerHtml = dr["category"].ToString();
-                        DisposeSubcategory.InnerHtml = dr["subcategory"].ToString();
-                        DisposeLocation.InnerHtml = dr["location"].ToString();
-                        DisposeOwner.InnerHtml = dr["owner"].ToString();
-                        DisposeValue.InnerHtml = dr["value"].ToString();
+                        disposeAssetCategoryID = dr["category"].ToString();
+                        disposeAssetSubCategoryID = dr["subcategory"].ToString();
+                        disposeAssetLocationID = dr["location"].ToString();
+                        disposeAssetOwnerID = dr["owner"].ToString();
+                        DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
                     }
+                    dr.Close();
+                    // Get category name
+                    String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + disposeAssetCategoryID + "'";
+                    cmd = new SqlCommand(getCatNameQuery, conn); 
+                    DisposeCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get sub category name
+                    String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
+                    cmd = new SqlCommand(getSubCatNameQuery, conn);
+                    DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get location name
+                    String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
+                    cmd = new SqlCommand(getLocationNameQuery, conn);
+                    DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get owner name
+                    String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
+                    cmd = new SqlCommand(getOwnerNameQuery, conn);
+                    DisposeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+
                     disposeAssetInitState.Style.Add("display", "none");
                     disposeAssetSecondState.Style.Add("display", "block");
                     DisposeAssetContent.Style.Add("display", "block");
