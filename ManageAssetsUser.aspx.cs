@@ -18,12 +18,12 @@ namespace FixAMz_WebApplication
         {
             if (!Page.IsPostBack)
             {
-                View_Category();
-                View_SubCategory();
-                View_Location();
-                View_Owner();
-                View_Person_To_Recommend();
+                Load_Category();
+                Load_SubCategory();
+                Load_Location();
+                Load_Employee_Data();
                 setUserName();
+                setAssetID();
             }
         }
 
@@ -52,31 +52,30 @@ namespace FixAMz_WebApplication
                 Response.Write(exx.ToString());
             }
         }
-
-        //Signing out ==========================================================
+        
+        // Signing out =================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
         }
 
-        // Regester new asset ==================================================
-
+        // Loading data to drop downs ==================================================
         //Loading category dropdown
-        protected void View_Category()
+        protected void Load_Category()
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand com = new SqlCommand("select *from Category", conn); // table name 
-                SqlDataAdapter da = new SqlDataAdapter(com);
-                DataSet ds = new DataSet();
-                da.Fill(ds);  // fill dataset
-                CategoryDropDownList.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
-                CategoryDropDownList.DataValueField = ds.Tables[0].Columns["catID"].ToString();             // to retrive specific  textfield name 
-                CategoryDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                CategoryDropDownList.DataBind();  //binding dropdownlist
+                SqlCommand cmd = new SqlCommand("SELECT name, catID FROM Category", conn);
+
+                AddAssetCategoryDropDown.DataSource = cmd.ExecuteReader();
+                AddAssetCategoryDropDown.DataTextField = "name";
+                AddAssetCategoryDropDown.DataValueField = "catID";
+                AddAssetCategoryDropDown.DataBind();
+
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -84,20 +83,20 @@ namespace FixAMz_WebApplication
             }
         }
         //Loading sub category dropdown
-        protected void View_SubCategory()
+        protected void Load_SubCategory()
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand com = new SqlCommand("select *from SubCategory", conn); // table name 
-                SqlDataAdapter da = new SqlDataAdapter(com);
-                DataSet ds = new DataSet();
-                da.Fill(ds);  // fill dataset
-                SubCategoryDropDownList.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
-                SubCategoryDropDownList.DataValueField = ds.Tables[0].Columns["scatID"].ToString();             // to retrive specific  textfield name 
-                SubCategoryDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                SubCategoryDropDownList.DataBind();  //binding dropdownlist
+                SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory", conn);
+
+                AddAssetSubCategoryDropDown.DataSource = cmd.ExecuteReader();
+                AddAssetSubCategoryDropDown.DataTextField = "name";
+                AddAssetSubCategoryDropDown.DataValueField = "scatID";
+                AddAssetSubCategoryDropDown.DataBind();
+
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -105,68 +104,60 @@ namespace FixAMz_WebApplication
             }
         }
         //Loading location dropdown
-        protected void View_Location()
+        protected void Load_Location()
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand com = new SqlCommand("select *from Location", conn); // table name 
-                SqlDataAdapter da = new SqlDataAdapter(com);
-                DataSet ds = new DataSet();
-                da.Fill(ds);  // fill dataset
-                LocationDropDownList.DataTextField = ds.Tables[0].Columns["name"].ToString(); // text field name of table dispalyed in dropdown
-                LocationDropDownList.DataValueField = ds.Tables[0].Columns["locID"].ToString();             // to retrive specific  textfield name 
-                LocationDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                LocationDropDownList.DataBind();  //binding dropdownlist
+                SqlCommand cmd = new SqlCommand("SELECT name, locID FROM Location", conn);
+
+                AddAssetLocationDropDown.DataSource = cmd.ExecuteReader();
+                AddAssetLocationDropDown.DataTextField = "name";
+                AddAssetLocationDropDown.DataValueField = "locID";
+                AddAssetLocationDropDown.DataBind();
+
+                conn.Close();
             }
             catch (Exception ex)
             {
                 Response.Write("Error:" + ex.Message.ToString());
             }
         }
-        //Loading owner dropdown
-        protected void View_Owner()
+        //Loading employee data
+        protected void Load_Employee_Data()
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand com = new SqlCommand("select * from Employee", conn); // table name 
-                SqlDataAdapter da = new SqlDataAdapter(com);
-                DataSet ds = new DataSet();
-                da.Fill(ds);  // fill dataset
-                String ownerName = ds.Tables[0].Columns["firstName"].ToString();
-                OwnerDropDownList.DataTextField = ownerName; // text field name of table dispalyed in dropdown
-                OwnerDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
-                OwnerDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                OwnerDropDownList.DataBind();  //binding dropdownlist
-            }
-            catch (Exception ex)
-            {
-                Response.Write("Error:" + ex.Message.ToString());
-            }
-        }
-        //Loading person to recommend dropdown
-        protected void View_Person_To_Recommend()
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand com = new SqlCommand("select *from Employee", conn); // table name 
-                SqlDataAdapter da = new SqlDataAdapter(com);
-                DataSet ds = new DataSet();
-                da.Fill(ds);  // fill dataset
-                PersonToRecommendDropDownList.DataTextField = ds.Tables[0].Columns["firstname"].ToString(); // text field name of table dispalyed in dropdown
-                PersonToRecommendDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();             // to retrive specific  textfield name 
-                PersonToRecommendDropDownList.DataSource = ds.Tables[0];      //assigning datasource to the dropdownlist
-                PersonToRecommendDropDownList.DataBind();  //binding dropdownlist
-                //person to recommend dropdown in dispose asset
-                DisposeAssetPersonToRecommendDropDownList.DataTextField = ds.Tables[0].Columns["firstname"].ToString();
-                DisposeAssetPersonToRecommendDropDownList.DataValueField = ds.Tables[0].Columns["empID"].ToString();
-                DisposeAssetPersonToRecommendDropDownList.DataSource = ds.Tables[0];
-                DisposeAssetPersonToRecommendDropDownList.DataBind();
+                SqlCommand cmd = new SqlCommand("SELECT [firstname]+' '+[lastname] AS [name], empID FROM Employee", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+                
+                //Register new asset owner drop down
+                AddAssetOwnerDropDown.DataSource = data;
+                AddAssetOwnerDropDown.DataTextField = "name";
+                AddAssetOwnerDropDown.DataValueField = "empID";
+                AddAssetOwnerDropDown.DataBind();
+                data.Close();
+                
+                //Register new asset recommend person drop down
+                data = cmd.ExecuteReader();
+                AddAssetPersonToRecommendDropDown.DataSource = data;
+                AddAssetPersonToRecommendDropDown.DataTextField = "name";
+                AddAssetPersonToRecommendDropDown.DataValueField = "empID";
+                AddAssetPersonToRecommendDropDown.DataBind();
+                data.Close();
+                
+                //Dispose asset recommend person drop down
+                data = cmd.ExecuteReader(); 
+                DisposeAssetPersonToRecommendDropDown.DataSource = data;
+                DisposeAssetPersonToRecommendDropDown.DataTextField = "name";
+                DisposeAssetPersonToRecommendDropDown.DataValueField = "empID";
+                DisposeAssetPersonToRecommendDropDown.DataBind();
+                data.Close();
+
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -174,9 +165,91 @@ namespace FixAMz_WebApplication
             }
         }
 
-        
+        // Regester new asset ==========================================================
+        protected void setAssetID() 
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 assetID FROM Asset ORDER BY assetID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newAssetID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastAssetID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastAssetID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastAssetID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastAssetID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newAssetID = chr;
+                    for (int i = 1; i < lastAssetID.Length - temp.Length; i++)
+                    {
+                        newAssetID += "0";
+                    }
+                    newAssetID += temp;
+                }
+                else
+                {
+                    newAssetID = "A00001";
+                }
 
-        //Advanced asset search ================================================
+                AddNewAssetId.InnerHtml = newAssetID;
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+        }
+
+        protected void SendForRecommendationBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
+                SqlCommand cmd = new SqlCommand(insertion_Asset, conn);
+                cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@status", 0);
+                cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
+                /* cmd.Parameters.AddWithValue("@value", CategoryDropDown.SelectedValue);
+                 cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
+                 cmd.Parameters.AddWithValue("@email", AddNewEmailTextBox.Text); */
+
+                cmd.ExecuteNonQuery();
+
+
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
+                setAssetID();
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Asset added successfully!";
+
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
+       
+        // Advanced asset search =======================================================
         protected void SearchAssetBtn_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
@@ -185,7 +258,7 @@ namespace FixAMz_WebApplication
 
         }
 
-        // Dispose asset =======================================================
+        // Dispose asset ===============================================================
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
         {
             try
@@ -206,6 +279,7 @@ namespace FixAMz_WebApplication
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
+                        DisposeAssetID.InnerHtml = dr["assetID"].ToString();
                         DisposeItemName.InnerHtml = dr["name"].ToString();
                         DisposeCategory.InnerHtml = dr["category"].ToString();
                         DisposeSubcategory.InnerHtml = dr["subcategory"].ToString();
@@ -240,14 +314,84 @@ namespace FixAMz_WebApplication
             }
         }
 
+        protected String setNotID() //Reads the last notID from DB, calculates the next.
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 notID FROM Notification ORDER BY notID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newNotID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastNotID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastNotID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastNotID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastNotID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newNotID = chr;
+                    for (int i = 1; i < lastNotID.Length - temp.Length; i++)
+                    {
+                        newNotID += "0";
+                    }
+                    newNotID += temp;
+                    return newNotID;
+                }
+                else
+                {
+                    newNotID = "N00001";
+                    return newNotID;
+                }
+
+                conn.Close();
+            }
+            catch (SqlException e)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+                return "";
+            }
+        }//set notid
+
         protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "disposeClearAll", "disposeClearAll();", true);
-            responseArea.Style.Add("color", "Green");
-            responseArea.InnerHtml = "Asset is sent for recommendation.";
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String notID = setNotID();
+
+                string insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid,@type,@assetid,@notcontent,@senduser,@receiveuser,@status)";
+                SqlCommand cmd = new SqlCommand(insertDisposeAsset, conn);
+                cmd.Parameters.AddWithValue("@notid", DisposeAssetID.InnerHtml);
+                cmd.Parameters.AddWithValue("@type","Dispose");
+                cmd.Parameters.AddWithValue("@assetid", DisposeAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescription.Text);
+                cmd.Parameters.AddWithValue("@senduser", userName.InnerHtml);
+                cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
+                //cmd.Parameters.AddWithValue("@date",  DateTime);
+                cmd.Parameters.AddWithValue("@status", "no");
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+              
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
         }
 
-        // Transfer asset =======================================================
+        // Transfer asset ==============================================================
         protected void TransferAssetFindBtn_Click(object sender, EventArgs e)
         {
             try
@@ -301,5 +445,6 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }        
+
     }
 }
