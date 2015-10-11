@@ -87,11 +87,9 @@
                                         <asp:DropDownList ID="PersonToRecommendDropDownList" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
-<<<<<<< HEAD
-                                            <asp:Button ID="recommendDisposeBtn" runat="server" Text="Send for recommendation" class="expand-item-btn" />
-=======
+
                                             <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation" onclick="SendForRecommendationBtn_Click" class="expand-item-btn" />
->>>>>>> 992eb5c82506fc0142098094a2a717f76db26e1a
+
                                             <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
