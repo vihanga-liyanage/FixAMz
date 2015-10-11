@@ -30,11 +30,11 @@ namespace FixAMz_WebApplication
                 setAssetID();
                 responseArea.InnerHtml = "";
                 Page.MaintainScrollPositionOnPostBack = true;
-                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
+                /*AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
                 AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("--Select Sub Category--", "0"));
                 AddAssetLocationDropDown.Items.Insert(0, new ListItem("--Select Location--", "0"));
                 AddAssetOwnerDropDown.Items.Insert(0, new ListItem("--Select Owner--", "0"));
-                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));
+                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));*/
             }
         }
 
@@ -86,7 +86,7 @@ namespace FixAMz_WebApplication
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
                 AddAssetSubCategoryDropDown.DataBind();
-                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                //AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -94,7 +94,7 @@ namespace FixAMz_WebApplication
                 AssetSearchSubCategoryDropDown.DataTextField = "name";
                 AssetSearchSubCategoryDropDown.DataValueField = "scatID";
                 AssetSearchSubCategoryDropDown.DataBind();
-                AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                //AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 conn.Close();
@@ -118,7 +118,7 @@ namespace FixAMz_WebApplication
                 AddAssetCategoryDropDown.DataTextField = "name";
                 AddAssetCategoryDropDown.DataValueField = "catID";
                 AddAssetCategoryDropDown.DataBind();
-                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                //AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -126,7 +126,7 @@ namespace FixAMz_WebApplication
                 AssetSearchCategoryDropDown.DataTextField = "name";
                 AssetSearchCategoryDropDown.DataValueField = "catID";
                 AssetSearchCategoryDropDown.DataBind();
-                AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                //AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();

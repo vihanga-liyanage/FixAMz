@@ -182,7 +182,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
+                </div> 
+
                 <!--Transfer Assets-->
                 <div class="row expand-item">
                     <div class="col-md-12">
@@ -200,6 +202,7 @@
                                         <asp:TextBox ID="TransferAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="TransferAssetIDValidator" runat="server">
                                         </div>
+
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="TransferAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
