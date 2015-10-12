@@ -351,6 +351,7 @@ namespace FixAMz_WebApplication
                 if (res == 1)
                 {
                     String query = "SELECT name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
