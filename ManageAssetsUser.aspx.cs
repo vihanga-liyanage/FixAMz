@@ -14,10 +14,6 @@ namespace FixAMz_WebApplication
 {
     public partial class ManaageAssetsUser : System.Web.UI.Page
     {
-        private string disposeAssetCategoryID;
-        private string disposeAssetSubCategoryID;
-        private string disposeAssetLocationID;
-        private string disposeAssetOwnerID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -28,14 +24,9 @@ namespace FixAMz_WebApplication
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
-                responseArea.InnerHtml = "";
                 Page.MaintainScrollPositionOnPostBack = true;
-                /*AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
-                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("--Select Sub Category--", "0"));
-                AddAssetLocationDropDown.Items.Insert(0, new ListItem("--Select Location--", "0"));
-                AddAssetOwnerDropDown.Items.Insert(0, new ListItem("--Select Owner--", "0"));
-                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));*/
             }
+            responseArea.InnerHtml = "";
         }
 
         //Setting user name on header
@@ -86,7 +77,7 @@ namespace FixAMz_WebApplication
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
                 AddAssetSubCategoryDropDown.DataBind();
-                //AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("--Select--", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -94,7 +85,7 @@ namespace FixAMz_WebApplication
                 AssetSearchSubCategoryDropDown.DataTextField = "name";
                 AssetSearchSubCategoryDropDown.DataValueField = "scatID";
                 AssetSearchSubCategoryDropDown.DataBind();
-                //AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 conn.Close();
@@ -118,7 +109,7 @@ namespace FixAMz_WebApplication
                 AddAssetCategoryDropDown.DataTextField = "name";
                 AddAssetCategoryDropDown.DataValueField = "catID";
                 AddAssetCategoryDropDown.DataBind();
-                //AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -126,7 +117,7 @@ namespace FixAMz_WebApplication
                 AssetSearchCategoryDropDown.DataTextField = "name";
                 AssetSearchCategoryDropDown.DataValueField = "catID";
                 AssetSearchCategoryDropDown.DataBind();
-                //AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();
@@ -270,17 +261,38 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
                 string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
-                SqlCommand cmd = new SqlCommand(insertion_Asset, conn);
+                cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@value", Convert.ToInt16(AddValueTextBox.Text));
+                //cmd.Parameters.AddWithValue("@value", Convert.ToInt16(AddValueTextBox.Text));
+                cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
                 cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
+
+                cmd.ExecuteNonQuery();
+                String notID = setNotID();
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertDisposeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@notid", notID);
+                cmd.Parameters.AddWithValue("@type", "RgRecommand");
+                cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@notcontent", "newly purchased");
+                cmd.Parameters.AddWithValue("@senduser", empID);
+                cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+
 
                 cmd.ExecuteNonQuery();
 
@@ -306,31 +318,85 @@ namespace FixAMz_WebApplication
             String name = AssetSearchNameTextBox.Text.Trim();
             String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
             String categoryID = AssetSearchCategoryDropDown.SelectedValue;
-            int value = Convert.ToInt16(AssetSearchValueTextBox.Text);
+            String value = AssetSearchValueTextBox.Text;
             String locationID = AssetSearchLocationDropDown.SelectedValue;
             String ownerID = AssetSearchOwnerDropDown.SelectedValue;
 
-            String query = "SELCT * FROM Asset WHERE";
-            if (assetID != "")
-                query += " assetID='" + assetID + "'";
-            if (name != "")
-                query += " AND name='" + name + "'";
-            if (subCategoryID != "")
-                query += " AND scatID='" + subCategoryID + "'";
-            if (categoryID != "")
-                query += " AND catID='" + categoryID + "'";
-            if (value != 0)
-                query += " AND value='" + value + "'";
-            if (locationID != "")
-                query += " AND locID='" + locationID + "'";
-            if (ownerID != "")
-                query += " AND owner='" + ownerID + "'";
+            String resultMessage = "";
 
-            query = query.Replace("WHERE AND", "WHERE");
-            Response.Write(query);
+            String query = "SELECT * FROM Asset WHERE";
+            if (assetID != "")
+            {
+                query += " assetID='" + assetID + "'";
+                resultMessage += assetID + ", ";
+            }
+            if (name != "")
+            {
+                query += " AND name='" + name + "'";
+                resultMessage += name + ", ";
+            }
+            if (subCategoryID != "")
+            {
+                query += " AND subcategory='" + subCategoryID + "'";
+                resultMessage += subCategoryID + ", ";
+            }
+            if (categoryID != "")
+            {
+                query += " AND category='" + categoryID + "'";
+                resultMessage += categoryID + ", ";
+            }
+            if (value != "")
+            {
+                query += " AND value='" + Convert.ToInt16(value) + "'";
+                resultMessage += value + ", ";
+            }
+            if (locationID != "")
+            {
+                query += " AND location='" + locationID + "'";
+                resultMessage += locationID + ", ";
+            }
+            if (ownerID != "")
+            {
+                query += " AND owner='" + ownerID + "'";
+                resultMessage += ownerID + ", ";
+            }
+
+            // Clearing the grid view
+            AssetSearchGridView.DataSource = null;
+            AssetSearchGridView.DataBind();
+
+            query = query.Replace("WHERE AND", "WHERE ");
+            //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-            conn.Open();
-            conn.Close();
+            try
+            {
+                conn.Open();
+                
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader != null && reader.HasRows) //if search results found
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    AssetSearchGridView.DataSource = dt;  //display found data in grid view
+                    AssetSearchGridView.DataBind();
+                    responseArea.Style.Add("color", "rgb(20, 210, 20)");
+                    responseArea.InnerHtml = "Search Results Found for " + resultMessage ;
+                }
+                else
+                {
+                    responseArea.Style.Add("color", "orangered");
+                    responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
 
         }
 
@@ -411,6 +477,10 @@ namespace FixAMz_WebApplication
                 {
                     if (res1 == 0)
                     {
+                        String disposeAssetCategoryID = "";
+                        String disposeAssetSubCategoryID = "";
+                        String disposeAssetLocationID = "";
+                        String disposeAssetOwnerID = "";
 
                         String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);

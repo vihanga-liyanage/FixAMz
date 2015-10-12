@@ -373,37 +373,44 @@ function addSubCategoryClearAll() {
 //Register Asset functions================================================================================================
 function addNewAssetClearAll() {
     document.forms[0]["RegisterAssetNameTextBox"].value = "";
-    //document.forms[0]["SubCategoryDropDownList"].value = "";
-    //document.forms[0]["CategoryDropDownList"].value = "";
     document.forms[0]["AddValueTextBox"].value = "";
-    /*document.forms[0]["LocationDropDownList"].value = "";
-    document.forms[0]["OwnerDropDownList"].value = "";
-    document.forms[0]["PersonToRecommendDropDownList"].value = "";*/
     return true;
 }
 
-/*function requiredFieldValidatorValue(controller, msg) {
-    var content = document.forms[0][controller + "TextBox"].value;
-    if (content == "" || content == 0) {
+
+/*function Validate_DropDown(controller,msg) {
+    var init = document.getElementById("<%=" + controller + "DropDown.ClientID%>").value;
+    //var initText = init.value;
+    if (init == "") {
+        //If the "Please Select" option is selected display error.
         document.getElementById(controller + "Validator").innerHTML = msg;
-        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        document.forms[0][controller + "DropDown"].style.border = "1px solid red";
         return false;
-    } else {
-        document.getElementById(controller + "Validator").innerHTML = "";
-        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+    }
+    return true;
+}*/
+
+function checkvalue() {
+    if (document.getElementById('AddAssetSubCategoryDropDown').value !== '' ||
+           document.getElementById('AddAssetCategoryDropDown').value !== '' ||
+           document.getElementById('AddAssetLocationDropDown').value !== '' ||
+           document.getElementById('AddAssetOwnerDropDown').value !== '' ||
+           document.getElementById('AddAssetPersonToRecommendDropDown').value !== ''
+          ) {
         return true;
     }
-}*/
-function validate() {
-    if (document.getElementById("ddlList").value == "") {
-        alert("Please select value"); // prompt user
-        document.getElementById("ddlList").focus(); //set focus back to control
-        return false;
-    }
+
+    alert('Please select at least one value');
+    return false;
 }
+
+
+
 function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
-    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName");  //numbers should be also used as asset name;
+    var isValidValue = requiredFieldValidator("AddValue", "Value cannot be empty.");
+    var dropcheck = checkvalue();
+    //var isValidSubcategory = Validate_DropDown("AddAssetSubCategory", "Select Subcategory.");
     /*var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");
@@ -411,7 +418,7 @@ function isValidAddAsset() {
     var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.");
 
     return (isValidLocName && isValidLocAddress && isValidContact && isValidLocManagerOffice && isValidLocDepartment && isValidLocZonalOffice && isValidLocBranch);*/
-    return (isValidAssetName && isValidValue);
+    return (isValidAssetName && isValidValue && dropcheck);
 }
 //Dispose Asset functions ===================================================================
 
