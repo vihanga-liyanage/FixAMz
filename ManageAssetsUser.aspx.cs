@@ -14,10 +14,6 @@ namespace FixAMz_WebApplication
 {
     public partial class ManaageAssetsUser : System.Web.UI.Page
     {
-        private string disposeAssetCategoryID;
-        private string disposeAssetSubCategoryID;
-        private string disposeAssetLocationID;
-        private string disposeAssetOwnerID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -28,14 +24,9 @@ namespace FixAMz_WebApplication
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
-                responseArea.InnerHtml = "";
                 Page.MaintainScrollPositionOnPostBack = true;
-                /*AddAssetCategoryDropDown.Items.Insert(0, new ListItem("--Select Category--", "0"));
-                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("--Select Sub Category--", "0"));
-                AddAssetLocationDropDown.Items.Insert(0, new ListItem("--Select Location--", "0"));
-                AddAssetOwnerDropDown.Items.Insert(0, new ListItem("--Select Owner--", "0"));
-                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("--Select Person--", "0"));*/
             }
+            responseArea.InnerHtml = "";
         }
 
         //Setting user name on header
@@ -327,36 +318,140 @@ namespace FixAMz_WebApplication
             String name = AssetSearchNameTextBox.Text.Trim();
             String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
             String categoryID = AssetSearchCategoryDropDown.SelectedValue;
-            int value = Convert.ToInt16(AssetSearchValueTextBox.Text);
+            String value = AssetSearchValueTextBox.Text;
             String locationID = AssetSearchLocationDropDown.SelectedValue;
             String ownerID = AssetSearchOwnerDropDown.SelectedValue;
 
-            String query = "SELCT * FROM Asset WHERE";
-            if (assetID != "")
-                query += " assetID='" + assetID + "'";
-            if (name != "")
-                query += " AND name='" + name + "'";
-            if (subCategoryID != "")
-                query += " AND scatID='" + subCategoryID + "'";
-            if (categoryID != "")
-                query += " AND catID='" + categoryID + "'";
-            if (value != 0)
-                query += " AND value='" + value + "'";
-            if (locationID != "")
-                query += " AND locID='" + locationID + "'";
-            if (ownerID != "")
-                query += " AND owner='" + ownerID + "'";
+            String resultMessage = "";
 
-            query = query.Replace("WHERE AND", "WHERE");
-            Response.Write(query);
+            String query = "SELECT * FROM Asset WHERE";
+            if (assetID != "")
+            {
+                query += " assetID='" + assetID + "'";
+                resultMessage += assetID + ", ";
+            }
+            if (name != "")
+            {
+                query += " AND name='" + name + "'";
+                resultMessage += name + ", ";
+            }
+            if (subCategoryID != "")
+            {
+                query += " AND subcategory='" + subCategoryID + "'";
+                resultMessage += subCategoryID + ", ";
+            }
+            if (categoryID != "")
+            {
+                query += " AND category='" + categoryID + "'";
+                resultMessage += categoryID + ", ";
+            }
+            if (value != "")
+            {
+                query += " AND value='" + Convert.ToInt16(value) + "'";
+                resultMessage += value + ", ";
+            }
+            if (locationID != "")
+            {
+                query += " AND location='" + locationID + "'";
+                resultMessage += locationID + ", ";
+            }
+            if (ownerID != "")
+            {
+                query += " AND owner='" + ownerID + "'";
+                resultMessage += ownerID + ", ";
+            }
+
+            // Clearing the grid view
+            AssetSearchGridView.DataSource = null;
+            AssetSearchGridView.DataBind();
+
+            query = query.Replace("WHERE AND", "WHERE ");
+            //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-            conn.Open();
-            conn.Close();
+            try
+            {
+                conn.Open();
+                
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader != null && reader.HasRows) //if search results found
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    AssetSearchGridView.DataSource = dt;  //display found data in grid view
+                    AssetSearchGridView.DataBind();
+                    responseArea.Style.Add("color", "rgb(20, 210, 20)");
+                    responseArea.InnerHtml = "Search Results Found for " + resultMessage ;
+                }
+                else
+                {
+                    responseArea.Style.Add("color", "orangered");
+                    responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
 
         }
 
         // Upgrade asset ===============================================================
+        protected void UpgradeAssetFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
 
+                String assetID = UpgradeAssetIDTextBox.Text;
+
+                string check = "SELECT count(*) from Asset WHERE assetID='" + assetID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query = "SELECT name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        UpgradeAssetName.InnerHtml = dr["name"].ToString();
+                        UpgradeAssetCategory.InnerHtml = dr["category"].ToString();
+                        UpgradeAssetSubcategory.InnerHtml = dr["subcategory"].ToString();
+                        UpgradeLocation.InnerHtml = dr["location"].ToString();
+                        UpgradeOwner.InnerHtml = dr["owner"].ToString();
+                        UpgradeValue.InnerHtml = dr["value"].ToString();
+                    }
+                    upgradeAssetInitState.Style.Add("display", "none");
+                    upgradeAssetSecondState.Style.Add("display", "block");
+                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetIDValidator.InnerHtml = "";
+                }
+                else
+                {
+                    upgradeAssetInitState.Style.Add("display", "block");
+                    upgradeAssetSecondState.Style.Add("display", "none");
+                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetIDValidator.InnerHtml = "Invalid asset ID";
+                }
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+
+        }
         // Dispose asset ===============================================================
 
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
@@ -381,6 +476,10 @@ namespace FixAMz_WebApplication
                 {
                     if (res1 == 0)
                     {
+                        String disposeAssetCategoryID = "";
+                        String disposeAssetSubCategoryID = "";
+                        String disposeAssetLocationID = "";
+                        String disposeAssetOwnerID = "";
 
                         String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);

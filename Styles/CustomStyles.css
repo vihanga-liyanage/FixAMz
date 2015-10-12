@@ -41,6 +41,10 @@ div
     font-size:large; 
     width:403px;
 }
+#userName
+{
+    padding-right: 5px;
+}
 .custom-nav-bar
 {
     font-size:20px;
@@ -347,6 +351,10 @@ div
     z-index:-1;
 }
 
+#upgradeAssetSecondState
+{
+    display:none;
+}
 
 /*================================dispose asset icon=============================*/
 .dispose-asset-icon
