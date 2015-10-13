@@ -103,6 +103,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.DropDownList AddAssetSubCategoryDropDown;
         
         /// <summary>
+        /// AddAssetSubCategoryValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddAssetSubCategoryValidator;
+        
+        /// <summary>
         /// AddAssetCategoryDropDown control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,24 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button6;
         
         /// <summary>
+        /// AssetSearchInitState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetSearchInitState;
+        
+        /// <summary>
+        /// AssetSearchIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchIDTextBox;
+        
+        /// <summary>
         /// AssetSearchNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -184,13 +211,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AssetSearchNameTextBox;
         
         /// <summary>
-        /// AssetSearchSubcategoryDropDown control.
+        /// AssetSearchSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubcategoryDropDown;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubCategoryDropDown;
         
         /// <summary>
         /// AssetSearchCategoryDropDown control.
@@ -245,6 +272,24 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
+        
+        /// <summary>
+        /// AssetSearchSecondState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetSearchSecondState;
+        
+        /// <summary>
+        /// AssetSearchGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView AssetSearchGridView;
         
         /// <summary>
         /// TransferAssetContent control.
@@ -400,58 +445,112 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button Button4;
         
         /// <summary>
-        /// Div20 control.
+        /// UpdateAssetContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div20;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateAssetContent;
         
         /// <summary>
-        /// Div21 control.
+        /// upgradeAssetInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div21;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upgradeAssetInitState;
         
         /// <summary>
-        /// Div22 control.
+        /// UpgradeAssetIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div22;
+        protected global::System.Web.UI.WebControls.TextBox UpgradeAssetIDTextBox;
         
         /// <summary>
-        /// Div23 control.
+        /// UpgradeAssetIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div23;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetIDValidator;
         
         /// <summary>
-        /// Div24 control.
+        /// UpgradeAssetFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div24;
+        protected global::System.Web.UI.WebControls.Button UpgradeAssetFindBtn;
         
         /// <summary>
-        /// Div25 control.
+        /// upgradeAssetSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div25;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upgradeAssetSecondState;
+        
+        /// <summary>
+        /// UpgradeAssetName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetName;
+        
+        /// <summary>
+        /// UpgradeAssetCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetCategory;
+        
+        /// <summary>
+        /// UpgradeAssetSubcategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetSubcategory;
+        
+        /// <summary>
+        /// UpgradeLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeLocation;
+        
+        /// <summary>
+        /// UpgradeOwner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeOwner;
+        
+        /// <summary>
+        /// UpgradeValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeValue;
         
         /// <summary>
         /// TextBox10 control.
@@ -616,13 +715,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeValue;
         
         /// <summary>
-        /// DisposeAssetDescription control.
+        /// DisposeAssetDescriptionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescription;
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescriptionTextBox;
+        
+        /// <summary>
+        /// DisposeAssetDescriptionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetDescriptionValidator;
         
         /// <summary>
         /// DisposeAssetPersonToRecommendDropDown control.
