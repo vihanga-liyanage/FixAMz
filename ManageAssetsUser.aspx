@@ -274,7 +274,7 @@
                     <div class="col-md-12">
                         <img src="img/UpdateIcon.png" />
                         <div class="expand-item-title" id="UpdateAssetHeader">Upgrade asset</div>
-                        <div class="expand-item-content" id="UpdateAssetContent" runat="server">
+                        <div class="expand-item-content" id="UpgradeAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="upgradeAssetInitState" runat="server">
                                     <div class="info-div">Enter asset ID to upgrade the asset</div>
@@ -323,18 +323,18 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Updated value</div>
-                                    <asp:TextBox ID="TextBox10" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="UpgradeAssetValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Description</div>
-                                    <asp:TextBox ID="TextBox11" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="UpgradeAssetDescriptionTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Person to recommend</div>
-                                    <asp:TextBox ID="TextBox12" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="UpgradeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <asp:Button ID="Button7" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                    <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                     <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
                             </div>

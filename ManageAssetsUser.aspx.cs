@@ -431,14 +431,14 @@ namespace FixAMz_WebApplication
                     }
                     upgradeAssetInitState.Style.Add("display", "none");
                     upgradeAssetSecondState.Style.Add("display", "block");
-                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetContent.Style.Add("display", "block");
                     UpgradeAssetIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     upgradeAssetInitState.Style.Add("display", "block");
                     upgradeAssetSecondState.Style.Add("display", "none");
-                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetContent.Style.Add("display", "block");
                     UpgradeAssetIDValidator.InnerHtml = "Invalid asset ID";
                 }
                 conn.Close();
@@ -453,6 +453,57 @@ namespace FixAMz_WebApplication
             }
 
         }
+
+
+        protected void UpgradeAssetRecommendBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+
+                // Getting logged in user's ID
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
+                String notID = setNotID();
+                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertUpgradeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@notid", notID);
+                cmd.Parameters.AddWithValue("@type", "Upgrade");
+                cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
+                cmd.Parameters.AddWithValue("@senduser", empID);
+                cmd.Parameters.AddWithValue("@receiveuser", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
+                upgradeAssetInitState.Style.Add("display", "block");
+                upgradeAssetSecondState.Style.Add("display", "none");
+                UpgradeAssetContent.Style.Add("display", "block");
+                UpgradeAssetIDTextBox.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
+        }
+
+
         // Dispose asset ===============================================================
 
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
