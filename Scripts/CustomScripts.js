@@ -403,7 +403,7 @@ function validate() {
 }
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
-    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidValue = requiredFieldValidator("AddValue", "Value cannot be empty.");
     /*var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");

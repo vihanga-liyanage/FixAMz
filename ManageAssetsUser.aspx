@@ -81,21 +81,18 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Value</div>
+                                    <div class="expand-item-label">Value</div>
                                     <asp:TextBox ID="AddValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="AddValueValidator" runat="server">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Location</div>
+                                    <div class="expand-item-label">Location</div>
                                     <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Owner</div>
+                                    <div class="expand-item-label">Owner</div>
                                     <asp:DropDownList ID="AddAssetOwnerDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>
                                 </div>
