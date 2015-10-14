@@ -94,6 +94,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterAssetNameValidator;
         
         /// <summary>
+        /// AddAssetCategoryDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetCategoryDropDown;
+        
+        /// <summary>
         /// AddAssetSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
@@ -110,15 +119,6 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddAssetSubCategoryValidator;
-        
-        /// <summary>
-        /// AddAssetCategoryDropDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AddAssetCategoryDropDown;
         
         /// <summary>
         /// AddValueTextBox control.
@@ -211,15 +211,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox AssetSearchNameTextBox;
         
         /// <summary>
-        /// AssetSearchSubCategoryDropDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubCategoryDropDown;
-        
-        /// <summary>
         /// AssetSearchCategoryDropDown control.
         /// </summary>
         /// <remarks>
@@ -227,6 +218,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList AssetSearchCategoryDropDown;
+        
+        /// <summary>
+        /// AssetSearchSubCategoryDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubCategoryDropDown;
         
         /// <summary>
         /// AssetSearchValueTextBox control.

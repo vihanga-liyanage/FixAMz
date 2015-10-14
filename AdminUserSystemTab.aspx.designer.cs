@@ -625,6 +625,24 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryNameValidator;
         
         /// <summary>
+        /// AddSubCategoryCategoryDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddSubCategoryCategoryDropDown;
+        
+        /// <summary>
+        /// AddSubCategoryCategoryValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddSubCategoryCategoryValidator;
+        
+        /// <summary>
         /// AddSubCategoryDepreciationRateTextBox control.
         /// </summary>
         /// <remarks>
