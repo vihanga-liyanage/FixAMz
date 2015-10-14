@@ -108,6 +108,21 @@ function nameValidator(controller) { //A name can only have a-zA-Z
     }
 }
 
+function dropDownRequiredFieldValidator(controller) {
+    var dropdown = document.forms[0][controller + "DropDown"];
+    var content = dropdown.options[dropdown.selectedIndex].value;
+    alert("dropDownRequiredFieldValidator " + controller + " " + content);
+    if (content == "") {
+        document.getElementById(controller + "Validator").innerHTML = "Please select a valid value";
+        document.forms[0][controller + "DropDown"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "DropDown"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
 //Ajax functions for client side database calling
 var usernameNotExists = false;
 function usernameValidator(){
@@ -435,10 +450,10 @@ function checkvalue() {
 }
 
 function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName");  //numbers should be also used as asset name;
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
     var isValidValue = requiredFieldValidator("AddValue", "Value cannot be empty.");
     var dropcheck = checkvalue();
-    //var isValidSubcategory = Validate_DropDown("AddAssetSubCategory", "Select Subcategory.");
+    var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     /*var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");

@@ -276,6 +276,12 @@
                                             <div class="validator" id="AddSubCategoryNameValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">
+                                            <div class="expand-item-label">Category</div>
+                                            <asp:DropDownList ID="AddSubCategoryCategoryDropDown" class="expand-item-textbox" runat="server">
+                                                </asp:DropDownList>
+                                            <div class="validator" id="AddSubCategoryCategoryValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
                                             <div class="expand-item-label">Depreciation Rate</div>
                                             <asp:TextBox ID="AddSubCategoryDepreciationRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             %

@@ -19,6 +19,8 @@ namespace FixAMz_WebApplication
             setSubCategoryID();
             responseArea.InnerHtml = "";
             setUserName();
+            if(!IsPostBack)
+                Load_Category();
         }
 
         //Setting user name
@@ -44,6 +46,31 @@ namespace FixAMz_WebApplication
                 responseArea.Style.Add("color", "orangered");
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 //Response.Write(ex.ToString());
+            }
+        }
+
+        //Loading category dropdown
+        protected void Load_Category()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, catID FROM Category", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddSubCategoryCategoryDropDown.DataSource = data;
+                AddSubCategoryCategoryDropDown.DataTextField = "name";
+                AddSubCategoryCategoryDropDown.DataValueField = "catID";
+                AddSubCategoryCategoryDropDown.DataBind();
+                AddSubCategoryCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                data.Close();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
             }
         }
 
@@ -426,10 +453,11 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Category = "insert into SubCategory (scatID, name, depreciationRate, lifetime) values (@scatid, @name, @depre, @lifetime)";
+                string insertion_Category = "insert into SubCategory (scatID, catID, name, depreciationRate, lifetime) values (@scatid, @catID, @name, @depre, @lifetime)";
                 SqlCommand cmd = new SqlCommand(insertion_Category, conn);
 
                 cmd.Parameters.AddWithValue("@scatid", AddSubCategoryID.InnerHtml);
+                cmd.Parameters.AddWithValue("@catID", AddSubCategoryCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@name", AddSubCategoryNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@depre", Convert.ToInt16(AddSubCategoryDepreciationRateTextBox.Text));
                 cmd.Parameters.AddWithValue("@lifetime", Convert.ToInt16(AddSubCategoryLifetimeTextBox.Text));
@@ -441,6 +469,7 @@ namespace FixAMz_WebApplication
                 setSubCategoryID();
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Sub Category " + AddSubCategoryNameTextBox.Text + " added successfully!";
+                Load_Category();
             }
             catch (Exception ex)
             {
