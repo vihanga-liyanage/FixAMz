@@ -51,7 +51,7 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
-                string check = "select count(*) from SystemUser where username='" + username + "' and password='" + encriptedPassword + "'";
+                String check = "select count(*) from SystemUser where username='" + username + "' and password='" + encriptedPassword + "'";
                 SqlCommand com = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(com.ExecuteScalar().ToString());
                 conn.Close();

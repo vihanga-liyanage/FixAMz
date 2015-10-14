@@ -76,8 +76,8 @@ namespace FixAMz_WebApplication
                 AddAssetSubCategoryDropDown.DataSource = data;
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
-                AddAssetSubCategoryDropDown.DataBind();
-                //AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                AddAssetSubCategoryDropDown.DataBind();AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -85,7 +85,7 @@ namespace FixAMz_WebApplication
                 AssetSearchSubCategoryDropDown.DataTextField = "name";
                 AssetSearchSubCategoryDropDown.DataValueField = "scatID";
                 AssetSearchSubCategoryDropDown.DataBind();
-                //AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
                 data.Close();
 
                 conn.Close();
@@ -109,7 +109,7 @@ namespace FixAMz_WebApplication
                 AddAssetCategoryDropDown.DataTextField = "name";
                 AddAssetCategoryDropDown.DataValueField = "catID";
                 AddAssetCategoryDropDown.DataBind();
-                //AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 data = cmd.ExecuteReader();
@@ -117,7 +117,7 @@ namespace FixAMz_WebApplication
                 AssetSearchCategoryDropDown.DataTextField = "name";
                 AssetSearchCategoryDropDown.DataValueField = "catID";
                 AssetSearchCategoryDropDown.DataBind();
-                //AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
+                AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();
@@ -150,6 +150,15 @@ namespace FixAMz_WebApplication
                 AssetSearchLocationDropDown.DataValueField = "locID";
                 AssetSearchLocationDropDown.DataBind();
                 AssetSearchLocationDropDown.Items.Insert(0, new ListItem("-- Select a sub location --", ""));
+                data.Close();
+
+                //Transfer asset location drop down
+                data = cmd.ExecuteReader();
+                TransferLocationDropDown.DataSource = data;
+                TransferLocationDropDown.DataTextField = "name";
+                TransferLocationDropDown.DataValueField = "locID";
+                TransferLocationDropDown.DataBind();
+                //TransferLocationDropDown.Items.Insert(0, new ListItem("-- Select a sub location --", ""));
                 data.Close();
 
                 conn.Close();
@@ -193,6 +202,24 @@ namespace FixAMz_WebApplication
                 AssetSearchOwnerDropDown.DataValueField = "empID";
                 AssetSearchOwnerDropDown.DataBind();
                 AssetSearchOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                data.Close();
+
+                //Transfer asset owner drop down
+                data = cmd.ExecuteReader();
+                TransferOwnerDropDown.DataSource = data;
+                TransferOwnerDropDown.DataTextField = "name";
+                TransferOwnerDropDown.DataValueField = "empID";
+                TransferOwnerDropDown.DataBind();
+                //TransferOwnerDropDown.Items.Insert(0, new ListItem("-- Select an owner --", ""));
+                data.Close();
+
+                //Transfer asset recommend person drop down
+                data = cmd.ExecuteReader();
+                TransAssetSendForRecommendDropDown.DataSource = data;
+                TransAssetSendForRecommendDropDown.DataTextField = "name";
+                TransAssetSendForRecommendDropDown.DataValueField = "empID";
+                TransAssetSendForRecommendDropDown.DataBind();
+                TransAssetSendForRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
                 //Dispose asset recommend person drop down
@@ -261,17 +288,39 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
+
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
                 string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
-                SqlCommand cmd = new SqlCommand(insertion_Asset, conn);
+                cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@value", Convert.ToInt16(AddValueTextBox.Text));
+                //cmd.Parameters.AddWithValue("@value", Convert.ToInt16(AddValueTextBox.Text));
+                cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
                 cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
+
+                cmd.ExecuteNonQuery();
+
+                String notID = setNotID();
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertDisposeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@notid", notID);
+                cmd.Parameters.AddWithValue("@type", "RgRecommand");
+                cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@notcontent", "newly purchased");
+                cmd.Parameters.AddWithValue("@senduser", empID);
+                cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
 
@@ -396,6 +445,7 @@ namespace FixAMz_WebApplication
                 if (res == 1)
                 {
                     String query = "SELECT name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
@@ -409,14 +459,14 @@ namespace FixAMz_WebApplication
                     }
                     upgradeAssetInitState.Style.Add("display", "none");
                     upgradeAssetSecondState.Style.Add("display", "block");
-                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetContent.Style.Add("display", "block");
                     UpgradeAssetIDValidator.InnerHtml = "";
                 }
                 else
                 {
                     upgradeAssetInitState.Style.Add("display", "block");
                     upgradeAssetSecondState.Style.Add("display", "none");
-                    UpdateAssetContent.Style.Add("display", "block");
+                    UpgradeAssetContent.Style.Add("display", "block");
                     UpgradeAssetIDValidator.InnerHtml = "Invalid asset ID";
                 }
                 conn.Close();
@@ -431,6 +481,55 @@ namespace FixAMz_WebApplication
             }
 
         }
+
+        protected void UpgradeAssetRecommendBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+
+                // Getting logged in user's ID
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
+                String notID = setNotID();
+                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertUpgradeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@notid", notID);
+                cmd.Parameters.AddWithValue("@type", "Upgrade");
+                cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
+                cmd.Parameters.AddWithValue("@senduser", empID);
+                cmd.Parameters.AddWithValue("@receiveuser", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
+                upgradeAssetInitState.Style.Add("display", "block");
+                upgradeAssetSecondState.Style.Add("display", "none");
+                UpgradeAssetContent.Style.Add("display", "block");
+                UpgradeAssetIDTextBox.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
+        }
+
         // Dispose asset ===============================================================
 
         protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
@@ -620,6 +719,54 @@ namespace FixAMz_WebApplication
         }
 
         // Transfer asset ===============================================================
+        protected String setTransAssetID()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 transID FROM TransferAsset ORDER BY transID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newTransAssetID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastTransAssetID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastTransAssetID[0]);
+                    String temp = "";
+                    for (int i = 2; i < lastTransAssetID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastTransAssetID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newTransAssetID = chr;
+                    for (int i = 1; i < lastTransAssetID.Length - temp.Length; i++)
+                    {
+                        newTransAssetID += "0";
+                    }
+                    newTransAssetID += temp;
+                    conn.Close();
+                    return newTransAssetID;
+                }
+                else
+                {
+                    newTransAssetID = "TA00001";
+                    conn.Close();
+                    return newTransAssetID;
+                }
+
+                //AddNewAssetId.InnerHtml = newTransAssetID;          
+                
+            }
+            catch (SqlException e)
+            {
+                responseArea.Style.Add("color", "Yellow");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+                return "";
+            }
+
+        }
+
         protected void TransferAssetFindBtn_Click(object sender, EventArgs e)
         {
             try
@@ -630,28 +777,68 @@ namespace FixAMz_WebApplication
                 String assetID = TransferAssetIDTextBox.Text;
 
                 string check = "select count(*) from Asset WHERE assetID='" + assetID + "'";
+                string getassetid = "select count(*) from TransferAsset WHERE assetID='" + assetID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
+                SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
 
+                cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
                 if (res == 1)
                 {
-                    String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
-                    cmd = new SqlCommand(query, conn);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
+                    if (res1 == 0)
                     {
-                        TransferItemName.InnerHtml = dr["name"].ToString();
-                        TransferCategory.InnerHtml = dr["category"].ToString();
-                        TransferSubcategory.InnerHtml = dr["subcategory"].ToString();
-                        TransferLocation.InnerHtml = dr["location"].ToString();
-                        TransferOwner.InnerHtml = dr["owner"].ToString();
-                        TransferValue.InnerHtml = dr["value"].ToString();
+                        String transferAssetCategoryID = "";
+                        String transferAssetSubCategoryID = "";
+                        String transferAssetLocationID = "";
+                        String transferAssetOwnerID = "";
+
+                        String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        cmd = new SqlCommand(query, conn);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            //DisposeAssetID.InnerHtml = dr["assetID"].ToString();
+                            TransferItemName.InnerHtml = dr["name"].ToString();
+                            transferAssetCategoryID = dr["category"].ToString();
+                            transferAssetSubCategoryID = dr["subcategory"].ToString();
+                            transferAssetLocationID = dr["location"].ToString();
+                            transferAssetOwnerID = dr["owner"].ToString();
+                            TransferValue.InnerHtml = dr["value"].ToString() + " LKR";
+                        }
+                        dr.Close();
+                        // Get category name
+                        String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + transferAssetCategoryID + "'";
+                        cmd = new SqlCommand(getCatNameQuery, conn);
+                        TransferCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                        // Get sub category name
+                        String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + transferAssetSubCategoryID + "'";
+                        cmd = new SqlCommand(getSubCatNameQuery, conn);
+                        TransferSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                        // Get location name
+                        TransferLocationDropDown.SelectedValue = transferAssetLocationID;
+                        // Get owner name
+                        TransferOwnerDropDown.SelectedValue = transferAssetOwnerID;
+
+                        transferAssetInitState.Style.Add("display", "none");
+                        transferAssetSecondState.Style.Add("display", "block");
+                        TransferAssetContent.Style.Add("display", "block");
+                        TransferAssetIDValidator.InnerHtml = "";
+                        TransferAssetIDTextBox.Focus();
                     }
-                    transferAssetInitState.Style.Add("display", "none");
-                    transferAssetSecondState.Style.Add("display", "block");
-                    TransferAssetContent.Style.Add("display", "block");
-                    TransferAssetIDValidator.InnerHtml = "";
-                    TransferAssetIDTextBox.Focus();
+                    else
+                    {
+                        transferAssetInitState.Style.Add("display", "block");
+                        transferAssetSecondState.Style.Add("display", "none");
+                        TransferAssetContent.Style.Add("display", "block");
+                        TransferAssetIDValidator.InnerHtml = "Asset alrady recommended to transfer!";
+                        TransferItemName.Focus();
+                    }
+
+                    conn.Close();
+                    //updating expandingItems dictionary in javascript
+                    ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('TransferAssetContent');", true);
                 }
                 else
                 {
@@ -661,10 +848,6 @@ namespace FixAMz_WebApplication
                     TransferAssetIDValidator.InnerHtml = "Asset ID not found!";
                     TransferItemName.Focus();
                 }
-
-                conn.Close();
-                //updating expandingItems dictionary in javascript
-                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('TransferAssetContent');", true);
             }
             catch (SqlException ex)
             {
@@ -672,7 +855,65 @@ namespace FixAMz_WebApplication
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
-        }        
+        }
+
+        protected void TransferAssetRecommendBtn_click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
+                String transID = setTransAssetID();
+                String notID = setNotID();
+                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, location, owner, recommend, approve) VALUES (@transid, @assetid, @type, @status, @date, @location, @owner, @recommend, @approve)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
+                SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
+
+                cmd.Parameters.AddWithValue("@transid", transID);
+                cmd.Parameters.AddWithValue("@assetid", TransferAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@type", "0");
+                cmd.Parameters.AddWithValue("@status", "0");
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", TransAssetSendForRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@approve", "0");
+                cmd.ExecuteNonQuery();
+
+                cmd2.Parameters.AddWithValue("@notid", notID);
+                cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
+                cmd2.Parameters.AddWithValue("@nType", "0");
+                cmd2.Parameters.AddWithValue("@nNotContent", "0");
+                cmd2.Parameters.AddWithValue("@nSendUser", empID);
+                cmd2.Parameters.AddWithValue("@nReceiveUser", TransAssetSendForRecommendDropDown.SelectedValue);
+                cmd2.Parameters.AddWithValue("@nDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd2.Parameters.AddWithValue("@nStatus", "0");
+                cmd2.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "transferClearAll", "transferClearAll();", true);
+
+                responseArea.Style.Add("color", "green");
+                responseArea.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' is sent for approval!";
+                transferAssetInitState.Style.Add("display", "block");
+                transferAssetSecondState.Style.Add("display", "none");
+                TransferAssetContent.Style.Add("display", "block");
+                TransferAssetIDTextBox.Text = "";
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
 
     }
 }

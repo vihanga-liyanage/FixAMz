@@ -103,6 +103,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.DropDownList AddAssetSubCategoryDropDown;
         
         /// <summary>
+        /// AddAssetSubCategoryValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddAssetSubCategoryValidator;
+        
+        /// <summary>
         /// AddAssetCategoryDropDown control.
         /// </summary>
         /// <remarks>
@@ -364,24 +373,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferSubcategory;
         
         /// <summary>
-        /// TransferLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferLocation;
-        
-        /// <summary>
-        /// TransferOwner control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferOwner;
-        
-        /// <summary>
         /// TransferValue control.
         /// </summary>
         /// <remarks>
@@ -391,58 +382,58 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferValue;
         
         /// <summary>
-        /// TextBox9 control.
+        /// TransferLocationDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.DropDownList TransferLocationDropDown;
         
         /// <summary>
-        /// TextBox7 control.
+        /// TransferOwnerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.DropDownList TransferOwnerDropDown;
         
         /// <summary>
-        /// TextBox8 control.
+        /// TransAssetSendForRecommendDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.DropDownList TransAssetSendForRecommendDropDown;
         
         /// <summary>
-        /// Button3 control.
+        /// TransferAssetReco control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button TransferAssetReco;
         
         /// <summary>
-        /// Button4 control.
+        /// TransferAssetcancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button TransferAssetcancel;
         
         /// <summary>
-        /// UpdateAssetContent control.
+        /// UpgradeAssetContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateAssetContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetContent;
         
         /// <summary>
         /// upgradeAssetInitState control.
@@ -544,40 +535,40 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeValue;
         
         /// <summary>
-        /// TextBox10 control.
+        /// UpgradeAssetValueTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.TextBox UpgradeAssetValueTextBox;
         
         /// <summary>
-        /// TextBox11 control.
+        /// UpgradeAssetDescriptionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.TextBox UpgradeAssetDescriptionTextBox;
         
         /// <summary>
-        /// TextBox12 control.
+        /// UpgradeAssetPersonToRecommendDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.DropDownList UpgradeAssetPersonToRecommendDropDown;
         
         /// <summary>
-        /// Button7 control.
+        /// UpgradeAssetRecommendBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Button UpgradeAssetRecommendBtn;
         
         /// <summary>
         /// Button8 control.

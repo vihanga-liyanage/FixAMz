@@ -57,26 +57,23 @@
                         <div class="expand-item-content" id="AddNewUserContent">
                             <div class="col-md-8">
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Asset ID</div>
+                                    <div class="expand-item-label">Asset ID</div>
                                     <div id="AddNewAssetId" runat="server" class="custom-label">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Name</div>
+                                    <div class="expand-item-label">Name</div>
                                     <asp:TextBox ID="RegisterAssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="RegisterAssetNameValidator" runat="server">
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Subcategory</div>
+                                    <div class="expand-item-label">Subcategory</div>
                                     <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                   <!-- <div class="validator" id="AddAssetSubCategoryValidator" runat="server"></div> -->
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Category</div>
+                                    <div class="expand-item-label">Category</div>
                                     <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>
                                 </div>
@@ -97,16 +94,13 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Person to recommend</div>
-                                    <asp:DropDownList ID="AddAssetPersonToRecommendDropDown" class="expand-item-textbox"
-                                        runat="server">
+                                    <div class="expand-item-label">Person to recommend</div>
+                                    <asp:DropDownList ID="AddAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
                                     <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation"
-                                        OnClick="SendForRecommendationBtn_Click" OnClientClick="return isValidAddAsset()"
-                                        class="expand-item-btn" />
+                                        OnClick="SendForRecommendationBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
                                     <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
                             </div>
@@ -212,59 +206,37 @@
                                     <div class="info-div">
                                         You can update the owner or the location of the asset.</div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Name</div>
-                                        <div id="TransferItemName" runat="server" class="custom-label">
-                                        </div>
+                                        <div class="expand-item-label">Name</div>
+                                        <div id="TransferItemName" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Category</div>
-                                        <div id="TransferCategory" runat="server" class="custom-label">
-                                        </div>
+                                        <div class="expand-item-label">Category</div>
+                                        <div id="TransferCategory" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Sub category</div>
-                                        <div id="TransferSubcategory" runat="server" class="custom-label">
-                                        </div>
+                                        <div class="expand-item-label">Sub category</div>
+                                        <div id="TransferSubcategory" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Location</div>
-                                        <div id="TransferLocation" runat="server" class="custom-label">
-                                        </div>
+                                        <div class="expand-item-label">Value</div>
+                                        <div id="TransferValue" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Owner</div>
-                                        <div id="TransferOwner" runat="server" class="custom-label">
-                                        </div>
+                                        <div class="expand-item-label">Location</div>
+                                        <asp:DropDownList ID="TransferLocationDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Value</div>
-                                        <div id="TransferValue" runat="server" class="custom-label">
-                                        </div>
+                                        <div class="expand-item-label">Owner</div>
+                                        <asp:DropDownList ID="TransferOwnerDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            New owner</div>
-                                        <asp:TextBox ID="TextBox9" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="expand-item-label">Person to recommend</div>
+                                        <asp:DropDownList ID="TransAssetSendForRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            New location</div>
-                                        <asp:TextBox ID="TextBox7" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Person to recommend</div>
-                                        <asp:TextBox ID="TextBox8" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <asp:Button ID="Button3" runat="server" Text="Send for recommendation" class="expand-item-btn" />
-                                        <asp:Button ID="Button4" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        <asp:Button ID="TransferAssetReco" runat="server" Text="Send for recommendation" 
+                                             onClick="TransferAssetRecommendBtn_click" class="expand-item-btn" />
+                                        <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +252,7 @@
                     <div class="col-md-12">
                         <img src="img/UpdateIcon.png" />
                         <div class="expand-item-title" id="UpdateAssetHeader">Upgrade asset</div>
-                        <div class="expand-item-content" id="UpdateAssetContent" runat="server">
+                        <div class="expand-item-content" id="UpgradeAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="upgradeAssetInitState" runat="server">
                                     <div class="info-div">Enter asset ID to upgrade the asset</div>
@@ -329,18 +301,18 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Updated value</div>
-                                    <asp:TextBox ID="TextBox10" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="UpgradeAssetValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Description</div>
-                                    <asp:TextBox ID="TextBox11" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="UpgradeAssetDescriptionTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Person to recommend</div>
-                                    <asp:TextBox ID="TextBox12" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="UpgradeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <asp:Button ID="Button7" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                    <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" />
                                     <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
                             </div>
