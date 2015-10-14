@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class AdminUserPeopleTab {
+    public partial class ManaageAssetsUser {
         
         /// <summary>
         /// form1 control.
@@ -67,229 +67,193 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseArea;
         
         /// <summary>
-        /// AddNewEmpID control.
+        /// AddNewAssetId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetId;
         
         /// <summary>
-        /// AddNewFirstNameTextBox control.
+        /// RegisterAssetNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewFirstNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox RegisterAssetNameTextBox;
         
         /// <summary>
-        /// AddNewFirstNameValidator control.
+        /// RegisterAssetNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewFirstNameValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisterAssetNameValidator;
         
         /// <summary>
-        /// AddNewLastNameTextBox control.
+        /// AddAssetSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewLastNameTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetSubCategoryDropDown;
         
         /// <summary>
-        /// AddNewLastNameValidator control.
+        /// AddAssetCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewLastNameValidator;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetCategoryDropDown;
         
         /// <summary>
-        /// AddNewEmailTextBox control.
+        /// AddValueTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewEmailTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AddValueTextBox;
         
         /// <summary>
-        /// AddNewEmailValidator control.
+        /// AddValueValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewEmailValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddValueValidator;
         
         /// <summary>
-        /// AddNewContactTextBox control.
+        /// AddAssetLocationDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewContactTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetLocationDropDown;
         
         /// <summary>
-        /// AddNewContactValidator control.
+        /// AddAssetOwnerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetOwnerDropDown;
         
         /// <summary>
-        /// TypeDropDownList control.
+        /// AddAssetPersonToRecommendDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TypeDropDownList;
+        protected global::System.Web.UI.WebControls.DropDownList AddAssetPersonToRecommendDropDown;
         
         /// <summary>
-        /// AddNewUsernameTextBox control.
+        /// AddAssetButttonReco control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewUsernameTextBox;
+        protected global::System.Web.UI.WebControls.Button AddAssetButttonReco;
         
         /// <summary>
-        /// AddNewUsernameValidator control.
+        /// Button6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewUsernameValidator;
+        protected global::System.Web.UI.WebControls.Button Button6;
         
         /// <summary>
-        /// AddNewPasswordTextBox control.
+        /// AssetSearchInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewPasswordTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetSearchInitState;
         
         /// <summary>
-        /// AddNewPasswordValidator control.
+        /// AssetSearchIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewPasswordValidator;
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchIDTextBox;
         
         /// <summary>
-        /// AddNewConfirmPasswordTextBox control.
+        /// AssetSearchNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewConfirmPasswordTextBox;
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchNameTextBox;
         
         /// <summary>
-        /// AddNewConfirmPasswordValidator control.
+        /// AssetSearchSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewConfirmPasswordValidator;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubCategoryDropDown;
         
         /// <summary>
-        /// AddUserBtn control.
+        /// AssetSearchCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddUserBtn;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchCategoryDropDown;
         
         /// <summary>
-        /// AddNewCancelBtn control.
+        /// AssetSearchValueTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddNewCancelBtn;
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchValueTextBox;
         
         /// <summary>
-        /// SearchEmployeeIDTextBox control.
+        /// AssetSearchLocationDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchEmployeeIDTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchLocationDropDown;
         
         /// <summary>
-        /// SearchFirstNameTextBox control.
+        /// AssetSearchOwnerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchFirstNameTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchOwnerDropDown;
         
         /// <summary>
-        /// SearchLastNameTextBox control.
+        /// SearchAssetBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchLastNameTextBox;
-        
-        /// <summary>
-        /// SearchEmailTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchEmailTextBox;
-        
-        /// <summary>
-        /// SearchContactTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchContactTextBox;
-        
-        /// <summary>
-        /// SearchUsernameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchUsernameTextBox;
-        
-        /// <summary>
-        /// SearchUserBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchUserBtn;
+        protected global::System.Web.UI.WebControls.Button SearchAssetBtn;
         
         /// <summary>
         /// CancelSearchBtn control.
@@ -301,300 +265,471 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
         
         /// <summary>
-        /// gvEmployees control.
+        /// AssetSearchSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEmployees;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetSearchSecondState;
         
         /// <summary>
-        /// Div2 control.
+        /// AssetSearchGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
+        protected global::System.Web.UI.WebControls.GridView AssetSearchGridView;
         
         /// <summary>
-        /// UpdateUserContent control.
+        /// TransferAssetContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateUserContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferAssetContent;
         
         /// <summary>
-        /// updateUserInitState control.
+        /// transferAssetInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateUserInitState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl transferAssetInitState;
         
         /// <summary>
-        /// UpdateEmpIDTextBox control.
+        /// TransferAssetIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateEmpIDTextBox;
+        protected global::System.Web.UI.WebControls.TextBox TransferAssetIDTextBox;
         
         /// <summary>
-        /// UpdateEmpIDValidator control.
+        /// TransferAssetIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpIDValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferAssetIDValidator;
         
         /// <summary>
-        /// UpdateUserFindBtn control.
+        /// TransferAssetFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateUserFindBtn;
+        protected global::System.Web.UI.WebControls.Button TransferAssetFindBtn;
         
         /// <summary>
-        /// updateUserSecondState control.
+        /// transferAssetSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateUserSecondState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl transferAssetSecondState;
         
         /// <summary>
-        /// UpdateEmpID control.
+        /// TransferItemName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferItemName;
         
         /// <summary>
-        /// UpdateFirstNameTextBox control.
+        /// TransferCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateFirstNameTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferCategory;
         
         /// <summary>
-        /// UpdateFirstNameValidator control.
+        /// TransferSubcategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateFirstNameValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferSubcategory;
         
         /// <summary>
-        /// UpdateLastNameTextBox control.
+        /// TransferValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateLastNameTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferValue;
         
         /// <summary>
-        /// UpdateLastNameValidator control.
+        /// TransferLocationDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLastNameValidator;
+        protected global::System.Web.UI.WebControls.DropDownList TransferLocationDropDown;
         
         /// <summary>
-        /// UpdateEmailTextBox control.
+        /// TransferOwnerDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateEmailTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList TransferOwnerDropDown;
         
         /// <summary>
-        /// UpdateEmailValidator control.
+        /// TransAssetSendForRecommendDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateEmailValidator;
+        protected global::System.Web.UI.WebControls.DropDownList TransAssetSendForRecommendDropDown;
         
         /// <summary>
-        /// UpdateContactTextBox control.
+        /// TransferAssetReco control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateContactTextBox;
+        protected global::System.Web.UI.WebControls.Button TransferAssetReco;
         
         /// <summary>
-        /// UpdateContactValidator control.
+        /// TransferAssetcancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateContactValidator;
+        protected global::System.Web.UI.WebControls.Button TransferAssetcancel;
         
         /// <summary>
-        /// UpdateUserBtn control.
+        /// UpdateAssetContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateUserBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateAssetContent;
         
         /// <summary>
-        /// UpdateUserCancelBtn control.
+        /// upgradeAssetInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateUserCancelBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upgradeAssetInitState;
         
         /// <summary>
-        /// Div1 control.
+        /// UpgradeAssetIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        protected global::System.Web.UI.WebControls.TextBox UpgradeAssetIDTextBox;
         
         /// <summary>
-        /// DeleteUserContent control.
+        /// UpgradeAssetIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteUserContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetIDValidator;
         
         /// <summary>
-        /// deleteUserInitState control.
+        /// UpgradeAssetFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserInitState;
+        protected global::System.Web.UI.WebControls.Button UpgradeAssetFindBtn;
         
         /// <summary>
-        /// DeleteUserEmpIDTextBox control.
+        /// upgradeAssetSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DeleteUserEmpIDTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upgradeAssetSecondState;
         
         /// <summary>
-        /// DeleteUserEmpIDValidator control.
+        /// UpgradeAssetName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteUserEmpIDValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetName;
         
         /// <summary>
-        /// DeleteUserFindBtn control.
+        /// UpgradeAssetCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteUserFindBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetCategory;
         
         /// <summary>
-        /// deleteUserSecondState control.
+        /// UpgradeAssetSubcategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl deleteUserSecondState;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetSubcategory;
         
         /// <summary>
-        /// DeleteEmpID control.
+        /// UpgradeLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmpID;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeLocation;
         
         /// <summary>
-        /// DeleteFirstName control.
+        /// UpgradeOwner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteFirstName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeOwner;
         
         /// <summary>
-        /// DeleteLastName control.
+        /// UpgradeValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteLastName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeValue;
         
         /// <summary>
-        /// DeleteEmail control.
+        /// TextBox10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteEmail;
+        protected global::System.Web.UI.WebControls.TextBox TextBox10;
         
         /// <summary>
-        /// DeleteContact control.
+        /// TextBox11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeleteContact;
+        protected global::System.Web.UI.WebControls.TextBox TextBox11;
         
         /// <summary>
-        /// DeleteUserBtn control.
+        /// TextBox12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteUserBtn;
+        protected global::System.Web.UI.WebControls.TextBox TextBox12;
         
         /// <summary>
-        /// DeleteUserCancelBtn control.
+        /// Button7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteUserCancelBtn;
+        protected global::System.Web.UI.WebControls.Button Button7;
+        
+        /// <summary>
+        /// Button8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button8;
+        
+        /// <summary>
+        /// DisposeAssetContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetContent;
+        
+        /// <summary>
+        /// disposeAssetInitState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl disposeAssetInitState;
+        
+        /// <summary>
+        /// DisposeAssetIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetIDTextBox;
+        
+        /// <summary>
+        /// DisposeAssetIDValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetIDValidator;
+        
+        /// <summary>
+        /// DisposeAssetFindBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DisposeAssetFindBtn;
+        
+        /// <summary>
+        /// disposeAssetSecondState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl disposeAssetSecondState;
+        
+        /// <summary>
+        /// DisposeAssetID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetID;
+        
+        /// <summary>
+        /// DisposeItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeItemName;
+        
+        /// <summary>
+        /// DisposeCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeCategory;
+        
+        /// <summary>
+        /// DisposeSubCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeSubCategory;
+        
+        /// <summary>
+        /// DisposeLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeLocation;
+        
+        /// <summary>
+        /// DisposeOwner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeOwner;
+        
+        /// <summary>
+        /// DisposeValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeValue;
+        
+        /// <summary>
+        /// DisposeAssetDescriptionTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DisposeAssetDescriptionTextBox;
+        
+        /// <summary>
+        /// DisposeAssetDescriptionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetDescriptionValidator;
+        
+        /// <summary>
+        /// DisposeAssetPersonToRecommendDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DisposeAssetPersonToRecommendDropDown;
+        
+        /// <summary>
+        /// DisposeAssetRecommendBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DisposeAssetRecommendBtn;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

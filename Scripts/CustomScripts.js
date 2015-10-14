@@ -370,14 +370,58 @@ function addSubCategoryClearAll() {
     document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
     return true;
 }
+//Register Asset functions================================================================================================
+function addNewAssetClearAll() {
+    document.forms[0]["RegisterAssetNameTextBox"].value = "";
+    //document.forms[0]["SubCategoryDropDownList"].value = "";
+    //document.forms[0]["CategoryDropDownList"].value = "";
+    document.forms[0]["AddValueTextBox"].value = "";
+    /*document.forms[0]["LocationDropDownList"].value = "";
+    document.forms[0]["OwnerDropDownList"].value = "";
+    document.forms[0]["PersonToRecommendDropDownList"].value = "";*/
+    return true;
+}
+
+/*function requiredFieldValidatorValue(controller, msg) {
+    var content = document.forms[0][controller + "TextBox"].value;
+    if (content == "" || content == 0) {
+        document.getElementById(controller + "Validator").innerHTML = msg;
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}*/
+function validate() {
+    if (document.getElementById("ddlList").value == "") {
+        alert("Please select value"); // prompt user
+        document.getElementById("ddlList").focus(); //set focus back to control
+        return false;
+    }
+}
+function isValidAddAsset() {
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
+    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    /*var isValidContact = contactValidator("AddLocationContact");
+    var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
+    var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");
+    var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.");
+    var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.");
+
+    return (isValidLocName && isValidLocAddress && isValidContact && isValidLocManagerOffice && isValidLocDepartment && isValidLocZonalOffice && isValidLocBranch);*/
+    return (isValidAssetName && isValidValue);
+}
 
 //Transfer Asset functions ===================================================================
 
-function isValidTransferAssetID() {
-    return requiredFieldValidator("TransferAssetID", "Asset ID cannot be empty.");
+function transferClearAll() {
+    document.forms[0]["TransferAssetIDTextBox"].value = "";
+    document.getElementById("transferAssetSecondState").style.display = "none";
+    document.getElementById("transferAssetInitState").style.display = "block";
+    return true;
 }
-
-
 
 //Dispose Asset functions ===================================================================
 
@@ -386,4 +430,8 @@ function disposeClearAll() {
     document.getElementById("disposeAssetSecondState").style.display = "none";
     document.getElementById("disposeAssetInitState").style.display = "block";
     return true;
+}
+function isValidDisposeAssetDescription() {
+    var DisposeAssetDescription = requiredFieldValidator("DisposeAssetDescription", "Description cannot be empty.");
+    return (DisposeAssetDescription);
 }
