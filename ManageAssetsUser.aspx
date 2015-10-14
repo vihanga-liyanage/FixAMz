@@ -235,7 +235,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="TransferAssetReco" runat="server" Text="Send for recommendation" 
-                                             onClick="TransferAssetRecommendBtn_click" class="expand-item-btn" />
+                                             onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
                                         <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn" />
                                     </div>
                                 </div>
