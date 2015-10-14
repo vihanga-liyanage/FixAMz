@@ -111,7 +111,7 @@ function nameValidator(controller) { //A name can only have a-zA-Z
 function dropDownRequiredFieldValidator(controller) {
     var dropdown = document.forms[0][controller + "DropDown"];
     var content = dropdown.options[dropdown.selectedIndex].value;
-    alert("dropDownRequiredFieldValidator " + controller + " " + content);
+    //alert("dropDownRequiredFieldValidator " + controller + " " + content);
     if (content == "") {
         document.getElementById(controller + "Validator").innerHTML = "Please select a valid value";
         document.forms[0][controller + "DropDown"].style.border = "1px solid red";
@@ -398,18 +398,23 @@ function addNewAssetClearAll() {
     return true;
 }
 
-/*function requiredFieldValidatorValue(controller, msg) {
+function requiredFieldValidatorValue(controller, msg) {
     var content = document.forms[0][controller + "TextBox"].value;
-    if (content == "" || content == 0) {
+    var re = /^\d+(\.\d{1,2})?$/;
+    if (content == "") {
         document.getElementById(controller + "Validator").innerHTML = msg;
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
-    } else {
+    }else if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid value.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    }else {
         document.getElementById(controller + "Validator").innerHTML = "";
         document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
         return true;
     }
-}*/
+}
 function validate() {
     if (document.getElementById("ddlList").value == "") {
         alert("Please select value"); // prompt user
@@ -419,49 +424,24 @@ function validate() {
 }
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
-    var isValidValue = requiredFieldValidator("AddValue", "Value cannot be empty.");
+    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
     document.forms[0]["AddValueTextBox"].value = "";
     return true;
 }
 
-/*function Validate_DropDown(controller,msg) {
-    var init = document.getElementById("<%=" + controller + "DropDown.ClientID%>").value;
-    //var initText = init.value;
-    if (init == "") {
-        //If the "Please Select" option is selected display error.
-        document.getElementById(controller + "Validator").innerHTML = msg;
-        document.forms[0][controller + "DropDown"].style.border = "1px solid red";
-        return false;
-    }
-    return true;
-}*/
 
-function checkvalue() {
-    if (document.getElementById('AddAssetSubCategoryDropDown').value !== '' ||
-           document.getElementById('AddAssetCategoryDropDown').value !== '' ||
-           document.getElementById('AddAssetLocationDropDown').value !== '' ||
-           document.getElementById('AddAssetOwnerDropDown').value !== '' ||
-           document.getElementById('AddAssetPersonToRecommendDropDown').value !== ''
-          ) {
-        return true;
-    }
-    alert('Please select at least one value');
-    return false;
-}
+
 
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
-    var isValidValue = requiredFieldValidator("AddValue", "Value cannot be empty.");
-    var dropcheck = checkvalue();
+    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
-    /*var isValidContact = contactValidator("AddLocationContact");
-    var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
-    var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");
-    var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.");
-    var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.");
+    var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
+    var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
+    var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
+    var isValidRecommend = dropDownRequiredFieldValidator("AddAssetPersonToRecommend");
 
-    return (isValidLocName && isValidLocAddress && isValidContact && isValidLocManagerOffice && isValidLocDepartment && isValidLocZonalOffice && isValidLocBranch);*/
-    return (isValidAssetName && isValidValue);
+    return (isValidAssetName && isValidValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
 }
 
 //Transfer Asset functions ===================================================================
