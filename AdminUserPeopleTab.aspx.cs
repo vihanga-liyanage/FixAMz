@@ -250,6 +250,9 @@ namespace FixAMz_WebApplication
         }
 
         //Advanced user search
+
+        //protected void SearchUserBtn_Click(object sender, EventArgs e)
+
         protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
