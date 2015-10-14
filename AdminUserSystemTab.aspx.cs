@@ -63,7 +63,7 @@ namespace FixAMz_WebApplication
                 AddSubCategoryCategoryDropDown.DataTextField = "name";
                 AddSubCategoryCategoryDropDown.DataValueField = "catID";
                 AddSubCategoryCategoryDropDown.DataBind();
-                AddSubCategoryCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", "0"));
+                AddSubCategoryCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();
