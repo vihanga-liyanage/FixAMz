@@ -251,9 +251,96 @@ namespace FixAMz_WebApplication
 
         //Advanced user search
 
-        //protected void SearchUserBtn_Click(object sender, EventArgs e)
+       /* protected void SearchAssetBtn_Click(object sender, EventArgs e)
+        {
+            String assetID = AssetSearchIDTextBox.Text.Trim();
+            String name = AssetSearchNameTextBox.Text.Trim();
+            String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
+            String categoryID = AssetSearchCategoryDropDown.SelectedValue;
+            String value = AssetSearchValueTextBox.Text;
+            String locationID = AssetSearchLocationDropDown.SelectedValue;
+            String ownerID = AssetSearchOwnerDropDown.SelectedValue;
 
-        protected void SearchUserBtn_Click(object sender, EventArgs e)
+            String resultMessage = "";
+
+            String query = "SELECT * FROM Asset WHERE";
+            if (assetID != "")
+            {
+                query += " assetID='" + assetID + "'";
+                resultMessage += assetID + ", ";
+            }
+            if (name != "")
+            {
+                query += " AND name='" + name + "'";
+                resultMessage += name + ", ";
+            }
+            if (subCategoryID != "")
+            {
+                query += " AND subcategory='" + subCategoryID + "'";
+                resultMessage += subCategoryID + ", ";
+            }
+            if (categoryID != "")
+            {
+                query += " AND category='" + categoryID + "'";
+                resultMessage += categoryID + ", ";
+            }
+            if (value != "")
+            {
+                query += " AND value='" + Convert.ToInt16(value) + "'";
+                resultMessage += value + ", ";
+            }
+            if (locationID != "")
+            {
+                query += " AND location='" + locationID + "'";
+                resultMessage += locationID + ", ";
+            }
+            if (ownerID != "")
+            {
+                query += " AND owner='" + ownerID + "'";
+                resultMessage += ownerID + ", ";
+            }
+
+            // Clearing the grid view
+            AssetSearchGridView.DataSource = null;
+            AssetSearchGridView.DataBind();
+
+            query = query.Replace("WHERE AND", "WHERE ");
+            //Response.Write(query + "<br>");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader != null && reader.HasRows) //if search results found
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    AssetSearchGridView.DataSource = dt;  //display found data in grid view
+                    AssetSearchGridView.DataBind();
+                    responseArea.Style.Add("color", "rgb(20, 210, 20)");
+                    responseArea.InnerHtml = "Search Results Found for " + resultMessage;
+                }
+                else
+                {
+                    responseArea.Style.Add("color", "orangered");
+                    responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                responseArea.Style.Add("color", "orangered");
+                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
+        }*/
+
+
+       protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             
@@ -435,7 +522,7 @@ namespace FixAMz_WebApplication
                 gvEmployees.Visible = false;
             }
         }
-
+        
         //Delete user
         protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {
