@@ -229,6 +229,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button AddNewCancelBtn;
         
         /// <summary>
+        /// UserSearchInitState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSearchInitState;
+        
+        /// <summary>
         /// SearchEmployeeIDTextBox control.
         /// </summary>
         /// <remarks>
@@ -301,13 +310,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
         
         /// <summary>
-        /// gvEmployees control.
+        /// UserSearchSecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEmployees;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSearchSecondState;
+        
+        /// <summary>
+        /// UserSearchGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView UserSearchGridView;
         
         /// <summary>
         /// Div2 control.

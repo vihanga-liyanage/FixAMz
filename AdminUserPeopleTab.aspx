@@ -146,6 +146,7 @@
                             Advanced User Search</div>
                         <div class="expand-item-content" id="AdvancedSearchContent">
                             <div class="col-md-8">
+                            <div id="UserSearchInitState" runat="server">
                                 <div class="info-div">
                                     Enter any information you have on the user to search.</div>
                                 <div class="row expand-item-row">
@@ -185,15 +186,15 @@
                                         OnClick="CancelSearchBtn_Click" />
                                 </div>
                             </div>
+                             <div id="UserSearchSecondState" runat="server">
+                                    <asp:GridView ID="UserSearchGridView" runat="server"></asp:GridView>
+                                </div>
+                            </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                 <div class="adv-user-search-icon">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row expand-item" style="border: 0">
-                            <asp:GridView ID="gvEmployees" runat="server">
-                            </asp:GridView>
-                        </div>
+                        </div>  
                     </div>
                 </div>
                 <!--Update user-->

@@ -250,11 +250,92 @@ namespace FixAMz_WebApplication
         }
 
         //Advanced user search
+
         protected void SearchUserBtn_Click(object sender, EventArgs e)
+         {
+             String empID = SearchEmployeeIDTextBox.Text.Trim();
+             String firstname = SearchFirstNameTextBox.Text.Trim();
+             String lastname = SearchLastNameTextBox.Text.Trim();
+             String email = SearchEmailTextBox.Text.Trim();
+             String contact = SearchEmailTextBox.Text.Trim();
+             String username = SearchUsernameTextBox.Text.Trim();
+              
+
+             String resultMessage = "";
+
+             String query = "SELECT * FROM Employee WHERE";
+             if (empID != "")
+             {
+                 query += " empID='" + empID + "'";
+                 resultMessage += empID + ", ";
+             }
+             if (firstname != "")
+             {
+                 query += " AND firstname='" + firstname + "'";
+                 resultMessage += firstname + ", ";
+             }
+             if (lastname != "")
+             {
+                 query += " AND lastname='" + lastname + "'";
+                 resultMessage += lastname + ", ";
+             }
+             if (email != "")
+             {
+                 query += " AND email='" + email + "'";
+                 resultMessage += email + ", ";
+             }
+             if (contact != "")
+             {
+                 query += " AND contact='" + contact + "'";
+                 resultMessage += contact + ", ";
+             }
+             
+
+             // Clearing the grid view
+             UserSearchGridView.DataSource = null;
+             UserSearchGridView.DataBind();
+
+             query = query.Replace("WHERE AND", "WHERE ");
+             //Response.Write(query + "<br>");
+             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
+             try
+             {
+                 conn.Open();
+
+                 SqlCommand cmd = new SqlCommand(query, conn);
+                 SqlDataReader reader = cmd.ExecuteReader();
+                 if (reader != null && reader.HasRows) //if search results found
+                 {
+                     DataTable dt = new DataTable();
+                     dt.Load(reader);
+
+                     UserSearchGridView.DataSource = dt;  //display found data in grid view
+                     UserSearchGridView.DataBind();
+                     responseArea.Style.Add("color", "rgb(20, 210, 20)");
+                     responseArea.InnerHtml = "Search Results Found for " + resultMessage;
+                 }
+                 else
+                 {
+                     responseArea.Style.Add("color", "orangered");
+                     responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                 }
+                 conn.Close();
+             }
+             catch (Exception ex)
+             {
+                 responseArea.Style.Add("color", "orangered");
+                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                 Response.Write(ex.ToString());
+             }
+
+         }
+
+
+        /*protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-            
-            gvEmployees.Visible = true;
+
+            UserSearchGridView.Visible = true;
             int empidLength = SearchEmployeeIDTextBox.Text.Length; //Get length of textbox value
             int firstnameLength = SearchFirstNameTextBox.Text.Length;
             int lastnameLength = SearchLastNameTextBox.Text.Length;
@@ -279,8 +360,8 @@ namespace FixAMz_WebApplication
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        gvEmployees.DataSource = dt;  //display found data in grid view
-                        gvEmployees.DataBind();
+                        UserSearchGridView.DataSource = dt;  //display found data in grid view
+                        UserSearchGridView.DataBind();
                         responseArea.Style.Add("color", "green");
                         responseArea.InnerHtml = "Search Results Found.";
                     }
@@ -301,8 +382,8 @@ namespace FixAMz_WebApplication
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        gvEmployees.DataSource = dt;
-                        gvEmployees.DataBind();
+                        UserSearchGridView.DataSource = dt;
+                        UserSearchGridView.DataBind();
                         responseArea.Style.Add("color", "green");
                         responseArea.InnerHtml = "Search Results Found.";
                     }
@@ -323,8 +404,8 @@ namespace FixAMz_WebApplication
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        gvEmployees.DataSource = dt;
-                        gvEmployees.DataBind();
+                        UserSearchGridView.DataSource = dt;
+                        UserSearchGridView.DataBind();
                         responseArea.Style.Add("color", "green");
                         responseArea.InnerHtml = "Search Results Found.";
                     }
@@ -346,8 +427,8 @@ namespace FixAMz_WebApplication
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        gvEmployees.DataSource = dt;
-                        gvEmployees.DataBind();
+                        UserSearchGridView.DataSource = dt;
+                        UserSearchGridView.DataBind();
                         responseArea.Style.Add("color", "green");
                         responseArea.InnerHtml = "Search Results Found.";
                     }
@@ -369,8 +450,8 @@ namespace FixAMz_WebApplication
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        gvEmployees.DataSource = dt;
-                        gvEmployees.DataBind();
+                        UserSearchGridView.DataSource = dt;
+                        UserSearchGridView.DataBind();
                         responseArea.Style.Add("color", "green");
                         responseArea.InnerHtml = "Search Results Found.";
                     }
@@ -394,8 +475,8 @@ namespace FixAMz_WebApplication
                         DataTable dt = new DataTable();
                         dt.Load(reader);
 
-                        gvEmployees.DataSource = dt;
-                        gvEmployees.DataBind();
+                        UserSearchGridView.DataSource = dt;
+                        UserSearchGridView.DataBind();
                         responseArea.Style.Add("color", "green");
                         responseArea.InnerHtml = "Search Results Found.";
                     }
@@ -420,7 +501,7 @@ namespace FixAMz_WebApplication
             {
                 conn.Close();
             }
-        }
+        }*/
 
         protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
@@ -429,10 +510,10 @@ namespace FixAMz_WebApplication
             {
                 textBox.Text = "";
                 responseArea.InnerHtml = "";
-                gvEmployees.Visible = false;
+                UserSearchGridView.Visible = false;
             }
         }
-
+        
         //Delete user
         protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {

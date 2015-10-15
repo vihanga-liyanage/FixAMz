@@ -445,13 +445,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.DropDownList TransAssetSendForRecommendDropDown;
         
         /// <summary>
-        /// TransferAssetReco control.
+        /// TransAssetSendForRecommendValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button TransferAssetReco;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransAssetSendForRecommendValidator;
+        
+        /// <summary>
+        /// TransferAssetRecommend control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button TransferAssetRecommend;
         
         /// <summary>
         /// TransferAssetcancel control.
