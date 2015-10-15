@@ -733,7 +733,7 @@ namespace FixAMz_WebApplication
                     String lastTransAssetID = (cmd.ExecuteScalar().ToString()).Trim();
                     String chr = Convert.ToString(lastTransAssetID[0]);
                     String temp = "";
-                    for (int i = 2; i < lastTransAssetID.Length; i++)
+                    for (int i = 1; i < lastTransAssetID.Length; i++)
                     {
                         temp += Convert.ToString(lastTransAssetID[i]);
                     }
@@ -749,7 +749,7 @@ namespace FixAMz_WebApplication
                 }
                 else
                 {
-                    newTransAssetID = "TA00001";
+                    newTransAssetID = "T00001";
                     conn.Close();
                     return newTransAssetID;
                 }

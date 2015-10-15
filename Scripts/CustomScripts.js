@@ -450,7 +450,30 @@ function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";
     document.getElementById("transferAssetSecondState").style.display = "none";
     document.getElementById("transferAssetInitState").style.display = "block";
-    return true;
+    return false;
+}
+
+function isValidTransferAsset() {
+    var TransAssetSendForRecommendDropDown = dropDownRequiredFieldValidator("TransAssetSendForRecommend");
+    return (TransAssetSendForRecommendDropDown);
+}
+
+function transferAssetClearAll() {
+    document.forms[0]["TransferAssetIDTextBox"].value = "";
+    //document.forms[0]["TransferItemName"].value = "";
+    //document.forms[0]["TransferCategory"].value = "";
+    //document.forms[0]["TransferSubcategory"].value = "";
+    //document.forms[0]["TransferValue"].value = "";
+    document.forms[0]["TransferLocationDropDown"].value = "";
+    document.forms[0]["TransferOwnerDropDown"].value = "";
+    document.getElementById("transferAssetInitState").style.display = "block";
+    document.getElementById("transferAssetSecondState").style.display = "none";
+
+    return false;
+}
+
+function isValidAssetID() {
+    return requiredFieldValidator("TransferAssetID", "Asset ID cannot be empty.");
 }
 
 //Dispose Asset functions ===================================================================
@@ -461,6 +484,7 @@ function disposeClearAll() {
     document.getElementById("disposeAssetInitState").style.display = "block";
     return true;
 }
+
 function isValidDisposeAssetDescription() {
     var DisposeAssetDescription = requiredFieldValidator("DisposeAssetDescription", "Description cannot be empty.");
     return (DisposeAssetDescription);

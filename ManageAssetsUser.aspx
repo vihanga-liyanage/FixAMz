@@ -178,29 +178,25 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/TransferIcon.png" />
-                        <div class="expand-item-title" id="TransferAssetHeader">
-                            Transfer assets</div>
+                        <div class="expand-item-title" id="TransferAssetHeader">Transfer assets</div>
                         <div class="expand-item-content" id="TransferAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="transferAssetInitState" runat="server">
-                                    <div class="info-div">
-                                        Enter asset ID to transfer the asset</div>
+                                    <div class="info-div">Enter asset ID to transfer the asset</div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Asset ID</div>
+                                        <div class="expand-item-label">Asset ID</div>
                                         <asp:TextBox ID="TransferAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="TransferAssetIDValidator" runat="server">
                                         </div>
-
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="TransferAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
-                                            OnClientClick="return isValidDeleteEmpID()" OnClick="TransferAssetFindBtn_Click" />
+                                            OnClientClick="return isValidAssetID()" OnClick="TransferAssetFindBtn_Click" />
                                     </div>
                                 </div>
+
                                 <div id="transferAssetSecondState" runat="server">
-                                    <div class="info-div">
-                                        You can update the owner or the location of the asset.</div>
+                                    <div class="info-div">You can update the owner or the location of the asset.</div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
                                         <div id="TransferItemName" runat="server" class="custom-label"></div>
@@ -228,11 +224,13 @@
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Person to recommend</div>
                                         <asp:DropDownList ID="TransAssetSendForRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <div class="validator" id="TransAssetSendForRecommendValidator" runat="server"></div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <asp:Button ID="TransferAssetReco" runat="server" Text="Send for recommendation" 
-                                             onClick="TransferAssetRecommendBtn_click" class="expand-item-btn" />
-                                        <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        <asp:Button ID="TransferAssetRecommend" runat="server" Text="Send for recommendation" 
+                                             onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
+                                        <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn"
+                                            OnClientClick="return transferAssetClearAll()" />
                                     </div>
                                 </div>
                             </div>
