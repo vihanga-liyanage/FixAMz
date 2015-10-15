@@ -424,35 +424,11 @@ function isValidAddAsset() {
     return true;
 }
 
-/*function Validate_DropDown(controller,msg) {
-    var init = document.getElementById("<%=" + controller + "DropDown.ClientID%>").value;
-    //var initText = init.value;
-    if (init == "") {
-        //If the "Please Select" option is selected display error.
-        document.getElementById(controller + "Validator").innerHTML = msg;
-        document.forms[0][controller + "DropDown"].style.border = "1px solid red";
-        return false;
-    }
-    return true;
-}*/
-
-function checkvalue() {
-    if (document.getElementById('AddAssetSubCategoryDropDown').value !== '' ||
-           document.getElementById('AddAssetCategoryDropDown').value !== '' ||
-           document.getElementById('AddAssetLocationDropDown').value !== '' ||
-           document.getElementById('AddAssetOwnerDropDown').value !== '' ||
-           document.getElementById('AddAssetPersonToRecommendDropDown').value !== ''
-          ) {
-        return true;
-    }
-    alert('Please select at least one value');
-    return false;
-}
-
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
     var isValidValue = requiredFieldValidator("AddValue", "Value cannot be empty.");
-    var dropcheck = checkvalue();
+    
+    var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     /*var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
