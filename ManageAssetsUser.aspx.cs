@@ -719,6 +719,7 @@ namespace FixAMz_WebApplication
         }
 
         // Transfer asset ===============================================================
+
         protected String setTransAssetID()
         {
             try
@@ -731,15 +732,16 @@ namespace FixAMz_WebApplication
                 if (cmd.ExecuteScalar() != null)
                 {
                     String lastTransAssetID = (cmd.ExecuteScalar().ToString()).Trim();
-                    String chr = Convert.ToString(lastTransAssetID[0]);
+                    String chr = Convert.ToString(lastTransAssetID[0]) + Convert.ToString(lastTransAssetID[1]);
                     String temp = "";
-                    for (int i = 1; i < lastTransAssetID.Length; i++)
+                    for (int i = 2; i < lastTransAssetID.Length; i++)
                     {
                         temp += Convert.ToString(lastTransAssetID[i]);
                     }
+
                     temp = Convert.ToString(Convert.ToInt16(temp) + 1);
                     newTransAssetID = chr;
-                    for (int i = 1; i < lastTransAssetID.Length - temp.Length; i++)
+                    for (int i = 2; i < lastTransAssetID.Length - temp.Length; i++)
                     {
                         newTransAssetID += "0";
                     }
@@ -749,7 +751,7 @@ namespace FixAMz_WebApplication
                 }
                 else
                 {
-                    newTransAssetID = "T00001";
+                    newTransAssetID = "TA00001";
                     conn.Close();
                     return newTransAssetID;
                 }
