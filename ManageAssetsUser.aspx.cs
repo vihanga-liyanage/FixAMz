@@ -873,8 +873,8 @@ namespace FixAMz_WebApplication
 
                 String transID = setTransAssetID();
                 String notID = setNotID();
-                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, location, owner, recommend, approve) VALUES (@transid, @assetid, @type, @status, @date, @location, @owner, @recommend, @approve)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, location, owner, recommend) VALUES (@transid, @assetid, @type, @status, @date, @location, @owner, @recommend)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -886,17 +886,15 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", TransAssetSendForRecommendDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@approve", "0");
                 cmd.ExecuteNonQuery();
 
                 cmd2.Parameters.AddWithValue("@notid", notID);
                 cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
-                cmd2.Parameters.AddWithValue("@nType", "0");
-                cmd2.Parameters.AddWithValue("@nNotContent", "0");
+                cmd2.Parameters.AddWithValue("@nType", "Transfer");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
                 cmd2.Parameters.AddWithValue("@nReceiveUser", TransAssetSendForRecommendDropDown.SelectedValue);
                 cmd2.Parameters.AddWithValue("@nDate", DateTime.Now.ToString("yyyy-MM-dd"));
-                cmd2.Parameters.AddWithValue("@nStatus", "0");
+                cmd2.Parameters.AddWithValue("@nStatus", "not-seen");
                 cmd2.ExecuteNonQuery();
 
                 conn.Close();
