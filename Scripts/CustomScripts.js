@@ -162,7 +162,7 @@ function pause(millis) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//      Admin people tab
+//      Admin people tab                                                                    //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //Add new user functions =====================================================================
@@ -270,7 +270,7 @@ function isValidDeleteEmpID() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//      Admin system tab
+//      Admin system tab                                                                    //  
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //Add new location functions =================================================================
@@ -403,7 +403,7 @@ function addSubCategoryClearAll() {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-//      Manage asset user
+//      Manage asset user                                                                   //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //Register Asset functions====================================================================
@@ -474,7 +474,7 @@ function isValidAssetSearch() {
     }
 }
 
-function searchAssetClearAll() {
+function assetSearchClearAll() {
     document.forms[0]["AssetSearchIDTextBox"].value = "";
     document.forms[0]["AssetSearchNameTextBox"].value = "";
     document.forms[0]["AssetSearchCategoryDropDown"].selectedIndex = 0;
@@ -484,11 +484,13 @@ function searchAssetClearAll() {
     document.forms[0]["AssetSearchOwnerDropDown"].selectedIndex = 0;
     return false;
 }
+
 //Transfer Asset functions ===================================================================
 function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";
     document.getElementById("transferAssetSecondState").style.display = "none";
     document.getElementById("transferAssetInitState").style.display = "block";
+    expandingItems["TransferAssetContent"] = true;
     return false;
 }
 
@@ -497,30 +499,14 @@ function isValidTransferAsset() {
     return (TransAssetSendForRecommendDropDown);
 }
 
-function transferAssetClearAll() {
-    document.forms[0]["TransferAssetIDTextBox"].value = "";
-    //document.forms[0]["TransferItemName"].value = "";
-    //document.forms[0]["TransferCategory"].value = "";
-    //document.forms[0]["TransferSubcategory"].value = "";
-    //document.forms[0]["TransferValue"].value = "";
-    document.forms[0]["TransferLocationDropDown"].value = "";
-    document.forms[0]["TransferOwnerDropDown"].value = "";
-    document.getElementById("transferAssetInitState").style.display = "block";
-    document.getElementById("transferAssetSecondState").style.display = "none";
-
-    return false;
-}
-
-function isValidAssetID() {
-    return requiredFieldValidator("TransferAssetID", "Asset ID cannot be empty.");
-}
-
 //Dispose Asset functions ====================================================================
 function disposeClearAll() {
+    alert("dispose");
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
     document.getElementById("disposeAssetSecondState").style.display = "none";
     document.getElementById("disposeAssetInitState").style.display = "block";
-    return true;
+    expandingItems["DisposeAssetContent"] = true;
+    return false;
 }
 
 function isValidDisposeAssetDescription() {

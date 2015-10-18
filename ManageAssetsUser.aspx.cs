@@ -854,7 +854,6 @@ namespace FixAMz_WebApplication
                     disposeAssetSecondState.Style.Add("display", "none");
                     DisposeAssetContent.Style.Add("display", "block");
                     DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
-                    DisposeItemName.Focus();
                 }
             }
             catch (SqlException ex)

@@ -230,7 +230,7 @@
                                         <asp:Button ID="TransferAssetRecommend" runat="server" Text="Send for recommendation" 
                                              onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
                                         <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return transferAssetClearAll()" />
+                                            OnClientClick="return transferClearAll()" />
                                     </div>
                                 </div>
                             </div>
@@ -401,7 +401,7 @@
                                         <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click"
                                             OnClientClick="return isValidDisposeAssetDescription()" runat="server" Text="Send for recommendation"
                                             class="expand-item-btn" />
-                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return disposeClearAll()" />
                                     </div>
                                 </div>
                             </div>
