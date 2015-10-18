@@ -451,7 +451,26 @@ function isValidAddAsset() {
 }
 
 //Advanced asset search functions=============================================================
-
+function isValidAssetSearch() {
+    var id = document.forms[0]["AssetSearchIDTextBox"].value;
+    var name = document.forms[0]["AssetSearchNameTextBox"].value;
+    var dropdown = document.forms[0]["AssetSearchCategoryDropDown"];
+    var category = dropdown.options[dropdown.selectedIndex].value;
+    dropdown = document.forms[0]["AssetSearchSubCategoryDropDown"];
+    var subCategory = dropdown.options[dropdown.selectedIndex].value;
+    var value = document.forms[0]["AssetSearchValueTextBox"].value;
+    dropdown = document.forms[0]["AssetSearchLocationDropDown"];
+    var location = dropdown.options[dropdown.selectedIndex].value;
+    dropdown = document.forms[0]["AssetSearchOwnerDropDown"];
+    var owner = dropdown.options[dropdown.selectedIndex].value;
+    if (id == "" && name == "" && category == "" && subCategory == "" && value == "" && location == "" && owner == "") {
+        alert("Please fill at least one field");
+        return false;
+    } else {
+        return true;
+    }
+    
+}
 
 //Transfer Asset functions ===================================================================
 function transferClearAll() {
