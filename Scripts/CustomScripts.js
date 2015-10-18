@@ -474,6 +474,16 @@ function isValidAssetSearch() {
     }
 }
 
+function searchAssetClearAll() {
+    document.forms[0]["AssetSearchIDTextBox"].value = "";
+    document.forms[0]["AssetSearchNameTextBox"].value = "";
+    document.forms[0]["AssetSearchCategoryDropDown"].selectedIndex = 0;
+    document.forms[0]["AssetSearchSubCategoryDropDown"].selectedIndex = 0;
+    document.forms[0]["AssetSearchValueTextBox"].value = "";
+    document.forms[0]["AssetSearchLocationDropDown"].selectedIndex = 0;
+    document.forms[0]["AssetSearchOwnerDropDown"].selectedIndex = 0;
+    return false;
+}
 //Transfer Asset functions ===================================================================
 function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";

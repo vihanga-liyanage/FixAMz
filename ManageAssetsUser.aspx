@@ -160,7 +160,7 @@
                                     <div class="row expand-item-row">
                                         <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
                                             OnClick="SearchAssetBtn_Click" OnClientClick="return isValidAssetSearch()" />
-                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="assetSearchClearAll()" />
                                     </div>
                                 </div>
                                 <div id="AssetSearchSecondState" runat="server">
