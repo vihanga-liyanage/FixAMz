@@ -202,13 +202,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddAssetPersonToRecommendValidator;
         
         /// <summary>
-        /// AddAssetButttonReco control.
+        /// AddAssetRecommendBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddAssetButttonReco;
+        protected global::System.Web.UI.WebControls.Button AddAssetRecommendBtn;
         
         /// <summary>
         /// Button6 control.

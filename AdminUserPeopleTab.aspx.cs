@@ -232,9 +232,10 @@ namespace FixAMz_WebApplication
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
-                
+
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Employee '" + empID + "' updated successfully!";
+
                 updateUserInitState.Style.Add("display", "block");
                 updateUserSecondState.Style.Add("display", "none");
                 UpdateUserContent.Style.Add("display", "block");

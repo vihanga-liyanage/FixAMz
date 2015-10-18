@@ -102,8 +102,8 @@
                                     <div class="validator" id="AddAssetPersonToRecommendValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation"
-                                        OnClick="SendForRecommendationBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
+                                    <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
+                                        OnClick="AddAssetRecommendBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
                                     <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
                             </div>
