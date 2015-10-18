@@ -247,6 +247,22 @@ function searchClearAll() {
     return true;
 }
 
+function isValidUserSearch() {
+    var id = document.forms[0]["SearchEmployeeIDTextBox"].value;
+    var fname = document.forms[0]["SearchFirstNameTextBox"].value;
+    var lname = document.forms[0]["SearchLastNameTextBox"].value;
+    var email = document.forms[0]["SearchEmailTextBox"].value;
+    var contact = document.forms[0]["SearchContactTextBox"].value;
+    var username = document.forms[0]["SearchUsernameTextBox"].value;
+
+    if (id == "" && fname == "" && lname == "" && email == "" && contact == "" && username == "") {
+        alert("Please fill at least one field");
+        return false;
+    } else {
+        return true;
+    }
+}
+
 //Delete user functions ======================================================================
 function isValidDeleteEmpID() {
     return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
@@ -463,13 +479,13 @@ function isValidAssetSearch() {
     var location = dropdown.options[dropdown.selectedIndex].value;
     dropdown = document.forms[0]["AssetSearchOwnerDropDown"];
     var owner = dropdown.options[dropdown.selectedIndex].value;
+
     if (id == "" && name == "" && category == "" && subCategory == "" && value == "" && location == "" && owner == "") {
         alert("Please fill at least one field");
         return false;
     } else {
         return true;
     }
-    
 }
 
 //Transfer Asset functions ===================================================================

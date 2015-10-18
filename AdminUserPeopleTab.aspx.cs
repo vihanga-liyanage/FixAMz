@@ -271,7 +271,7 @@ namespace FixAMz_WebApplication
              }
              if (firstname != "")
              {
-                 query += " AND firstname='" + firstname + "'";
+                 query += " AND firstname like '%" + firstname + "%'";
                  resultMessage += firstname + ", ";
              }
              if (lastname != "")
@@ -328,7 +328,6 @@ namespace FixAMz_WebApplication
              }
 
          }
-
 
         /*protected void SearchUserBtn_Click(object sender, EventArgs e)
         {

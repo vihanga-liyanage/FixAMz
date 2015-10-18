@@ -50,7 +50,7 @@
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
                 <div id="responseArea" runat="server">
                 </div>
-                <!--Add user-->
+<!--Add user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                <!--Advanced user search-->
+<!--Advanced user search-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
@@ -181,13 +181,13 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
-                                        OnClick="SearchUserBtn_Click" />
+                                        OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
                                     <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                         OnClick="CancelSearchBtn_Click" />
                                 </div>
                             </div>
                              <div id="UserSearchSecondState" runat="server">
-                                    <asp:GridView ID="UserSearchGridView" runat="server"></asp:GridView>
+                                    <asp:GridView ID="UserSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -197,7 +197,7 @@
                         </div>  
                     </div>
                 </div>
-                <!--Update user-->
+<!--Update user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <div id="Div2" runat="server">
@@ -272,12 +272,12 @@
                         </div>
                     </div>
                 </div>
-                <!--Delete user-->
+<!--Delete user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <div id="Div1" runat="server">
                         </div>
-                        <img src="img/UpdateIcon.png" />
+                        <img src="img/DeleteIcon.png" />
                         <div class="expand-item-title" id="DeleteUserHeader">
                             Delete User</div>
                         <div class="expand-item-content" id="DeleteUserContent" runat="server">
@@ -348,7 +348,7 @@
                 </div>
             </div>
         </div>
-        <!--Footer-->
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
