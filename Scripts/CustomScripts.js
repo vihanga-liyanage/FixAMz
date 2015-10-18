@@ -31,6 +31,7 @@ $(".expand-item-title").click(function () {
 });
 
 //Function to call above .click function manually by code behind, when page reloads occur
+//Should give full id ex. - "UpdateUserContent"
 function setExpandingItem(id) {
     expandingItems[id] = true;
 }
@@ -408,13 +409,13 @@ function addSubCategoryClearAll() {
 //Register Asset functions====================================================================
 function addNewAssetClearAll() {
     document.forms[0]["RegisterAssetNameTextBox"].value = "";
-    //document.forms[0]["SubCategoryDropDownList"].value = "";
-    //document.forms[0]["CategoryDropDownList"].value = "";
+    document.forms[0]["AddAssetCategoryDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
-    /*document.forms[0]["LocationDropDownList"].value = "";
-    document.forms[0]["OwnerDropDownList"].value = "";
-    document.forms[0]["PersonToRecommendDropDownList"].value = "";*/
-    return true;
+    document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
+    return false;
 }
 
 function requiredFieldValidatorValue(controller, msg) {
@@ -437,21 +438,6 @@ function requiredFieldValidatorValue(controller, msg) {
         document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
         return true;
     }
-}
-
-function validate() {
-    if (document.getElementById("ddlList").value == "") {
-        alert("Please select value"); // prompt user
-        document.getElementById("ddlList").focus(); //set focus back to control
-        return false;
-    }
-}
-
-function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
-    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
-    document.forms[0]["AddValueTextBox"].value = "";
-    return true;
 }
 
 function isValidAddAsset() {

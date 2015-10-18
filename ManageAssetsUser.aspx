@@ -104,7 +104,7 @@
                                 <div class="row expand-item-row">
                                     <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
                                         OnClick="AddAssetRecommendBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
-                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
+                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="addNewAssetClearAll()" />
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -120,7 +120,7 @@
                         <img src="img/SearchIcon.png" />
                         <div class="expand-item-title" id="AdvancedAssetSearchHeader">
                             Advanced assets search</div>
-                        <div class="expand-item-content" id="AdvancedAssetSearchContent">
+                        <div class="expand-item-content" id="AdvancedAssetSearchContent" runat="server">
                             <div class="col-md-8">
                                 <div id="AssetSearchInitState" runat="server">
                                     <div class="info-div">Enter any information you have on the asset, to begin.</div>
@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                                 <div id="AssetSearchSecondState" runat="server">
-                                    <asp:GridView ID="AssetSearchGridView" runat="server"></asp:GridView>
+                                    <asp:GridView ID="AssetSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">

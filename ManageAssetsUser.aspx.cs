@@ -454,7 +454,7 @@ namespace FixAMz_WebApplication
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
                     responseArea.Style.Add("color", "rgb(20, 210, 20)");
-                    responseArea.InnerHtml = "Search Results Found for " + resultMessage ;
+                    responseArea.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
                 }
                 else
                 {
@@ -462,6 +462,11 @@ namespace FixAMz_WebApplication
                     responseArea.InnerHtml = "No Results Found for " + resultMessage;
                 }
                 conn.Close();
+
+                //expanding block
+                AdvancedAssetSearchContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedAssetSearchContent');", true);
             }
             catch (Exception ex)
             {
@@ -515,7 +520,7 @@ namespace FixAMz_WebApplication
                 }
                 conn.Close();
                 //updating expandingItems dictionary in javascript
-                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpgradeAssetContent');", true);
             }
             catch (SqlException ex)
             {
@@ -552,16 +557,12 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
-
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
 
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
-                upgradeAssetInitState.Style.Add("display", "block");
-                upgradeAssetSecondState.Style.Add("display", "none");
-                UpgradeAssetContent.Style.Add("display", "block");
                 UpgradeAssetIDTextBox.Text = "";
 
             }
@@ -758,9 +759,6 @@ namespace FixAMz_WebApplication
 
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' sent for recomendation!";
-                transferAssetInitState.Style.Add("display", "block");
-                transferAssetSecondState.Style.Add("display", "none");
-                TransferAssetContent.Style.Add("display", "block");
                 TransferAssetIDTextBox.Text = "";
             }
             catch (Exception ex)
@@ -898,9 +896,6 @@ namespace FixAMz_WebApplication
 
                 responseArea.Style.Add("color", "green");
                 responseArea.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' sent for recommendation.";
-                disposeAssetInitState.Style.Add("display", "block");
-                disposeAssetSecondState.Style.Add("display", "none");
-                DisposeAssetContent.Style.Add("display", "block");
                 DisposeAssetIDTextBox.Text = "";
 
             }
