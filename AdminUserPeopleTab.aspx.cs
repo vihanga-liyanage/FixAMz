@@ -261,7 +261,6 @@ namespace FixAMz_WebApplication
              String contact = SearchEmailTextBox.Text.Trim();
              String username = SearchUsernameTextBox.Text.Trim();
               
-
              String resultMessage = "";
 
              String query = "SELECT * FROM Employee WHERE";
@@ -291,7 +290,6 @@ namespace FixAMz_WebApplication
                  resultMessage += contact + ", ";
              }
              
-
              // Clearing the grid view
              UserSearchGridView.DataSource = null;
              UserSearchGridView.DataBind();

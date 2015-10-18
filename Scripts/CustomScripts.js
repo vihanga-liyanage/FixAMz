@@ -35,7 +35,7 @@ function setExpandingItem(id) {
     expandingItems[id] = true;
 }
 
-//Global validation functions===========================================================================
+//Global validation functions=================================================================
 function requiredFieldValidator(controller, msg) {
     var content = document.forms[0][controller + "TextBox"].value;
     if (content == "") {
@@ -158,10 +158,13 @@ function pause(millis) {
 
     do { curDate = new Date(); }
     while (curDate - date < millis);
-} 
+}
 
-//Add new user functions ===================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Admin people tab
+//////////////////////////////////////////////////////////////////////////////////////////////
 
+//Add new user functions =====================================================================
 function addNewClearAll() {
     document.forms[0]["AddNewFirstNameTextBox"].value = "";
     document.forms[0]["AddNewLastNameTextBox"].value = "";
@@ -208,8 +211,7 @@ function isValidAddNew() {
     return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
 }
 
-//Update user functions ===================================================================
-
+//Update user functions ======================================================================
 function updateClearAll() {
     document.forms[0]["UpdateFirstNameTextBox"].value = "";
     document.forms[0]["UpdateLastNameTextBox"].value = "";
@@ -234,8 +236,7 @@ function isValidUpdate() {
     return (isValidFirstname && isValidLastname && isValidEmail && isValidContact);
 }
 
-//Advanced user search functions ===================================================================
-
+//Advanced user search functions =============================================================
 function searchClearAll() {
     document.forms[0]["SearchEmployeeIDTextBox"].value = "";
     document.forms[0]["SearchFirstNameTextBox"].value = "";
@@ -246,14 +247,16 @@ function searchClearAll() {
     return true;
 }
 
-//Delete user functions ===================================================================
-
+//Delete user functions ======================================================================
 function isValidDeleteEmpID() {
     return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
 }
 
-//Add new location functions ===================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Admin system tab
+//////////////////////////////////////////////////////////////////////////////////////////////
 
+//Add new location functions =================================================================
 function isValidAddLoc() {
     var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
@@ -277,8 +280,7 @@ function addLocationClearAll() {
     return true;
 }
 
-//Update location functions ===================================================================
-
+//Update location functions ==================================================================
 function isValidUpdateLoc() {
     var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
@@ -310,8 +312,7 @@ function updateLocationClearAll() {
     return false;
 }
 
-//Add new category functions ===================================================================
-
+//Add new category functions =================================================================
 function isValidAddCat() {
     return requiredFieldValidator("AddCategoryName", "Enter Category Name.") && nameValidator("AddCategoryName");
 }
@@ -321,8 +322,7 @@ function addCategoryClearAll() {
     return true;
 }
 
-//Update category functions ===================================================================
-
+//Update category functions ==================================================================
 function isValidCategoryCatID() {
     return requiredFieldValidator("UpdateCategoryID", "Enter category ID");
 }
@@ -338,8 +338,7 @@ function updateCategoryClearAll() {
     return true;
 }
 
-//Add new sub category functions ===================================================================
-
+//Add new sub category functions =============================================================
 function isValidAddSubCategory() {
 
     var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.") && nameValidator("AddSubCategoryName");
@@ -386,7 +385,11 @@ function addSubCategoryClearAll() {
     return true;
 }
 
-//Register Asset functions================================================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Manage asset user
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+//Register Asset functions====================================================================
 function addNewAssetClearAll() {
     document.forms[0]["RegisterAssetNameTextBox"].value = "";
     //document.forms[0]["SubCategoryDropDownList"].value = "";
@@ -419,6 +422,7 @@ function requiredFieldValidatorValue(controller, msg) {
         return true;
     }
 }
+
 function validate() {
     if (document.getElementById("ddlList").value == "") {
         alert("Please select value"); // prompt user
@@ -426,6 +430,7 @@ function validate() {
         return false;
     }
 }
+
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
@@ -445,8 +450,10 @@ function isValidAddAsset() {
     return (isValidAssetName && isValidValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
 }
 
-//Transfer Asset functions ===================================================================
+//Advanced asset search functions=============================================================
 
+
+//Transfer Asset functions ===================================================================
 function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";
     document.getElementById("transferAssetSecondState").style.display = "none";
@@ -477,8 +484,7 @@ function isValidAssetID() {
     return requiredFieldValidator("TransferAssetID", "Asset ID cannot be empty.");
 }
 
-//Dispose Asset functions ===================================================================
-
+//Dispose Asset functions ====================================================================
 function disposeClearAll() {
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
     document.getElementById("disposeAssetSecondState").style.display = "none";

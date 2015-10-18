@@ -436,6 +436,7 @@ namespace FixAMz_WebApplication
             AssetSearchGridView.DataSource = null;
             AssetSearchGridView.DataBind();
 
+            //Remove unnessary 'and'
             query = query.Replace("WHERE AND", "WHERE ");
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
