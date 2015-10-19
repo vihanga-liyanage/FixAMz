@@ -31,11 +31,12 @@ $(".expand-item-title").click(function () {
 });
 
 //Function to call above .click function manually by code behind, when page reloads occur
+//Should give full id ex. - "UpdateUserContent"
 function setExpandingItem(id) {
     expandingItems[id] = true;
 }
 
-//Global validation functions===========================================================================
+//Global validation functions=================================================================
 function requiredFieldValidator(controller, msg) {
     var content = document.forms[0][controller + "TextBox"].value;
     if (content == "") {
@@ -158,10 +159,13 @@ function pause(millis) {
 
     do { curDate = new Date(); }
     while (curDate - date < millis);
-} 
+}
 
-//Add new user functions ===================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Admin people tab                                                                    //
+//////////////////////////////////////////////////////////////////////////////////////////////
 
+//Add new user functions =====================================================================
 function addNewClearAll() {
     document.forms[0]["AddNewFirstNameTextBox"].value = "";
     document.forms[0]["AddNewLastNameTextBox"].value = "";
@@ -208,8 +212,7 @@ function isValidAddNew() {
     return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
 }
 
-//Update user functions ===================================================================
-
+//Update user functions ======================================================================
 function updateClearAll() {
     document.forms[0]["UpdateFirstNameTextBox"].value = "";
     document.forms[0]["UpdateLastNameTextBox"].value = "";
@@ -234,8 +237,7 @@ function isValidUpdate() {
     return (isValidFirstname && isValidLastname && isValidEmail && isValidContact);
 }
 
-//Advanced user search functions ===================================================================
-
+//Advanced user search functions =============================================================
 function searchClearAll() {
     document.forms[0]["SearchEmployeeIDTextBox"].value = "";
     document.forms[0]["SearchFirstNameTextBox"].value = "";
@@ -246,14 +248,32 @@ function searchClearAll() {
     return true;
 }
 
-//Delete user functions ===================================================================
+function isValidUserSearch() {
+    var id = document.forms[0]["SearchEmployeeIDTextBox"].value;
+    var fname = document.forms[0]["SearchFirstNameTextBox"].value;
+    var lname = document.forms[0]["SearchLastNameTextBox"].value;
+    var email = document.forms[0]["SearchEmailTextBox"].value;
+    var contact = document.forms[0]["SearchContactTextBox"].value;
+    var username = document.forms[0]["SearchUsernameTextBox"].value;
 
+    if (id == "" && fname == "" && lname == "" && email == "" && contact == "" && username == "") {
+        alert("Please fill at least one field");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//Delete user functions ======================================================================
 function isValidDeleteEmpID() {
     return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
 }
 
-//Add new location functions ===================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Admin system tab                                                                    //  
+//////////////////////////////////////////////////////////////////////////////////////////////
 
+//Add new location functions =================================================================
 function isValidAddLoc() {
     var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
@@ -277,8 +297,7 @@ function addLocationClearAll() {
     return true;
 }
 
-//Update location functions ===================================================================
-
+//Update location functions ==================================================================
 function isValidUpdateLoc() {
     var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
@@ -310,8 +329,7 @@ function updateLocationClearAll() {
     return false;
 }
 
-//Add new category functions ===================================================================
-
+//Add new category functions =================================================================
 function isValidAddCat() {
     return requiredFieldValidator("AddCategoryName", "Enter Category Name.") && nameValidator("AddCategoryName");
 }
@@ -321,8 +339,7 @@ function addCategoryClearAll() {
     return true;
 }
 
-//Update category functions ===================================================================
-
+//Update category functions ==================================================================
 function isValidCategoryCatID() {
     return requiredFieldValidator("UpdateCategoryID", "Enter category ID");
 }
@@ -338,8 +355,7 @@ function updateCategoryClearAll() {
     return true;
 }
 
-//Add new sub category functions ===================================================================
-
+//Add new sub category functions =============================================================
 function isValidAddSubCategory() {
 
     var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.") && nameValidator("AddSubCategoryName");
@@ -386,16 +402,20 @@ function addSubCategoryClearAll() {
     return true;
 }
 
-//Register Asset functions================================================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Manage asset user                                                                   //
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+//Register Asset functions====================================================================
 function addNewAssetClearAll() {
     document.forms[0]["RegisterAssetNameTextBox"].value = "";
-    //document.forms[0]["SubCategoryDropDownList"].value = "";
-    //document.forms[0]["CategoryDropDownList"].value = "";
+    document.forms[0]["AddAssetCategoryDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
-    /*document.forms[0]["LocationDropDownList"].value = "";
-    document.forms[0]["OwnerDropDownList"].value = "";
-    document.forms[0]["PersonToRecommendDropDownList"].value = "";*/
-    return true;
+    document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
+    return false;
 }
 
 function requiredFieldValidatorValue(controller, msg) {
@@ -419,19 +439,6 @@ function requiredFieldValidatorValue(controller, msg) {
         return true;
     }
 }
-function validate() {
-    if (document.getElementById("ddlList").value == "") {
-        alert("Please select value"); // prompt user
-        document.getElementById("ddlList").focus(); //set focus back to control
-        return false;
-    }
-}
-function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && nameValidator("RegisterAssetName") //numbers should be also used as asset name;
-    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
-    document.forms[0]["AddValueTextBox"].value = "";
-    return true;
-}
 
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
@@ -445,12 +452,45 @@ function isValidAddAsset() {
     return (isValidAssetName && isValidValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
 }
 
-//Transfer Asset functions ===================================================================
+//Advanced asset search functions=============================================================
+function isValidAssetSearch() {
+    var id = document.forms[0]["AssetSearchIDTextBox"].value;
+    var name = document.forms[0]["AssetSearchNameTextBox"].value;
+    var dropdown = document.forms[0]["AssetSearchCategoryDropDown"];
+    var category = dropdown.options[dropdown.selectedIndex].value;
+    dropdown = document.forms[0]["AssetSearchSubCategoryDropDown"];
+    var subCategory = dropdown.options[dropdown.selectedIndex].value;
+    var value = document.forms[0]["AssetSearchValueTextBox"].value;
+    dropdown = document.forms[0]["AssetSearchLocationDropDown"];
+    var location = dropdown.options[dropdown.selectedIndex].value;
+    dropdown = document.forms[0]["AssetSearchOwnerDropDown"];
+    var owner = dropdown.options[dropdown.selectedIndex].value;
 
+    if (id == "" && name == "" && category == "" && subCategory == "" && value == "" && location == "" && owner == "") {
+        alert("Please fill at least one field");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function assetSearchClearAll() {
+    document.forms[0]["AssetSearchIDTextBox"].value = "";
+    document.forms[0]["AssetSearchNameTextBox"].value = "";
+    document.forms[0]["AssetSearchCategoryDropDown"].selectedIndex = 0;
+    document.forms[0]["AssetSearchSubCategoryDropDown"].selectedIndex = 0;
+    document.forms[0]["AssetSearchValueTextBox"].value = "";
+    document.forms[0]["AssetSearchLocationDropDown"].selectedIndex = 0;
+    document.forms[0]["AssetSearchOwnerDropDown"].selectedIndex = 0;
+    return false;
+}
+
+//Transfer Asset functions ===================================================================
 function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";
     document.getElementById("transferAssetSecondState").style.display = "none";
     document.getElementById("transferAssetInitState").style.display = "block";
+    expandingItems["TransferAssetContent"] = true;
     return false;
 }
 
@@ -459,31 +499,14 @@ function isValidTransferAsset() {
     return (TransAssetSendForRecommendDropDown);
 }
 
-function transferAssetClearAll() {
-    document.forms[0]["TransferAssetIDTextBox"].value = "";
-    //document.forms[0]["TransferItemName"].value = "";
-    //document.forms[0]["TransferCategory"].value = "";
-    //document.forms[0]["TransferSubcategory"].value = "";
-    //document.forms[0]["TransferValue"].value = "";
-    document.forms[0]["TransferLocationDropDown"].value = "";
-    document.forms[0]["TransferOwnerDropDown"].value = "";
-    document.getElementById("transferAssetInitState").style.display = "block";
-    document.getElementById("transferAssetSecondState").style.display = "none";
-
-    return false;
-}
-
-function isValidAssetID() {
-    return requiredFieldValidator("TransferAssetID", "Asset ID cannot be empty.");
-}
-
-//Dispose Asset functions ===================================================================
-
+//Dispose Asset functions ====================================================================
 function disposeClearAll() {
+    alert("dispose");
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
     document.getElementById("disposeAssetSecondState").style.display = "none";
     document.getElementById("disposeAssetInitState").style.display = "block";
-    return true;
+    expandingItems["DisposeAssetContent"] = true;
+    return false;
 }
 
 function isValidDisposeAssetDescription() {

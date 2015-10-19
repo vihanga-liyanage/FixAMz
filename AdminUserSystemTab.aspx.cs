@@ -17,7 +17,10 @@ namespace FixAMz_WebApplication
             setCatID();
             setLocID();
             setSubCategoryID();
-            responseArea.InnerHtml = "";
+            responseBoxGreen.Style.Add("display", "none");
+            responseMsgGreen.InnerHtml = "";
+            responseBoxRed.Style.Add("display", "none");
+            responseMsgRed.InnerHtml = "";
             setUserName();
             if(!IsPostBack)
                 Load_Category();
@@ -43,8 +46,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException exx)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 //Response.Write(ex.ToString());
             }
         }
@@ -118,8 +121,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -146,14 +149,14 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addLocationClearAll", "addLocationClearAll();", true);
                 setCatID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Location " + AddLocationNameTextBox.Text + " added successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Location " + AddLocationNameTextBox.Text + " added successfully!";
 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -206,8 +209,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "orange");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -236,8 +239,8 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateLocationClearAll", "updateLocationClearAll();", true);
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Location '" + locID + "' updated successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Location '" + locID + "' updated successfully!";
                 updatelocationInitState.Style.Add("display", "block");
                 updatelocationSecondState.Style.Add("display", "none");
                 UpdateLocationContent.Style.Add("display", "block");
@@ -245,8 +248,8 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -288,8 +291,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -310,15 +313,15 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addCategoryClearAll", "addCategoryClearAll();", true);
                 setCatID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
 
                 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -365,8 +368,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -389,8 +392,8 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateCategoryClearAll", "updateCategoryClearAll()", true);
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Category '" + name + "' updated successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Category '" + name + "' updated successfully!";
                 updateCategoryInitState.Style.Add("display", "block");
                 updateCategorySecondState.Style.Add("display", "none");
                 UpdateCategoryContent.Style.Add("display", "block");
@@ -398,8 +401,8 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -441,8 +444,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -467,14 +470,14 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addSubCategoryClearAll", "addSubCategoryClearAll();", true);
                 setSubCategoryID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Sub Category " + AddSubCategoryNameTextBox.Text + " added successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Sub Category " + AddSubCategoryNameTextBox.Text + " added successfully!";
                 Load_Category();
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }

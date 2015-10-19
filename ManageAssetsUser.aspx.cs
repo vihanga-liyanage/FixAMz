@@ -26,7 +26,10 @@ namespace FixAMz_WebApplication
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
-            responseArea.InnerHtml = "";
+            responseBoxGreen.Style.Add("display", "none");
+            responseMsgGreen.InnerHtml = "";
+            responseBoxRed.Style.Add("display", "none");
+            responseMsgRed.InnerHtml = "";
         }
 
         //Setting user name on header
@@ -49,8 +52,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException exx)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(exx.ToString());
             }
         }
@@ -60,6 +63,51 @@ namespace FixAMz_WebApplication
         {
             FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
+        }
+
+        //Reads the last notID from DB, calculates the next=============================
+        protected String setNotID()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 notID FROM Notification ORDER BY notID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newNotID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastNotID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastNotID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastNotID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastNotID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newNotID = chr;
+                    for (int i = 1; i < lastNotID.Length - temp.Length; i++)
+                    {
+                        newNotID += "0";
+                    }
+                    newNotID += temp;
+                    conn.Close();
+                    return newNotID;
+                }
+                else
+                {
+                    newNotID = "N00001";
+                    conn.Close();
+                    return newNotID;
+                }
+            }
+            catch (SqlException e)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+                return "";
+            }
         }
 
         // Loading data to drop downs ==================================================
@@ -231,6 +279,15 @@ namespace FixAMz_WebApplication
                 DisposeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
+                //Upgrade asset recommend person drop down
+                data = cmd.ExecuteReader();
+                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
+                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
+                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
+                UpgradeAssetPersonToRecommendDropDown.DataBind();
+                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                data.Close();
+
                 conn.Close();
             }
             catch (Exception ex)
@@ -276,13 +333,13 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
 
-        protected void SendForRecommendationBtn_Click(object sender, EventArgs e)
+        protected void AddAssetRecommendBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -298,7 +355,6 @@ namespace FixAMz_WebApplication
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
-                //cmd.Parameters.AddWithValue("@value", Convert.ToInt16(AddValueTextBox.Text));
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
@@ -310,13 +366,12 @@ namespace FixAMz_WebApplication
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @senduser, @receiveuser, @date, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "RgRecommand");
+                cmd.Parameters.AddWithValue("@type", "RegRecommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
-                cmd.Parameters.AddWithValue("@notcontent", "newly purchased");
                 cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
@@ -327,14 +382,14 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewAssetClearAll", "addNewAssetClearAll();", true);
                 setAssetID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset added successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset sent for recommendation!";
 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -393,6 +448,7 @@ namespace FixAMz_WebApplication
             AssetSearchGridView.DataSource = null;
             AssetSearchGridView.DataBind();
 
+            //Remove unnessary 'and'
             query = query.Replace("WHERE AND", "WHERE ");
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
@@ -409,20 +465,25 @@ namespace FixAMz_WebApplication
 
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
-                    responseArea.Style.Add("color", "rgb(20, 210, 20)");
-                    responseArea.InnerHtml = "Search Results Found for " + resultMessage ;
+                    responseBoxGreen.Style.Add("display", "block");
+                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
                 }
                 else
                 {
-                    responseArea.Style.Add("color", "orangered");
-                    responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                    responseBoxRed.Style.Add("display", "block");
+                    responseMsgRed.InnerHtml = "No Results Found for " + resultMessage;
                 }
                 conn.Close();
+
+                //expanding block
+                AdvancedAssetSearchContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedAssetSearchContent');", true);
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
 
@@ -471,12 +532,12 @@ namespace FixAMz_WebApplication
                 }
                 conn.Close();
                 //updating expandingItems dictionary in javascript
-                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpgradeAssetContent');", true);
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
 
@@ -508,211 +569,19 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
-
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
-                upgradeAssetInitState.Style.Add("display", "block");
-                upgradeAssetSecondState.Style.Add("display", "none");
-                UpgradeAssetContent.Style.Add("display", "block");
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
                 UpgradeAssetIDTextBox.Text = "";
 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
-
-        }
-
-        // Dispose asset ===============================================================
-
-        protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-
-                String assetID = DisposeAssetIDTextBox.Text;
-
-                string check = "select count(*) from Asset WHERE assetID='" + assetID + "'";
-                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "'";
-                SqlCommand cmd = new SqlCommand(check, conn);
-                SqlCommand cmd1 = new SqlCommand(getassetid, conn);
-                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
-
-                cmd.ExecuteNonQuery();
-                cmd1.ExecuteNonQuery();
-                if (res == 1)
-                {
-                    if (res1 == 0)
-                    {
-                        String disposeAssetCategoryID = "";
-                        String disposeAssetSubCategoryID = "";
-                        String disposeAssetLocationID = "";
-                        String disposeAssetOwnerID = "";
-
-                        String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
-                        cmd = new SqlCommand(query, conn);
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        while (dr.Read())
-                        {
-                            DisposeAssetID.InnerHtml = dr["assetID"].ToString();
-                            DisposeItemName.InnerHtml = dr["name"].ToString();
-                            disposeAssetCategoryID = dr["category"].ToString();
-                            disposeAssetSubCategoryID = dr["subcategory"].ToString();
-                            disposeAssetLocationID = dr["location"].ToString();
-                            disposeAssetOwnerID = dr["owner"].ToString();
-                            DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
-                        }
-                        dr.Close();
-                        // Get category name
-                        String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + disposeAssetCategoryID + "'";
-                        cmd = new SqlCommand(getCatNameQuery, conn);
-                        DisposeCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                        // Get sub category name
-                        String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
-                        cmd = new SqlCommand(getSubCatNameQuery, conn);
-                        DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                        // Get location name
-                        String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
-                        cmd = new SqlCommand(getLocationNameQuery, conn);
-                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
-                        // Get owner name
-                        String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
-                        cmd = new SqlCommand(getOwnerNameQuery, conn);
-                        DisposeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
-
-                        disposeAssetInitState.Style.Add("display", "none");
-                        disposeAssetSecondState.Style.Add("display", "block");
-                        DisposeAssetContent.Style.Add("display", "block");
-                        DisposeAssetIDValidator.InnerHtml = "";
-                        DisposeAssetIDTextBox.Focus();
-                    }
-                    else
-                    {
-                        disposeAssetInitState.Style.Add("display", "block");
-                        disposeAssetSecondState.Style.Add("display", "none");
-                        DisposeAssetContent.Style.Add("display", "block");
-                        DisposeAssetIDValidator.InnerHtml = "Asset alrady recommended to dispose!";
-                        DisposeItemName.Focus();
-                    }
-
-                    conn.Close();
-                    //updating expandingItems dictionary in javascript
-                    ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DisposeAssetContent');", true);
-                }
-                else
-                {
-                    disposeAssetInitState.Style.Add("display", "block");
-                    disposeAssetSecondState.Style.Add("display", "none");
-                    DisposeAssetContent.Style.Add("display", "block");
-                    DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
-                    DisposeItemName.Focus();
-                }
-            }
-            catch (SqlException ex)
-            {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
-        }
-
-        protected String setNotID() //Reads the last notID from DB, calculates the next.
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                String query = "SELECT TOP 1 notID FROM Notification ORDER BY notID DESC";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                String newNotID;
-                if (cmd.ExecuteScalar() != null)
-                {
-                    String lastNotID = (cmd.ExecuteScalar().ToString()).Trim();
-                    String chr = Convert.ToString(lastNotID[0]);
-                    String temp = "";
-                    for (int i = 1; i < lastNotID.Length; i++)
-                    {
-                        temp += Convert.ToString(lastNotID[i]);
-                    }
-                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
-                    newNotID = chr;
-                    for (int i = 1; i < lastNotID.Length - temp.Length; i++)
-                    {
-                        newNotID += "0";
-                    }
-                    newNotID += temp;
-                    conn.Close();
-                    return newNotID;
-                }
-                else
-                {
-                    newNotID = "N00001";
-                    conn.Close();
-                    return newNotID;
-                }
-            }
-            catch (SqlException e)
-            {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
-                return "";
-            }
-        }
-
-        protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-
-                
-                // Getting logged in user's ID
-                String username = HttpContext.Current.User.Identity.Name;
-                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
-                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
-                String empID = (cmd.ExecuteScalar().ToString()).Trim();
-                String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
-                cmd = new SqlCommand(insertDisposeAsset, conn);
-
-                cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type","Dispose");
-                cmd.Parameters.AddWithValue("@assetid", DisposeAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
-                cmd.Parameters.AddWithValue("@senduser", empID);
-                cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@date",  DateTime.Now.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@status", "not-seen");
-
-
-                cmd.ExecuteNonQuery();
-                
-                conn.Close();
-
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' recommended!";
-                disposeAssetInitState.Style.Add("display", "block");
-                disposeAssetSecondState.Style.Add("display", "none");
-                DisposeAssetContent.Style.Add("display", "block");
-                DisposeAssetIDTextBox.Text = "";
-
-            }
-            catch (Exception ex)
-            {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
 
@@ -761,8 +630,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
                 return "";
             }
@@ -834,7 +703,7 @@ namespace FixAMz_WebApplication
                         transferAssetInitState.Style.Add("display", "block");
                         transferAssetSecondState.Style.Add("display", "none");
                         TransferAssetContent.Style.Add("display", "block");
-                        TransferAssetIDValidator.InnerHtml = "Asset alrady recommended to transfer!";
+                        TransferAssetIDValidator.InnerHtml = "Asset already recommended to transfer!";
                         TransferItemName.Focus();
                     }
 
@@ -853,8 +722,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -901,20 +770,154 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "transferClearAll", "transferClearAll();", true);
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' is sent for approval!";
-                transferAssetInitState.Style.Add("display", "block");
-                transferAssetSecondState.Style.Add("display", "none");
-                TransferAssetContent.Style.Add("display", "block");
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' sent for recommendation!";
                 TransferAssetIDTextBox.Text = "";
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
 
+        // Dispose asset ===============================================================
+
+        protected void DisposeAssetFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String assetID = DisposeAssetIDTextBox.Text;
+
+                string check = "select count(*) from Asset WHERE assetID='" + assetID + "'";
+                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' and type='Dispose'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                SqlCommand cmd1 = new SqlCommand(getassetid, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
+
+                cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
+                if (res == 1)
+                {
+                    if (res1 == 0)
+                    {
+                        String disposeAssetCategoryID = "";
+                        String disposeAssetSubCategoryID = "";
+                        String disposeAssetLocationID = "";
+                        String disposeAssetOwnerID = "";
+
+                        String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        cmd = new SqlCommand(query, conn);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            DisposeAssetID.InnerHtml = dr["assetID"].ToString();
+                            DisposeItemName.InnerHtml = dr["name"].ToString();
+                            disposeAssetCategoryID = dr["category"].ToString();
+                            disposeAssetSubCategoryID = dr["subcategory"].ToString();
+                            disposeAssetLocationID = dr["location"].ToString();
+                            disposeAssetOwnerID = dr["owner"].ToString();
+                            DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
+                        }
+                        dr.Close();
+                        // Get category name
+                        String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + disposeAssetCategoryID + "'";
+                        cmd = new SqlCommand(getCatNameQuery, conn);
+                        DisposeCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                        // Get sub category name
+                        String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
+                        cmd = new SqlCommand(getSubCatNameQuery, conn);
+                        DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                        // Get location name
+                        String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
+                        cmd = new SqlCommand(getLocationNameQuery, conn);
+                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
+                        // Get owner name
+                        String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
+                        cmd = new SqlCommand(getOwnerNameQuery, conn);
+                        DisposeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+
+                        disposeAssetInitState.Style.Add("display", "none");
+                        disposeAssetSecondState.Style.Add("display", "block");
+                        DisposeAssetContent.Style.Add("display", "block");
+                        DisposeAssetIDValidator.InnerHtml = "";
+                        DisposeAssetIDTextBox.Focus();
+                    }
+                    else
+                    {
+                        disposeAssetInitState.Style.Add("display", "block");
+                        disposeAssetSecondState.Style.Add("display", "none");
+                        DisposeAssetContent.Style.Add("display", "block");
+                        DisposeAssetIDValidator.InnerHtml = "Asset already recommended to dispose!";
+                        DisposeItemName.Focus();
+                    }
+
+                    conn.Close();
+                    //updating expandingItems dictionary in javascript
+                    ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DisposeAssetContent');", true);
+                }
+                else
+                {
+                    disposeAssetInitState.Style.Add("display", "block");
+                    disposeAssetSecondState.Style.Add("display", "none");
+                    DisposeAssetContent.Style.Add("display", "block");
+                    DisposeAssetIDValidator.InnerHtml = "Asset ID not found!";
+                }
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
+
+        protected void DisposeAssetRecommendBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                // Getting logged in user's ID
+                String username = HttpContext.Current.User.Identity.Name;
+                String getUserIDQuery = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
+                String empID = (cmd.ExecuteScalar().ToString()).Trim();
+                String notID = setNotID();
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                cmd = new SqlCommand(insertDisposeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@notid", notID);
+                cmd.Parameters.AddWithValue("@type", "Dispose");
+                cmd.Parameters.AddWithValue("@assetid", DisposeAssetID.InnerHtml);
+                cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
+                cmd.Parameters.AddWithValue("@senduser", empID);
+                cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' sent for recommendation.";
+                DisposeAssetIDTextBox.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
+        }
     }
 }

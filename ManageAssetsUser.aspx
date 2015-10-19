@@ -46,7 +46,17 @@
 <!--Main content-->
         <div class="row">
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
-                <div id="responseArea" runat="server">
+                <div id="responseBoxGreen" runat="server">
+                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgGreen" runat="server"></div>
+                </div>
+                <div id="responseBoxRed" runat="server">
+                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #F0AEAE;; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgRed" runat="server"></div>
                 </div>
 <!--Register New Asset-->
                 <div class="row expand-item">
@@ -102,9 +112,9 @@
                                     <div class="validator" id="AddAssetPersonToRecommendValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <asp:Button ID="AddAssetButttonReco" runat="server" Text="Send for recommendation"
-                                        OnClick="SendForRecommendationBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
-                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
+                                    <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
+                                        OnClick="AddAssetRecommendBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
+                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="addNewAssetClearAll()" />
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -120,7 +130,7 @@
                         <img src="img/SearchIcon.png" />
                         <div class="expand-item-title" id="AdvancedAssetSearchHeader">
                             Advanced assets search</div>
-                        <div class="expand-item-content" id="AdvancedAssetSearchContent">
+                        <div class="expand-item-content" id="AdvancedAssetSearchContent" runat="server">
                             <div class="col-md-8">
                                 <div id="AssetSearchInitState" runat="server">
                                     <div class="info-div">Enter any information you have on the asset, to begin.</div>
@@ -159,12 +169,12 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
-                                            OnClick="SearchAssetBtn_Click" />
-                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" />
+                                            OnClick="SearchAssetBtn_Click" OnClientClick="return isValidAssetSearch()" />
+                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="assetSearchClearAll()" />
                                     </div>
                                 </div>
                                 <div id="AssetSearchSecondState" runat="server">
-                                    <asp:GridView ID="AssetSearchGridView" runat="server"></asp:GridView>
+                                    <asp:GridView ID="AssetSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -230,7 +240,7 @@
                                         <asp:Button ID="TransferAssetRecommend" runat="server" Text="Send for recommendation" 
                                              onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
                                         <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return transferAssetClearAll()" />
+                                            OnClientClick="return transferClearAll()" />
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +304,7 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Updated value</div>
+                                    <div class="expand-item-label">Upgrade cost</div>
                                     <asp:TextBox ID="UpgradeAssetValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
@@ -401,7 +411,7 @@
                                         <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click"
                                             OnClientClick="return isValidDisposeAssetDescription()" runat="server" Text="Send for recommendation"
                                             class="expand-item-btn" />
-                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" />
+                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return disposeClearAll()" />
                                     </div>
                                 </div>
                             </div>
