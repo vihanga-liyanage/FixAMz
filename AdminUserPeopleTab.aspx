@@ -18,7 +18,7 @@
     <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
         SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
     <div class="container-fluid">
-        <!--Header-->
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
@@ -45,10 +45,20 @@
                 </div>
             </div>
         </div>
-        <!--Main content-->
+<!--Main content-->
         <div class="row">
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
-                <div id="responseArea" runat="server">
+                <div id="responseBoxGreen" runat="server">
+                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgGreen" runat="server"></div>
+                </div>
+                <div id="responseBoxRed" runat="server">
+                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #F0AEAE;; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgRed" runat="server"></div>
                 </div>
 <!--Add user-->
                 <div class="row expand-item">
@@ -142,9 +152,9 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
-                        <div class="expand-item-title" id="AdvancedSearchHeader">
+                        <div class="expand-item-title" id="AdvancedUserSearchHeader">
                             Advanced User Search</div>
-                        <div class="expand-item-content" id="AdvancedSearchContent">
+                        <div class="expand-item-content" id="AdvancedUserSearchContent" runat="server">
                             <div class="col-md-8">
                             <div id="UserSearchInitState" runat="server">
                                 <div class="info-div">

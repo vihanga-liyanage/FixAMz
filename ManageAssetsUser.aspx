@@ -46,7 +46,17 @@
 <!--Main content-->
         <div class="row">
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
-                <div id="responseArea" runat="server">
+                <div id="responseBoxGreen" runat="server">
+                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgGreen" runat="server"></div>
+                </div>
+                <div id="responseBoxRed" runat="server">
+                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #F0AEAE;; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgRed" runat="server"></div>
                 </div>
 <!--Register New Asset-->
                 <div class="row expand-item">
@@ -294,7 +304,7 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Updated value</div>
+                                    <div class="expand-item-label">Upgrade cost</div>
                                     <asp:TextBox ID="UpgradeAssetValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="UpgradeAssetValueValidator" runat="server"></div>
                                 </div>

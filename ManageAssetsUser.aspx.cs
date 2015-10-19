@@ -26,7 +26,10 @@ namespace FixAMz_WebApplication
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
-            responseArea.InnerHtml = "";
+            responseBoxGreen.Style.Add("display", "none");
+            responseMsgGreen.InnerHtml = "";
+            responseBoxRed.Style.Add("display", "none");
+            responseMsgRed.InnerHtml = "";
         }
 
         //Setting user name on header
@@ -49,8 +52,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException exx)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(exx.ToString());
             }
         }
@@ -100,8 +103,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
                 return "";
             }
@@ -285,6 +288,15 @@ namespace FixAMz_WebApplication
                 DisposeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
+                //Upgrade asset recommend person drop down
+                data = cmd.ExecuteReader();
+                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
+                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
+                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
+                UpgradeAssetPersonToRecommendDropDown.DataBind();
+                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                data.Close();
+
                 conn.Close();
             }
             catch (Exception ex)
@@ -330,8 +342,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -379,14 +391,14 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewAssetClearAll", "addNewAssetClearAll();", true);
                 setAssetID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset sent for recommendation!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset sent for recommendation!";
 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -462,13 +474,13 @@ namespace FixAMz_WebApplication
 
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
-                    responseArea.Style.Add("color", "rgb(20, 210, 20)");
-                    responseArea.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
+                    responseBoxGreen.Style.Add("display", "block");
+                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
                 }
                 else
                 {
-                    responseArea.Style.Add("color", "orangered");
-                    responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                    responseBoxRed.Style.Add("display", "block");
+                    responseMsgRed.InnerHtml = "No Results Found for " + resultMessage;
                 }
                 conn.Close();
 
@@ -479,8 +491,8 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
 
@@ -533,8 +545,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
 
@@ -577,8 +589,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
                 return "";
             }
@@ -623,20 +635,21 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
 
-
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "upgradeAssetClearAll", "upgradeAssetClearAll();", true);
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
+
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
+
                 UpgradeAssetIDTextBox.Text = "";
 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
 
@@ -685,8 +698,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
                 return "";
             }
@@ -758,7 +771,7 @@ namespace FixAMz_WebApplication
                         transferAssetInitState.Style.Add("display", "block");
                         transferAssetSecondState.Style.Add("display", "none");
                         TransferAssetContent.Style.Add("display", "block");
-                        TransferAssetIDValidator.InnerHtml = "Asset alrady recommended to transfer!";
+                        TransferAssetIDValidator.InnerHtml = "Asset already recommended to transfer!";
                         TransferItemName.Focus();
                     }
 
@@ -777,8 +790,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -824,14 +837,14 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "transferClearAll", "transferClearAll();", true);
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' sent for recomendation!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' sent for recommendation!";
                 TransferAssetIDTextBox.Text = "";
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -907,7 +920,7 @@ namespace FixAMz_WebApplication
                         disposeAssetInitState.Style.Add("display", "block");
                         disposeAssetSecondState.Style.Add("display", "none");
                         DisposeAssetContent.Style.Add("display", "block");
-                        DisposeAssetIDValidator.InnerHtml = "Asset alrady recommended to dispose!";
+                        DisposeAssetIDValidator.InnerHtml = "Asset already recommended to dispose!";
                         DisposeItemName.Focus();
                     }
 
@@ -925,8 +938,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -960,15 +973,15 @@ namespace FixAMz_WebApplication
 
                 conn.Close();
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' sent for recommendation.";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' sent for recommendation.";
                 DisposeAssetIDTextBox.Text = "";
 
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
 
