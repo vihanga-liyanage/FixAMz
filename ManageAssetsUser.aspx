@@ -304,7 +304,7 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Updated value</div>
+                                    <div class="expand-item-label">Upgrade cost</div>
                                     <asp:TextBox ID="UpgradeAssetValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
