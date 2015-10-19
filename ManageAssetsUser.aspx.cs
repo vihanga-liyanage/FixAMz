@@ -279,6 +279,15 @@ namespace FixAMz_WebApplication
                 DisposeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
+                //Upgrade asset recommend person drop down
+                data = cmd.ExecuteReader();
+                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
+                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
+                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
+                UpgradeAssetPersonToRecommendDropDown.DataBind();
+                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                data.Close();
+
                 conn.Close();
             }
             catch (Exception ex)
@@ -694,7 +703,7 @@ namespace FixAMz_WebApplication
                         transferAssetInitState.Style.Add("display", "block");
                         transferAssetSecondState.Style.Add("display", "none");
                         TransferAssetContent.Style.Add("display", "block");
-                        TransferAssetIDValidator.InnerHtml = "Asset alrady recommended to transfer!";
+                        TransferAssetIDValidator.InnerHtml = "Asset already recommended to transfer!";
                         TransferItemName.Focus();
                     }
 
@@ -761,7 +770,7 @@ namespace FixAMz_WebApplication
                 ScriptManager.RegisterStartupScript(this, GetType(), "transferClearAll", "transferClearAll();", true);
 
                 responseBoxGreen.Style.Add("display", "block");
-                responseMsgGreen.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' sent for recomendation!";
+                responseMsgGreen.InnerHtml = "Asset '" + TransferAssetIDTextBox.Text + "' sent for recommendation!";
                 TransferAssetIDTextBox.Text = "";
             }
             catch (Exception ex)
@@ -843,7 +852,7 @@ namespace FixAMz_WebApplication
                         disposeAssetInitState.Style.Add("display", "block");
                         disposeAssetSecondState.Style.Add("display", "none");
                         DisposeAssetContent.Style.Add("display", "block");
-                        DisposeAssetIDValidator.InnerHtml = "Asset alrady recommended to dispose!";
+                        DisposeAssetIDValidator.InnerHtml = "Asset already recommended to dispose!";
                         DisposeItemName.Focus();
                     }
 
