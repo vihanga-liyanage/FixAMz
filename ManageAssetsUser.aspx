@@ -296,17 +296,20 @@
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Updated value</div>
                                     <asp:TextBox ID="UpgradeAssetValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="UpgradeAssetValueValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Description</div>
                                     <asp:TextBox ID="UpgradeAssetDescriptionTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="UpgradeAssetDescriptionValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Person to recommend</div>
                                     <asp:DropDownList ID="UpgradeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    <div class="validator" id="UpgradeAssetPersonToRecommendValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" />
+                                    <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" OnClientClick="return isValidUpgradeAsset()" />
                                     <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" />
                                 </div>
                             </div>
@@ -393,13 +396,12 @@
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">
                                             Person to recommend</div>
-                                        <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDown" class="expand-item-textbox"
-                                            runat="server">
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                        <div class="validator" id="DisposeAssetPersonToRecommendValidator" runat="server"></div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click"
-                                            OnClientClick="return isValidDisposeAssetDescription()" runat="server" Text="Send for recommendation"
+                                            OnClientClick="return isValidDisposeAsset()" runat="server" Text="Send for recommendation"
                                             class="expand-item-btn" />
                                         <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return disposeClearAll()" />
                                     </div>

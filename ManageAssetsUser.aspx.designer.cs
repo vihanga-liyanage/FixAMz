@@ -598,6 +598,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpgradeAssetValueTextBox;
         
         /// <summary>
+        /// UpgradeAssetValueValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetValueValidator;
+        
+        /// <summary>
         /// UpgradeAssetDescriptionTextBox control.
         /// </summary>
         /// <remarks>
@@ -607,6 +616,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.TextBox UpgradeAssetDescriptionTextBox;
         
         /// <summary>
+        /// UpgradeAssetDescriptionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetDescriptionValidator;
+        
+        /// <summary>
         /// UpgradeAssetPersonToRecommendDropDown control.
         /// </summary>
         /// <remarks>
@@ -614,6 +632,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList UpgradeAssetPersonToRecommendDropDown;
+        
+        /// <summary>
+        /// UpgradeAssetPersonToRecommendValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetPersonToRecommendValidator;
         
         /// <summary>
         /// UpgradeAssetRecommendBtn control.
@@ -776,6 +803,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DisposeAssetPersonToRecommendDropDown;
+        
+        /// <summary>
+        /// DisposeAssetPersonToRecommendValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetPersonToRecommendValidator;
         
         /// <summary>
         /// DisposeAssetRecommendBtn control.

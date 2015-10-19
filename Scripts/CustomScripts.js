@@ -501,7 +501,6 @@ function isValidTransferAsset() {
 
 //Dispose Asset functions ====================================================================
 function disposeClearAll() {
-    alert("dispose");
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
     document.getElementById("disposeAssetSecondState").style.display = "none";
     document.getElementById("disposeAssetInitState").style.display = "block";
@@ -509,7 +508,20 @@ function disposeClearAll() {
     return false;
 }
 
-function isValidDisposeAssetDescription() {
+function isValidDisposeAsset() {
     var DisposeAssetDescription = requiredFieldValidator("DisposeAssetDescription", "Description cannot be empty.");
-    return (DisposeAssetDescription);
+    var isValidRecommend = dropDownRequiredFieldValidator("DisposeAssetPersonToRecommend");
+    return (DisposeAssetDescription && isValidRecommend);
+}
+
+//Upgrade Asset function ====================================================================
+function isValidUpgradeAsset() {
+    var isValidValue = requiredFieldValidator("UpgradeAssetValue", "Value cannot be empty.");
+    var isValidDiscription = requiredFieldValidator("UpgradeAssetDescription", "Description cannot be empty.");
+    var isValidRecommend = dropDownRequiredFieldValidator("UpgradeAssetPersonToRecommend");
+    return (isValidValue && isValidDiscription && isValidRecommend);
+}
+
+function upgradeAssetClearAll() {
+    document.forms[0]["DisposeAssetIDTextBox"].value = "";
 }
