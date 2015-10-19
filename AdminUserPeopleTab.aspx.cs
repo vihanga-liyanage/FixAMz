@@ -17,7 +17,10 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             setEmpID();
-            responseArea.InnerHtml = "";
+            responseBoxGreen.Style.Add("display", "none");
+            responseMsgGreen.InnerHtml = "";
+            responseBoxRed.Style.Add("display", "none");
+            responseMsgRed.InnerHtml = "";
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             setUserName();
         }
@@ -42,8 +45,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException exx)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(exx.ToString());
             }
         }
@@ -91,8 +94,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException e)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -148,15 +151,14 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
                 setEmpID();
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
-                
 
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -206,8 +208,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
 
@@ -233,8 +235,8 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Employee '" + empID + "' updated successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Employee '" + empID + "' updated successfully!";
 
                 updateUserInitState.Style.Add("display", "block");
                 updateUserSecondState.Style.Add("display", "none");
@@ -244,8 +246,8 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "orangered");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
         }
@@ -310,20 +312,25 @@ namespace FixAMz_WebApplication
 
                      UserSearchGridView.DataSource = dt;  //display found data in grid view
                      UserSearchGridView.DataBind();
-                     responseArea.Style.Add("color", "rgb(20, 210, 20)");
-                     responseArea.InnerHtml = "Search Results Found for " + resultMessage;
+                     responseBoxGreen.Style.Add("display", "block");
+                     responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
                  }
                  else
                  {
-                     responseArea.Style.Add("color", "orangered");
-                     responseArea.InnerHtml = "No Results Found for " + resultMessage;
+                     responseBoxRed.Style.Add("display", "block");
+                     responseMsgRed.InnerHtml = "No Results Found for <strong>" + resultMessage + "</strong>";
                  }
                  conn.Close();
+
+                 //expanding block
+                 AdvancedUserSearchContent.Style.Add("display", "block");
+                 //updating expandingItems dictionary in javascript
+                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedUserSearchContent');", true);
              }
              catch (Exception ex)
              {
-                 responseArea.Style.Add("color", "orangered");
-                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                 responseBoxRed.Style.Add("display", "block");
+                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                  Response.Write(ex.ToString());
              }
 
@@ -360,7 +367,7 @@ namespace FixAMz_WebApplication
 
                         UserSearchGridView.DataSource = dt;  //display found data in grid view
                         UserSearchGridView.DataBind();
-                        responseArea.Style.Add("color", "green");
+                        
                         responseArea.InnerHtml = "Search Results Found.";
                     }
                     else //search results not found
@@ -382,7 +389,7 @@ namespace FixAMz_WebApplication
 
                         UserSearchGridView.DataSource = dt;
                         UserSearchGridView.DataBind();
-                        responseArea.Style.Add("color", "green");
+                        
                         responseArea.InnerHtml = "Search Results Found.";
                     }
                     else
@@ -404,7 +411,7 @@ namespace FixAMz_WebApplication
 
                         UserSearchGridView.DataSource = dt;
                         UserSearchGridView.DataBind();
-                        responseArea.Style.Add("color", "green");
+                        
                         responseArea.InnerHtml = "Search Results Found.";
                     }
                     else
@@ -427,7 +434,7 @@ namespace FixAMz_WebApplication
 
                         UserSearchGridView.DataSource = dt;
                         UserSearchGridView.DataBind();
-                        responseArea.Style.Add("color", "green");
+                        
                         responseArea.InnerHtml = "Search Results Found.";
                     }
                     else
@@ -450,7 +457,7 @@ namespace FixAMz_WebApplication
 
                         UserSearchGridView.DataSource = dt;
                         UserSearchGridView.DataBind();
-                        responseArea.Style.Add("color", "green");
+                        
                         responseArea.InnerHtml = "Search Results Found.";
                     }
                     else
@@ -475,7 +482,7 @@ namespace FixAMz_WebApplication
 
                         UserSearchGridView.DataSource = dt;
                         UserSearchGridView.DataBind();
-                        responseArea.Style.Add("color", "green");
+                        
                         responseArea.InnerHtml = "Search Results Found.";
                     }
                     else
@@ -491,7 +498,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                responseArea.Style.Add("color", "Yellow");
+                
                 responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
@@ -503,11 +510,13 @@ namespace FixAMz_WebApplication
 
         protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
+            Response.Write("CancelSearchBtn_Click");
             var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
             {
                 textBox.Text = "";
-                responseArea.InnerHtml = "";
+                responseBoxGreen.Style.Add("display", "none");
+                responseMsgGreen.InnerHtml = "";
                 UserSearchGridView.Visible = false;
             }
         }
@@ -559,8 +568,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException ex)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
         }
@@ -583,8 +592,9 @@ namespace FixAMz_WebApplication
 
                 conn.Close();
 
-                responseArea.Style.Add("color", "green");
-                responseArea.InnerHtml = "Employee '" + empID + "' deleted successfully!";
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Employee '" + empID + "' deleted successfully!";
+
                 deleteUserInitState.Style.Add("display", "block");
                 deleteUserSecondState.Style.Add("display", "none");
                 DeleteUserContent.Style.Add("display", "block");
@@ -592,8 +602,8 @@ namespace FixAMz_WebApplication
             }
             catch (SqlException)
             {
-                responseArea.Style.Add("color", "Yellow");
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
             
