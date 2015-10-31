@@ -375,12 +375,13 @@ namespace FixAMz_WebApplication
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @senduser, @receiveuser, @date, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @date, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "RegRecommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
