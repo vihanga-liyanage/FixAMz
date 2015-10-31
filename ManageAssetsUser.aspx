@@ -88,7 +88,7 @@
                                     <div class="validator" id="AddAssetSubCategoryValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Value</div>
+                                    <div class="expand-item-label">Value (LKR)</div>
                                     <asp:TextBox ID="AddValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="AddValueValidator" runat="server">
                                     </div>

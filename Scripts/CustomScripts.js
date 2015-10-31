@@ -109,6 +109,22 @@ function nameValidator(controller) { //A name can only have a-zA-Z
     }
 }
 
+function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
+    var content = document.forms[0][controller + "TextBox"].value;
+    var re = /^[A-Za-z\s][A-Za-z0-9\s]*$/;
+    if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid name.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
+
+
 function dropDownRequiredFieldValidator(controller) {
     var dropdown = document.forms[0][controller + "DropDown"];
     var content = dropdown.options[dropdown.selectedIndex].value;
@@ -499,7 +515,7 @@ function requiredFieldValidatorValue(controller, msg) {
 }
 
 function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && assetNameValidator("RegisterAssetName");
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
