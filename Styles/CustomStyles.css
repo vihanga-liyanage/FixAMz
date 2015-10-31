@@ -284,7 +284,7 @@ div
     z-index:-1;
 }
 
-#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState
+#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState, #updateSubCategorySecondState
 {
     display:none;
 }

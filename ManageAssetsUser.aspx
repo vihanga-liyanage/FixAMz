@@ -180,7 +180,7 @@
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                 <div class="advanced-asset-search-icon hidden-sm hidden-xs">
                                 </div>
-                            </div>
+                            </div>>
                         </div>
                     </div>
                 </div>
@@ -335,8 +335,7 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/DeleteIcon.png" />
-                        <div class="expand-item-title" id="DisposeAssetHeader">
-                            Dispose asset</div>
+                        <div class="expand-item-title" id="DisposeAssetHeader">Dispose asset</div>
                         <div class="expand-item-content" id="DisposeAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div id="disposeAssetInitState" runat="server">

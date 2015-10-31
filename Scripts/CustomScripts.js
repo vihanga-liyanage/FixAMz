@@ -325,9 +325,67 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-    
+
     return false;
 }
+
+//update subcategory, sub category ID validate
+function isValidUpdateSubCategoryID() {
+    return requiredFieldValidator("UpdateSubCategoryID", "Sub Category ID cannot be empty.");
+}
+function isValidUpdateScat() {
+    var isValidUpScatname = requiredFieldValidator("UpdateScatName", "Sub Category name cannot be empty.") && nameValidator("UpdateScatName");
+    var isValidUpScatDepRate = requiredFieldValidator("UpdateDepRate", "Depreciation Rate cannot be empty.");
+
+    if (isValidUpScatDepRate) {
+        var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
+        var intVal = parseFloat(depre);
+        if (!depre.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else if (intVal > 100.0) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid #cacaca";
+            isValidDepreciation = true;
+        }
+    }
+
+    var isValidUpScatLifetime = requiredFieldValidator("UpdateLifetime", "Department cannot be empty.");
+    if (isValidUpScatLifetime) {
+        var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;
+        if (!lifetime.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "Lifetime cannot have non-digits.";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid red";
+            isValidLifetime = false;
+        } else {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid #cacaca";
+            isValidLifetime = true;
+        }
+    }
+
+
+    return (isValidUpScatname && isValidUpScatDepRate && isValidUpScatLifetime);
+}
+
+function updateSubCategoryClearAll() {
+    document.forms[0]["UpdateScatNameTetBox"].value = "";
+    document.forms[0]["UpdateDepRateTextBox"].value = "";
+    document.forms[0]["UpdateLifetimeTextBox"].value = "";
+
+    document.getElementById("updateSubCategoryInitState").style.display = "block";
+    document.getElementById("updateSubCategorySecondState").style.display = "none";
+
+    return false;
+}
+
+
+
 
 //Add new category functions =================================================================
 function isValidAddCat() {
