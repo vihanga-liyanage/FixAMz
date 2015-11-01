@@ -94,6 +94,12 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
+                                    <div class="expand-item-label">Salvage Value (LKR)</div>
+                                    <asp:TextBox ID="AddSalvageValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddSalvageValueValidator" runat="server">
+                                    </div>
+                                </div>
+                                <div class="row expand-item-row">
                                     <div class="expand-item-label">Location</div>
                                     <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>

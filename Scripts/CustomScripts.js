@@ -109,6 +109,7 @@ function nameValidator(controller) { //A name can only have a-zA-Z
     }
 }
 
+//validate asset name without symbolic values
 function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
     var content = document.forms[0][controller + "TextBox"].value;
     var re = /^[A-Za-z\s][A-Za-z0-9\s]*$/;
@@ -486,6 +487,7 @@ function addNewAssetClearAll() {
     document.forms[0]["AddAssetCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
+    document.forms[0]["AddSalvageValueTextBox"].value = "";
     document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
@@ -517,13 +519,14 @@ function requiredFieldValidatorValue(controller, msg) {
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && assetNameValidator("RegisterAssetName");
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidSalvageValue = requiredFieldValidatorValue("AddSalvageValue", "Salvage Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
     var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
     var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
     var isValidRecommend = dropDownRequiredFieldValidator("AddAssetPersonToRecommend");
 
-    return (isValidAssetName && isValidValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
 }
 
 //Advanced asset search functions=============================================================
