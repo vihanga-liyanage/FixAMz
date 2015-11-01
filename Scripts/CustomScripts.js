@@ -71,7 +71,8 @@ function emailValidator(controller) {
 
 function contactValidator(controller) {
     var contact = document.forms[0][controller + "TextBox"].value;
-    var prefix = contact.substring(0, 3);
+    var prefix = contact.substring(1, 3);
+    var validPrefixs = ["70", "71", "72", "75", "76", "77", "78", "63", "25", "36", "55", "57", "65", "32", "11", "91", "33", "47", "51", "21", "67", "34", "81", "35", "37", "23", "66", "41", "54", "31", "52", "38", "27", "45", "26", "24"];
     if (contact == "") {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot be empty.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
@@ -84,7 +85,7 @@ function contactValidator(controller) {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot have non-digits.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076" || prefix == "078")) {
+    } else if (validPrefixs.indexOf(prefix) == -1) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
