@@ -109,6 +109,23 @@ function nameValidator(controller) { //A name can only have a-zA-Z
     }
 }
 
+//validate asset name without symbolic values
+function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
+    var content = document.forms[0][controller + "TextBox"].value;
+    var re = /^[A-Za-z\s][A-Za-z0-9\s]*$/;
+    if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid name.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
+
+
 function dropDownRequiredFieldValidator(controller) {
     var dropdown = document.forms[0][controller + "DropDown"];
     var content = dropdown.options[dropdown.selectedIndex].value;
@@ -325,9 +342,67 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-    
+
     return false;
 }
+
+//update subcategory, sub category ID validate
+function isValidUpdateSubCategoryID() {
+    return requiredFieldValidator("UpdateSubCategoryID", "Sub Category ID cannot be empty.");
+}
+function isValidUpdateScat() {
+    var isValidUpScatname = requiredFieldValidator("UpdateScatName", "Sub Category name cannot be empty.") && nameValidator("UpdateScatName");
+    var isValidUpScatDepRate = requiredFieldValidator("UpdateDepRate", "Depreciation Rate cannot be empty.");
+
+    if (isValidUpScatDepRate) {
+        var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
+        var intVal = parseFloat(depre);
+        if (!depre.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else if (intVal > 100.0) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid #cacaca";
+            isValidDepreciation = true;
+        }
+    }
+
+    var isValidUpScatLifetime = requiredFieldValidator("UpdateLifetime", "Department cannot be empty.");
+    if (isValidUpScatLifetime) {
+        var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;
+        if (!lifetime.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "Lifetime cannot have non-digits.";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid red";
+            isValidLifetime = false;
+        } else {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid #cacaca";
+            isValidLifetime = true;
+        }
+    }
+
+
+    return (isValidUpScatname && isValidUpScatDepRate && isValidUpScatLifetime);
+}
+
+function updateSubCategoryClearAll() {
+    document.forms[0]["UpdateScatNameTetBox"].value = "";
+    document.forms[0]["UpdateDepRateTextBox"].value = "";
+    document.forms[0]["UpdateLifetimeTextBox"].value = "";
+
+    document.getElementById("updateSubCategoryInitState").style.display = "block";
+    document.getElementById("updateSubCategorySecondState").style.display = "none";
+
+    return false;
+}
+
+
+
 
 //Add new category functions =================================================================
 function isValidAddCat() {
@@ -412,6 +487,7 @@ function addNewAssetClearAll() {
     document.forms[0]["AddAssetCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
+    document.forms[0]["AddSalvageValueTextBox"].value = "";
     document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
@@ -441,15 +517,16 @@ function requiredFieldValidatorValue(controller, msg) {
 }
 
 function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && assetNameValidator("RegisterAssetName");
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidSalvageValue = requiredFieldValidatorValue("AddSalvageValue", "Salvage Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
     var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
     var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
     var isValidRecommend = dropDownRequiredFieldValidator("AddAssetPersonToRecommend");
 
-    return (isValidAssetName && isValidValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
 }
 
 //Advanced asset search functions=============================================================
@@ -501,7 +578,6 @@ function isValidTransferAsset() {
 
 //Dispose Asset functions ====================================================================
 function disposeClearAll() {
-    alert("dispose");
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
     document.getElementById("disposeAssetSecondState").style.display = "none";
     document.getElementById("disposeAssetInitState").style.display = "block";
@@ -509,7 +585,20 @@ function disposeClearAll() {
     return false;
 }
 
-function isValidDisposeAssetDescription() {
+function isValidDisposeAsset() {
     var DisposeAssetDescription = requiredFieldValidator("DisposeAssetDescription", "Description cannot be empty.");
-    return (DisposeAssetDescription);
+    var isValidRecommend = dropDownRequiredFieldValidator("DisposeAssetPersonToRecommend");
+    return (DisposeAssetDescription && isValidRecommend);
+}
+
+//Upgrade Asset function ====================================================================
+function isValidUpgradeAsset() {
+    var isValidValue = requiredFieldValidator("UpgradeAssetValue", "Value cannot be empty.");
+    var isValidDiscription = requiredFieldValidator("UpgradeAssetDescription", "Description cannot be empty.");
+    var isValidRecommend = dropDownRequiredFieldValidator("UpgradeAssetPersonToRecommend");
+    return (isValidValue && isValidDiscription && isValidRecommend);
+}
+
+function upgradeAssetClearAll() {
+    document.forms[0]["DisposeAssetIDTextBox"].value = "";
 }

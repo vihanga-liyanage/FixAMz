@@ -270,6 +270,15 @@ namespace FixAMz_WebApplication
                 TransAssetSendForRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
+                //Upgrade asset recommend person drop down
+                data = cmd.ExecuteReader();
+                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
+                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
+                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
+                UpgradeAssetPersonToRecommendDropDown.DataBind();
+                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                data.Close();
+
                 //Dispose asset recommend person drop down
                 data = cmd.ExecuteReader(); 
                 DisposeAssetPersonToRecommendDropDown.DataSource = data;
@@ -366,12 +375,13 @@ namespace FixAMz_WebApplication
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @senduser, @receiveuser, @date, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @date, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "RegRecommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
@@ -543,6 +553,50 @@ namespace FixAMz_WebApplication
 
         }
 
+        protected String setUpID() //Reads the last upID from DB, calculates the next.
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT TOP 1 upID FROM UpgradeAsset ORDER BY upID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                String newUpID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastUpID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastUpID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastUpID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastUpID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newUpID = chr;
+                    for (int i = 1; i < lastUpID.Length - temp.Length; i++)
+                    {
+                        newUpID += "0";
+                    }
+                    newUpID += temp;
+                    conn.Close();
+                    return newUpID;
+                }
+                else
+                {
+                    newUpID = "U00001";
+                    conn.Close();
+                    return newUpID;
+                }
+            }
+            catch (SqlException e)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+                return "";
+            }
+        }
+
         protected void UpgradeAssetRecommendBtn_Click(object sender, EventArgs e)
         {
             try
@@ -571,10 +625,25 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, date, description, recommend, approve) VALUES (@upid, @assetid, @value, @date, @description, @recommend, @approve)";
+                cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@upid", setUpID());
+                cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@value", UpgradeAssetValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
+                cmd.Parameters.AddWithValue("@recommend", empID);
+                cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "upgradeAssetClearAll", "upgradeAssetClearAll();", true);
 
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
+
                 UpgradeAssetIDTextBox.Text = "";
 
             }
@@ -919,5 +988,7 @@ namespace FixAMz_WebApplication
             }
 
         }
+
+
     }
 }

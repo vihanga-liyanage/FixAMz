@@ -322,40 +322,66 @@
                         <div class="col-md-12">
                             <img src="img/UpdateIcon.png" />
                             <div class="expand-item-title" id="UpdateSubCategoryHeader">Update Sub Category</div>
-                            <div class="expand-item-content" id="UpdateSubCategoryContent">
+                            <div class="expand-item-content" id="UpdateSubCategoryContent" runat="server">
                                 <div class="col-md-8">
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Name</div>
-                                    <asp:TextBox ID="TextBox6" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                <div id="updateSubCategoryInitState" runat="server">
+                                    <div class="info-div">Enter sub category ID to update sub category</div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Sub Category ID</div>
+                                        <asp:TextBox ID="UpdateSubCategoryIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateSubCategoryIDValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <asp:Button ID="UpdateSubCategoryFindBtn" runat="server" Text="Go" class="expand-item-btn"
+                                            OnClientClick="return isValidUpdateSubCategoryID()" OnClick="UpdateSubCategoryFindBtn_Click" />
+                                    </div>
+                                </div> 
+                                    <div id="updateSubCategorySecondState" runat="server">
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Sub Category ID</div>
+                                            <div id="UpdateScatID" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Sub Category Name</div>
+                                            <asp:TextBox ID="UpdateScatNameTetBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="UpdateScatNameValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Category</div>
+                                            <div id="UpdateCategory" runat="server" class="custom-label"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Depreciation Rate</div>
+                                            <asp:TextBox ID="UpdateDepRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="UpdateDepRateValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">Lifetime</div>
+                                            <asp:TextBox ID="UpdateLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="UpdateLifetimeValidator" runat="server"></div>
+                                        </div>
+                                        <div class="row expand-item-row">
+                                            <asp:Button ID="UpdateScatBtn" runat="server" Text="Update Sub Category" class="expand-item-btn"
+                                                OnClientClick="return isValidUpdateScat()" OnClick="UpdateScatBtn_click" />
+                                            <asp:Button ID="UpdateScatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
+                                                OnClientClick="return updateSubCategoryClearAll() " />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">Category</div>
-                                    <asp:TextBox ID="DropDownList7" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                            
                                 </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">Depreciation rate</div>
-                                    <asp:TextBox ID="TextBox7" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <asp:Button ID="Button5" runat="server" Text="Add sub category" class="expand-item-btn" />
-                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" />
-                                </div>
-                            </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="update-sub-category-icon hidden-sm hidden-xs"></div>
-                                <div class="validator-container">
-                                    <div class="validator" id="Div5" runat="server"></div>
+                                    <div class="update-sub-category-icon hidden-sm hidden-xs"></div>
                                 </div>
-                            </div>
-
-                            
                             </div>
                         </div>
-                    </div>
-                <div class="col-lg-1"></div>
-            </div>
-        </div>
+                       </div>
+                   </div>
+                   </div>
+                  
+                  
 <!--Footer-->
             <div id="footer" class="row">
                 <div class="row footer-up">

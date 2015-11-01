@@ -22,7 +22,7 @@ namespace FixAMz_WebApplication
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
             setUserName();
-            if(!IsPostBack)
+            if (!IsPostBack)
                 Load_Category();
         }
 
@@ -126,7 +126,7 @@ namespace FixAMz_WebApplication
                 Response.Write(e.ToString());
             }
         }
-        
+
         protected void AddLocationBtn_Click(object sender, EventArgs e)
         {
             try
@@ -316,7 +316,7 @@ namespace FixAMz_WebApplication
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
 
-                
+
             }
             catch (Exception ex)
             {
@@ -406,7 +406,7 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
-       
+
         //Add new sub category
         protected void setSubCategoryID()
         {
@@ -473,6 +473,105 @@ namespace FixAMz_WebApplication
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Sub Category " + AddSubCategoryNameTextBox.Text + " added successfully!";
                 Load_Category();
+            }
+            catch (Exception ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
+
+        //Update sub category
+        protected void UpdateSubCategoryFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String scatID = UpdateSubCategoryIDTextBox.Text;
+
+                string check = "select count(*) from SubCategory WHERE scatID='" + scatID + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+
+                    String updateSubCategoryCategoryID = "";
+
+                    String query = "SELECT scatID, catID, name, depreciationRate, lifetime FROM SubCategory WHERE scatID='" + scatID + "'";
+                    cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        UpdateScatID.InnerHtml = dr["scatID"].ToString();
+                        UpdateScatNameTetBox.Text = dr["name"].ToString();
+                        updateSubCategoryCategoryID = dr["catID"].ToString();
+                        UpdateDepRateTextBox.Text = dr["depreciationRate"].ToString();
+                        UpdateLifetimeTextBox.Text = dr["lifetime"].ToString();
+                        
+                    }
+                    dr.Close();
+                    // Get category name
+                    String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + updateSubCategoryCategoryID + "'";
+                    cmd = new SqlCommand(getCatNameQuery, conn);
+                    UpdateCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+
+                    updateSubCategoryInitState.Style.Add("display", "none");
+                    updateSubCategorySecondState.Style.Add("display", "block");
+                    UpdateSubCategoryContent.Style.Add("display", "block");
+                    UpdateSubCategoryIDValidator.InnerHtml = "";
+                }
+                else
+                {
+                    updateSubCategoryInitState.Style.Add("display", "block");
+                    updateSubCategorySecondState.Style.Add("display", "none");
+                    UpdateSubCategoryContent.Style.Add("display", "block");
+                    UpdateSubCategoryIDValidator.InnerHtml = "Invalid Sub Category ID";
+                }
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateSubCategoryContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+        }
+
+        protected void UpdateScatBtn_click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String scatID = UpdateSubCategoryIDTextBox.Text;
+                String name = UpdateScatNameTetBox.Text;
+
+                string insertion_SubCategory = "UPDATE SubCategory SET name = @name, depreciationRate = @depreciationRate, lifetime = @lifetime WHERE scatID='" + scatID + "'";
+                SqlCommand cmd = new SqlCommand(insertion_SubCategory, conn);
+
+                cmd.Parameters.AddWithValue("@name", UpdateScatNameTetBox.Text);
+                cmd.Parameters.AddWithValue("@depreciationRate", UpdateDepRateTextBox.Text);
+                cmd.Parameters.AddWithValue("@lifetime", UpdateLifetimeTextBox.Text);
+                
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateSubCategoryClearAll", "updateSubCategoryClearAll()", true);
+
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Sub Category '" + scatID + "' updated successfully!";
+                updateSubCategoryInitState.Style.Add("display", "block");
+                updateSubCategorySecondState.Style.Add("display", "none");
+                UpdateSubCategoryContent.Style.Add("display", "block");
+                UpdateSubCategoryIDTextBox.Text = "";
             }
             catch (Exception ex)
             {

@@ -724,57 +724,147 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.Button AddSubCategoryCancelBtn;
         
         /// <summary>
-        /// TextBox6 control.
+        /// UpdateSubCategoryContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateSubCategoryContent;
         
         /// <summary>
-        /// DropDownList7 control.
+        /// updateSubCategoryInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DropDownList7;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateSubCategoryInitState;
         
         /// <summary>
-        /// TextBox7 control.
+        /// UpdateSubCategoryIDTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox UpdateSubCategoryIDTextBox;
         
         /// <summary>
-        /// Button5 control.
+        /// UpdateSubCategoryIDValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateSubCategoryIDValidator;
         
         /// <summary>
-        /// Button6 control.
+        /// UpdateSubCategoryFindBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button UpdateSubCategoryFindBtn;
         
         /// <summary>
-        /// Div5 control.
+        /// updateSubCategorySecondState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateSubCategorySecondState;
+        
+        /// <summary>
+        /// UpdateScatID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateScatID;
+        
+        /// <summary>
+        /// UpdateScatNameTetBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateScatNameTetBox;
+        
+        /// <summary>
+        /// UpdateScatNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateScatNameValidator;
+        
+        /// <summary>
+        /// UpdateCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCategory;
+        
+        /// <summary>
+        /// UpdateDepRateTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateDepRateTextBox;
+        
+        /// <summary>
+        /// UpdateDepRateValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateDepRateValidator;
+        
+        /// <summary>
+        /// UpdateLifetimeTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateLifetimeTextBox;
+        
+        /// <summary>
+        /// UpdateLifetimeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateLifetimeValidator;
+        
+        /// <summary>
+        /// UpdateScatBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateScatBtn;
+        
+        /// <summary>
+        /// UpdateScatCancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateScatCancelBtn;
     }
 }
