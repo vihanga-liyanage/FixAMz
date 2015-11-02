@@ -96,6 +96,7 @@ function contactValidator(controller) {
     }
 }
 
+//Can only have letters
 function nameValidator(controller) { //A name can only have a-zA-Z
     var content = document.forms[0][controller + "TextBox"].value;
     var re = /^[a-zA-Z\s]+$/;
@@ -110,7 +111,7 @@ function nameValidator(controller) { //A name can only have a-zA-Z
     }
 }
 
-//validate asset name without symbolic values
+//Can only have letters and decimals
 function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
     var content = document.forms[0][controller + "TextBox"].value;
     var re = /^[A-Za-z\s][A-Za-z0-9\s]*$/;
@@ -124,7 +125,6 @@ function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
         return true;
     }
 }
-
 
 function dropDownRequiredFieldValidator(controller) {
     var dropdown = document.forms[0][controller + "DropDown"];
@@ -308,8 +308,8 @@ function deleteClearAll() {
 
 //Add new location functions =================================================================
 function isValidAddLoc() {
-    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
-    var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
+    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && assetNameValidator("AddLocationName");
+    var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.") && assetNameValidator("AddLocationAddress");
     var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.") && assetNameValidator("AddLocationManagerOffice");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.") && assetNameValidator("AddLocationDepartment");
@@ -332,8 +332,8 @@ function addLocationClearAll() {
 
 //Update location functions ==================================================================
 function isValidUpdateLoc() {
-    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
-    var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
+    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && assetNameValidator("UpdateLocName");
+    var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.") && assetNameValidator("UpdateLocAddress");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
     var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.") && assetNameValidator("UpdateLocDepartment");
     var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.") && assetNameValidator("UpdateLocBranch");
