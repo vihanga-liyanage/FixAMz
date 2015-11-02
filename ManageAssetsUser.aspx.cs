@@ -16,21 +16,27 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!Page.IsPostBack)
             {
                 Load_Category();
-                Load_SubCategory();
+                //Load_SubCategory();
                 Load_Location();
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
+
+            Load_SubCategory();
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
+            
         }
+
+        
 
         //Setting user name on header
         protected void setUserName()
@@ -116,15 +122,17 @@ namespace FixAMz_WebApplication
         {
             try
             {
+                var cateID = AddAssetCategoryDropDown.SelectedValue;
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory", conn);
+                SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cateID + "'", conn);
                 SqlDataReader data = cmd.ExecuteReader();
 
                 AddAssetSubCategoryDropDown.DataSource = data;
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
-                AddAssetSubCategoryDropDown.DataBind();AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                AddAssetSubCategoryDropDown.DataBind();
+                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
 
                 data.Close();
 
@@ -143,6 +151,7 @@ namespace FixAMz_WebApplication
                 Response.Write("Error:" + ex.Message.ToString());
             }
         }
+
         //Loading category dropdown
         protected void Load_Category()
         {
@@ -988,7 +997,6 @@ namespace FixAMz_WebApplication
             }
 
         }
-
 
     }
 }

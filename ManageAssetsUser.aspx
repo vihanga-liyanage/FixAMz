@@ -14,7 +14,7 @@
     <link href="Styles/CustomStyles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server"> 
     <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
         SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
     <div class="container-fluid">
@@ -63,7 +63,7 @@
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
                         <div class="expand-item-title" id="AddNewAssetHeader">
-                            Register New Asset</div>
+                            Register New Asset</div> 
                         <div class="expand-item-content" id="AddNewAssetContent">
                             <div class="col-md-8">
                                 <div class="row expand-item-row">
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Category</div>
-                                    <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" AutoPostBack="true"></asp:DropDownList>
                                     <div class="validator" id="AddAssetCategoryValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
