@@ -37,6 +37,10 @@ namespace FixAMz_WebApplication
                 {
                     Response.Redirect("ManageAssetsUser.aspx");
                 }
+                else if (type == "generateAssetReportUser")
+                {
+                    Response.Redirect("Report1.aspx");
+                }
             }
             else
             {

@@ -144,7 +144,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
                 cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@password", encriptedPassword);
-                cmd.Parameters.AddWithValue("@type", TypeDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@type", TypeRadioButtonList.SelectedItem.Value);
 
                 cmd.ExecuteNonQuery();
 

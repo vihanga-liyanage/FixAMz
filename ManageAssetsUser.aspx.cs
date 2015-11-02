@@ -453,6 +453,7 @@ namespace FixAMz_WebApplication
                 query += " AND owner='" + ownerID + "'";
                 resultMessage += ownerID + ", ";
             }
+            
 
             // Clearing the grid view
             AssetSearchGridView.DataSource = null;
