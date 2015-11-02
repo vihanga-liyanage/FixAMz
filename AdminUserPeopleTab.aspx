@@ -279,6 +279,16 @@
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
                                     </div>
+                                    <asp:RadioButtonList ID = "RadioButtonList1" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="Admin" Value="admin" Selected="True" ></asp:ListItem>
+                                        <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="Generate Report" Value="generateAssetReportUser"></asp:ListItem>
+                                        <asp:ListItem Text="Manage + View" Value="manageView"></asp:ListItem>
+                                        <asp:ListItem Text="Manage + Report" Value="manageReport"></asp:ListItem>
+                                        <asp:ListItem Text="View + Report" Value="viewReport"></asp:ListItem>
+                                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                                    </asp:RadioButtonList>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
@@ -294,7 +304,7 @@
                         </div>
                     </div>
                 </div>
-<!--Delete user-->
+<!--Disable user-->
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <div id="Div1" runat="server">
