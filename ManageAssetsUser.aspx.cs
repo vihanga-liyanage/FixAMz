@@ -16,21 +16,27 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!Page.IsPostBack)
             {
                 Load_Category();
-                Load_SubCategory();
+                //Load_SubCategory();
                 Load_Location();
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
+
+            Load_SubCategory();
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
+            
         }
+
+        
 
         //Setting user name on header
         protected void setUserName()
@@ -116,15 +122,17 @@ namespace FixAMz_WebApplication
         {
             try
             {
+                var cateID = AddAssetCategoryDropDown.SelectedValue;
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory", conn);
+                SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cateID + "'", conn);
                 SqlDataReader data = cmd.ExecuteReader();
 
                 AddAssetSubCategoryDropDown.DataSource = data;
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
-                AddAssetSubCategoryDropDown.DataBind();AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                AddAssetSubCategoryDropDown.DataBind();
+                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
 
                 data.Close();
 
@@ -143,6 +151,7 @@ namespace FixAMz_WebApplication
                 Response.Write("Error:" + ex.Message.ToString());
             }
         }
+
         //Loading category dropdown
         protected void Load_Category()
         {
@@ -813,7 +822,7 @@ namespace FixAMz_WebApplication
                 String transID = setTransAssetID();
                 String notID = setNotID();
                 string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, location, owner, recommend) VALUES (@transid, @assetid, @type, @status, @date, @location, @owner, @recommend)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -830,6 +839,7 @@ namespace FixAMz_WebApplication
                 cmd2.Parameters.AddWithValue("@notid", notID);
                 cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
                 cmd2.Parameters.AddWithValue("@nType", "Transfer");
+                cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
                 cmd2.Parameters.AddWithValue("@nReceiveUser", TransAssetSendForRecommendDropDown.SelectedValue);
                 cmd2.Parameters.AddWithValue("@nDate", DateTime.Now.ToString("yyyy-MM-dd"));
@@ -988,7 +998,6 @@ namespace FixAMz_WebApplication
             }
 
         }
-
 
     }
 }
