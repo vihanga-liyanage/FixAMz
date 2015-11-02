@@ -166,7 +166,7 @@ namespace FixAMz_WebApplication
             }
         }
 
-        protected void TypeDropDown_Selected(object sender, EventArgs e)
+        protected void AddUserTypeDropDown_Selected(object sender, EventArgs e)
         {
             if (TypeDropDown.SelectedItem.Value != "owner")
             {
@@ -269,7 +269,6 @@ namespace FixAMz_WebApplication
 
         protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
-            Response.Write("CancelSearchBtn_Click");
             var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
             {
@@ -296,18 +295,29 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
-                    cmd = new SqlCommand(query, conn);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    string ini = "0";
-                    while (dr.Read())
+                    String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    while (dr1.Read())
                     {
-                        UpdateEmpID.InnerHtml = dr["empID"].ToString();
-                        UpdateFirstNameTextBox.Text = dr["firstName"].ToString();
-                        UpdateLastNameTextBox.Text = dr["lastName"].ToString();
-                        UpdateContactTextBox.Text =ini + dr["contactNo"].ToString();
-                        UpdateEmailTextBox.Text = dr["email"].ToString();
+                        UpdateEmpID.InnerHtml = dr1["empID"].ToString();
+                        UpdateFirstNameTextBox.Text = dr1["firstName"].ToString();
+                        UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
+                        UpdateContactTextBox.Text = dr1["contactNo"].ToString();
+                        UpdateEmailTextBox.Text = dr1["email"].ToString();
                     }
+                    dr1.Close();
+                    /*
+                    String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    UpdateTypeDropDown.SelectedValue = "owner";
+                    while (dr2.Read())
+                    {
+                        UpdateTypeDropDown.SelectedValue = dr2["type"].ToString();
+                    }
+                    dr2.Close();
+                    */
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
                     UpdateUserContent.Style.Add("display", "block");
@@ -330,6 +340,11 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
+
+        }
+
+        protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
+        {
 
         }
 
@@ -391,20 +406,18 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
-                    string ini = "0";
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");
                     deleteUserSecondState.Style.Add("display", "block");
                     DeleteUserContent.Style.Add("display", "block");
                     DeleteUserEmpIDValidator.InnerHtml = "";
-                    DeleteUserEmpIDTextBox.Focus();
                 }
                 else
                 {
@@ -412,7 +425,6 @@ namespace FixAMz_WebApplication
                     deleteUserSecondState.Style.Add("display", "none");
                     DeleteUserContent.Style.Add("display", "block");
                     DeleteUserEmpIDValidator.InnerHtml = "Employee ID not found!";
-                    DeleteEmpID.Focus();
                 }
                 conn.Close();
                 //updating expandingItems dictionary in javascript

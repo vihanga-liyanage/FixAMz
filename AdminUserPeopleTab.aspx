@@ -105,7 +105,7 @@
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
                                         Access Level</div>
-                                    <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="TypeDropDown_Selected" AutoPostBack="true">
+                                    <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="AddUserTypeDropDown_Selected" AutoPostBack="true">
                                         <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
                                         <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
                                         <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
@@ -231,7 +231,7 @@
                             <div class="col-md-8">
                                 <div id="updateUserInitState" runat="server">
                                     <div class="info-div">
-                                        Enter employee ID to start or use the advanced search below.</div>
+                                        Enter employee ID to start or use the advanced search above.</div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">
                                             Employee ID</div>
@@ -279,16 +279,24 @@
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
                                     </div>
-                                    <asp:RadioButtonList ID = "RadioButtonList1" class="expand-item-textbox" runat="server">
-                                        <asp:ListItem Text="Admin" Value="admin" Selected="True" ></asp:ListItem>
-                                        <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
-                                        <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
-                                        <asp:ListItem Text="Generate Report" Value="generateAssetReportUser"></asp:ListItem>
-                                        <asp:ListItem Text="Manage + View" Value="manageView"></asp:ListItem>
-                                        <asp:ListItem Text="Manage + Report" Value="manageReport"></asp:ListItem>
-                                        <asp:ListItem Text="View + Report" Value="viewReport"></asp:ListItem>
-                                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
-                                    </asp:RadioButtonList>
+                                    <!--
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Access Level</div>
+                                        <asp:DropDownList ID="UpdateTypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="UpdateUserTypeDropDown_Selected" AutoPostBack="true">
+                                            <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
+                                            <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
+                                            <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
+                                            <asp:ListItem Text="Manage assets" Value="manageAssetUser"></asp:ListItem>
+                                            <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
+                                            <asp:ListItem Text="Generate report" Value="generateAssetReportUser"></asp:ListItem>
+                                            <asp:ListItem Text="Manage and view assets" Value="manageView"></asp:ListItem>
+                                            <asp:ListItem Text="Manage assets and generate reports" Value="manageReport"></asp:ListItem>
+                                            <asp:ListItem Text="View assets and generate reports" Value="viewReport"></asp:ListItem>
+                                            <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                                        </asp:DropDownList>
+                                        <div class="validator" id="UpdateTypeValidator" runat="server"></div>
+                                    </div>
+                                    -->
                                     <div class="row expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
@@ -364,7 +372,7 @@
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn"
                                             OnClick="DeleteUserBtn_Click" OnClientClick="return window.confirm('Confirm user deletion.')" />
                                         <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return " />
+                                            OnClientClick="return deleteClearAll()" />
                                     </div>
                                 </div>
                             </div>

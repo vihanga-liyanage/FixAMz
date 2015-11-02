@@ -295,6 +295,13 @@ function isValidDeleteEmpID() {
     return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
 }
 
+function deleteClearAll() {
+    document.getElementById("deleteUserInitState").style.display = "block";
+    document.getElementById("deleteUserSecondState").style.display = "none";
+    document.forms[0]["DeleteUserEmpIDTextBox"].value = "";
+    return false;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 //      Admin system tab                                                                    //  
 //////////////////////////////////////////////////////////////////////////////////////////////
