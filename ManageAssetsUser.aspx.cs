@@ -36,8 +36,6 @@ namespace FixAMz_WebApplication
             
         }
 
-        
-
         //Setting user name on header
         protected void setUserName()
         {
@@ -123,6 +121,7 @@ namespace FixAMz_WebApplication
             try
             {
                 var cateID = AddAssetCategoryDropDown.SelectedValue;
+                //var cate2ID = 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cateID + "'", conn);

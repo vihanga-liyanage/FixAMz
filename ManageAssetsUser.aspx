@@ -366,20 +366,17 @@
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Name</div>
+                                        <div class="expand-item-label">Name</div>
                                         <div id="DisposeItemName" runat="server" class="custom-label">
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Category</div>
+                                        <div class="expand-item-label">Category</div>
                                         <div id="DisposeCategory" runat="server" class="custom-label">
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Sub category</div>
+                                        <div class="expand-item-label">Sub category</div>
                                         <div id="DisposeSubCategory" runat="server" class="custom-label">
                                         </div>
                                     </div>
