@@ -170,8 +170,8 @@ namespace FixAMz_WebApplication
             String firstname = SearchFirstNameTextBox.Text.Trim();
             String lastname = SearchLastNameTextBox.Text.Trim();
             String email = SearchEmailTextBox.Text.Trim();
-            String contact = SearchEmailTextBox.Text.Trim();
-            String username = SearchUsernameTextBox.Text.Trim();
+            String contactNo = SearchContactTextBox.Text.Trim();
+            //String username = SearchUsernameTextBox.Text.Trim();
 
             String resultMessage = "";
 
@@ -183,23 +183,23 @@ namespace FixAMz_WebApplication
             }
             if (firstname != "")
             {
-                query += " AND firstname like '%" + firstname + "%'";
+                query += " AND firstname like '" + firstname + "%'";
                 resultMessage += firstname + ", ";
             }
             if (lastname != "")
             {
-                query += " AND lastname='" + lastname + "'";
+                query += " AND lastname like '" + lastname + "%'";
                 resultMessage += lastname + ", ";
             }
             if (email != "")
             {
-                query += " AND email='" + email + "'";
+                query += " AND email like '" + email + "%'";
                 resultMessage += email + ", ";
             }
-            if (contact != "")
+            if (contactNo != "")
             {
-                query += " AND contact='" + contact + "'";
-                resultMessage += contact + ", ";
+                query += " AND contactNo like '" + contactNo + "%'";
+                resultMessage += contactNo + ", ";
             }
 
             // Clearing the grid view
@@ -278,12 +278,13 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
+                    string ini = "0";
                     while (dr.Read())
                     {
                         UpdateEmpID.InnerHtml = dr["empID"].ToString();
                         UpdateFirstNameTextBox.Text = dr["firstName"].ToString();
                         UpdateLastNameTextBox.Text = dr["lastName"].ToString();
-                        UpdateContactTextBox.Text = dr["contactNo"].ToString();
+                        UpdateContactTextBox.Text =ini + dr["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr["email"].ToString();
                     }
                     updateUserInitState.Style.Add("display", "none");
@@ -369,12 +370,13 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
+                    string ini = "0";
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");
