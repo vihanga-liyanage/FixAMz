@@ -16,27 +16,20 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
                 Load_Category();
-                //Load_SubCategory();
                 Load_Location();
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
-
-            Load_SubCategory();
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
-            
         }
-
-        
 
         //Setting user name on header
         protected void setUserName()
@@ -122,7 +115,7 @@ namespace FixAMz_WebApplication
         {
             try
             {
-                var cateID = AddAssetCategoryDropDown.SelectedValue;
+                String cateID = AddAssetCategoryDropDown.SelectedValue;
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cateID + "'", conn);
@@ -145,6 +138,7 @@ namespace FixAMz_WebApplication
                 data.Close();
 
                 conn.Close();
+
             }
             catch (Exception ex)
             {
@@ -355,6 +349,15 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
+        }
+
+        protected void Category_Selected(object sender, EventArgs e)
+        {
+            Load_SubCategory();
+
+            AddNewAssetContent.Style.Add("display", "block");
+            //updating expandingItems dictionary in javascript
+            ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewAssetContent');", true);
         }
 
         protected void AddAssetRecommendBtn_Click(object sender, EventArgs e)

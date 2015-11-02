@@ -64,7 +64,7 @@
                         <img src="img/AddNewIcon.png" />
                         <div class="expand-item-title" id="AddNewAssetHeader">
                             Register New Asset</div> 
-                        <div class="expand-item-content" id="AddNewAssetContent">
+                        <div class="expand-item-content" id="AddNewAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Asset ID</div>
@@ -79,7 +79,8 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Category</div>
-                                    <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected" AutoPostBack="true">
+                                    </asp:DropDownList>
                                     <div class="validator" id="AddAssetCategoryValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
