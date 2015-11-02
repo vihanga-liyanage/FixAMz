@@ -105,11 +105,21 @@
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
                                         Access Level</div>
-                                    <asp:DropDownList ID="TypeDropDownList" class="expand-item-textbox" runat="server">
+                                    <!--<asp:DropDownList ID="TypeDropDownList" class="expand-item-textbox" runat="server">
                                         <asp:ListItem Text="Admin" Value="admin"></asp:ListItem>
                                         <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
                                         <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    </asp:DropDownList> -->
+                                    <asp:RadioButtonList ID = "TypeRadioButtonList" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="Admin" Value="admin" Selected="True" ></asp:ListItem>
+                                        <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="Generate Report" Value="generateAssetReportUser"></asp:ListItem>
+                                        <asp:ListItem Text="Manage + View" Value="manageView"></asp:ListItem>
+                                        <asp:ListItem Text="Manage + Report" Value="manageReport"></asp:ListItem>
+                                        <asp:ListItem Text="View + Report" Value="viewReport"></asp:ListItem>
+                                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                                    </asp:RadioButtonList>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">

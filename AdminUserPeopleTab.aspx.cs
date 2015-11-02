@@ -144,7 +144,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
                 cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                 cmd.Parameters.AddWithValue("@password", encriptedPassword);
-                cmd.Parameters.AddWithValue("@type", TypeDropDownList.SelectedValue);
+                cmd.Parameters.AddWithValue("@type", TypeRadioButtonList.SelectedItem.Value);
 
                 cmd.ExecuteNonQuery();
 
@@ -160,6 +160,102 @@ namespace FixAMz_WebApplication
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
+            }
+        }
+
+        //Advanced user search
+        protected void SearchUserBtn_Click(object sender, EventArgs e)
+        {
+            String empID = SearchEmployeeIDTextBox.Text.Trim();
+            String firstname = SearchFirstNameTextBox.Text.Trim();
+            String lastname = SearchLastNameTextBox.Text.Trim();
+            String email = SearchEmailTextBox.Text.Trim();
+            String contact = SearchEmailTextBox.Text.Trim();
+            String username = SearchUsernameTextBox.Text.Trim();
+
+            String resultMessage = "";
+
+            String query = "SELECT * FROM Employee WHERE";
+            if (empID != "")
+            {
+                query += " empID='" + empID + "'";
+                resultMessage += empID + ", ";
+            }
+            if (firstname != "")
+            {
+                query += " AND firstname like '%" + firstname + "%'";
+                resultMessage += firstname + ", ";
+            }
+            if (lastname != "")
+            {
+                query += " AND lastname='" + lastname + "'";
+                resultMessage += lastname + ", ";
+            }
+            if (email != "")
+            {
+                query += " AND email='" + email + "'";
+                resultMessage += email + ", ";
+            }
+            if (contact != "")
+            {
+                query += " AND contact='" + contact + "'";
+                resultMessage += contact + ", ";
+            }
+
+            // Clearing the grid view
+            UserSearchGridView.DataSource = null;
+            UserSearchGridView.DataBind();
+
+            query = query.Replace("WHERE AND", "WHERE ");
+            //Response.Write(query + "<br>");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader != null && reader.HasRows) //if search results found
+                {
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    UserSearchGridView.DataSource = dt;  //display found data in grid view
+                    UserSearchGridView.DataBind();
+                    responseBoxGreen.Style.Add("display", "block");
+                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
+                }
+                else
+                {
+                    responseBoxRed.Style.Add("display", "block");
+                    responseMsgRed.InnerHtml = "No Results Found for <strong>" + resultMessage + "</strong>";
+                }
+                conn.Close();
+
+                //expanding block
+                AdvancedUserSearchContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedUserSearchContent');", true);
+            }
+            catch (Exception ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+
+        }
+
+        protected void CancelSearchBtn_Click(object sender, EventArgs e)
+        {
+            Response.Write("CancelSearchBtn_Click");
+            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
+            foreach (var textBox in tbs)
+            {
+                textBox.Text = "";
+                responseBoxGreen.Style.Add("display", "none");
+                responseMsgGreen.InnerHtml = "";
+                UserSearchGridView.Visible = false;
             }
         }
 
@@ -243,281 +339,14 @@ namespace FixAMz_WebApplication
                 UpdateUserContent.Style.Add("display", "block");
                 UpdateEmpIDTextBox.Text = "";
 
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
             }
             catch (Exception ex)
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
-            }
-        }
-
-        //Advanced user search
-
-        protected void SearchUserBtn_Click(object sender, EventArgs e)
-         {
-             String empID = SearchEmployeeIDTextBox.Text.Trim();
-             String firstname = SearchFirstNameTextBox.Text.Trim();
-             String lastname = SearchLastNameTextBox.Text.Trim();
-             String email = SearchEmailTextBox.Text.Trim();
-             String contact = SearchEmailTextBox.Text.Trim();
-             String username = SearchUsernameTextBox.Text.Trim();
-              
-             String resultMessage = "";
-
-             String query = "SELECT * FROM Employee WHERE";
-             if (empID != "")
-             {
-                 query += " empID='" + empID + "'";
-                 resultMessage += empID + ", ";
-             }
-             if (firstname != "")
-             {
-                 query += " AND firstname like '%" + firstname + "%'";
-                 resultMessage += firstname + ", ";
-             }
-             if (lastname != "")
-             {
-                 query += " AND lastname='" + lastname + "'";
-                 resultMessage += lastname + ", ";
-             }
-             if (email != "")
-             {
-                 query += " AND email='" + email + "'";
-                 resultMessage += email + ", ";
-             }
-             if (contact != "")
-             {
-                 query += " AND contact='" + contact + "'";
-                 resultMessage += contact + ", ";
-             }
-             
-             // Clearing the grid view
-             UserSearchGridView.DataSource = null;
-             UserSearchGridView.DataBind();
-
-             query = query.Replace("WHERE AND", "WHERE ");
-             //Response.Write(query + "<br>");
-             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-             try
-             {
-                 conn.Open();
-
-                 SqlCommand cmd = new SqlCommand(query, conn);
-                 SqlDataReader reader = cmd.ExecuteReader();
-                 if (reader != null && reader.HasRows) //if search results found
-                 {
-                     DataTable dt = new DataTable();
-                     dt.Load(reader);
-
-                     UserSearchGridView.DataSource = dt;  //display found data in grid view
-                     UserSearchGridView.DataBind();
-                     responseBoxGreen.Style.Add("display", "block");
-                     responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
-                 }
-                 else
-                 {
-                     responseBoxRed.Style.Add("display", "block");
-                     responseMsgRed.InnerHtml = "No Results Found for <strong>" + resultMessage + "</strong>";
-                 }
-                 conn.Close();
-
-                 //expanding block
-                 AdvancedUserSearchContent.Style.Add("display", "block");
-                 //updating expandingItems dictionary in javascript
-                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedUserSearchContent');", true);
-             }
-             catch (Exception ex)
-             {
-                 responseBoxRed.Style.Add("display", "block");
-                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                 Response.Write(ex.ToString());
-             }
-
-         }
-
-        /*protected void SearchUserBtn_Click(object sender, EventArgs e)
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-
-            UserSearchGridView.Visible = true;
-            int empidLength = SearchEmployeeIDTextBox.Text.Length; //Get length of textbox value
-            int firstnameLength = SearchFirstNameTextBox.Text.Length;
-            int lastnameLength = SearchLastNameTextBox.Text.Length;
-            int emailLength = SearchEmailTextBox.Text.Length;
-            int contactLength = SearchContactTextBox.Text.Length;
-            int usernameLength = SearchUsernameTextBox.Text.Length;
-
-            try
-            {
-                if (empidLength != 0)
-                {
-                    conn.Open();
-                    //string pattern =  SearchEmployeeIDTextBox.Text;
-                    string Search_User = "Select * FROM Employee WHERE empID LIKE '%'+ @SearchEmployeeIDTextBox +'%'"; //select data from database
-
-                    SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    cmd.Parameters.AddWithValue("@SearchEmployeeIDTextBox", SearchEmployeeIDTextBox.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null && reader.HasRows) //if search results found
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-
-                        UserSearchGridView.DataSource = dt;  //display found data in grid view
-                        UserSearchGridView.DataBind();
-                        
-                        responseArea.InnerHtml = "Search Results Found.";
-                    }
-                    else //search results not found
-                    {
-                        responseArea.InnerHtml = "No results found!";
-                    }
-                }
-                else if (firstnameLength != 0)
-                {
-                    string Search_User = "Select * FROM Employee WHERE firstname LIKE '%'+ @SearchFirstNameTextBox +'%'";
-                    SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    cmd.Parameters.AddWithValue("@SearchFirstNameTextBox", SearchFirstNameTextBox.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null && reader.HasRows)
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-
-                        UserSearchGridView.DataSource = dt;
-                        UserSearchGridView.DataBind();
-                        
-                        responseArea.InnerHtml = "Search Results Found.";
-                    }
-                    else
-                    {
-                        responseArea.InnerHtml = "No results found!";
-                    }
-                }
-                else if (lastnameLength != 0)
-                {
-                    string Search_User = "Select * FROM Employee WHERE lastname LIKE '%'+ @SearchLastNameTextBox +'%'";
-                    SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    cmd.Parameters.AddWithValue("@SearchLastNameTextBox", SearchLastNameTextBox.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null && reader.HasRows)
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-
-                        UserSearchGridView.DataSource = dt;
-                        UserSearchGridView.DataBind();
-                        
-                        responseArea.InnerHtml = "Search Results Found.";
-                    }
-                    else
-                    {
-                        responseArea.InnerHtml = "No results found!";
-                    }
-                }
-
-                else if (emailLength != 0)
-                {
-                    string Search_User = "Select * FROM Employee WHERE email LIKE '%'+ @SearchEmailTextBox +'%'";
-                    SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    cmd.Parameters.AddWithValue("@SearchEmailTextBox", SearchEmailTextBox.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null && reader.HasRows)
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-
-                        UserSearchGridView.DataSource = dt;
-                        UserSearchGridView.DataBind();
-                        
-                        responseArea.InnerHtml = "Search Results Found.";
-                    }
-                    else
-                    {
-                        responseArea.InnerHtml = "No results found!";
-                    }
-                }
-
-                else if (contactLength != 0)
-                {
-                    string Search_User = "Select * FROM Employee WHERE contact LIKE '%'+ @SearchContactTextBox +'%'";
-                    SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    cmd.Parameters.AddWithValue("@SearchContactTextBox", SearchContactTextBox.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null && reader.HasRows)
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-
-                        UserSearchGridView.DataSource = dt;
-                        UserSearchGridView.DataBind();
-                        
-                        responseArea.InnerHtml = "Search Results Found.";
-                    }
-                    else
-                    {
-                        responseArea.InnerHtml = "No results found!";
-                    }
-                }
-                else if (usernameLength != 0)
-                {
-                    string Search_User = "select * from Employee inner join SystemUser on Employee.empID = SystemUser.empID where (SystemUser.username=@SearchUsernameTextBox)";
-                    SqlCommand cmd = new SqlCommand(Search_User, conn);
-                    SqlParameter search = new SqlParameter();
-                    search.ParameterName = "@SearchUsernameTextBox";
-                    search.Value = SearchUsernameTextBox.Text.Trim();
-                    cmd.Parameters.Add(search);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null && reader.HasRows)
-                    {
-                        DataTable dt = new DataTable();
-                        dt.Load(reader);
-
-                        UserSearchGridView.DataSource = dt;
-                        UserSearchGridView.DataBind();
-                        
-                        responseArea.InnerHtml = "Search Results Found.";
-                    }
-                    else
-                    {
-                        responseArea.InnerHtml = "No results found!";
-                    }
-                }
-
-                else if (empidLength == 0 && firstnameLength == 0 && lastnameLength == 0 && emailLength == 00 && contactLength == 0)
-                {
-                    responseArea.InnerHtml = "Invalid Search";
-                }
-            }
-            catch (Exception ex)
-            {
-                
-                responseArea.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }*/
-
-        protected void CancelSearchBtn_Click(object sender, EventArgs e)
-        {
-            Response.Write("CancelSearchBtn_Click");
-            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
-            foreach (var textBox in tbs)
-            {
-                textBox.Text = "";
-                responseBoxGreen.Style.Add("display", "none");
-                responseMsgGreen.InnerHtml = "";
-                UserSearchGridView.Visible = false;
             }
         }
         
@@ -599,6 +428,9 @@ namespace FixAMz_WebApplication
                 deleteUserSecondState.Style.Add("display", "none");
                 DeleteUserContent.Style.Add("display", "block");
                 DeleteUserEmpIDTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DeleteUserContent');", true);
             }
             catch (SqlException)
             {
