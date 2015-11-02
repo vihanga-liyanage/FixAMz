@@ -278,12 +278,13 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
+                    string ini = "0";
                     while (dr.Read())
                     {
                         UpdateEmpID.InnerHtml = dr["empID"].ToString();
                         UpdateFirstNameTextBox.Text = dr["firstName"].ToString();
                         UpdateLastNameTextBox.Text = dr["lastName"].ToString();
-                        UpdateContactTextBox.Text = dr["contactNo"].ToString();
+                        UpdateContactTextBox.Text =ini + dr["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr["email"].ToString();
                     }
                     updateUserInitState.Style.Add("display", "none");
@@ -369,12 +370,13 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
+                    string ini = "0";
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");
