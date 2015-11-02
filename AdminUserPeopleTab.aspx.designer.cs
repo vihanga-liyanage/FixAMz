@@ -175,22 +175,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
         
         /// <summary>
-        /// TypeDropDownList control.
+        /// TypeDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TypeDropDownList;
-        
-        /// <summary>
-        /// TypeRadioButtonList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList TypeRadioButtonList;
+        protected global::System.Web.UI.WebControls.DropDownList TypeDropDown;
         
         /// <summary>
         /// AddNewUsernameTextBox control.
