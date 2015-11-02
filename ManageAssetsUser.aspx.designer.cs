@@ -94,6 +94,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgRed;
         
         /// <summary>
+        /// AddNewAssetContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetContent;
+        
+        /// <summary>
         /// AddNewAssetId control.
         /// </summary>
         /// <remarks>

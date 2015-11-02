@@ -16,24 +16,19 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
                 Load_Category();
-                //Load_SubCategory();
                 Load_Location();
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
-
-            Load_SubCategory();
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
-            
         }
 
         //Setting user name on header
@@ -116,34 +111,49 @@ namespace FixAMz_WebApplication
 
         // Loading data to drop downs ==================================================
         //Loading sub category dropdown
-        protected void Load_SubCategory()
+        protected void Load_SubCategory_for_register()
         {
             try
             {
-                var cateID = AddAssetCategoryDropDown.SelectedValue;
-                //var cate2ID = 
+                String cateID = AddAssetCategoryDropDown.SelectedValue;
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cateID + "'", conn);
                 SqlDataReader data = cmd.ExecuteReader();
-
+                
                 AddAssetSubCategoryDropDown.DataSource = data;
                 AddAssetSubCategoryDropDown.DataTextField = "name";
                 AddAssetSubCategoryDropDown.DataValueField = "scatID";
                 AddAssetSubCategoryDropDown.DataBind();
                 AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
-
                 data.Close();
+                conn.Close();
 
-                data = cmd.ExecuteReader();
-                AssetSearchSubCategoryDropDown.DataSource = data;
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
+        }
+
+        protected void Load_SubCategory_for_search()
+        {
+            try
+            {
+                String cate2ID = AssetSearchCategoryDropDown.SelectedValue;
+                SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn2.Open();
+                SqlCommand cmd2 = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cate2ID + "'", conn2);
+                SqlDataReader data2 = cmd2.ExecuteReader();
+
+                AssetSearchSubCategoryDropDown.DataSource = data2;
                 AssetSearchSubCategoryDropDown.DataTextField = "name";
                 AssetSearchSubCategoryDropDown.DataValueField = "scatID";
                 AssetSearchSubCategoryDropDown.DataBind();
                 AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
-                data.Close();
+                data2.Close();
+                conn2.Close();
 
-                conn.Close();
             }
             catch (Exception ex)
             {
@@ -356,6 +366,15 @@ namespace FixAMz_WebApplication
             }
         }
 
+        protected void Category_Selected_for_register(object sender, EventArgs e)
+        {
+            Load_SubCategory_for_register();
+
+            AddNewAssetContent.Style.Add("display", "block");
+            //updating expandingItems dictionary in javascript
+            ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewAssetContent');", true);
+        }
+
         protected void AddAssetRecommendBtn_Click(object sender, EventArgs e)
         {
             try
@@ -506,6 +525,15 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
 
+        }
+
+        protected void Category_Selected_for_search(object sender, EventArgs e)
+        {
+            Load_SubCategory_for_search();
+
+            AdvancedAssetSearchContent.Style.Add("display", "block");
+            //updating expandingItems dictionary in javascript
+            ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedAssetSearchContent');", true);
         }
 
         // Upgrade asset ===============================================================
