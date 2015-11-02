@@ -205,30 +205,38 @@ function isValidAddNew() {
     var isValidContact = contactValidator("AddNewContact");
     var isValidType = dropDownRequiredFieldValidator("Type");
 
-    var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
-    if (isValidUsername) {
-        usernameValidator();
-        pause(300);
-        isValidUsername = usernameNotExists;
-        //alert(isValidUsername);
-    }
-    var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
+    //Checking for owners
+    var dropdown = document.forms[0]["TypeDropDown"];
+    var type = dropdown.options[dropdown.selectedIndex].value;
+    if (type != "owner") {
+        var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
+        if (isValidUsername) {
+            usernameValidator();
+            pause(300);
+            isValidUsername = usernameNotExists;
+            //alert(isValidUsername);
+        }
+        var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
 
-    var isValidConfirmPassword = true;
-    if (confirmPassword == "") {
-        document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
-        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
-        isValidConfirmPassword = false;
-    } else if (confirmPassword != password) {
-        document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
-        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
-        isValidConfirmPassword = false;
+        var isValidConfirmPassword = true;
+        if (confirmPassword == "") {
+            document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
+            document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
+            isValidConfirmPassword = false;
+        } else if (confirmPassword != password) {
+            document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
+            document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
+            isValidConfirmPassword = false;
+        } else {
+            document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "";
+            document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
+            isValidConfirmPassword = true;
+        }
+
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType && isValidUsername && isValidPassword && isValidConfirmPassword);
     } else {
-        document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "";
-        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
-        isValidConfirmPassword = true;
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType);
     }
-    return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
 }
 
 //Update user functions ======================================================================

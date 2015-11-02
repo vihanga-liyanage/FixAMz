@@ -64,7 +64,7 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT TOP 1 empID FROM SystemUser ORDER BY empID DESC";
+                String query = "SELECT TOP 1 empID FROM Employee ORDER BY empID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 String newEmpID;
                 if (cmd.ExecuteScalar() != null)
@@ -136,22 +136,25 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
-                string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
-                cmd = new SqlCommand(insertion_User, conn);
+                if (TypeDropDown.SelectedItem.Value != "owner")
+                {
+                    string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
+                    cmd = new SqlCommand(insertion_User, conn);
 
-                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
+                    String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
-                cmd.Parameters.AddWithValue("@password", encriptedPassword);
-                cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                    cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
+                    cmd.Parameters.AddWithValue("@password", encriptedPassword);
+                    cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
                 setEmpID();
-
+                AddNewUserContent.Style.Add("display", "none");
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
             }
@@ -160,6 +163,24 @@ namespace FixAMz_WebApplication
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
+            }
+        }
+
+        protected void TypeDropDown_Selected(object sender, EventArgs e)
+        {
+            if (TypeDropDown.SelectedItem.Value != "owner")
+            {
+                AddUserLoginDetailContainer.Style.Add("display", "block");
+                AddNewUserContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewUserContent');", true);
+            }
+            else
+            {
+                AddUserLoginDetailContainer.Style.Add("display", "none");
+                AddNewUserContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewUserContent');", true);
             }
         }
 
@@ -269,7 +290,7 @@ namespace FixAMz_WebApplication
 
                 String empID = UpdateEmpIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                string check = "select count(*) from Employee WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
@@ -360,7 +381,7 @@ namespace FixAMz_WebApplication
 
                 String empID = DeleteUserEmpIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                string check = "select count(*) from Employee WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 

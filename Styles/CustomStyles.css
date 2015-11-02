@@ -192,6 +192,10 @@ div
     z-index:-1;
 }
 
+#AddUserLoginDetailContainer
+{
+    display:none;
+}
 /*===============================Update user==============================*/
 .update-user-icon
 {

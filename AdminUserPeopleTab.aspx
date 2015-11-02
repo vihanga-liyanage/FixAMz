@@ -66,7 +66,7 @@
                         <img src="img/AddNewIcon.png" />
                         <div class="expand-item-title" id="AddNewUserHeader">
                             Add New User</div>
-                        <div class="expand-item-content" id="AddNewUserContent">
+                        <div class="expand-item-content" id="AddNewUserContent" runat="server">
                             <div class="col-md-8">
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
@@ -105,8 +105,9 @@
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
                                         Access Level</div>
-                                    <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server">
+                                    <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="TypeDropDown_Selected" AutoPostBack="true">
                                         <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
                                         <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
                                         <asp:ListItem Text="Manage assets" Value="manageAssetUser"></asp:ListItem>
                                         <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
@@ -118,28 +119,32 @@
                                     </asp:DropDownList>
                                     <div class="validator" id="TypeValidator" runat="server"></div>
                                 </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Username</div>
-                                    <asp:TextBox ID="AddNewUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    <div class="validator" id="AddNewUsernameValidator" runat="server">
+                                <div id="AddUserLoginDetailContainer" runat="server">
+
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Username</div>
+                                        <asp:TextBox ID="AddNewUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="AddNewUsernameValidator" runat="server">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Password</div>
-                                    <asp:TextBox ID="AddNewPasswordTextBox" class="expand-item-textbox" runat="server"
-                                        type="password"></asp:TextBox>
-                                    <div class="validator" id="AddNewPasswordValidator" runat="server">
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Password</div>
+                                        <asp:TextBox ID="AddNewPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="AddNewPasswordValidator" runat="server">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Confirm Password</div>
-                                    <asp:TextBox ID="AddNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
-                                        type="password"></asp:TextBox>
-                                    <div class="validator" id="AddNewConfirmPasswordValidator" runat="server">
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Confirm Password</div>
+                                        <asp:TextBox ID="AddNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="AddNewConfirmPasswordValidator" runat="server">
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class="expand-item-row">
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" OnClick="AddUserBtn_Click"
