@@ -116,6 +116,7 @@
                                         <asp:ListItem Text="View assets and generate reports" Value="viewReport"></asp:ListItem>
                                         <asp:ListItem Text="All" Value="all"></asp:ListItem>
                                     </asp:DropDownList>
+                                    <div class="validator" id="TypeValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">

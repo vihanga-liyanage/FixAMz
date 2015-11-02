@@ -203,6 +203,7 @@ function isValidAddNew() {
     var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.") && nameValidator("AddNewLastName");
     var isValidEmail = emailValidator("AddNewEmail");
     var isValidContact = contactValidator("AddNewContact");
+    var isValidType = dropDownRequiredFieldValidator("Type");
 
     var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
     if (isValidUsername) {
