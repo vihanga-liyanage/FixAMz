@@ -71,7 +71,8 @@ function emailValidator(controller) {
 
 function contactValidator(controller) {
     var contact = document.forms[0][controller + "TextBox"].value;
-    var prefix = contact.substring(0, 3);
+    var prefix = contact.substring(1, 3);
+    var validPrefixs = ["70", "71", "72", "75", "76", "77", "78", "63", "25", "36", "55", "57", "65", "32", "11", "91", "33", "47", "51", "21", "67", "34", "81", "35", "37", "23", "66", "41", "54", "31", "52", "38", "27", "45", "26", "24"];
     if (contact == "") {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot be empty.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
@@ -84,7 +85,7 @@ function contactValidator(controller) {
         document.getElementById(controller + "Validator").innerHTML = "Contact cannot have non-digits.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
-    } else if (!(prefix == "077" || prefix == "071" || prefix == "072" || prefix == "075" || prefix == "076" || prefix == "078")) {
+    } else if (validPrefixs.indexOf(prefix) == -1) {
         document.getElementById(controller + "Validator").innerHTML = "Please enter a valid contact.";
         document.forms[0][controller + "TextBox"].style.border = "1px solid red";
         return false;
@@ -108,6 +109,23 @@ function nameValidator(controller) { //A name can only have a-zA-Z
         return true;
     }
 }
+
+//validate asset name without symbolic values
+function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
+    var content = document.forms[0][controller + "TextBox"].value;
+    var re = /^[A-Za-z\s][A-Za-z0-9\s]*$/;
+    if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid name.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
+
 
 function dropDownRequiredFieldValidator(controller) {
     var dropdown = document.forms[0][controller + "DropDown"];
@@ -185,6 +203,7 @@ function isValidAddNew() {
     var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.") && nameValidator("AddNewLastName");
     var isValidEmail = emailValidator("AddNewEmail");
     var isValidContact = contactValidator("AddNewContact");
+    var isValidType = dropDownRequiredFieldValidator("Type");
 
     var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
     if (isValidUsername) {
@@ -278,10 +297,10 @@ function isValidAddLoc() {
     var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
     var isValidContact = contactValidator("AddLocationContact");
-    var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.");
-    var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.");
-    var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.");
-    var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.");
+    var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.") && assetNameValidator("AddLocationManagerOffice");
+    var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.") && assetNameValidator("AddLocationDepartment");
+    var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.") && assetNameValidator("AddLocationBranch");
+    var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.") && assetNameValidator("AddLocationZonalOffice");
 
     return (isValidLocName && isValidLocAddress && isValidContact && isValidLocManagerOffice && isValidLocDepartment && isValidLocZonalOffice && isValidLocBranch);
 }
@@ -302,10 +321,10 @@ function isValidUpdateLoc() {
     var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
-    var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.");
-    var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.");
-    var isValidUpLoczonaloffice = requiredFieldValidator("UpdateLocZonalOffice", "Zonal Office cannot be empty.");
-    var isValidUpLocmanageroffice = requiredFieldValidator("UpdateLocManagerOffice", "Manager Office cannot be empty.");
+    var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.") && assetNameValidator("UpdateLocDepartment");
+    var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.") && assetNameValidator("UpdateLocBranch");
+    var isValidUpLoczonaloffice = requiredFieldValidator("UpdateLocZonalOffice", "Zonal Office cannot be empty.") && assetNameValidator("UpdateLocZonalOffice");
+    var isValidUpLocmanageroffice = requiredFieldValidator("UpdateLocManagerOffice", "Manager Office cannot be empty.") && assetNameValidator("UpdateLocManagerOffice");
 
     return (isValidUpLocname && isValidUpLocaddress && isValidUpLoccontact && isValidUpLocdepartment && isValidUpLocbranch && isValidUpLoczonaloffice && isValidUpLocmanageroffice);
 }
@@ -325,9 +344,67 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-    
+
     return false;
 }
+
+//update subcategory, sub category ID validate
+function isValidUpdateSubCategoryID() {
+    return requiredFieldValidator("UpdateSubCategoryID", "Sub Category ID cannot be empty.");
+}
+function isValidUpdateScat() {
+    var isValidUpScatname = requiredFieldValidator("UpdateScatName", "Sub Category name cannot be empty.") && nameValidator("UpdateScatName");
+    var isValidUpScatDepRate = requiredFieldValidator("UpdateDepRate", "Depreciation Rate cannot be empty.");
+
+    if (isValidUpScatDepRate) {
+        var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
+        var intVal = parseFloat(depre);
+        if (!depre.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else if (intVal > 100.0) {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
+            isValidDepreciation = false;
+        } else {
+            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid #cacaca";
+            isValidDepreciation = true;
+        }
+    }
+
+    var isValidUpScatLifetime = requiredFieldValidator("UpdateLifetime", "Department cannot be empty.");
+    if (isValidUpScatLifetime) {
+        var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;
+        if (!lifetime.match(/^\d+$/)) {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "Lifetime cannot have non-digits.";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid red";
+            isValidLifetime = false;
+        } else {
+            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "";
+            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid #cacaca";
+            isValidLifetime = true;
+        }
+    }
+
+
+    return (isValidUpScatname && isValidUpScatDepRate && isValidUpScatLifetime);
+}
+
+function updateSubCategoryClearAll() {
+    document.forms[0]["UpdateScatNameTetBox"].value = "";
+    document.forms[0]["UpdateDepRateTextBox"].value = "";
+    document.forms[0]["UpdateLifetimeTextBox"].value = "";
+
+    document.getElementById("updateSubCategoryInitState").style.display = "block";
+    document.getElementById("updateSubCategorySecondState").style.display = "none";
+
+    return false;
+}
+
+
+
 
 //Add new category functions =================================================================
 function isValidAddCat() {
@@ -412,6 +489,7 @@ function addNewAssetClearAll() {
     document.forms[0]["AddAssetCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
+    document.forms[0]["AddSalvageValueTextBox"].value = "";
     document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
@@ -441,15 +519,16 @@ function requiredFieldValidatorValue(controller, msg) {
 }
 
 function isValidAddAsset() {
-    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.");
+    var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && assetNameValidator("RegisterAssetName");
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidSalvageValue = requiredFieldValidatorValue("AddSalvageValue", "Salvage Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
     var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
     var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
     var isValidRecommend = dropDownRequiredFieldValidator("AddAssetPersonToRecommend");
 
-    return (isValidAssetName && isValidValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
 }
 
 //Advanced asset search functions=============================================================
