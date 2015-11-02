@@ -191,8 +191,8 @@ namespace FixAMz_WebApplication
             String firstname = SearchFirstNameTextBox.Text.Trim();
             String lastname = SearchLastNameTextBox.Text.Trim();
             String email = SearchEmailTextBox.Text.Trim();
-            String contact = SearchEmailTextBox.Text.Trim();
-            String username = SearchUsernameTextBox.Text.Trim();
+            String contactNo = SearchContactTextBox.Text.Trim();
+            //String username = SearchUsernameTextBox.Text.Trim();
 
             String resultMessage = "";
 
@@ -204,23 +204,23 @@ namespace FixAMz_WebApplication
             }
             if (firstname != "")
             {
-                query += " AND firstname like '%" + firstname + "%'";
+                query += " AND firstname like '" + firstname + "%'";
                 resultMessage += firstname + ", ";
             }
             if (lastname != "")
             {
-                query += " AND lastname='" + lastname + "'";
+                query += " AND lastname like '" + lastname + "%'";
                 resultMessage += lastname + ", ";
             }
             if (email != "")
             {
-                query += " AND email='" + email + "'";
+                query += " AND email like '" + email + "%'";
                 resultMessage += email + ", ";
             }
-            if (contact != "")
+            if (contactNo != "")
             {
-                query += " AND contact='" + contact + "'";
-                resultMessage += contact + ", ";
+                query += " AND contactNo like '" + contactNo + "%'";
+                resultMessage += contactNo + ", ";
             }
 
             // Clearing the grid view
