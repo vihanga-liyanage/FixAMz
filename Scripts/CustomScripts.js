@@ -366,6 +366,7 @@ function updateLocationClearAll() {
 function isValidUpdateSubCategoryID() {
     return requiredFieldValidator("UpdateSubCategoryID", "Sub Category ID cannot be empty.");
 }
+
 function isValidUpdateScat() {
     var isValidUpScatname = requiredFieldValidator("UpdateScatName", "Sub Category name cannot be empty.") && nameValidator("UpdateScatName");
     var isValidUpScatDepRate = requiredFieldValidator("UpdateDepRate", "Depreciation Rate cannot be empty.");
@@ -417,9 +418,6 @@ function updateSubCategoryClearAll() {
     return false;
 }
 
-
-
-
 //Add new category functions =================================================================
 function isValidAddCat() {
     return requiredFieldValidator("AddCategoryName", "Enter Category Name.") && nameValidator("AddCategoryName");
@@ -450,6 +448,7 @@ function updateCategoryClearAll() {
 function isValidAddSubCategory() {
 
     var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.") && nameValidator("AddSubCategoryName");
+    var isValidCategory = dropDownRequiredFieldValidator("AddSubCategoryCategory");
     var isValidDepreciation = requiredFieldValidator("AddSubCategoryDepreciationRate", "Depreciation rate cannot be empty.");
 
     if (isValidDepreciation) {
@@ -483,7 +482,7 @@ function isValidAddSubCategory() {
             isValidLifetime = true;
         }
     }
-    return (isValidName && isValidDepreciation && isValidLifetime);
+    return (isValidName && isValidCategory && isValidDepreciation && isValidLifetime);
 }
 
 function addSubCategoryClearAll() {
