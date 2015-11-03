@@ -370,7 +370,7 @@ namespace FixAMz_WebApplication
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
 
-                ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
+                //ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
             }
             catch (SqlException ex)
             {
@@ -408,7 +408,7 @@ namespace FixAMz_WebApplication
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
 
-                ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
+                //ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
             }
             catch (Exception ex)
             {

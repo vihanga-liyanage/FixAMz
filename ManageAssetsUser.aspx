@@ -85,7 +85,9 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Subcategory</div>
-                                    <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="-- Select Subcategory --" Value=""></asp:ListItem>
+                                    </asp:DropDownList>
                                     <div class="validator" id="AddAssetSubCategoryValidator" runat="server"></div>
                                 </div>
                                 <div class="row expand-item-row">
@@ -157,6 +159,7 @@
                                         <div class="expand-item-label">Subcategory</div>
                                         <asp:DropDownList ID="AssetSearchSubCategoryDropDown" class="expand-item-textbox"
                                             runat="server">
+                                            <asp:ListItem Text="-- Select Subcategory --" Value=""></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
@@ -186,7 +189,7 @@
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                 <div class="advanced-asset-search-icon hidden-sm hidden-xs">
                                 </div>
-                            </div>>
+                            </div>
                         </div>
                     </div>
                 </div>
