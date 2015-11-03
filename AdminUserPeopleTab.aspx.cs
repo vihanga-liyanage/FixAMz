@@ -64,7 +64,7 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT TOP 1 empID FROM SystemUser ORDER BY empID DESC";
+                String query = "SELECT TOP 1 empID FROM Employee ORDER BY empID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 String newEmpID;
                 if (cmd.ExecuteScalar() != null)
@@ -136,22 +136,25 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
-                string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
-                cmd = new SqlCommand(insertion_User, conn);
+                if (TypeDropDown.SelectedItem.Value != "owner")
+                {
+                    string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
+                    cmd = new SqlCommand(insertion_User, conn);
 
-                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
+                    String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
-                cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
-                cmd.Parameters.AddWithValue("@password", encriptedPassword);
-                cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                    cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
+                    cmd.Parameters.AddWithValue("@password", encriptedPassword);
+                    cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
                 setEmpID();
-
+                AddNewUserContent.Style.Add("display", "none");
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "User " + AddNewFirstNameTextBox.Text + " " + AddNewLastNameTextBox.Text + " added successfully!";
             }
@@ -160,6 +163,24 @@ namespace FixAMz_WebApplication
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
+            }
+        }
+
+        protected void AddUserTypeDropDown_Selected(object sender, EventArgs e)
+        {
+            if (TypeDropDown.SelectedItem.Value != "owner")
+            {
+                AddUserLoginDetailContainer.Style.Add("display", "block");
+                AddNewUserContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewUserContent');", true);
+            }
+            else
+            {
+                AddUserLoginDetailContainer.Style.Add("display", "none");
+                AddNewUserContent.Style.Add("display", "block");
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewUserContent');", true);
             }
         }
 
@@ -248,7 +269,6 @@ namespace FixAMz_WebApplication
 
         protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
-            Response.Write("CancelSearchBtn_Click");
             var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
             {
@@ -269,24 +289,35 @@ namespace FixAMz_WebApplication
 
                 String empID = UpdateEmpIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                string check = "select count(*) from Employee WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (res == 1)
                 {
-                    String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
-                    cmd = new SqlCommand(query, conn);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    string ini = "0";
-                    while (dr.Read())
+                    String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    while (dr1.Read())
                     {
-                        UpdateEmpID.InnerHtml = dr["empID"].ToString();
-                        UpdateFirstNameTextBox.Text = dr["firstName"].ToString();
-                        UpdateLastNameTextBox.Text = dr["lastName"].ToString();
-                        UpdateContactTextBox.Text =ini + dr["contactNo"].ToString();
-                        UpdateEmailTextBox.Text = dr["email"].ToString();
+                        UpdateEmpID.InnerHtml = dr1["empID"].ToString();
+                        UpdateFirstNameTextBox.Text = dr1["firstName"].ToString();
+                        UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
+                        UpdateContactTextBox.Text = dr1["contactNo"].ToString();
+                        UpdateEmailTextBox.Text = dr1["email"].ToString();
                     }
+                    dr1.Close();
+                    /*
+                    String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    UpdateTypeDropDown.SelectedValue = "owner";
+                    while (dr2.Read())
+                    {
+                        UpdateTypeDropDown.SelectedValue = dr2["type"].ToString();
+                    }
+                    dr2.Close();
+                    */
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
                     UpdateUserContent.Style.Add("display", "block");
@@ -309,6 +340,11 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
+
+        }
+
+        protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
+        {
 
         }
 
@@ -361,7 +397,7 @@ namespace FixAMz_WebApplication
 
                 String empID = DeleteUserEmpIDTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE empID='" + empID + "'";
+                string check = "select count(*) from Employee WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
@@ -370,20 +406,18 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
-                    string ini = "0";
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");
                     deleteUserSecondState.Style.Add("display", "block");
                     DeleteUserContent.Style.Add("display", "block");
                     DeleteUserEmpIDValidator.InnerHtml = "";
-                    DeleteUserEmpIDTextBox.Focus();
                 }
                 else
                 {
@@ -391,7 +425,6 @@ namespace FixAMz_WebApplication
                     deleteUserSecondState.Style.Add("display", "none");
                     DeleteUserContent.Style.Add("display", "block");
                     DeleteUserEmpIDValidator.InnerHtml = "Employee ID not found!";
-                    DeleteEmpID.Focus();
                 }
                 conn.Close();
                 //updating expandingItems dictionary in javascript

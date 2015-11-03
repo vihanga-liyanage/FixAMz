@@ -47,13 +47,13 @@
         <div class="row">
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
-                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                    <a href="" onclick="this.parentNode.style.display = 'none';">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
                     </a>
                     <div id="responseMsgGreen" runat="server"></div>
                 </div>
                 <div id="responseBoxRed" runat="server">
-                    <a href="#" onclick="this.parentNode.style.display = 'none';">
+                    <a href="" onclick="this.parentNode.style.display = 'none';">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #F0AEAE;; margin-top: 5px;"></span>
                     </a>
                     <div id="responseMsgRed" runat="server"></div>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Category</div>
-                                    <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected" AutoPostBack="true">
+                                    <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected_for_register" AutoPostBack="true">
                                     </asp:DropDownList>
                                     <div class="validator" id="AddAssetCategoryValidator" runat="server"></div>
                                 </div>
@@ -151,8 +151,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Category</div>
-                                        <asp:DropDownList ID="AssetSearchCategoryDropDown" class="expand-item-textbox" runat="server">
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="AssetSearchCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected_for_search" AutoPostBack="true"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Subcategory</div>
@@ -367,20 +366,17 @@
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Name</div>
+                                        <div class="expand-item-label">Name</div>
                                         <div id="DisposeItemName" runat="server" class="custom-label">
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Category</div>
+                                        <div class="expand-item-label">Category</div>
                                         <div id="DisposeCategory" runat="server" class="custom-label">
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Sub category</div>
+                                        <div class="expand-item-label">Sub category</div>
                                         <div id="DisposeSubCategory" runat="server" class="custom-label">
                                         </div>
                                     </div>

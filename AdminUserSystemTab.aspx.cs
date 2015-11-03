@@ -360,7 +360,7 @@ namespace FixAMz_WebApplication
                     updateCategoryInitState.Style.Add("display", "block");
                     updateCategorySecondState.Style.Add("display", "none");
                     UpdateCategoryContent.Style.Add("display", "block");
-                    UpdateCategoryNameValidator.InnerHtml = "Invalid Category ID";
+                    UpdateCategoryIDValidator.InnerHtml = "Invalid Category ID";
                 }
                 conn.Close();
                 //updating expandingItems dictionary in javascript
