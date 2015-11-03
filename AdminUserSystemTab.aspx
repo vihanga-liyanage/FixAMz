@@ -346,7 +346,7 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub Category Name</div>
-                                            <asp:TextBox ID="UpdateScatNameTetBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="UpdateScatNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="UpdateScatNameValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">

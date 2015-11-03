@@ -383,34 +383,34 @@ function isValidUpdateScat() {
     var isValidUpScatDepRate = requiredFieldValidator("UpdateDepRate", "Depreciation Rate cannot be empty.");
 
     if (isValidUpScatDepRate) {
-        var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
+        var depre = document.forms[0]["UpdateDepRateTextBox"].value;
         var intVal = parseFloat(depre);
         if (!depre.match(/^\d+$/)) {
-            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
-            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
-            isValidDepreciation = false;
+            document.getElementById("UpdateDepRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
+            document.forms[0]["UpdateDepRateTextBox"].style.border = "1px solid red";
+            isValidUpScatDepRate = false;
         } else if (intVal > 100.0) {
-            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
-            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
-            isValidDepreciation = false;
+            document.getElementById("UpdateDepRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
+            document.forms[0]["UpdateDepRateTextBox"].style.border = "1px solid red";
+            isValidUpScatDepRate = false;
         } else {
-            document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "";
-            document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid #cacaca";
-            isValidDepreciation = true;
+            document.getElementById("UpdateDepRateValidator").innerHTML = "";
+            document.forms[0]["UpdateDepRateTextBox"].style.border = "1px solid #cacaca";
+            isValidUpScatDepRate = true;
         }
     }
 
-    var isValidUpScatLifetime = requiredFieldValidator("UpdateLifetime", "Department cannot be empty.");
+    var isValidUpScatLifetime = requiredFieldValidator("UpdateLifetime", "Lifetime cannot be empty.");
     if (isValidUpScatLifetime) {
-        var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;
+        var lifetime = document.forms[0]["UpdateLifetimeTextBox"].value;
         if (!lifetime.match(/^\d+$/)) {
-            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "Lifetime cannot have non-digits.";
-            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid red";
-            isValidLifetime = false;
+            document.getElementById("UpdateLifetimeValidator").innerHTML = "Lifetime cannot have non-digits.";
+            document.forms[0]["UpdateLifetimeTextBox"].style.border = "1px solid red";
+            isValidUpScatLifetime = false;
         } else {
-            document.getElementById("AddSubCategoryLifetimeValidator").innerHTML = "";
-            document.forms[0]["AddSubCategoryLifetimeTextBox"].style.border = "1px solid #cacaca";
-            isValidLifetime = true;
+            document.getElementById("UpdateLifetimeValidator").innerHTML = "";
+            document.forms[0]["UpdateLifetimeTextBox"].style.border = "1px solid #cacaca";
+            isValidUpScatLifetime = true;
         }
     }
 
@@ -479,7 +479,7 @@ function isValidAddSubCategory() {
             isValidDepreciation = true;
         }
     }
-
+    var isValidCategory = dropDownRequiredFieldValidator("AddSubCategoryCategory");
     var isValidLifetime = requiredFieldValidator("AddSubCategoryLifetime", "Lifetime cannot be empty.");
     if (isValidLifetime) {
         var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;

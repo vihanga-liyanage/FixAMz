@@ -279,6 +279,24 @@
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
                                     </div>
+<<<<<<< HEAD
+                                    <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Access Level</div>
+                                    <asp:DropDownList ID="DropDownList1" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
+                                        <asp:ListItem Text="Manage assets" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="Generate report" Value="generateAssetReportUser"></asp:ListItem>
+                                        <asp:ListItem Text="Manage and view assets" Value="manageView"></asp:ListItem>
+                                        <asp:ListItem Text="Manage assets and generate reports" Value="manageReport"></asp:ListItem>
+                                        <asp:ListItem Text="View assets and generate reports" Value="viewReport"></asp:ListItem>
+                                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <div class="validator" id="Div3" runat="server"></div>
+                                </div>
+=======
                                     <!--
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Access Level</div>
@@ -297,6 +315,7 @@
                                         <div class="validator" id="UpdateTypeValidator" runat="server"></div>
                                     </div>
                                     -->
+>>>>>>> 58dd2c66c49941bf4c62101329745eee7be42e51
                                     <div class="row expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />

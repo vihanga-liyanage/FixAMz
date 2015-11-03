@@ -518,7 +518,7 @@ namespace FixAMz_WebApplication
                     while (dr.Read())
                     {
                         UpdateScatID.InnerHtml = dr["scatID"].ToString();
-                        UpdateScatNameTetBox.Text = dr["name"].ToString();
+                        UpdateScatNameTextBox.Text = dr["name"].ToString();
                         updateSubCategoryCategoryID = dr["catID"].ToString();
                         UpdateDepRateTextBox.Text = dr["depreciationRate"].ToString();
                         UpdateLifetimeTextBox.Text = dr["lifetime"].ToString();
@@ -562,12 +562,12 @@ namespace FixAMz_WebApplication
                 conn.Open();
 
                 String scatID = UpdateSubCategoryIDTextBox.Text;
-                String name = UpdateScatNameTetBox.Text;
+                String name = UpdateScatNameTextBox.Text;
 
                 string insertion_SubCategory = "UPDATE SubCategory SET name = @name, depreciationRate = @depreciationRate, lifetime = @lifetime WHERE scatID='" + scatID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_SubCategory, conn);
 
-                cmd.Parameters.AddWithValue("@name", UpdateScatNameTetBox.Text);
+                cmd.Parameters.AddWithValue("@name", UpdateScatNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@depreciationRate", UpdateDepRateTextBox.Text);
                 cmd.Parameters.AddWithValue("@lifetime", UpdateLifetimeTextBox.Text);
                 
