@@ -274,16 +274,22 @@
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
                                     </div>
-                                    <asp:RadioButtonList ID = "RadioButtonList1" class="expand-item-textbox" runat="server">
-                                        <asp:ListItem Text="Admin" Value="admin" Selected="True" ></asp:ListItem>
-                                        <asp:ListItem Text="Manage Assets User" Value="manageAssetUser"></asp:ListItem>
-                                        <asp:ListItem Text="View Assets User" Value="viewAssetUser"></asp:ListItem>
-                                        <asp:ListItem Text="Generate Report" Value="generateAssetReportUser"></asp:ListItem>
-                                        <asp:ListItem Text="Manage + View" Value="manageView"></asp:ListItem>
-                                        <asp:ListItem Text="Manage + Report" Value="manageReport"></asp:ListItem>
-                                        <asp:ListItem Text="View + Report" Value="viewReport"></asp:ListItem>
+                                    <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Access Level</div>
+                                    <asp:DropDownList ID="DropDownList1" class="expand-item-textbox" runat="server">
+                                        <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
+                                        <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
+                                        <asp:ListItem Text="Manage assets" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="Generate report" Value="generateAssetReportUser"></asp:ListItem>
+                                        <asp:ListItem Text="Manage and view assets" Value="manageView"></asp:ListItem>
+                                        <asp:ListItem Text="Manage assets and generate reports" Value="manageReport"></asp:ListItem>
+                                        <asp:ListItem Text="View assets and generate reports" Value="viewReport"></asp:ListItem>
                                         <asp:ListItem Text="All" Value="all"></asp:ListItem>
-                                    </asp:RadioButtonList>
+                                    </asp:DropDownList>
+                                    <div class="validator" id="Div3" runat="server"></div>
+                                </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
