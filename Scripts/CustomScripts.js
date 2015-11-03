@@ -1,4 +1,6 @@
-﻿//Exapand content function
+﻿
+
+//Exapand content function
 var expandingItems = {};
 $(".expand-item-title").click(function () {
 
@@ -34,6 +36,15 @@ $(".expand-item-title").click(function () {
 //Should give full id ex. - "UpdateUserContent"
 function setExpandingItem(id) {
     expandingItems[id] = true;
+}
+
+//Testing functions
+function getKeys() {
+    var out = "";
+    for (var k in expandingItems) {
+        out += k + ":" + expandingItems[k] + "\n";
+    }
+    alert(out);
 }
 
 //Global validation functions=================================================================
