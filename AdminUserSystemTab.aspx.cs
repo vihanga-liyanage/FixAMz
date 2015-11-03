@@ -24,6 +24,8 @@ namespace FixAMz_WebApplication
             setUserName();
             if (!IsPostBack)
                 Load_Category();
+
+            
         }
 
         //Setting user name
@@ -245,6 +247,9 @@ namespace FixAMz_WebApplication
                 updatelocationSecondState.Style.Add("display", "none");
                 UpdateLocationContent.Style.Add("display", "block");
                 UpdateLocationIDTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateLocationContent');", true);
             }
             catch (Exception ex)
             {
@@ -316,7 +321,6 @@ namespace FixAMz_WebApplication
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
 
-
             }
             catch (Exception ex)
             {
@@ -365,6 +369,8 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
+
+                //ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
             }
             catch (SqlException ex)
             {
@@ -398,6 +404,11 @@ namespace FixAMz_WebApplication
                 updateCategorySecondState.Style.Add("display", "none");
                 UpdateCategoryContent.Style.Add("display", "block");
                 UpdateCategoryIDTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
+
+                //ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
             }
             catch (Exception ex)
             {

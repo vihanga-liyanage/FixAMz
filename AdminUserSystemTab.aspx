@@ -324,21 +324,20 @@
                             <div class="expand-item-title" id="UpdateSubCategoryHeader">Update Sub Category</div>
                             <div class="expand-item-content" id="UpdateSubCategoryContent" runat="server">
                                 <div class="col-md-8">
-                                <div class="row expand-item-row">
-                                <div id="updateSubCategoryInitState" runat="server">
-                                    <div class="info-div">Enter sub category ID to update sub category</div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Sub Category ID</div>
-                                        <asp:TextBox ID="UpdateSubCategoryIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                        <div class="validator" id="UpdateSubCategoryIDValidator" runat="server">
+                                    <div id="updateSubCategoryInitState" runat="server">
+                                        <div class="info-div">Enter sub category ID to update sub category</div>
+                                        <div class="row expand-item-row">
+                                            <div class="expand-item-label">
+                                                Sub Category ID</div>
+                                            <asp:TextBox ID="UpdateSubCategoryIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <div class="validator" id="UpdateSubCategoryIDValidator" runat="server">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <asp:Button ID="UpdateSubCategoryFindBtn" runat="server" Text="Go" class="expand-item-btn"
-                                            OnClientClick="return isValidUpdateSubCategoryID()" OnClick="UpdateSubCategoryFindBtn_Click" />
-                                    </div>
-                                </div> 
+                                        <div class="row expand-item-row">
+                                            <asp:Button ID="UpdateSubCategoryFindBtn" runat="server" Text="Go" class="expand-item-btn"
+                                                OnClientClick="return isValidUpdateSubCategoryID()" OnClick="UpdateSubCategoryFindBtn_Click" />
+                                        </div>
+                                    </div> 
                                     <div id="updateSubCategorySecondState" runat="server">
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Sub Category ID</div>
@@ -355,12 +354,12 @@
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Depreciation Rate</div>
-                                            <asp:TextBox ID="UpdateDepRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="UpdateDepRateTextBox" class="expand-item-textbox" runat="server"></asp:TextBox> %
                                             <div class="validator" id="UpdateDepRateValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">
                                             <div class="expand-item-label">Lifetime</div>
-                                            <asp:TextBox ID="UpdateLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="UpdateLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox> years
                                             <div class="validator" id="UpdateLifetimeValidator" runat="server"></div>
                                         </div>
                                         <div class="row expand-item-row">
@@ -371,15 +370,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                     <div class="update-sub-category-icon hidden-sm hidden-xs"></div>
                                 </div>
                             </div>
                         </div>
-                       </div>
-                   </div>
-                   </div>
+                    </div>
+                </div>
+            </div>
                   
                   
 <!--Footer-->

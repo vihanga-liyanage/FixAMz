@@ -1,4 +1,6 @@
-﻿//Exapand content function
+﻿
+
+//Exapand content function
 var expandingItems = {};
 $(".expand-item-title").click(function () {
 
@@ -34,6 +36,15 @@ $(".expand-item-title").click(function () {
 //Should give full id ex. - "UpdateUserContent"
 function setExpandingItem(id) {
     expandingItems[id] = true;
+}
+
+//Testing functions
+function getKeys() {
+    var out = "";
+    for (var k in expandingItems) {
+        out += k + ":" + expandingItems[k] + "\n";
+    }
+    alert(out);
 }
 
 //Global validation functions=================================================================
@@ -418,9 +429,6 @@ function updateSubCategoryClearAll() {
     return false;
 }
 
-
-
-
 //Add new category functions =================================================================
 function isValidAddCat() {
     return requiredFieldValidator("AddCategoryName", "Enter Category Name.") && nameValidator("AddCategoryName");
@@ -451,6 +459,7 @@ function updateCategoryClearAll() {
 function isValidAddSubCategory() {
 
     var isValidName = requiredFieldValidator("AddSubCategoryName", "Sub category name cannot be empty.") && nameValidator("AddSubCategoryName");
+    var isValidCategory = dropDownRequiredFieldValidator("AddSubCategoryCategory");
     var isValidDepreciation = requiredFieldValidator("AddSubCategoryDepreciationRate", "Depreciation rate cannot be empty.");
 
     if (isValidDepreciation) {
@@ -484,7 +493,7 @@ function isValidAddSubCategory() {
             isValidLifetime = true;
         }
     }
-    return (isValidName && isValidDepreciation && isValidLifetime && isValidCategory);
+    return (isValidName && isValidCategory && isValidDepreciation && isValidLifetime);
 }
 
 function addSubCategoryClearAll() {

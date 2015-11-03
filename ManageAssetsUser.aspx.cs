@@ -556,15 +556,35 @@ namespace FixAMz_WebApplication
                     String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
+
+                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeLocationID = "", UpgradeOwnerID = "";
                     while (dr.Read())
                     {
                         UpgradeAssetName.InnerHtml = dr["name"].ToString();
-                        UpgradeAssetCategory.InnerHtml = dr["category"].ToString();
-                        UpgradeAssetSubcategory.InnerHtml = dr["subcategory"].ToString();
-                        UpgradeLocation.InnerHtml = dr["location"].ToString();
-                        UpgradeOwner.InnerHtml = dr["owner"].ToString();
-                        UpgradeValue.InnerHtml = dr["value"].ToString();
+                        UpgradeAssetCategoryID = dr["category"].ToString();
+                        UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
+                        UpgradeLocationID = dr["location"].ToString();
+                        UpgradeOwnerID = dr["owner"].ToString();
+                        UpgradeValue.InnerHtml = dr["value"].ToString() + " LKR";
                     }
+                    dr.Close();
+                    // Get category name
+                    String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + UpgradeAssetCategoryID + "'";
+                    cmd = new SqlCommand(getCatNameQuery, conn);
+                    UpgradeAssetCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get sub category name
+                    String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + UpgradeAssetSubcategoryID + "'";
+                    cmd = new SqlCommand(getSubCatNameQuery, conn);
+                    UpgradeAssetSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get location name
+                    String getLocNameQuery = "SELECT name FROM Location WHERE locID='" + UpgradeLocationID + "'";
+                    cmd = new SqlCommand(getLocNameQuery, conn);
+                    UpgradeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
+                    // Get owner name
+                    String getOwnerNameQuery = "SELECT [firstname]+' '+[lastname] FROM Employee WHERE empID='" + UpgradeOwnerID + "'";
+                    cmd = new SqlCommand(getOwnerNameQuery, conn);
+                    UpgradeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+
                     upgradeAssetInitState.Style.Add("display", "none");
                     upgradeAssetSecondState.Style.Add("display", "block");
                     UpgradeAssetContent.Style.Add("display", "block");
@@ -585,7 +605,7 @@ namespace FixAMz_WebApplication
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
+                Response.Write(ex.ToString());
             }
 
         }
@@ -681,7 +701,13 @@ namespace FixAMz_WebApplication
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
 
-                UpgradeAssetIDTextBox.Text = "";
+                upgradeAssetInitState.Style.Add("display", "block");
+                upgradeAssetSecondState.Style.Add("display", "none");
+                UpgradeAssetContent.Style.Add("display", "block");
+                UpgradeAssetIDTextBox.Text = ""; 
+                UpgradeAssetIDValidator.InnerHtml = "";
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpgradeAssetContent');", true);
 
             }
             catch (Exception ex)
@@ -952,7 +978,6 @@ namespace FixAMz_WebApplication
                         disposeAssetSecondState.Style.Add("display", "block");
                         DisposeAssetContent.Style.Add("display", "block");
                         DisposeAssetIDValidator.InnerHtml = "";
-                        DisposeAssetIDTextBox.Focus();
                     }
                     else
                     {
@@ -960,7 +985,6 @@ namespace FixAMz_WebApplication
                         disposeAssetSecondState.Style.Add("display", "none");
                         DisposeAssetContent.Style.Add("display", "block");
                         DisposeAssetIDValidator.InnerHtml = "Asset already recommended to dispose!";
-                        DisposeItemName.Focus();
                     }
 
                     conn.Close();
@@ -1014,8 +1038,15 @@ namespace FixAMz_WebApplication
 
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' sent for recommendation.";
+
+                disposeAssetInitState.Style.Add("display", "block");
+                disposeAssetSecondState.Style.Add("display", "none");
+                DisposeAssetContent.Style.Add("display", "block");
+                DisposeAssetIDValidator.InnerHtml = "";
                 DisposeAssetIDTextBox.Text = "";
 
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DisposeAssetContent');", true);
             }
             catch (Exception ex)
             {
