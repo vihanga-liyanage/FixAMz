@@ -96,6 +96,7 @@ function contactValidator(controller) {
     }
 }
 
+//Can only have letters
 function nameValidator(controller) { //A name can only have a-zA-Z
     var content = document.forms[0][controller + "TextBox"].value;
     var re = /^[a-zA-Z\s]+$/;
@@ -110,7 +111,7 @@ function nameValidator(controller) { //A name can only have a-zA-Z
     }
 }
 
-//validate asset name without symbolic values
+//Can only have letters and decimals
 function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
     var content = document.forms[0][controller + "TextBox"].value;
     var re = /^[A-Za-z\s][A-Za-z0-9\s]*$/;
@@ -124,8 +125,6 @@ function assetNameValidator(controller) { //A name can only have a-zA-Z & 0-9
         return true;
     }
 }
-
-
 
 function dropDownRequiredFieldValidator(controller) {
     var dropdown = document.forms[0][controller + "DropDown"];
@@ -205,30 +204,38 @@ function isValidAddNew() {
     var isValidContact = contactValidator("AddNewContact");
     var isValidType = dropDownRequiredFieldValidator("Type");
 
-    var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
-    if (isValidUsername) {
-        usernameValidator();
-        pause(300);
-        isValidUsername = usernameNotExists;
-        //alert(isValidUsername);
-    }
-    var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
+    //Checking for owners
+    var dropdown = document.forms[0]["TypeDropDown"];
+    var type = dropdown.options[dropdown.selectedIndex].value;
+    if (type != "owner") {
+        var isValidUsername = requiredFieldValidator("AddNewUsername", "User name cannot be empty.");
+        if (isValidUsername) {
+            usernameValidator();
+            pause(300);
+            isValidUsername = usernameNotExists;
+            //alert(isValidUsername);
+        }
+        var isValidPassword = requiredFieldValidator("AddNewPassword", "Password cannot be empty.");
 
-    var isValidConfirmPassword = true;
-    if (confirmPassword == "") {
-        document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
-        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
-        isValidConfirmPassword = false;
-    } else if (confirmPassword != password) {
-        document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
-        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
-        isValidConfirmPassword = false;
+        var isValidConfirmPassword = true;
+        if (confirmPassword == "") {
+            document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
+            document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
+            isValidConfirmPassword = false;
+        } else if (confirmPassword != password) {
+            document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
+            document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid red";
+            isValidConfirmPassword = false;
+        } else {
+            document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "";
+            document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
+            isValidConfirmPassword = true;
+        }
+
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType && isValidUsername && isValidPassword && isValidConfirmPassword);
     } else {
-        document.getElementById("AddNewConfirmPasswordValidator").innerHTML = "";
-        document.forms[0]["AddNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
-        isValidConfirmPassword = true;
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType);
     }
-    return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
 }
 
 //Update user functions ======================================================================
@@ -288,14 +295,21 @@ function isValidDeleteEmpID() {
     return requiredFieldValidator("DeleteUserEmpID", "Employee ID cannot be empty.");
 }
 
+function deleteClearAll() {
+    document.getElementById("deleteUserInitState").style.display = "block";
+    document.getElementById("deleteUserSecondState").style.display = "none";
+    document.forms[0]["DeleteUserEmpIDTextBox"].value = "";
+    return false;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 //      Admin system tab                                                                    //  
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 //Add new location functions =================================================================
 function isValidAddLoc() {
-    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && nameValidator("AddLocationName");
-    var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.");
+    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && assetNameValidator("AddLocationName");
+    var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.") && assetNameValidator("AddLocationAddress");
     var isValidContact = contactValidator("AddLocationContact");
     var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.") && assetNameValidator("AddLocationManagerOffice");
     var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.") && assetNameValidator("AddLocationDepartment");
@@ -318,8 +332,8 @@ function addLocationClearAll() {
 
 //Update location functions ==================================================================
 function isValidUpdateLoc() {
-    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && nameValidator("UpdateLocName");
-    var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.");
+    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && assetNameValidator("UpdateLocName");
+    var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.") && assetNameValidator("UpdateLocAddress");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
     var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.") && assetNameValidator("UpdateLocDepartment");
     var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.") && assetNameValidator("UpdateLocBranch");
