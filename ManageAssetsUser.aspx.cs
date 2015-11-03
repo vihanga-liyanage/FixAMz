@@ -701,7 +701,13 @@ namespace FixAMz_WebApplication
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Asset '" + UpgradeAssetIDTextBox.Text + "' recommended!";
 
-                UpgradeAssetIDTextBox.Text = "";
+                upgradeAssetInitState.Style.Add("display", "block");
+                upgradeAssetSecondState.Style.Add("display", "none");
+                UpgradeAssetContent.Style.Add("display", "block");
+                UpgradeAssetIDTextBox.Text = ""; 
+                UpgradeAssetIDValidator.InnerHtml = "";
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpgradeAssetContent');", true);
 
             }
             catch (Exception ex)
@@ -972,7 +978,6 @@ namespace FixAMz_WebApplication
                         disposeAssetSecondState.Style.Add("display", "block");
                         DisposeAssetContent.Style.Add("display", "block");
                         DisposeAssetIDValidator.InnerHtml = "";
-                        DisposeAssetIDTextBox.Focus();
                     }
                     else
                     {
@@ -980,7 +985,6 @@ namespace FixAMz_WebApplication
                         disposeAssetSecondState.Style.Add("display", "none");
                         DisposeAssetContent.Style.Add("display", "block");
                         DisposeAssetIDValidator.InnerHtml = "Asset already recommended to dispose!";
-                        DisposeItemName.Focus();
                     }
 
                     conn.Close();
@@ -1034,8 +1038,15 @@ namespace FixAMz_WebApplication
 
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Asset '" + DisposeAssetIDTextBox.Text + "' sent for recommendation.";
+
+                disposeAssetInitState.Style.Add("display", "block");
+                disposeAssetSecondState.Style.Add("display", "none");
+                DisposeAssetContent.Style.Add("display", "block");
+                DisposeAssetIDValidator.InnerHtml = "";
                 DisposeAssetIDTextBox.Text = "";
 
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DisposeAssetContent');", true);
             }
             catch (Exception ex)
             {
