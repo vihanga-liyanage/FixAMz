@@ -22,26 +22,36 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
-                    <div class="col-md-5 logo-text hidden-xs hidden-sm">
-                        The Web Based Asset Management System
-                    </div>
-                    <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
-                        <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
-                        <div id="user-name-box">
-                            <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
-                                runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                    <div class="col-md-8 header-right">
+                        <div class="col-sm-12">
+                            <div id="user-name-box">
+                                <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
+                                    runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 nav-bar-container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse" style="float:right;">
+                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="#"><u>PEOPLE</u></a> </li>
+                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="#">ABOUT</a> </li>
+                                    <li><a href="#">HELP</a> </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <ul class="custom-nav-bar nav nav-tabs">
-                        <li><a href="#">HOME</a> </li>
-                        <li><a href="#"><u>PEOPLE</u></a> </li>
-                        <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                        <li><a href="#">ABOUT</a> </li>
-                        <li><a href="#">HELP</a> </li>
-                    </ul>
                 </div>
             </div>
         </div>

@@ -18,21 +18,19 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
             ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>" 
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
+<!--Header-->
         <div class="row">
             <div class="col-md-12" >
                 <div class="row header">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
-                    <div class="col-md-5 logo-text hidden-xs hidden-sm">
-                        The Web Based Asset Management System
-                    </div>
-                    <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
-                        <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
+                    <div class="col-md-8 header-right">
                     </div>
                 </div>
             </div>
         </div>
+<!--Main content-->
         <div class="row">
             <div class="col-md-5 login-box-container">
                 <div class="login-welcome">Welcome to FixAMz</div>
@@ -64,6 +62,7 @@
                 <img src="img/1.png" />
             </div>
         </div>
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">

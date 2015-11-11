@@ -9,15 +9,17 @@ div
 }
 .logo 
 {
-    height:72px;
+    height:100px;
 }
 .header 
 {
-    padding-left:96px;
     padding-top:5px;
     border-bottom: 2px solid #A4A4A4;
     background:white;
-    height:119px;
+    background: -webkit-linear-gradient(right, #1363B9 , white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, #1363B9, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, #1363B9, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to left, #1363B9 , white);
 }
 .logo-text
 {
@@ -25,39 +27,43 @@ div
     margin-left:-50px;
     padding-top:35px;
 }
-.search-box
+.header-right
 {
-    border-radius:6px; 
-    height:45px; 
-    width:370px; 
-    border:1px solid black;
-    background: #bdbdbd url(img/searchicon.png) left no-repeat;
-    padding-left:20px;
+    padding-right:0px;   
+}
+.nav-bar-container
+{
+    margin-top:33px;
+    padding: 1px 0px 2px 0px;
 }
 #user-name-box
-{
-    padding-top:20px; 
+{ 
     text-align:right; 
     font-size:large; 
     width:403px;
+    float:right;
+    padding: 10px 34px 0px 0px;
 }
 #userName
 {
     padding-right: 5px;
+}
+#A1
+{
+    color:#B3B3B3;
 }
 .custom-nav-bar
 {
     font-size:20px;
     padding-left: 26px;
     border:none;
+    float:right;
 }
 .custom-nav-bar li a
 {
     color:Black;
-    margin-top:-25px;
-    padding-top:5px;
-    padding-bottom:0px;
-    padding-right:40px;
+    padding: 5px 30px;
+    border-radius: 6px;
 }
 .custom-nav-bar u
 {
