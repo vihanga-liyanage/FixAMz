@@ -9,17 +9,19 @@ div
 }
 .logo 
 {
-    height:100px;
+    height:70px;
 }
 .header 
 {
     padding-top:5px;
     border-bottom: 2px solid #A4A4A4;
-    background:white;
-    background: -webkit-linear-gradient(right, #1363B9 , white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(left, #1363B9, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(left, #1363B9, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to left, #1363B9 , white);
+    
+    /*background: -webkit-linear-gradient(right, #1363B9 , white); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(left, #1363B9, white); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(left, #1363B9, white); /* For Firefox 3.6 to 15 */
+   /* background: linear-gradient(to left, #1363B9 , white);*/
+    
+    background:#ffffff;
 }
 .logo-text
 {
@@ -33,7 +35,7 @@ div
 }
 .nav-bar-container
 {
-    margin-top:33px;
+    background: background: rgba(19, 99, 185, 0.65) none repeat scroll 0% 0%;
     padding: 1px 0px 2px 0px;
 }
 #user-name-box
