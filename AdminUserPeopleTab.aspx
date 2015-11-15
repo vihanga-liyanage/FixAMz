@@ -301,6 +301,29 @@
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
                                     </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Username</div>
+                                        <asp:TextBox ID="UpdateUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateUsernameValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            New Password</div>
+                                        <asp:TextBox ID="UpdateNewPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="UpdateNewPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Confirm  New Password</div>
+                                        <asp:TextBox ID="UpdateNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="UpdateNewConfirmPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
                                     <!--
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Access Level</div>
@@ -430,6 +453,10 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 839b82b03200b0081e5e44c13fc058c2b96270b9
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
     <script src="Scripts/CustomScripts.js" type="text/javascript"></script>

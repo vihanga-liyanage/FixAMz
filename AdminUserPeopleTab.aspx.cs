@@ -345,6 +345,7 @@ namespace FixAMz_WebApplication
                     String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
+                    
                     while (dr1.Read())
                     {
                         UpdateEmpID.InnerHtml = dr1["empID"].ToString();
@@ -352,8 +353,17 @@ namespace FixAMz_WebApplication
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
                         UpdateContactTextBox.Text = dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
+                        
                     }
                     dr1.Close();
+                    String query2 = "SELECT empID, username FROM SystemUser WHERE empID='" + empID + "'";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        UpdateUsernameTextBox.Text = dr2["username"].ToString();
+                    }
+                    dr2.Close();
                     /*
                     String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
                     SqlCommand cmd2 = new SqlCommand(query2, conn);

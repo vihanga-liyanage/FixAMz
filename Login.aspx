@@ -52,9 +52,9 @@
                         <asp:Button ID="SignInBtn" runat="server" Text="Sign in" 
                             class="expand-item-btn login-btn" onclick="SignInBtn_Click"/>
                     </div>
-                    <div class="forgot-password-container">
+                    <!--<div class="forgot-password-container">
                         <a href="#" >Forgot password?</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="responseArea" runat="server"></div>
             </div>
