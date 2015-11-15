@@ -7,19 +7,24 @@ div
 {
     /*border:1px solid black;*/
 }
+a:focus {
+    outline: none;
+}
 .logo 
 {
-    height:100px;
+    height:70px;
 }
 .header 
 {
     padding-top:5px;
     border-bottom: 2px solid #A4A4A4;
-    background:white;
-    background: -webkit-linear-gradient(right, #1363B9 , white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(left, #1363B9, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(left, #1363B9, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to left, #1363B9 , white);
+    
+    /*background: -webkit-linear-gradient(right, #1363B9 , white); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(left, #1363B9, white); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(left, #1363B9, white); /* For Firefox 3.6 to 15 */
+   /* background: linear-gradient(to left, #1363B9 , white);*/
+    
+    background:#ffffff;
 }
 .logo-text
 {
@@ -33,16 +38,84 @@ div
 }
 .nav-bar-container
 {
-    margin-top:33px;
-    padding: 1px 0px 2px 0px;
+    background: background: rgba(19, 99, 185, 0.65) none repeat scroll 0% 0%;
+    padding: 1px 0px 0px 0px;
 }
+/*Notification css*/
+#notification_li a{
+	text-decoration: none;
+}
+#notification_li a:hover{
+	text-decoration: none;
+}
+#notification_li{
+	position: relative;
+}
+#notificationContainer {
+	background-color: #fff;
+	border: 1px solid rgba(100, 100, 100, .4);
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+	overflow: visible;
+	position: absolute;
+	top: 35px;
+	margin-left: 435px;
+	width: 400px;
+	z-index: 1;
+	display: none;
+}
+#notificationContainer:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	color: black;
+	border: 10px solid black;
+	border-color: transparent transparent rgba(100, 100, 100, .4);
+	margin-top: -20px;
+	margin-left: 335px;
+}
+#notificationTitle {
+	z-index: 1000;
+	font-weight: bold;
+	padding: 8px;
+	font-size: 13px;
+	background-color: #ffffff;
+	width: 384px;
+	border-bottom: 1px solid #dddddd;
+}
+#notificationsBody {
+	padding: 33px 0px 0px 0px !important;
+	min-height:300px;
+}
+#notificationFooter {
+	background-color: #e9eaed;
+	text-align: center;
+	font-weight: bold;
+	padding: 8px;
+	font-size: 12px;
+	border-top: 1px solid #dddddd;
+}
+#notification_count {
+	padding: 1px 5px;
+    background: #E90909 none repeat scroll 0% 0%;
+    color: #FFF;
+    font-weight: bold;
+    margin-left: -3px;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: -4px;
+    font-size: 11px;
+}
+
+/*User name css*/
 #user-name-box
 { 
-    text-align:right; 
-    font-size:large; 
-    width:403px;
-    float:right;
-    padding: 10px 34px 0px 0px;
+    text-align: right;
+    font-size: 16px;
+    float: right;
+    padding: 5px 17px 6px 0px;
+    height: 40px;
 }
 #userName
 {
@@ -50,20 +123,33 @@ div
 }
 #A1
 {
-    color:#B3B3B3;
+    color:#39BBED;
 }
 .custom-nav-bar
 {
-    font-size:20px;
-    padding-left: 26px;
-    border:none;
-    float:right;
+    font-size: 20px;
+    border: medium none;
+    float: right;
+    background: #437FAB none repeat scroll 0% 0%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-top: 2px;
+    padding: 2px 2px 0px 2px;
 }
 .custom-nav-bar li a
 {
     color:Black;
     padding: 5px 30px;
-    border-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin:0px 1px 0px 1px;
+}
+.custom-nav-bar li a.active
+{
+    background-color: #ECECEC;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: #ECECEC;
 }
 .custom-nav-bar u
 {

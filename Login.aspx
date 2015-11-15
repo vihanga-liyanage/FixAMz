@@ -20,7 +20,7 @@
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
 <!--Header-->
         <div class="row">
-            <div class="col-md-12" >
+            <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
@@ -52,9 +52,9 @@
                         <asp:Button ID="SignInBtn" runat="server" Text="Sign in" 
                             class="expand-item-btn login-btn" onclick="SignInBtn_Click"/>
                     </div>
-                    <div class="forgot-password-container">
+                    <!--<div class="forgot-password-container">
                         <a href="#" >Forgot password?</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="responseArea" runat="server"></div>
             </div>

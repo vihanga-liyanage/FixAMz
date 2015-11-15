@@ -9,9 +9,13 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
+using System.Net;
+using System.Net.Mail;
+using System.IO;
 
 namespace FixAMz_WebApplication
 {
+
     public partial class AdminUserPeopleTab : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -117,8 +121,8 @@ namespace FixAMz_WebApplication
             {
                 return 2;
             }
-        } 
-        
+        }
+
         //Add new user
         protected void AddUserBtn_Click(object sender, EventArgs e)
         {
@@ -149,9 +153,20 @@ namespace FixAMz_WebApplication
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
 
                     cmd.ExecuteNonQuery();
+
+                    //Sending email to the user with username and password
+                    Boolean Email = SendEmail(AddNewEmailTextBox.Text, "Welcome to FixAMz", 
+                        "Your username and password for FixAmz is as follows.\n\n" +
+                        "Username - " + AddNewUsernameTextBox.Text + "\n" + 
+                        "Password - " + Convert.ToString(AddNewPasswordTextBox.Text) + "\n\n" +
+                        "Please login to your account and change your password as you prefer.\n\n" +
+                        "Regards,\n" +
+                        "Administrator"
+                        );
                 }
 
                 conn.Close();
+                
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
                 setEmpID();
                 AddNewUserContent.Style.Add("display", "none");
@@ -164,6 +179,38 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
+        }
+
+        protected Boolean SendEmail(string toAddress, string subject, string body)
+        {
+            Boolean result = true;
+
+            string senderID = "fixamz@gmail.com";// use sender’s email id here..
+            const string senderPassword = "fixamzadmin"; // sender password here…
+
+            try
+            {
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com", // smtp server address here…
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
+                    Timeout = 30000,
+
+                };
+
+                MailMessage message = new MailMessage(senderID, toAddress, subject, body);
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+
+            return result;
         }
 
         protected void AddUserTypeDropDown_Selected(object sender, EventArgs e)
@@ -298,15 +345,25 @@ namespace FixAMz_WebApplication
                     String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
+                    string z = "0";
                     while (dr1.Read())
                     {
                         UpdateEmpID.InnerHtml = dr1["empID"].ToString();
                         UpdateFirstNameTextBox.Text = dr1["firstName"].ToString();
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
-                        UpdateContactTextBox.Text = dr1["contactNo"].ToString();
+                        UpdateContactTextBox.Text = z+ dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
+                        
                     }
                     dr1.Close();
+                    String query2 = "SELECT empID, username FROM SystemUser WHERE empID='" + empID + "'";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        UpdateUsernameTextBox.Text = dr2["username"].ToString();
+                    }
+                    dr2.Close();
                     /*
                     String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
                     SqlCommand cmd2 = new SqlCommand(query2, conn);
@@ -386,7 +443,7 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
-        
+
         //Delete user
         protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {
@@ -474,8 +531,9 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
-            
+
         }
+
     }
-        
 }
+

@@ -25,11 +25,23 @@
                         <img src="img/fixamz.png" class="logo" />
                     </div>
                     <div class="col-md-8 header-right">
-                        <div class="col-sm-12">
-                            <div id="user-name-box">
-                                <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
-                                    runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
-                            </div>
+                        <div class="col-sm-12" id="user-name-box">
+                            <span id="userName" runat="server"></span>
+                                | 
+                            <span id="notification_li">
+						        <span id="notification_count"></span>
+						        <a href="#" id="notificationLink">
+                                    <img src="img/bell.jpg" style="width: 27px;"/>
+                                </a>
+						        <div id="notificationContainer">
+							        <div id="notificationTitle">Notifications</div>
+							        <div id="notificationsBody" class="notifications">
+							        </div>
+							        <div id="notificationFooter"><a href="#">See All</a></div>
+						        </div>
+					        </span>
+                                | 
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
@@ -44,8 +56,10 @@
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="#">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-                                    <li><a href="#"><u>SYSTEM</u></a> </li>
-                                    <li><a href="NotificationView.aspx">ABOUT</a> </li>
+
+                                    <li><a href="#" class="active">SYSTEM</a> </li>
+                                    <li><a href="#">ABOUT</a> </li>
+
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
@@ -56,7 +70,7 @@
         </div>               
 <!--Main content-->
             <div class="row">
-                <div class="col-md-10 col-xs-offset-1 expand-item-container">
+                <div class="col-md-9 col-xs-offset-2 expand-item-container">
                     <div id="responseBoxGreen" runat="server">
                         <a href="" onclick="this.parentNode.style.display = 'none';">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
@@ -409,8 +423,8 @@
                 </div>
             </div>
         </div>
-        <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
         <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+        <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
         <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
         </form>
     </body>
