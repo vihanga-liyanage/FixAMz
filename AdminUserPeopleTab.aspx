@@ -30,7 +30,7 @@
                             <span id="userName" runat="server"></span>
                                 | 
                             <span id="notification_li">
-						        <span id="notification_count">3</span>
+						        <span id="notification_count"></span>
 						        <a href="#" id="notificationLink">
                                     <img src="img/bell.jpg" style="width: 27px;"/>
                                 </a>
@@ -453,7 +453,10 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
     
+>>>>>>> 839b82b03200b0081e5e44c13fc058c2b96270b9
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
     <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
