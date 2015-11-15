@@ -124,11 +124,8 @@ namespace FixAMz_WebApplication
         }
 
         //Add new user
-
-
         protected void AddUserBtn_Click(object sender, EventArgs e)
         {
-
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -156,9 +153,20 @@ namespace FixAMz_WebApplication
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
 
                     cmd.ExecuteNonQuery();
+
+                    //Sending email to the user with username and password
+                    Boolean Email = SendEmail(AddNewEmailTextBox.Text, "Welcome to FixAMz", 
+                        "Your username and password for FixAmz is as follows.\n\n" +
+                        "Username - " + AddNewUsernameTextBox.Text + "\n" + 
+                        "Password - " + Convert.ToString(AddNewPasswordTextBox.Text) + "\n\n" +
+                        "Please login to your account and change your password as you prefer.\n\n" +
+                        "Regards,\n" +
+                        "Administrator"
+                        );
                 }
 
                 conn.Close();
+                
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
                 setEmpID();
                 AddNewUserContent.Style.Add("display", "none");
@@ -171,22 +179,39 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
-        
-    
+        }
+
+        protected Boolean SendEmail(string toAddress, string subject, string body)
+        {
+            Boolean result = true;
+
+            string senderID = "fixamz@gmail.com";// use sender’s email id here..
+            const string senderPassword = "fixamzadmin"; // sender password here…
+
+            try
             {
-                SendEmail(AddNewEmailTextBox.Text, "Your username and password for FixAMz", "Username - " + AddNewUsernameTextBox.Text + " " + "Password - " + AddNewPasswordTextBox.Text);
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com", // smtp server address here…
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
+                    Timeout = 30000,
+
+                };
+
+                MailMessage message = new MailMessage(senderID, toAddress, subject, body);
+
+                smtp.Send(message);
             }
-            }     
-          
-            
-            
-        
-        
-        
+            catch (Exception ex)
+            {
+                result = false;
+            }
 
-
-
-
+            return result;
+        }
 
         protected void AddUserTypeDropDown_Selected(object sender, EventArgs e)
         {
@@ -205,9 +230,6 @@ namespace FixAMz_WebApplication
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewUserContent');", true);
             }
         }
-
-
-
 
         //Advanced user search
         protected void SearchUserBtn_Click(object sender, EventArgs e)
@@ -501,44 +523,6 @@ namespace FixAMz_WebApplication
             }
 
         }
-
-        
-
-             protected string SendEmail(string toAddress, string subject, string body)
-        {
-            string result = "Message Sent Successfully..!!";
-            
-            string senderID = "sandyperera1993@gmail.com";// use sender’s email id here..
-            const string senderPassword = "ucsc@123"; // sender password here…
-
-            try
-            {
-                SmtpClient smtp = new SmtpClient
-                {
-                    Host = "smtp.gmail.com", // smtp server address here…
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
-                    Timeout = 30000,
-
-                };
-
-                MailMessage message = new MailMessage(senderID, toAddress, subject, body);
-
-                smtp.Send(message);
-            }
-            catch (Exception ex)
-            {
-                result = "Error sending email.!!!";
-            }
-
-            return result;
-        }
-            
-
-
-            
 
     }
 }
