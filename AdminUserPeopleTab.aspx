@@ -289,6 +289,29 @@
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
                                     </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Username</div>
+                                        <asp:TextBox ID="UpdateUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateUsernameValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            New Password</div>
+                                        <asp:TextBox ID="UpdateNewPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="UpdateNewPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Confirm  New Password</div>
+                                        <asp:TextBox ID="UpdateNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="UpdateNewConfirmPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
                                     <!--
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Access Level</div>
