@@ -292,6 +292,15 @@ a:focus {
     font-size:18px;
 }
 
+.item-title
+{
+    font-size:20px;
+    color:#1f69b9;
+    padding:10px 0px 19px 70px;
+    
+}
+
+
 /*================================Add user================================*/
 .add-user-icon
 {

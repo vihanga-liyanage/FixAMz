@@ -135,14 +135,14 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Location = "INSERT INTO Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) VALUES (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
+                string insertion_Location = "INSERT INTO Location (locID, address, contactNo) VALUES (@locid, @address, @contactno)";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
                 cmd.Parameters.AddWithValue("@locid", AddNewLocID.InnerHtml);
-                cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@department", AddLocationDepartmentTextBox.Text);
-                cmd.Parameters.AddWithValue("@zonaloffice", AddLocationZonalOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@manageroffice", AddLocationManagerOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@branch", AddLocationBranchTextBox.Text);
+                //cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
+                //cmd.Parameters.AddWithValue("@department", AddLocationDepartmentTextBox.Text);
+                //cmd.Parameters.AddWithValue("@zonaloffice", AddLocationZonalOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@manageroffice", AddLocationManagerOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@branch", AddLocationBranchTextBox.Text);
                 cmd.Parameters.AddWithValue("@address", AddLocationAddressTextBox.Text);
                 cmd.Parameters.AddWithValue("@contactno", AddLocationContactTextBox.Text);
 
@@ -179,19 +179,19 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT locID, name, department, zonalOffice, managerOffice, branch, address, contactNo FROM Location WHERE locID='" + locID + "'";
+                    String query = "SELECT locID, address, contactNo FROM Location WHERE locID='" + locID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         UpdateLocID.InnerHtml = dr["locID"].ToString();
-                        UpdateLocNameTextBox.Text = dr["name"].ToString();
+                        //UpdateLocNameTextBox.Text = dr["name"].ToString();
                         UpdateLocAddressTextBox.Text = dr["address"].ToString();
                         UpdateLocContactTextBox.Text = dr["contactNo"].ToString();
-                        UpdateLocManagerOfficeTextBox.Text = dr["managerOffice"].ToString();
-                        UpdateLocZonalOfficeTextBox.Text = dr["zonalOffice"].ToString();
-                        UpdateLocBranchTextBox.Text = dr["branch"].ToString();
-                        UpdateLocDepartmentTextBox.Text = dr["department"].ToString();
+                        //UpdateLocManagerOfficeTextBox.Text = dr["managerOffice"].ToString();
+                        //UpdateLocZonalOfficeTextBox.Text = dr["zonalOffice"].ToString();
+                        //UpdateLocBranchTextBox.Text = dr["branch"].ToString();
+                        //UpdateLocDepartmentTextBox.Text = dr["department"].ToString();
                     }
                     updatelocationInitState.Style.Add("display", "none");
                     updatelocationSecondState.Style.Add("display", "block");
@@ -224,16 +224,16 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String locID = UpdateLocationIDTextBox.Text;
-                string insertion_Location = "UPDATE Location SET name = @name, address = @address, contactNo = @contact, department = @department, branch = @branch, zonalOffice = @ZonalOffice, managerOffice = @ManagerOffice WHERE locID='" + locID + "'";
+                string insertion_Location = "UPDATE Location SET address = @address, contactNo = @contact WHERE locID='" + locID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
 
-                cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
+                //cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@address", UpdateLocAddressTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateLocContactTextBox.Text);
-                cmd.Parameters.AddWithValue("@department", UpdateLocDepartmentTextBox.Text);
-                cmd.Parameters.AddWithValue("@branch", UpdateLocBranchTextBox.Text);
-                cmd.Parameters.AddWithValue("@ZonalOffice", UpdateLocZonalOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@ManagerOffice", UpdateLocManagerOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@department", UpdateLocDepartmentTextBox.Text);
+                //cmd.Parameters.AddWithValue("@branch", UpdateLocBranchTextBox.Text);
+                //cmd.Parameters.AddWithValue("@ZonalOffice", UpdateLocZonalOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@ManagerOffice", UpdateLocManagerOfficeTextBox.Text);
 
 
                 cmd.ExecuteNonQuery();
