@@ -30,13 +30,18 @@
                             <span id="userName" runat="server"></span>
                                 | 
                             <span id="notification_li">
-						        <span id="notification_count"></span>
+						        <span id="notification_count" runat="server"></span>
 						        <a href="#" id="notificationLink">
                                     <img src="img/bell.jpg" style="width: 27px;"/>
                                 </a>
 						        <div id="notificationContainer">
-							        <div id="notificationTitle">Notifications</div>
-							        <div id="notificationsBody" class="notifications">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        <a href=''>
+                                           <div class='notification'>
+                                               <img src='img/AddNewIcon.png' style='opacity: 0.6;'/>
+                                           </div>
+                                        </a>
 							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>

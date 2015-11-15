@@ -25,6 +25,7 @@ namespace FixAMz_WebApplication
                 setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
+            Load_Notifications();
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
@@ -57,6 +58,51 @@ namespace FixAMz_WebApplication
             }
         }
         
+        //Loading notifications
+        protected void Load_Notifications()
+        {
+            //getting empID
+            String username = HttpContext.Current.User.Identity.Name;
+            String query = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
+            //selecting relevant notifications
+            query = "SELECT notID, type, assetID, notContent, sendUser, date, status FROM Notification WHERE receiveUser='" + empID + "' ORDER BY date DESC";
+            cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+            String output = "";
+            while (dr.Read())
+            {
+                output +=
+                    "<a href='" + dr["notID"].ToString() + "'>" +
+                    "   <div class='notification";
+                if (dr["status"].ToString() == "not-seen")
+                {
+                    output += " not-seen";
+                    count += 1;
+                }
+                output +=
+                    "'>" +
+                    "       <img src='img/" + dr["type"].ToString() + "Icon.png' style='opacity: 0.6;'/>" +
+                            dr["notID"].ToString() +
+                    "       <div class='not-date'>" + dr["date"].ToString() + "</div>" +
+                    "   </div>" +
+                    "</a>";
+            }
+
+            //set notifications
+            notificationsBody.InnerHtml = output;
+
+            //set count
+            notification_count.InnerHtml = Convert.ToString(count);
+
+            dr.Close();
+            conn.Close();
+        }
         // Signing out =================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
@@ -406,7 +452,7 @@ namespace FixAMz_WebApplication
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "RegRecommend");
+                cmd.Parameters.AddWithValue("@type", "AddNew");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
@@ -672,7 +718,7 @@ namespace FixAMz_WebApplication
                 cmd = new SqlCommand(insertUpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "Upgrade");
+                cmd.Parameters.AddWithValue("@type", "Update");
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
@@ -1024,7 +1070,7 @@ namespace FixAMz_WebApplication
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "Dispose");
+                cmd.Parameters.AddWithValue("@type", "Delete");
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
