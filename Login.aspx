@@ -20,7 +20,7 @@
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
 <!--Header-->
         <div class="row">
-            <div class="col-md-12" >
+            <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />

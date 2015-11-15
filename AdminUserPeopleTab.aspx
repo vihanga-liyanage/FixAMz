@@ -20,44 +20,44 @@
     <div class="container-fluid">
 <!--Header-->
         <div class="row">
-            <div class="row header">
-                <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12">
                             <div id="user-name-box">
-                                <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
+                                <span id="userName" runat="server"></span> | <a id="A1" href="#"
                                     runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 nav-bar-container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" style="float:right;">
-                        <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                            <li><a href="#">HOME</a> </li>
-                            <li><a href="#"><u>PEOPLE</u></a> </li>
-                            <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                            <li><a href="#">ABOUT</a> </li>
-                            <li><a href="#">HELP</a> </li>
-                        </ul>
+                        <div class="col-sm-12 nav-bar-container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse" style="float:right;">
+                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="#" class="active">PEOPLE</a> </li>
+                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="#">ABOUT</a> </li>
+                                    <li><a href="#">HELP</a> </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 <!--Main content-->
         <div class="row">
-            <div class="col-md-10 col-xs-offset-1 expand-item-container">
+            <div class="col-md-9 col-xs-offset-2 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
                     <a href="" onclick="this.parentNode.style.display = 'none';">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>

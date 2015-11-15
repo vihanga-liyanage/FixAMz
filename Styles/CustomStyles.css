@@ -7,6 +7,9 @@ div
 {
     /*border:1px solid black;*/
 }
+a:focus {
+    outline: none;
+}
 .logo 
 {
     height:70px;
@@ -36,15 +39,15 @@ div
 .nav-bar-container
 {
     background: background: rgba(19, 99, 185, 0.65) none repeat scroll 0% 0%;
-    padding: 1px 0px 2px 0px;
+    padding: 1px 0px 0px 0px;
 }
 #user-name-box
 { 
-    text-align:right; 
-    font-size:large; 
-    width:403px;
-    float:right;
-    padding: 10px 34px 0px 0px;
+    text-align: right;
+    font-size: 16px;
+    width: 403px;
+    float: right;
+    padding: 5px 0px 6px 0px;
 }
 #userName
 {
@@ -56,16 +59,29 @@ div
 }
 .custom-nav-bar
 {
-    font-size:20px;
-    padding-left: 26px;
-    border:none;
-    float:right;
+    font-size: 20px;
+    border: medium none;
+    float: right;
+    background: #437FAB none repeat scroll 0% 0%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-top: 2px;
+    padding: 2px 2px 0px 2px;
 }
 .custom-nav-bar li a
 {
     color:Black;
     padding: 5px 30px;
-    border-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin:0px 1px 0px 1px;
+}
+.custom-nav-bar li a.active
+{
+    background-color: #ECECEC;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: #ECECEC;
 }
 .custom-nav-bar u
 {
