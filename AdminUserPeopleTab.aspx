@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="expand-item-row">
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" OnClick="AddUserBtn_Click"
-                                        class="expand-item-btn" OnClientClick="return isValidAddNew()" />
+                                        class="expand-item-btn" OnClientClick="return isValidAddNew()" /> 
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                         OnClientClick="return addNewClearAll()" />
                                 </div>
