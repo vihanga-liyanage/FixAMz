@@ -336,22 +336,14 @@ function isValidAddLoc() {
     var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && assetNameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.") && addressValidator("AddLocationAddress");
     var isValidContact = contactValidator("AddLocationContact");
-    var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.") && assetNameValidator("AddLocationManagerOffice");
-    var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.") && assetNameValidator("AddLocationDepartment");
-    var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.") && assetNameValidator("AddLocationBranch");
-    var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.") && assetNameValidator("AddLocationZonalOffice");
 
-    return (isValidLocName && isValidLocAddress && isValidContact && isValidLocManagerOffice && isValidLocDepartment && isValidLocZonalOffice && isValidLocBranch);
+    return (isValidLocName && isValidLocAddress && isValidContact);
 }
 
 function addLocationClearAll() {
     document.forms[0]["AddLocationNameTextBox"].value = "";
     document.forms[0]["AddLocationAddressTextBox"].value = "";
     document.forms[0]["AddLocationContactTextBox"].value = "";
-    document.forms[0]["AddLocationManagerOfficeTextBox"].value = "";
-    document.forms[0]["AddLocationDepartmentTextBox"].value = "";
-    document.forms[0]["AddLocationBranchTextBox"].value = "";
-    document.forms[0]["AddLocationZonalOfficeTextBox"].value = "";
     return true;
 }
 
@@ -360,12 +352,8 @@ function isValidUpdateLoc() {
     var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && assetNameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.") && addressValidator("UpdateLocAddress");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
-    var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.") && assetNameValidator("UpdateLocDepartment");
-    var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.") && assetNameValidator("UpdateLocBranch");
-    var isValidUpLoczonaloffice = requiredFieldValidator("UpdateLocZonalOffice", "Zonal Office cannot be empty.") && assetNameValidator("UpdateLocZonalOffice");
-    var isValidUpLocmanageroffice = requiredFieldValidator("UpdateLocManagerOffice", "Manager Office cannot be empty.") && assetNameValidator("UpdateLocManagerOffice");
 
-    return (isValidUpLocname && isValidUpLocaddress && isValidUpLoccontact && isValidUpLocdepartment && isValidUpLocbranch && isValidUpLoczonaloffice && isValidUpLocmanageroffice);
+    return (isValidUpLocname && isValidUpLocaddress && isValidUpLoccontact);
 }
 
 function isValidUpdateLocID() {
@@ -376,10 +364,6 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocNameTextBox"].value = "";
     document.forms[0]["UpdateLocAddressTextBox"].value = "";
     document.forms[0]["UpdateLocContactTextBox"].value = "";
-    document.forms[0]["UpdateLocDepartmentTextBox"].value = "";
-    document.forms[0]["UpdateLocManagerOfficeTextBox"].value = "";
-    document.forms[0]["UpdateLocBranchTextBox"].value = "";
-    document.forms[0]["UpdateLocZonalOfficeTextBox"].value = "";
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
