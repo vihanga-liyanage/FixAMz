@@ -345,13 +345,12 @@ namespace FixAMz_WebApplication
                     String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
-                    string z = "0";
                     while (dr1.Read())
                     {
                         UpdateEmpID.InnerHtml = dr1["empID"].ToString();
                         UpdateFirstNameTextBox.Text = dr1["firstName"].ToString();
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
-                        UpdateContactTextBox.Text = z+ dr1["contactNo"].ToString();
+                        UpdateContactTextBox.Text = dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
                         
                     }
@@ -421,6 +420,8 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
 
                 cmd.ExecuteNonQuery();
+
+                //Include update query for password here
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
