@@ -27,7 +27,7 @@
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12">
                             <div id="user-name-box">
-                                <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
+                                <span id="userName" runat="server"></span> | <a id="A1" href="#"
                                     runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="#">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-                                    <li><a href="#"><u>SYSTEM</u></a> </li>
+                                    <li><a href="#" class="active">SYSTEM</a> </li>
                                     <li><a href="#">ABOUT</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
@@ -56,7 +56,7 @@
         </div>               
 <!--Main content-->
             <div class="row">
-                <div class="col-md-10 col-xs-offset-1 expand-item-container">
+                <div class="col-md-9 col-xs-offset-2 expand-item-container">
                     <div id="responseBoxGreen" runat="server">
                         <a href="" onclick="this.parentNode.style.display = 'none';">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
