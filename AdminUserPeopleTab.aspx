@@ -30,7 +30,9 @@
                             <div id="user-name-box">
                                 <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
                                     runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                                
                             </div>
+                            
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">

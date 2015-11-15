@@ -24,7 +24,7 @@ namespace FixAMz_WebApplication
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             setUserName();
         }
-
+        
         //Setting user name on header
         protected void setUserName()
         {

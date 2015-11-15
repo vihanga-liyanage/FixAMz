@@ -113,6 +113,7 @@
     <Content Include="img\ViewAssetUserHome.png" />
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
     <Content Include="ManageAssetsUser.aspx" />
+    <Content Include="NotificationView.aspx" />
     <Content Include="Report1.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -193,6 +194,13 @@
     </Compile>
     <Compile Include="ManageAssetsUser.aspx.designer.cs">
       <DependentUpon>ManageAssetsUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationView.aspx.cs">
+      <DependentUpon>NotificationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NotificationView.aspx.designer.cs">
+      <DependentUpon>NotificationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report1.aspx.cs">

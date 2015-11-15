@@ -387,7 +387,7 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
+                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
@@ -396,7 +396,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
-                cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
+                //cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
 
                 cmd.ExecuteNonQuery();
@@ -439,7 +439,7 @@ namespace FixAMz_WebApplication
             String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
             String categoryID = AssetSearchCategoryDropDown.SelectedValue;
             String value = AssetSearchValueTextBox.Text;
-            String locationID = AssetSearchLocationDropDown.SelectedValue;
+           // String locationID = AssetSearchLocationDropDown.SelectedValue;
             String ownerID = AssetSearchOwnerDropDown.SelectedValue;
 
             String resultMessage = "";
@@ -470,11 +470,11 @@ namespace FixAMz_WebApplication
                 query += " AND value='" + Convert.ToInt16(value) + "'";
                 resultMessage += value + ", ";
             }
-            if (locationID != "")
+           /* if (locationID != "")
             {
                 query += " AND location='" + locationID + "'";
                 resultMessage += locationID + ", ";
-            }
+            }*/
             if (ownerID != "")
             {
                 query += " AND owner='" + ownerID + "'";
@@ -552,7 +552,7 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    String query = "SELECT name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                     String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -563,7 +563,7 @@ namespace FixAMz_WebApplication
                         UpgradeAssetName.InnerHtml = dr["name"].ToString();
                         UpgradeAssetCategoryID = dr["category"].ToString();
                         UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
-                        UpgradeLocationID = dr["location"].ToString();
+                      //  UpgradeLocationID = dr["location"].ToString();
                         UpgradeOwnerID = dr["owner"].ToString();
                         UpgradeValue.InnerHtml = dr["value"].ToString() + " LKR";
                     }
@@ -576,10 +576,10 @@ namespace FixAMz_WebApplication
                     String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + UpgradeAssetSubcategoryID + "'";
                     cmd = new SqlCommand(getSubCatNameQuery, conn);
                     UpgradeAssetSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                    // Get location name
+              /*      // Get location name
                     String getLocNameQuery = "SELECT name FROM Location WHERE locID='" + UpgradeLocationID + "'";
                     cmd = new SqlCommand(getLocNameQuery, conn);
-                    UpgradeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
+                    UpgradeLocation.InnerHtml = cmd.ExecuteScalar().ToString();*/
                     // Get owner name
                     String getOwnerNameQuery = "SELECT [firstname]+' '+[lastname] FROM Employee WHERE empID='" + UpgradeOwnerID + "'";
                     cmd = new SqlCommand(getOwnerNameQuery, conn);
@@ -794,10 +794,10 @@ namespace FixAMz_WebApplication
                     {
                         String transferAssetCategoryID = "";
                         String transferAssetSubCategoryID = "";
-                        String transferAssetLocationID = "";
+                       // String transferAssetLocationID = "";
                         String transferAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -806,7 +806,7 @@ namespace FixAMz_WebApplication
                             TransferItemName.InnerHtml = dr["name"].ToString();
                             transferAssetCategoryID = dr["category"].ToString();
                             transferAssetSubCategoryID = dr["subcategory"].ToString();
-                            transferAssetLocationID = dr["location"].ToString();
+                           // transferAssetLocationID = dr["location"].ToString();
                             transferAssetOwnerID = dr["owner"].ToString();
                             TransferValue.InnerHtml = dr["value"].ToString() + " LKR";
                         }
@@ -819,8 +819,8 @@ namespace FixAMz_WebApplication
                         String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + transferAssetSubCategoryID + "'";
                         cmd = new SqlCommand(getSubCatNameQuery, conn);
                         TransferSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                        // Get location name
-                        TransferLocationDropDown.SelectedValue = transferAssetLocationID;
+                    /*    // Get location name
+                        TransferLocationDropDown.SelectedValue = transferAssetLocationID;*/
                         // Get owner name
                         TransferOwnerDropDown.SelectedValue = transferAssetOwnerID;
 
@@ -874,7 +874,7 @@ namespace FixAMz_WebApplication
 
                 String transID = setTransAssetID();
                 String notID = setNotID();
-                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, location, owner, recommend) VALUES (@transid, @assetid, @type, @status, @date, @location, @owner, @recommend)";
+                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, owner, recommend) VALUES (@transid, @assetid, @type, @status, @date, @owner, @recommend)";
                 string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
@@ -884,7 +884,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@type", "0");
                 cmd.Parameters.AddWithValue("@status", "0");
                 cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
+               // cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", TransAssetSendForRecommendDropDown.SelectedValue);
                 cmd.ExecuteNonQuery();
@@ -940,10 +940,10 @@ namespace FixAMz_WebApplication
                     {
                         String disposeAssetCategoryID = "";
                         String disposeAssetSubCategoryID = "";
-                        String disposeAssetLocationID = "";
+                       // String disposeAssetLocationID = "";
                         String disposeAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -952,7 +952,7 @@ namespace FixAMz_WebApplication
                             DisposeItemName.InnerHtml = dr["name"].ToString();
                             disposeAssetCategoryID = dr["category"].ToString();
                             disposeAssetSubCategoryID = dr["subcategory"].ToString();
-                            disposeAssetLocationID = dr["location"].ToString();
+                          //  disposeAssetLocationID = dr["location"].ToString();
                             disposeAssetOwnerID = dr["owner"].ToString();
                             DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
                         }
@@ -965,10 +965,10 @@ namespace FixAMz_WebApplication
                         String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
                         cmd = new SqlCommand(getSubCatNameQuery, conn);
                         DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                        // Get location name
+                    /*    // Get location name
                         String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
                         cmd = new SqlCommand(getLocationNameQuery, conn);
-                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
+                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();*/
                         // Get owner name
                         String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
                         cmd = new SqlCommand(getOwnerNameQuery, conn);
