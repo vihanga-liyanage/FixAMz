@@ -9,9 +9,13 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
+using System.Net;
+using System.Net.Mail;
+using System.IO;
 
 namespace FixAMz_WebApplication
 {
+
     public partial class AdminUserPeopleTab : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -117,11 +121,14 @@ namespace FixAMz_WebApplication
             {
                 return 2;
             }
-        } 
-        
+        }
+
         //Add new user
+
+
         protected void AddUserBtn_Click(object sender, EventArgs e)
         {
+
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -164,7 +171,22 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
-        }
+        
+    
+            {
+                SendEmail(AddNewEmailTextBox.Text, "Your username and password for FixAMz", "Username - " + AddNewUsernameTextBox.Text + " " + "Password - " + AddNewPasswordTextBox.Text);
+            }
+            }     
+          
+            
+            
+        
+        
+        
+
+
+
+
 
         protected void AddUserTypeDropDown_Selected(object sender, EventArgs e)
         {
@@ -183,6 +205,9 @@ namespace FixAMz_WebApplication
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewUserContent');", true);
             }
         }
+
+
+
 
         //Advanced user search
         protected void SearchUserBtn_Click(object sender, EventArgs e)
@@ -386,7 +411,7 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
-        
+
         //Delete user
         protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {
@@ -474,8 +499,47 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
-            
+
         }
-    }
+
         
+
+             protected string SendEmail(string toAddress, string subject, string body)
+        {
+            string result = "Message Sent Successfully..!!";
+            
+            string senderID = "sandyperera1993@gmail.com";// use sender’s email id here..
+            const string senderPassword = "ucsc@123"; // sender password here…
+
+            try
+            {
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com", // smtp server address here…
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
+                    Timeout = 30000,
+
+                };
+
+                MailMessage message = new MailMessage(senderID, toAddress, subject, body);
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+                result = "Error sending email.!!!";
+            }
+
+            return result;
+        }
+            
+
+
+            
+
+    }
 }
+
