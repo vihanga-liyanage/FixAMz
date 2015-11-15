@@ -19,7 +19,7 @@ namespace FixAMz_WebApplication
             if (!Page.IsPostBack)
             {
                 Load_Category();
-                Load_Location();
+                //Load_Location();
                 Load_Employee_Data();
                 setUserName();
                 setAssetID();
@@ -54,7 +54,7 @@ namespace FixAMz_WebApplication
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(exx.ToString());
+                Response.Write("setUserName:" + exx.ToString());
             }
         }
         
@@ -103,6 +103,7 @@ namespace FixAMz_WebApplication
             dr.Close();
             conn.Close();
         }
+
         // Signing out =================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
@@ -178,7 +179,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                Response.Write("Error:" + ex.Message.ToString());
+                Response.Write("Load_SubCategory_for_register:" + ex.Message.ToString());
             }
         }
 
@@ -203,7 +204,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                Response.Write("Error:" + ex.Message.ToString());
+                Response.Write("Load_SubCategory_for_search:" + ex.Message.ToString());
             }
         }
 
@@ -236,7 +237,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                Response.Write("Error:" + ex.Message.ToString());
+                Response.Write("Load_Category:" + ex.Message.ToString());
             }
         }
         //Loading location dropdown
@@ -277,7 +278,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                Response.Write("Error:" + ex.Message.ToString());
+                Response.Write("Load_Location_Data:" + ex.Message.ToString());
             }
         }
         //Loading employee data
@@ -365,7 +366,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
-                Response.Write("Error:" + ex.Message.ToString());
+                Response.Write("Load_Employee_Data:" + ex.Message.ToString());
             }
         }
 
@@ -408,7 +409,7 @@ namespace FixAMz_WebApplication
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
+                Response.Write("setAssetID:" + e.ToString());
             }
         }
 
@@ -448,7 +449,7 @@ namespace FixAMz_WebApplication
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @date, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
@@ -457,7 +458,6 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
@@ -714,7 +714,7 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
                 String notID = setNotID();
-                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertUpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
@@ -723,18 +723,16 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
 
-                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, date, description, recommend, approve) VALUES (@upid, @assetid, @value, @date, @description, @recommend, @approve)";
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve) VALUES (@upid, @assetid, @value, @description, @recommend, @approve)";
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", UpgradeAssetValueTextBox.Text);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
@@ -920,8 +918,8 @@ namespace FixAMz_WebApplication
 
                 String transID = setTransAssetID();
                 String notID = setNotID();
-                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status, date, owner, recommend) VALUES (@transid, @assetid, @type, @status, @date, @owner, @recommend)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status,owner, recommend) VALUES (@transid, @assetid, @type, @status, @owner, @recommend)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -929,7 +927,6 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@assetid", TransferAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@type", "0");
                 cmd.Parameters.AddWithValue("@status", "0");
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                // cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", TransAssetSendForRecommendDropDown.SelectedValue);
@@ -941,7 +938,6 @@ namespace FixAMz_WebApplication
                 cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
                 cmd2.Parameters.AddWithValue("@nReceiveUser", TransAssetSendForRecommendDropDown.SelectedValue);
-                cmd2.Parameters.AddWithValue("@nDate", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd2.Parameters.AddWithValue("@nStatus", "not-seen");
                 cmd2.ExecuteNonQuery();
 
@@ -1066,7 +1062,7 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @date, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
@@ -1075,7 +1071,6 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
                 cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
