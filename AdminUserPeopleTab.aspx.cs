@@ -185,8 +185,8 @@ namespace FixAMz_WebApplication
         {
             Boolean result = true;
 
-            string senderID = "fixamz@gmail.com";// use sender’s email id here..
-            const string senderPassword = "fixamzadmin"; // sender password here…
+            string senderID = "sandyperera1993@gmail.com";// use sender’s email id here..
+            const string senderPassword = "ucsc@123"; // sender password here…
 
             try
             {
@@ -207,6 +207,7 @@ namespace FixAMz_WebApplication
             }
             catch (Exception ex)
             {
+                Response.Write("Email:" + ex.ToString());
                 result = false;
             }
 

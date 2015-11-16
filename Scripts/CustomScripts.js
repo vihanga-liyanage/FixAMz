@@ -45,7 +45,7 @@ $(".expand-item-title").click(function () {
         out += item + " : " + expandingItems[item] + "\n";
     }
     document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
-    alert(out);
+    //alert(out);
 });
 
 //Function to call above .click function manually by code behind, when page reloads occur
@@ -60,7 +60,7 @@ function getKeys() {
     for (var k in expandingItems) {
         out += k + ":" + expandingItems[k] + "\n";
     }
-    alert(out);
+    //alert(out);
 }
 
 //Global validation functions=================================================================
