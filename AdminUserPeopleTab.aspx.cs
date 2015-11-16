@@ -17,12 +17,36 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             setEmpID();
+            Load_CostCenter();
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             setUserName();
+        }
+
+        //loading CostCenters
+        protected void Load_CostCenter()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, costID FROM CostCenter", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddUserCostNameDropDown.DataSource = data;
+                AddUserCostNameDropDown.DataTextField = "name";
+                AddUserCostNameDropDown.DataValueField = "costID";
+                AddUserCostNameDropDown.DataBind();
+                AddUserCostNameDropDown.Items.Insert(0, new ListItem("-- Select a CostCenter --", ""));
+                data.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
         }
 
         //Setting user name on header
@@ -144,7 +168,7 @@ namespace FixAMz_WebApplication
                     String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
                     cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                    cmd.Parameters.AddWithValue("@costID", AddNewCostTextBox.Text);
+                    cmd.Parameters.AddWithValue("@costID", AddUserCostNameDropDown.SelectedValue);
                     cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                     cmd.Parameters.AddWithValue("@password", encriptedPassword);
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);

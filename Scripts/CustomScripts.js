@@ -213,7 +213,6 @@ function addNewClearAll() {
     document.forms[0]["AddNewLastNameTextBox"].value = "";
     document.forms[0]["AddNewEmailTextBox"].value = "";
     document.forms[0]["AddNewContactTextBox"].value = "";
-    document.forms[0]["AddNewCostTextBox"].value = "";
     document.forms[0]["AddNewUsernameTextBox"].value = "";
     document.forms[0]["AddNewPasswordTextBox"].value = "";
     document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
@@ -228,7 +227,7 @@ function isValidAddNew() {
     var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.") && nameValidator("AddNewLastName");
     var isValidEmail = emailValidator("AddNewEmail");
     var isValidContact = contactValidator("AddNewContact");
-    var isValidCostid = requiredFieldValidator("AddNewCostTextBox", "CostID cannot be empty.");
+    var isValidCostid = dropDownRequiredFieldValidator("AddUserCostName");
     var isValidType = dropDownRequiredFieldValidator("Type");
 
     //Checking for owners
@@ -261,7 +260,7 @@ function isValidAddNew() {
 
         return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidCostid && isValidType && isValidUsername && isValidPassword && isValidConfirmPassword);
     } else {
-        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType && isValidCostid);
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidCostid && isValidType);
     }
 }
 

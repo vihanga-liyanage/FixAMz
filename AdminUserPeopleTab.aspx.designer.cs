@@ -175,22 +175,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
         
         /// <summary>
-        /// AddNewCostTextBox control.
+        /// AddUserCostNameDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddNewCostTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList AddUserCostNameDropDown;
         
         /// <summary>
-        /// AddNewCostValidator control.
+        /// AddUserCostNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewCostValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddUserCostNameValidator;
         
         /// <summary>
         /// TypeDropDown control.
