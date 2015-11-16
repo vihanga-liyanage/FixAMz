@@ -359,7 +359,7 @@
                                         Enter username to reset user Password </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">
-                                            Employee ID</div>
+                                            Username</div>
                                         <asp:TextBox ID="ResetPasswordUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="ResetPasswordUsernameValidator" runat="server">
                                         </div>
