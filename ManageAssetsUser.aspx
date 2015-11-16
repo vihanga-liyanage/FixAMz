@@ -25,18 +25,20 @@
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
+
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
                                 | 
                             <span id="notification_li">
-						        <span id="notification_count"></span>
+						        <span id="notification_count" runat="server"></span>
 						        <a href="#" id="notificationLink">
                                     <img src="img/bell.jpg" style="width: 27px;"/>
                                 </a>
 						        <div id="notificationContainer">
-							        <div id="notificationTitle">Notifications</div>
-							        <div id="notificationsBody" class="notifications">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        <!-- Generated code -->
 							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
@@ -60,6 +62,7 @@
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -124,12 +127,12 @@
                                     <div class="validator" id="AddSalvageValueValidator" runat="server">
                                     </div>
                                 </div>
-                                <div class="row expand-item-row">
+                              <!--  <div class="row expand-item-row">
                                     <div class="expand-item-label">Location</div>
                                     <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>
                                     <div class="validator" id="AddAssetLocationValidator" runat="server"></div>
-                                </div>
+                                </div> -->
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Owner</div>
                                     <asp:DropDownList ID="AddAssetOwnerDropDown" class="expand-item-textbox" runat="server">
@@ -188,11 +191,11 @@
                                         <div class="expand-item-label">Value</div>
                                         <asp:TextBox ID="AssetSearchValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     </div>
-                                    <div class="row expand-item-row">
+                                   <!-- <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
                                         <asp:DropDownList ID="AssetSearchLocationDropDown" class="expand-item-textbox" runat="server">
                                         </asp:DropDownList>
-                                    </div>
+                                    </div>-->
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
                                         <asp:DropDownList ID="AssetSearchOwnerDropDown" class="expand-item-textbox" runat="server">
@@ -254,10 +257,10 @@
                                         <div class="expand-item-label">Value</div>
                                         <div id="TransferValue" runat="server" class="custom-label"></div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                  <!--  <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
                                         <asp:DropDownList ID="TransferLocationDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
-                                    </div>
+                                    </div>-->
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
                                         <asp:DropDownList ID="TransferOwnerDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
@@ -319,11 +322,11 @@
                                     <div id="UpgradeAssetSubcategory" runat="server" class="custom-label">
                                     </div>
                                 </div>
-                                <div class="row expand-item-row">
+                             <!--   <div class="row expand-item-row">
                                     <div class="expand-item-label">Location</div>
                                     <div id="UpgradeLocation" runat="server" class="custom-label">
-                                    </div>
-                                </div>
+                                    </div> 
+                                </div>-->
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Owner</div>
                                     <div id="UpgradeOwner" runat="server" class="custom-label">

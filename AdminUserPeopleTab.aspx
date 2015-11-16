@@ -26,6 +26,7 @@
                         <img src="img/fixamz.png" class="logo" />
                     </div>
                     <div class="col-md-8 header-right">
+
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
                                 | 
@@ -43,6 +44,7 @@
 					        </span>
                                 | 
                             <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
@@ -502,10 +504,7 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-=======
-    
->>>>>>> 839b82b03200b0081e5e44c13fc058c2b96270b9
+
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
     <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
