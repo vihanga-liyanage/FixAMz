@@ -394,7 +394,7 @@
                                     </div>
                                    
                                     <div class="row expand-item-row">
-                                        <asp:Button ID="ResetPasswordBtn" runat="server" Text="Update User" class="expand-item-btn"
+                                        <asp:Button ID="ResetPasswordBtn" runat="server" Text="Reset Password" class="expand-item-btn"
                                             OnClientClick="return isValidResetPassword()" OnClick="ResetPasswordBtn_Click" />
                                         <asp:Button ID="Button3" runat="server" Text="Cancel" class="expand-item-btn"
                                             OnClientClick="return updateClearAll()" />

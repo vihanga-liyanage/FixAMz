@@ -517,6 +517,14 @@ namespace FixAMz_WebApplication
                 string insertion_SystemUser = "UPDATE SystemUser SET password = @password WHERE username='" + username + "'";
                 SqlCommand cmd = new SqlCommand(insertion_SystemUser, conn);
 
+                string empID = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd1 = new SqlCommand(empID, conn);
+                String empIDget = (cmd1.ExecuteScalar().ToString()).Trim();
+
+                string email = "SELECT email FROM Employee WHERE empID='" + empIDget + "'";
+                SqlCommand cmd2 = new SqlCommand(email, conn);
+                String emailAdd = (cmd2.ExecuteScalar().ToString()).Trim();
+
                 String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(ResetNewPasswordTextBox.Text, "SHA1");
                 cmd.Parameters.AddWithValue("@password", encriptedPassword);
 
@@ -535,6 +543,16 @@ namespace FixAMz_WebApplication
 
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+                
+                //Sending email to the user with username and password
+                Boolean Email = SendEmail(emailAdd, "Welcome to FixAMz",
+                    "Your password is reseted for FixAmz is as follows.\n\n" +
+                    "Username - " + username + "\n" +
+                    "Password - " + Convert.ToString(ResetNewPasswordTextBox.Text) + "\n\n" +
+                    "\n" +
+                    "Regards,\n" +
+                    "Administrator"
+                    );
             }
             catch (Exception ex)
             {
