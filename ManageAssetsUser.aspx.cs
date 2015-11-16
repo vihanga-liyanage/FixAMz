@@ -70,7 +70,13 @@ namespace FixAMz_WebApplication
             String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
             //selecting relevant notifications
-            query = "SELECT notID, type, assetID, notContent, sendUser, date, status FROM Notification WHERE receiveUser='" + empID + "' ORDER BY date DESC";
+            query = "SELECT notID, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
+                    "FROM Notification n INNER JOIN Employee e " +
+                    "ON n.sendUser=e.empID " +
+                    "JOIN Asset a ON n.assetID=a.assetID " +
+                    "WHERE receiveUser='" + empID + "' " + 
+                    "ORDER BY date DESC";
+
             cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
             int count = 0;
@@ -80,6 +86,7 @@ namespace FixAMz_WebApplication
                 output +=
                     "<a href='" + dr["notID"].ToString() + "'>" +
                     "   <div class='notification";
+                //Add background color if not-seen
                 if (dr["status"].ToString() == "not-seen")
                 {
                     output += " not-seen";
@@ -87,9 +94,12 @@ namespace FixAMz_WebApplication
                 }
                 output +=
                     "'>" +
-                    "       <img src='img/" + dr["type"].ToString() + "Icon.png' style='opacity: 0.6;'/>" +
-                            dr["notID"].ToString() +
-                    "       <div class='not-date'>" + dr["date"].ToString() + "</div>" +
+                    "       <img class='col-md-3' src='img/" + dr["type"].ToString() + "Icon.png'/>" +
+                    "       <div class='not-content-box col-md-10'>" +
+                    "           Asset <strong>" + dr["assetName"].ToString() + "</strong> Has been " + "recommended to " + dr["type"].ToString() +
+                    "           by <strong>" + dr["firstName"].ToString() + " " + dr["lastName"].ToString() + "</strong>." +
+                    "           <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString() + "</div>" + 
+                    "       </div>" +
                     "   </div>" +
                     "</a>";
             }
@@ -240,6 +250,7 @@ namespace FixAMz_WebApplication
                 Response.Write("Load_Category:" + ex.Message.ToString());
             }
         }
+
         //Loading location dropdown
         protected void Load_Location()
         {
@@ -281,6 +292,7 @@ namespace FixAMz_WebApplication
                 Response.Write("Load_Location_Data:" + ex.Message.ToString());
             }
         }
+
         //Loading employee data
         protected void Load_Employee_Data()
         {
@@ -763,8 +775,7 @@ namespace FixAMz_WebApplication
 
         }
 
-        // Transfer asset ===============================================================
-
+        // Transfer asset ==============================================================
         protected String setTransAssetID()
         {
             try

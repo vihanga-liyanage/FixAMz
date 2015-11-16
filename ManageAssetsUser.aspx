@@ -38,11 +38,7 @@
 						        <div id="notificationContainer">
 							        <div id="notificationTitle" runat="server">Notifications</div>
 							        <div id="notificationsBody" class="notifications" runat="server">
-                                        <a href=''>
-                                           <div class='notification'>
-                                               <img src='img/AddNewIcon.png' style='opacity: 0.6;'/>
-                                           </div>
-                                        </a>
+                                        <!-- Generated code -->
 							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
