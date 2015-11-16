@@ -400,6 +400,8 @@ namespace FixAMz_WebApplication
 
         }
 
+        
+
         protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
         {
 
@@ -413,13 +415,21 @@ namespace FixAMz_WebApplication
                 conn.Open();
                 String empID = UpdateEmpIDTextBox.Text;
                 string insertion_Employee = "UPDATE Employee SET firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
+                string insertion_SystemUser = "UPDATE SystemUser SET username = @username WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
+                SqlCommand cmd1 = new SqlCommand(insertion_SystemUser, conn);
+
+                
 
                 cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
                 cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
 
+                cmd1.Parameters.AddWithValue("@username", UpdateUsernameTextBox.Text);
+                
+
+                cmd1.ExecuteNonQuery();
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
@@ -427,6 +437,104 @@ namespace FixAMz_WebApplication
 
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Employee '" + empID + "' updated successfully!";
+
+                updateUserInitState.Style.Add("display", "block");
+                updateUserSecondState.Style.Add("display", "none");
+                UpdateUserContent.Style.Add("display", "block");
+                UpdateEmpIDTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+            }
+            catch (Exception ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
+
+        //Reset Password
+        protected void ResetPasswordFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String username = ResetPasswordUsernameTextBox.Text;
+
+                string check = "select count(*) from SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query1 = "SELECT username FROM SystemUser WHERE username='" + username + "'";
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    
+                    while (dr1.Read())
+                    {
+                        ResetUsername.InnerHtml = dr1["username"].ToString();
+
+                    }
+                    dr1.Close();
+                    resetPasswordInitState.Style.Add("display", "none");
+                    resetPasswordSecondState.Style.Add("display", "block");
+                    ResetPasswordContent.Style.Add("display", "block");
+                    ResetPasswordUsernameValidator.InnerHtml = "";
+                }
+                else
+                {
+                    resetPasswordInitState.Style.Add("display", "block");
+                    resetPasswordSecondState.Style.Add("display", "none");
+                    ResetPasswordContent.Style.Add("display", "block");
+                    ResetPasswordUsernameValidator.InnerHtml = "Invalid Username";
+                }
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('ResetPasswordContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+
+        }
+
+        protected void ResetPasswordBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String username = ResetPasswordUsernameTextBox.Text;
+
+                string insertion_SystemUser = "UPDATE SystemUser SET password = @password WHERE username='" + username + "'";
+                
+                SqlCommand cmd = new SqlCommand(insertion_SystemUser, conn);
+
+
+
+                cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
+                cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
+
+                
+
+
+                
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
+
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Employee '" + username + "' updated successfully!";
 
                 updateUserInitState.Style.Add("display", "block");
                 updateUserSecondState.Style.Add("display", "none");
