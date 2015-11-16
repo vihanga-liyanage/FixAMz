@@ -9,9 +9,13 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
+using System.Net;
+using System.Net.Mail;
+using System.IO;
 
 namespace FixAMz_WebApplication
 {
+
     public partial class AdminUserPeopleTab : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +28,7 @@ namespace FixAMz_WebApplication
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             setUserName();
         }
-
+        
         //Setting user name on header
         protected void setUserName()
         {
@@ -117,8 +121,8 @@ namespace FixAMz_WebApplication
             {
                 return 2;
             }
-        } 
-        
+        }
+
         //Add new user
         protected void AddUserBtn_Click(object sender, EventArgs e)
         {
@@ -149,9 +153,20 @@ namespace FixAMz_WebApplication
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
 
                     cmd.ExecuteNonQuery();
+
+                    //Sending email to the user with username and password
+                    Boolean Email = SendEmail(AddNewEmailTextBox.Text, "Welcome to FixAMz", 
+                        "Your username and password for FixAmz is as follows.\n\n" +
+                        "Username - " + AddNewUsernameTextBox.Text + "\n" + 
+                        "Password - " + Convert.ToString(AddNewPasswordTextBox.Text) + "\n\n" +
+                        "Please login to your account and change your password as you prefer.\n\n" +
+                        "Regards,\n" +
+                        "Administrator"
+                        );
                 }
 
                 conn.Close();
+                
                 ScriptManager.RegisterStartupScript(this, GetType(), "addNewClearAll", "addNewClearAll();", true);
                 setEmpID();
                 AddNewUserContent.Style.Add("display", "none");
@@ -164,6 +179,38 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(ex.ToString());
             }
+        }
+
+        protected Boolean SendEmail(string toAddress, string subject, string body)
+        {
+            Boolean result = true;
+
+            string senderID = "fixamz@gmail.com";// use sender’s email id here..
+            const string senderPassword = "fixamzadmin"; // sender password here…
+
+            try
+            {
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com", // smtp server address here…
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new System.Net.NetworkCredential(senderID, senderPassword),
+                    Timeout = 30000,
+
+                };
+
+                MailMessage message = new MailMessage(senderID, toAddress, subject, body);
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+
+            return result;
         }
 
         protected void AddUserTypeDropDown_Selected(object sender, EventArgs e)
@@ -305,8 +352,17 @@ namespace FixAMz_WebApplication
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
                         UpdateContactTextBox.Text = dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
+                        
                     }
                     dr1.Close();
+                    String query2 = "SELECT empID, username FROM SystemUser WHERE empID='" + empID + "'";
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        UpdateUsernameTextBox.Text = dr2["username"].ToString();
+                    }
+                    dr2.Close();
                     /*
                     String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
                     SqlCommand cmd2 = new SqlCommand(query2, conn);
@@ -365,6 +421,8 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
+                //Include update query for password here
+
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
 
@@ -386,7 +444,7 @@ namespace FixAMz_WebApplication
                 Response.Write(ex.ToString());
             }
         }
-        
+
         //Delete user
         protected void DeleteUserFindBtn_Click(object sender, EventArgs e)
         {
@@ -406,12 +464,13 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
+                    string ini = "0";
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");
@@ -473,8 +532,9 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
-            
+
         }
+
     }
-        
 }
+

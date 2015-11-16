@@ -31,15 +31,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceFixAMz;
         
         /// <summary>
-        /// SearchTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
-        
-        /// <summary>
         /// userName control.
         /// </summary>
         /// <remarks>
@@ -533,6 +524,60 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateContactValidator;
+        
+        /// <summary>
+        /// UpdateUsernameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateUsernameTextBox;
+        
+        /// <summary>
+        /// UpdateUsernameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateUsernameValidator;
+        
+        /// <summary>
+        /// UpdateNewPasswordTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateNewPasswordTextBox;
+        
+        /// <summary>
+        /// UpdateNewPasswordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateNewPasswordValidator;
+        
+        /// <summary>
+        /// UpdateNewConfirmPasswordTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateNewConfirmPasswordTextBox;
+        
+        /// <summary>
+        /// UpdateNewConfirmPasswordValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateNewConfirmPasswordValidator;
         
         /// <summary>
         /// UpdateTypeDropDown control.

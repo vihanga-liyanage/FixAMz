@@ -24,6 +24,8 @@ namespace FixAMz_WebApplication
             setUserName();
             if (!IsPostBack)
                 Load_Category();
+
+            
         }
 
         //Setting user name
@@ -133,14 +135,14 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Location = "INSERT INTO Location (locID, name, department, zonalOffice, managerOffice, branch, address, contactNo) VALUES (@locid, @name, @department, @zonaloffice, @manageroffice, @branch, @address, @contactno)";
+                string insertion_Location = "INSERT INTO Location (locID, address, contactNo) VALUES (@locid, @address, @contactno)";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
                 cmd.Parameters.AddWithValue("@locid", AddNewLocID.InnerHtml);
-                cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@department", AddLocationDepartmentTextBox.Text);
-                cmd.Parameters.AddWithValue("@zonaloffice", AddLocationZonalOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@manageroffice", AddLocationManagerOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@branch", AddLocationBranchTextBox.Text);
+                //cmd.Parameters.AddWithValue("@name", AddLocationNameTextBox.Text);
+                //cmd.Parameters.AddWithValue("@department", AddLocationDepartmentTextBox.Text);
+                //cmd.Parameters.AddWithValue("@zonaloffice", AddLocationZonalOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@manageroffice", AddLocationManagerOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@branch", AddLocationBranchTextBox.Text);
                 cmd.Parameters.AddWithValue("@address", AddLocationAddressTextBox.Text);
                 cmd.Parameters.AddWithValue("@contactno", AddLocationContactTextBox.Text);
 
@@ -177,19 +179,19 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT locID, name, department, zonalOffice, managerOffice, branch, address, contactNo FROM Location WHERE locID='" + locID + "'";
+                    String query = "SELECT locID, address, contactNo FROM Location WHERE locID='" + locID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         UpdateLocID.InnerHtml = dr["locID"].ToString();
-                        UpdateLocNameTextBox.Text = dr["name"].ToString();
+                        //UpdateLocNameTextBox.Text = dr["name"].ToString();
                         UpdateLocAddressTextBox.Text = dr["address"].ToString();
                         UpdateLocContactTextBox.Text = dr["contactNo"].ToString();
-                        UpdateLocManagerOfficeTextBox.Text = dr["managerOffice"].ToString();
-                        UpdateLocZonalOfficeTextBox.Text = dr["zonalOffice"].ToString();
-                        UpdateLocBranchTextBox.Text = dr["branch"].ToString();
-                        UpdateLocDepartmentTextBox.Text = dr["department"].ToString();
+                        //UpdateLocManagerOfficeTextBox.Text = dr["managerOffice"].ToString();
+                        //UpdateLocZonalOfficeTextBox.Text = dr["zonalOffice"].ToString();
+                        //UpdateLocBranchTextBox.Text = dr["branch"].ToString();
+                        //UpdateLocDepartmentTextBox.Text = dr["department"].ToString();
                     }
                     updatelocationInitState.Style.Add("display", "none");
                     updatelocationSecondState.Style.Add("display", "block");
@@ -222,16 +224,16 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String locID = UpdateLocationIDTextBox.Text;
-                string insertion_Location = "UPDATE Location SET name = @name, address = @address, contactNo = @contact, department = @department, branch = @branch, zonalOffice = @ZonalOffice, managerOffice = @ManagerOffice WHERE locID='" + locID + "'";
+                string insertion_Location = "UPDATE Location SET address = @address, contactNo = @contact WHERE locID='" + locID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Location, conn);
 
-                cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
+                //cmd.Parameters.AddWithValue("@name", UpdateLocNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@address", UpdateLocAddressTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateLocContactTextBox.Text);
-                cmd.Parameters.AddWithValue("@department", UpdateLocDepartmentTextBox.Text);
-                cmd.Parameters.AddWithValue("@branch", UpdateLocBranchTextBox.Text);
-                cmd.Parameters.AddWithValue("@ZonalOffice", UpdateLocZonalOfficeTextBox.Text);
-                cmd.Parameters.AddWithValue("@ManagerOffice", UpdateLocManagerOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@department", UpdateLocDepartmentTextBox.Text);
+                //cmd.Parameters.AddWithValue("@branch", UpdateLocBranchTextBox.Text);
+                //cmd.Parameters.AddWithValue("@ZonalOffice", UpdateLocZonalOfficeTextBox.Text);
+                //cmd.Parameters.AddWithValue("@ManagerOffice", UpdateLocManagerOfficeTextBox.Text);
 
 
                 cmd.ExecuteNonQuery();
@@ -245,6 +247,9 @@ namespace FixAMz_WebApplication
                 updatelocationSecondState.Style.Add("display", "none");
                 UpdateLocationContent.Style.Add("display", "block");
                 UpdateLocationIDTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateLocationContent');", true);
             }
             catch (Exception ex)
             {
@@ -316,7 +321,6 @@ namespace FixAMz_WebApplication
                 responseBoxGreen.Style.Add("display", "block");
                 responseMsgGreen.InnerHtml = "Category " + AddCategoryNameTextBox.Text + " added successfully!";
 
-
             }
             catch (Exception ex)
             {
@@ -365,6 +369,8 @@ namespace FixAMz_WebApplication
                 conn.Close();
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
+
+                //ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
             }
             catch (SqlException ex)
             {
@@ -398,6 +404,11 @@ namespace FixAMz_WebApplication
                 updateCategorySecondState.Style.Add("display", "none");
                 UpdateCategoryContent.Style.Add("display", "block");
                 UpdateCategoryIDTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateCategoryContent');", true);
+
+                //ClientScript.RegisterStartupScript(this.GetType(), "getKeys", "getKeys();", true);
             }
             catch (Exception ex)
             {
@@ -507,7 +518,7 @@ namespace FixAMz_WebApplication
                     while (dr.Read())
                     {
                         UpdateScatID.InnerHtml = dr["scatID"].ToString();
-                        UpdateScatNameTetBox.Text = dr["name"].ToString();
+                        UpdateScatNameTextBox.Text = dr["name"].ToString();
                         updateSubCategoryCategoryID = dr["catID"].ToString();
                         UpdateDepRateTextBox.Text = dr["depreciationRate"].ToString();
                         UpdateLifetimeTextBox.Text = dr["lifetime"].ToString();
@@ -551,12 +562,12 @@ namespace FixAMz_WebApplication
                 conn.Open();
 
                 String scatID = UpdateSubCategoryIDTextBox.Text;
-                String name = UpdateScatNameTetBox.Text;
+                String name = UpdateScatNameTextBox.Text;
 
                 string insertion_SubCategory = "UPDATE SubCategory SET name = @name, depreciationRate = @depreciationRate, lifetime = @lifetime WHERE scatID='" + scatID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_SubCategory, conn);
 
-                cmd.Parameters.AddWithValue("@name", UpdateScatNameTetBox.Text);
+                cmd.Parameters.AddWithValue("@name", UpdateScatNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@depreciationRate", UpdateDepRateTextBox.Text);
                 cmd.Parameters.AddWithValue("@lifetime", UpdateLifetimeTextBox.Text);
                 

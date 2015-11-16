@@ -7,17 +7,24 @@ div
 {
     /*border:1px solid black;*/
 }
+a:focus {
+    outline: none;
+}
 .logo 
 {
-    height:72px;
+    height:70px;
 }
 .header 
 {
-    padding-left:96px;
     padding-top:5px;
     border-bottom: 2px solid #A4A4A4;
-    background:white;
-    height:119px;
+    
+    /*background: -webkit-linear-gradient(right, #1363B9 , white); /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(left, #1363B9, white); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(left, #1363B9, white); /* For Firefox 3.6 to 15 */
+   /* background: linear-gradient(to left, #1363B9 , white);*/
+    
+    background:#ffffff;
 }
 .logo-text
 {
@@ -25,39 +32,151 @@ div
     margin-left:-50px;
     padding-top:35px;
 }
-.search-box
+.header-right
 {
-    border-radius:6px; 
-    height:45px; 
-    width:370px; 
-    border:1px solid black;
-    background: #bdbdbd url(img/searchicon.png) left no-repeat;
-    padding-left:20px;
+    padding-right:0px;   
 }
-#user-name-box
+.nav-bar-container
 {
-    padding-top:20px; 
-    text-align:right; 
-    font-size:large; 
-    width:403px;
+    background: background: rgba(19, 99, 185, 0.65) none repeat scroll 0% 0%;
+    padding: 1px 0px 0px 0px;
+}
+/*Notification css*/
+#notification_li a{
+	text-decoration: none;
+}
+#notification_li a:hover{
+	text-decoration: none;
+}
+#notification_li{
+	position: relative;
+}
+#notificationContainer {
+	background-color: #fff;
+	border: 1px solid rgba(100, 100, 100, .4);
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+	overflow: visible;
+	position: absolute;
+	top: 35px;
+	margin-left: 435px;
+	z-index: 1;
+	display: none;
+}
+#notificationContainer:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	color: black;
+	border: 10px solid black;
+	border-color: transparent transparent rgba(100, 100, 100, .4);
+	margin-top: -20px;
+	margin-left: 335px;
+}
+#notificationTitle {
+	z-index: 1000;
+	font-weight: bold;
+	padding: 8px;
+	font-size: 13px;
+	background-color: #ffffff;
+	width: 384px;
+	border-bottom: 1px solid #dddddd;
+}
+#notificationsBody {
+	min-height:300px;
+}
+#notificationsBody a:hover {
+    background: yellow;   
+}
+#notificationFooter {
+	background-color: rgba(246, 246, 246, 0.85);
+	text-align: center;
+	font-weight: bold;
+	padding: 8px;
+	font-size: 12px;
+	border-top: 1px solid #dddddd;
+}
+#notification_count {
+	padding: 0px 5px;
+    background: #E90909 none repeat scroll 0% 0%;
+    color: #FFF;
+    font-weight: bold;
+    margin-left: -3px;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: -4px;
+    font-size: 11px;
+}
+.notification {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+    min-height: 70px;
+}
+.notifications .col-md-3 {
+    padding: 0px;
+}
+.notifications img {
+    opacity: 0.6;
+    width: 59px;
+}
+.notification a:hover {
+    background: yellow;   
+}
+.not-seen {
+    background: #CAE6F3 none repeat scroll 0% 0%;
+}
+.not-content-box {
+    padding: 0px 0px 0px 5px;
+}
+.not-date {
+    color: #898989;
+    font-size: 13px;
+    float: right;
+}
+/*User name css*/
+#user-name-box
+{ 
+    text-align: right;
+    font-size: 16px;
+    float: right;
+    padding: 5px 17px 6px 0px;
+    height: 40px;
 }
 #userName
 {
     padding-right: 5px;
 }
+#A1
+{
+    color:#39BBED;
+}
 .custom-nav-bar
 {
-    font-size:20px;
-    padding-left: 26px;
-    border:none;
+    font-size: 20px;
+    border: medium none;
+    float: right;
+    background: #437FAB none repeat scroll 0% 0%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-top: 2px;
+    padding: 2px 2px 0px 2px;
 }
 .custom-nav-bar li a
 {
     color:Black;
-    margin-top:-25px;
-    padding-top:5px;
-    padding-bottom:0px;
-    padding-right:40px;
+    padding: 5px 30px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin:0px 1px 0px 1px;
+}
+.custom-nav-bar li a.active
+{
+    background-color: #ECECEC;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: #ECECEC;
 }
 .custom-nav-bar u
 {
@@ -179,6 +298,15 @@ div
     padding-left:6px;
     font-size:18px;
 }
+
+.item-title
+{
+    font-size:20px;
+    color:#1f69b9;
+    padding:10px 0px 19px 70px;
+    
+}
+
 
 /*================================Add user================================*/
 .add-user-icon

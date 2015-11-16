@@ -22,32 +22,56 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
-                    <div class="col-md-5 logo-text hidden-xs hidden-sm">
-                        The Web Based Asset Management System
-                    </div>
-                    <div class="col-md-4" style="padding-top: 10px; padding-right: 0px; text-align: right;">
-                        <asp:TextBox ID="SearchTextBox" class="search-box" runat="server"></asp:TextBox>
-                        <div id="user-name-box">
-                            <span id="userName" runat="server">Vihanga Liyanage</span> | <a id="A1" href="#"
-                                runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                    <div class="col-md-8 header-right">
+
+                        <div class="col-sm-12" id="user-name-box">
+                            <span id="userName" runat="server"></span>
+                                | 
+                            <span id="notification_li">
+						        <span id="notification_count"></span>
+						        <a href="#" id="notificationLink">
+                                    <img src="img/bell.jpg" style="width: 27px;"/>
+                                </a>
+						        <div id="notificationContainer">
+							        <div id="notificationTitle">Notifications</div>
+							        <div id="notificationsBody" class="notifications">
+							        </div>
+							        <div id="notificationFooter"><a href="#">See All</a></div>
+						        </div>
+					        </span>
+                                | 
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+
+                        </div>
+                        <div class="col-sm-12 nav-bar-container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse" style="float:right;">
+                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="#" class="active">PEOPLE</a> </li>
+                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="#">ABOUT</a> </li>
+                                    <li><a href="#">HELP</a> </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <ul class="custom-nav-bar nav nav-tabs">
-                        <li><a href="#">HOME</a> </li>
-                        <li><a href="#"><u>PEOPLE</u></a> </li>
-                        <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                        <li><a href="#">ABOUT</a> </li>
-                        <li><a href="#">HELP</a> </li>
-                    </ul>
                 </div>
             </div>
         </div>
 <!--Main content-->
         <div class="row">
-            <div class="col-md-10 col-xs-offset-1 expand-item-container">
+            <div class="col-md-9 col-xs-offset-2 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
                     <a href="" onclick="this.parentNode.style.display = 'none';">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
@@ -148,7 +172,7 @@
                                 </div>
                                 <div class="expand-item-row">
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" OnClick="AddUserBtn_Click"
-                                        class="expand-item-btn" OnClientClick="return isValidAddNew()" />
+                                        class="expand-item-btn" OnClientClick="return isValidAddNew()" /> 
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                         OnClientClick="return addNewClearAll()" />
                                 </div>
@@ -277,6 +301,29 @@
                                             Contact</div>
                                         <asp:TextBox ID="UpdateContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="UpdateContactValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Username</div>
+                                        <asp:TextBox ID="UpdateUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="UpdateUsernameValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            New Password</div>
+                                        <asp:TextBox ID="UpdateNewPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="UpdateNewPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Confirm  New Password</div>
+                                        <asp:TextBox ID="UpdateNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="UpdateNewConfirmPasswordValidator" runat="server">
                                         </div>
                                     </div>
                                     <!--
@@ -408,8 +455,9 @@
             </div>
         </div>
     </div>
-    <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
+
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
     <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
     </form>
 </body>
