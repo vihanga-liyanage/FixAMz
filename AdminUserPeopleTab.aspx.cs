@@ -138,12 +138,13 @@ namespace FixAMz_WebApplication
 
                 if (TypeDropDown.SelectedItem.Value != "owner")
                 {
-                    string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
+                    string insertion_User = "insert into SystemUser (empID, costID, username, password, type) values (@empid, @costID, @username, @password, @type)";
                     cmd = new SqlCommand(insertion_User, conn);
 
                     String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
                     cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                    cmd.Parameters.AddWithValue("@costID", AddNewCostTextBox.Text);
                     cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                     cmd.Parameters.AddWithValue("@password", encriptedPassword);
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);

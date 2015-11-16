@@ -114,6 +114,13 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
+                                        CostID</div>
+                                    <asp:TextBox ID="AddNewCostTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                    <div class="validator" id="AddNewCostValidator" runat="server">
+                                    </div>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
                                         Access Level</div>
                                     <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="AddUserTypeDropDown_Selected" AutoPostBack="true">
                                         <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
