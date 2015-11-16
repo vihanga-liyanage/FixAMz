@@ -538,8 +538,8 @@ namespace FixAMz_WebApplication
 
                 updateUserInitState.Style.Add("display", "block");
                 updateUserSecondState.Style.Add("display", "none");
-                UpdateUserContent.Style.Add("display", "block");
-                UpdateEmpIDTextBox.Text = "";
+                ResetPasswordContent.Style.Add("display", "block");
+                ResetPasswordUsernameTextBox.Text = "";
 
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
