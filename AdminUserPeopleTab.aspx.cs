@@ -515,30 +515,21 @@ namespace FixAMz_WebApplication
                 String username = ResetPasswordUsernameTextBox.Text;
 
                 string insertion_SystemUser = "UPDATE SystemUser SET password = @password WHERE username='" + username + "'";
-                
                 SqlCommand cmd = new SqlCommand(insertion_SystemUser, conn);
 
+                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(ResetNewPasswordTextBox.Text, "SHA1");
+                cmd.Parameters.AddWithValue("@password", encriptedPassword);
 
-
-                cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
-                cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
-
-                
-
-
-                
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
 
                 responseBoxGreen.Style.Add("display", "block");
-                responseMsgGreen.InnerHtml = "Employee '" + username + "' updated successfully!";
+                responseMsgGreen.InnerHtml = "Employee password reset completed successfully!";
 
-                updateUserInitState.Style.Add("display", "block");
-                updateUserSecondState.Style.Add("display", "none");
+                resetPasswordInitState.Style.Add("display", "block");
+                resetPasswordSecondState.Style.Add("display", "none");
                 ResetPasswordContent.Style.Add("display", "block");
                 ResetPasswordUsernameTextBox.Text = "";
 
