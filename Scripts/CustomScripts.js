@@ -18,8 +18,8 @@ $(document).ready(function () {
 
 //Notification link click function
 $(".notification").click(function () {
-    alert(this.id);
-    window.location.assign("Report1.aspx?test=" + this.id);
+    //alert(this.id);
+    window.location.assign("NotificationView.aspx?id=" + this.id);
 });
 
 //Exapand content function

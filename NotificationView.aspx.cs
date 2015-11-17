@@ -16,6 +16,17 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            String notid;
+            //Retrieving notID from URL
+            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+            {
+                notid = Request.QueryString["id"];
+            }
+            else
+            {
+                notid = "N00001";
+            }
+
             String Asset = "";
             String Type = "";
             String Category = "";
@@ -24,7 +35,6 @@ namespace FixAMz_WebApplication
             String Content = "";
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
             conn.Open();
-            String notid = "N00001";
             String query = "SELECT assetID, type, notContent FROM Notification WHERE notID='" + notid + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
