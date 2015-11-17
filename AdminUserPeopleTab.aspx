@@ -194,6 +194,11 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
+                                        Cost ID</div>
+                                    <asp:TextBox ID="SearchCostIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
                                         First Name</div>
                                     <asp:TextBox ID="SearchFirstNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>

@@ -302,13 +302,14 @@ function searchClearAll() {
 
 function isValidUserSearch() {
     var id = document.forms[0]["SearchEmployeeIDTextBox"].value;
+    var costid = document.forms[0]["SearchCostIDTextBox"].value;
     var fname = document.forms[0]["SearchFirstNameTextBox"].value;
     var lname = document.forms[0]["SearchLastNameTextBox"].value;
     var email = document.forms[0]["SearchEmailTextBox"].value;
     var contact = document.forms[0]["SearchContactTextBox"].value;
-    var username = document.forms[0]["SearchUsernameTextBox"].value;
+    //var username = document.forms[0]["SearchUsernameTextBox"].value;
 
-    if (id == "" && fname == "" && lname == "" && email == "" && contact == "" && username == "") {
+    if (id == "" && costid == "" && fname == "" && lname == "" && email == "" && contact == "") {
         alert("Please fill at least one field");
         return false;
     } else {

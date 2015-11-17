@@ -213,6 +213,7 @@ namespace FixAMz_WebApplication
         protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
             String empID = SearchEmployeeIDTextBox.Text.Trim();
+            String costID = SearchCostIDTextBox.Text.Trim();
             String firstname = SearchFirstNameTextBox.Text.Trim();
             String lastname = SearchLastNameTextBox.Text.Trim();
             String email = SearchEmailTextBox.Text.Trim();
@@ -226,6 +227,11 @@ namespace FixAMz_WebApplication
             {
                 query += " empID='" + empID + "'";
                 resultMessage += empID + ", ";
+            }
+            if (costID != "")
+            {
+                query += " AND costID='" + costID + "'";
+                resultMessage += costID + ", ";
             }
             if (firstname != "")
             {
@@ -294,7 +300,7 @@ namespace FixAMz_WebApplication
 
         protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
-            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
+            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchCostIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
             {
                 textBox.Text = "";
