@@ -36,7 +36,7 @@ namespace FixAMz_WebApplication
             try
             {
                 String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
+                String query = "SELECT e.firstName, e.lastName, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -44,7 +44,17 @@ namespace FixAMz_WebApplication
                 String output = "";
                 while (dr.Read())
                 {
-                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
+                    if (dr["type"].ToString().Trim() == "admin")
+                    {
+                        output = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
+                    }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+                    }
                 }
                 userName.InnerHtml = output;
             }
@@ -52,7 +62,7 @@ namespace FixAMz_WebApplication
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(exx.ToString());
+                Response.Write("setUserName:" + exx.ToString());
             }
         }
 
@@ -645,13 +655,13 @@ namespace FixAMz_WebApplication
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
-                    string ini = "0";
+                    
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml =  dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");

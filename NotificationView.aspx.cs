@@ -251,7 +251,6 @@ namespace FixAMz_WebApplication
             Response.Redirect("Login.aspx");
         }
 
-
         //Reads the last notID from DB, calculates the next=============================
         protected String setNotID()
         {
@@ -298,8 +297,10 @@ namespace FixAMz_WebApplication
         }
 
 
+
 //Add new asset ==========================================
             protected void AddNewAssetapprovecancel_Click(object sender, EventArgs e)
+
             {
                 try
                 {
