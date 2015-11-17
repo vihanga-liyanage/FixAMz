@@ -14,23 +14,107 @@ namespace FixAMz_WebApplication
 {
     public partial class NotificationView : System.Web.UI.Page
     {
-        String Asset;
-        String Type;
-        String Category;
-        String Subcategory;
-        String Owner;
-        String Content;
-        String senduser;
+
+        private String Asset;
+        private String Type;
+        private String Category;
+        private String Subcategory;
+        private String Owner;
+        private String Content;
+        private String senduser;
+        private String notid;
+        private String receiveuser;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             setUserName();
-            Load();
-            
-
+            Load_Content();
+            Load_Notifications();
         }
 
-        //Load notification data
-        protected void Load()
+        //Loading notifications
+        protected void Load_Notifications()
+        {
+            //getting empID
+            String username = HttpContext.Current.User.Identity.Name;
+            String query = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
+            //selecting relevant notifications
+            query = "SELECT notID, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
+                    "FROM Notification n INNER JOIN Employee e " +
+                    "ON n.sendUser=e.empID " +
+                    "JOIN Asset a ON n.assetID=a.assetID " +
+                    "WHERE receiveUser='" + empID + "' " +
+                    "ORDER BY date DESC";
+
+            cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+            String output = "";
+            while (dr.Read())
+            {
+                output +=
+                    "<div id='" + dr["notID"].ToString().Trim() + "' class='notification";
+                //Add background color if not-seen
+                if (dr["status"].ToString().Trim() == "not-seen")
+                {
+                    output += " not-seen";
+                    count += 1;
+                }
+                output +=
+                    "'>" +
+                    "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
+                    "   <div class='not-content-box col-md-10'>" +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> Has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
+                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
+                    "   </div>" +
+                    "</div>";
+            }
+
+            //set notifications
+            notificationsBody.InnerHtml = output;
+
+            //set count
+            if (count > 0)
+            {
+                notification_count.InnerHtml = Convert.ToString(count);
+            }
+            else
+            {
+                notification_count.Style.Add("display", "none");
+            }
+
+            dr.Close();
+            conn.Close();
+        }
+
+        //Update notification table when loading
+        protected void Update_Not_DB()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "UPDATE Notification SET status='seen' WHERE notID='" + notid + "'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException exx)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write("Update_Not_DB:" + exx.ToString());
+            }
+            
+        }
+
+        //Load page data
+        protected void Load_Content()
         {
             try
             {
@@ -49,7 +133,7 @@ namespace FixAMz_WebApplication
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT assetID, type, notContent, sendUser FROM Notification WHERE notID='" + notid + "'";
+                String query = "SELECT * FROM Notification WHERE notID='" + notid + "'";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -58,6 +142,7 @@ namespace FixAMz_WebApplication
                     Type = dr["type"].ToString();
                     Content = dr["notContent"].ToString();
                     senduser = dr["sendUser"].ToString();
+                    receiveuser = dr["receiveUser"].ToString();
                 }
 
                 dr.Close();
@@ -90,17 +175,17 @@ namespace FixAMz_WebApplication
                 String getOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Owner + "'";
                 cmd = new SqlCommand(getOwnerNameQuery, conn);
                 AssetOwner.InnerHtml = cmd.ExecuteScalar().ToString();
-                conn.Close();
+                
 
                 if (Type == "AddNew")
                 {
-                    NotificationTitle.InnerHtml = "Add new asset Notification";
+                    NotificationHeader.InnerHtml = "Add new asset Notification";
                     AddnewassetState.Style.Add("display", "block");
                 }
 
                 if (Type == "Transfer")
                 {
-                    NotificationTitle.InnerHtml = "Transfer asset Notification";
+                    NotificationHeader.InnerHtml = "Transfer asset Notification";
                     TransferassetState.Style.Add("display", "block");
                 }
 
@@ -109,7 +194,8 @@ namespace FixAMz_WebApplication
                     string getvalue = "SELECT value FROM UpgradeAsset WHERE assetID='" + Asset + "' AND status= 'pending'";
                     SqlCommand cmd2 = new SqlCommand(getvalue, conn);
                     String value = (cmd2.ExecuteScalar().ToString()).Trim();
-                    NotificationTitle.InnerHtml = "Upgrade asset Notification";
+                    NotificationHeader.InnerHtml = "Upgrade asset Notification";
+                    
                     UpgradeCost.InnerHtml = value;
                     UpgradeDescription.InnerHtml = Content;
                     UpgradeassetState.Style.Add("display", "block");
@@ -117,10 +203,11 @@ namespace FixAMz_WebApplication
 
                 if (Type == "Dispose")
                 {
-                    NotificationTitle.InnerHtml = "Dispose asset Notification";
+                    NotificationHeader.InnerHtml = "Dispose asset Notification";
                     DisposeDescription.InnerHtml = Content;
                     DisposeassetState.Style.Add("display", "block");
                 }
+                conn.Close();
             }
             catch (SqlException e)
             {
@@ -128,6 +215,7 @@ namespace FixAMz_WebApplication
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write(e.ToString());
             }
+            
         }
 
         //Setting user name on header
@@ -210,7 +298,7 @@ namespace FixAMz_WebApplication
         }
 
 
-
+//Add new asset ==========================================
             protected void AddNewAssetapprovecancel_Click(object sender, EventArgs e)
             {
                 try
@@ -218,16 +306,17 @@ namespace FixAMz_WebApplication
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     String notID = setNotID();
-                    String canceladdnewAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status)";
+                    String canceladdnewAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status, action) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status, @action)";
                     SqlCommand cmd = new SqlCommand(canceladdnewAsset, conn);
                     cmd.Parameters.AddWithValue("@notid", notID);
-                    cmd.Parameters.AddWithValue("@type", "Cancel");
+                    cmd.Parameters.AddWithValue("@type", "AddNew");
                     cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                     cmd.Parameters.AddWithValue("@notContent", " ");
-                    cmd.Parameters.AddWithValue("@senduser", userName.InnerHtml);
+                    cmd.Parameters.AddWithValue("@senduser", receiveuser);
                     cmd.Parameters.AddWithValue("@receiveuser",senduser);
                     //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@status", "not-seen");
+                    cmd.Parameters.AddWithValue("@action", "Cancel");
                     cmd.ExecuteNonQuery();
                     conn.Close();
                     Response.Redirect("ManageAssetsUser.aspx");
@@ -241,17 +330,57 @@ namespace FixAMz_WebApplication
 
             }
 
+            protected void AddNewAssetapprove_Click(object sender, EventArgs e)
+            {
+                try
+                {
+                    SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                    conn.Open();
+                    String notID = setNotID();
+                    String approveaddnewAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status, action) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status, @action)";
+                    SqlCommand cmd = new SqlCommand(approveaddnewAsset, conn);
+                    cmd.Parameters.AddWithValue("@notid", notID);
+                    cmd.Parameters.AddWithValue("@type", "AddNew");
+                    cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
+                    cmd.Parameters.AddWithValue("@notContent", " ");
+                    cmd.Parameters.AddWithValue("@senduser", receiveuser);
+                    cmd.Parameters.AddWithValue("@receiveuser", "E00001");
+                    //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@status", "not-seen");
+                    cmd.Parameters.AddWithValue("@action", "Approve");
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    Response.Redirect("ManageAssetsUser.aspx");
+                }catch (SqlException ex)
+                {
+                    responseBoxRed.Style.Add("display", "block");
+                    responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                    Response.Write(ex.ToString());
+                }
+            }
+
+//Upgrade asset ==========================================
+
         protected void UpgradeAssetapprovecancel_Click(object sender, EventArgs e)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "UPDATE UpgradeAsset SET status='cancel' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pending';";
+                String query = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status, action) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status, @action)";
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@notid", setNotID());
+                cmd.Parameters.AddWithValue("@type", "Update");
+                cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
+                cmd.Parameters.AddWithValue("@notContent", " ");
+                cmd.Parameters.AddWithValue("@senduser", receiveuser);
+                cmd.Parameters.AddWithValue("@receiveuser", senduser);
+                //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+                cmd.Parameters.AddWithValue("@action", "Cancel");
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                Response.Redirect("AdminUserSystemTab.aspx");
+                Response.Redirect("ManageAssetsUser.aspx");
             }
             catch (SqlException ex)
             {
@@ -262,6 +391,34 @@ namespace FixAMz_WebApplication
 
         }
 
+        protected void UpgradeAssetapprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status, action) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status, @action)";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@notid", setNotID());
+                cmd.Parameters.AddWithValue("@type", "Update");
+                cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
+                cmd.Parameters.AddWithValue("@notContent", " ");
+                cmd.Parameters.AddWithValue("@senduser", receiveuser);
+                cmd.Parameters.AddWithValue("@receiveuser", senduser);
+                //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+                cmd.Parameters.AddWithValue("@action", "Approve");
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                Response.Redirect("ManageAssetsUser.aspx");
 
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
     }
 }
