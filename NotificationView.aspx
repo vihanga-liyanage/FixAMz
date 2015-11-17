@@ -122,14 +122,25 @@
                 <div id="AssetOwner" runat="server" class="custom-label">
             </div>
             </div>
+
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
                 <div class="row expand-item-row">
-                    <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" OnClick="AddNewAssetapprove_Click" />
+                    <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" OnClick="AddNewAssetSendapprove_Click" />
                     <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
-                         OnClick="AddNewAssetapprovecancel_Click" />
+                         OnClick="AddNewAssetSendapprovecancel_Click" />
                 </div>
             </div>
+<!-- AddnewassetStateApprove-->
+            <div id="AddnewassetStateApprove" runat="server">
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button1" runat="server" Text="Approve" class="expand-item-btn" OnClick="AddNewAssetapprove_Click" />
+                    <asp:Button ID="Button2" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"
+                          />
+                </div>
+            </div>
+
+
 <!-- UpgradeassetState-->
             <div id="UpgradeassetState" runat="server">
                 <div class="row expand-item-row">
@@ -143,9 +154,9 @@
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <asp:Button ID="UpgradeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" />
+                    <asp:Button ID="UpgradeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="UpgradeAssetsendapprove_Click" />
                     <asp:Button ID="UpgradeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
-                        OnClick="UpgradeAssetapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
+                        OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
                 </div>
             </div>
 <!-- TransferassetState-->

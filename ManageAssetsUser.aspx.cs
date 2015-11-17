@@ -757,7 +757,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.ExecuteNonQuery();
 
 
-                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve) VALUES (@upid, @assetid, @value, @description, @recommend, @approve)";
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve, status) VALUES (@upid, @assetid, @value, @description, @recommend, @approve, @status)";
 
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 

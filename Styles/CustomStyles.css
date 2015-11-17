@@ -650,7 +650,7 @@ a:focus {
 
 /*==============================Notification view styles=========================*/
 
-#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState
+#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState, #AddnewassetStateApprove
 {
     display:none;
 }

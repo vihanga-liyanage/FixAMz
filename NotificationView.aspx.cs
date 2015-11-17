@@ -24,6 +24,7 @@ namespace FixAMz_WebApplication
         private String senduser;
         private String notid;
         private String receiveuser;
+        private String Action;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -118,8 +119,6 @@ namespace FixAMz_WebApplication
         {
             try
             {
-
-                String notid;
                 //Retrieving notID from URL
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
@@ -130,6 +129,7 @@ namespace FixAMz_WebApplication
                     notid = "N00001";
                 }
 
+                Update_Not_DB();
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
@@ -140,6 +140,7 @@ namespace FixAMz_WebApplication
                 {
                     Asset = dr["assetID"].ToString();
                     Type = dr["type"].ToString();
+                    Action = dr["action"].ToString();
                     Content = dr["notContent"].ToString();
                     senduser = dr["sendUser"].ToString();
                     receiveuser = dr["receiveUser"].ToString();
@@ -175,12 +176,18 @@ namespace FixAMz_WebApplication
                 String getOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Owner + "'";
                 cmd = new SqlCommand(getOwnerNameQuery, conn);
                 AssetOwner.InnerHtml = cmd.ExecuteScalar().ToString();
-                
 
-                if (Type == "AddNew")
+
+                if (Type == "AddNew" && Action == "Recommend")
                 {
                     NotificationHeader.InnerHtml = "Add new asset Notification";
                     AddnewassetState.Style.Add("display", "block");
+                }
+
+                if (Type == "AddNew" && Action == "Approve")
+                {
+                    NotificationHeader.InnerHtml = "Add new asset Notification";
+                    AddnewassetStateApprove.Style.Add("display", "block");
                 }
 
                 if (Type == "Transfer")
@@ -299,7 +306,7 @@ namespace FixAMz_WebApplication
 
 
 //Add new asset ==========================================
-            protected void AddNewAssetapprovecancel_Click(object sender, EventArgs e)
+        protected void AddNewAssetSendapprovecancel_Click(object sender, EventArgs e)
 
             {
                 try
@@ -331,7 +338,7 @@ namespace FixAMz_WebApplication
 
             }
 
-            protected void AddNewAssetapprove_Click(object sender, EventArgs e)
+        protected void AddNewAssetSendapprove_Click(object sender, EventArgs e)
             {
                 try
                 {
@@ -345,7 +352,7 @@ namespace FixAMz_WebApplication
                     cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                     cmd.Parameters.AddWithValue("@notContent", " ");
                     cmd.Parameters.AddWithValue("@senduser", receiveuser);
-                    cmd.Parameters.AddWithValue("@receiveuser", "E00001");
+                    cmd.Parameters.AddWithValue("@receiveuser", "E00004");
                     //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@status", "not-seen");
                     cmd.Parameters.AddWithValue("@action", "Approve");
@@ -360,9 +367,28 @@ namespace FixAMz_WebApplication
                 }
             }
 
+        protected void AddNewAssetapprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String quary = "UPDATE Asset SET status='1', approve='E00004' WHERE assetID='" + Asset + "'";
+                SqlCommand cmd = new SqlCommand(quary, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                Response.Redirect("ManageAssetsUser.aspx");
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
 //Upgrade asset ==========================================
 
-        protected void UpgradeAssetapprovecancel_Click(object sender, EventArgs e)
+        protected void UpgradeAssetsendapprovecancel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -392,7 +418,7 @@ namespace FixAMz_WebApplication
 
         }
 
-        protected void UpgradeAssetapprove_Click(object sender, EventArgs e)
+        protected void UpgradeAssetsendapprove_Click(object sender, EventArgs e)
         {
             try
             {
@@ -405,7 +431,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", receiveuser);
-                cmd.Parameters.AddWithValue("@receiveuser", senduser);
+                cmd.Parameters.AddWithValue("@receiveuser", "E00004");
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Approve");
