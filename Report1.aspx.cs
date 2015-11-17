@@ -76,7 +76,7 @@ namespace FixAMz_WebApplication
                     String f = dr.GetString(6);
                     subcategory.Add(f);
 
-                    DateTime g = dr.GetDateTime(10);
+                    DateTime g = dr.GetDateTime(9);
                     approvedDateTime.Add(g);
  
                 }
