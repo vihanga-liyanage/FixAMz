@@ -47,6 +47,14 @@ namespace FixAMz_WebApplication
                 AddUserCostNameDropDown.DataBind();
                 AddUserCostNameDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
                 data.Close();
+
+                data = cmd.ExecuteReader();
+                UpdateCostCenterDropDown.DataSource = data;
+                UpdateCostCenterDropDown.DataTextField = "name";
+                UpdateCostCenterDropDown.DataValueField = "costID";
+                UpdateCostCenterDropDown.DataBind();
+                UpdateCostCenterDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
+                data.Close();
             }
             catch (Exception ex)
             {
@@ -158,7 +166,7 @@ namespace FixAMz_WebApplication
                 string insertion_Employee = "insert into Employee (empID, costID, firstName, lastName, contactNo, email) values (@empid, @costID, @firstname, @lastname, @contact, @email)";
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
                 cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                cmd.Parameters.AddWithValue("@costID", AddUserCostNameDropDown.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@costID", AddUserCostNameDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
@@ -174,7 +182,7 @@ namespace FixAMz_WebApplication
                     String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
                     cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                    cmd.Parameters.AddWithValue("@costid", AddUserCostNameDropDown.SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@costid", AddUserCostNameDropDown.SelectedValue);
                     cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                     cmd.Parameters.AddWithValue("@password", encriptedPassword);
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
@@ -392,9 +400,10 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String empID = UpdateEmpIDTextBox.Text;
-                string insertion_Employee = "UPDATE Employee SET firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
+                string insertion_Employee = "UPDATE Employee SET costID = @costID, firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
 
+                cmd.Parameters.AddWithValue("@costID", UpdateCostCenterDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);

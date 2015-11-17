@@ -285,8 +285,9 @@ function isValidUpdate() {
     var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.") && nameValidator("UpdateLastName");
     var isValidEmail = emailValidator("UpdateEmail");
     var isValidContact = contactValidator("UpdateContact");
+    var isValidCostID = dropDownRequiredFieldValidator("UpdateCostCenter");
 
-    return (isValidFirstname && isValidLastname && isValidEmail && isValidContact);
+    return (isValidFirstname && isValidLastname && isValidEmail && isValidContact && isValidCostID);
 }
 
 //Advanced user search functions =============================================================
