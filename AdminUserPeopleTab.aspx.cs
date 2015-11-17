@@ -40,7 +40,7 @@ namespace FixAMz_WebApplication
                 AddUserCostNameDropDown.DataTextField = "name";
                 AddUserCostNameDropDown.DataValueField = "costID";
                 AddUserCostNameDropDown.DataBind();
-                AddUserCostNameDropDown.Items.Insert(0, new ListItem("-- Select a CostCenter --", ""));
+                AddUserCostNameDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
                 data.Close();
             }
             catch (Exception ex)
