@@ -626,7 +626,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (res == 1)
                 {
-                    String query = "SELECT name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    String query = "SELECT name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                     String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -639,7 +639,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
                       //  UpgradeLocationID = dr["location"].ToString();
                         UpgradeOwnerID = dr["owner"].ToString();
-                        UpgradeValue.InnerHtml = dr["value"].ToString() + " LKR";
+                        UpgradeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                     }
                     dr.Close();
                     // Get category name
@@ -757,13 +757,13 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.ExecuteNonQuery();
 
 
-                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve) VALUES (@upid, @assetid, @value, @description, @recommend, @approve)";
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, updatedValue, description, recommend, approve) VALUES (@upid, @assetid, @updatedValue, @description, @recommend, @approve)";
 
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@value", UpgradeAssetValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);

@@ -320,6 +320,7 @@ function updateClearAll() {
     document.getElementById("updateUserInitState").style.display = "block";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
+    document.forms[0]["UpdateUsernameTextBox"].value = "";
     return false;
 }
 
