@@ -72,6 +72,12 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
+                                    <div class="expand-item-label">Cost Center Name</div>
+                                    <asp:DropDownList ID="AddNewAssetCostNameDropDown" class="expand-item-textbox" runat="server" >
+                                    </asp:DropDownList>
+                                    <div class="validator" id="AddNewAssetCostNameValidator" runat="server"></div>
+                                </div>
+                                <div class="row expand-item-row">
                                     <div class="expand-item-label">Name</div>
                                     <asp:TextBox ID="RegisterAssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                     <div class="validator" id="RegisterAssetNameValidator" runat="server">
