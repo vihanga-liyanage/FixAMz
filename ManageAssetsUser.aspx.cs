@@ -105,7 +105,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> Has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + "recommended to " + dr["type"].ToString().Trim() +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" + 
                     "   </div>" +
@@ -461,11 +461,13 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @recommend)";
+                string insertion_Asset = "insert into Asset (assetID, name, value, salvageValue, updatedValue, category, subcategory, owner, status, recommend) values (@assetid, @name, @value, @salvageValue, @updatedValue, @category, @subcategory,@owner, @status, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@salvageValue", AddSalvageValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@updatedValue", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
@@ -480,7 +482,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "AddNew");
+                cmd.Parameters.AddWithValue("@type", "Add");
                 cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
@@ -626,7 +628,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (res == 1)
                 {
-                    String query = "SELECT name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    String query = "SELECT name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                     String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -639,7 +641,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
                       //  UpgradeLocationID = dr["location"].ToString();
                         UpgradeOwnerID = dr["owner"].ToString();
-                        UpgradeValue.InnerHtml = dr["value"].ToString() + " LKR";
+                        UpgradeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                     }
                     dr.Close();
                     // Get category name
@@ -757,13 +759,15 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.ExecuteNonQuery();
 
 
+
                 String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve, status) VALUES (@upid, @assetid, @value, @description, @recommend, @approve, @status)";
+
 
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@value", UpgradeAssetValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);

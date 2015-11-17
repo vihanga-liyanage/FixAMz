@@ -54,7 +54,7 @@ namespace FixAMz_WebApplication
                 List<string> subcategory = new List<string>();
                 List<DateTime> approvedDateTime = new List<DateTime>();
                 
-                String selectAsset = "SELECT * FROM Asset";
+                String selectAsset = "SELECT * FROM Asset WHERE status = '1'";
                 SqlCommand cmd = new SqlCommand(selectAsset,conn);
 
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -87,27 +87,27 @@ namespace FixAMz_WebApplication
 
                 for (int i = 0; i < assetID.Count; i++)
                 {
-                    Response.Write(subcategory[i]);
+                    //Response.Write(subcategory[i]);
                     string getRate = "SELECT depreciationRate FROM SubCategory WHERE scatID='" + subcategory[i] + "'";
                     SqlCommand cmd2 = new SqlCommand(getRate, conn);
                     String getRateget = cmd2.ExecuteScalar().ToString().Trim();
                     SqlCommand cmd1 = new SqlCommand(getRate, conn);
 
                     
-                    Response.Write(getRateget);
+                    //Response.Write(getRateget);
 
                     depRate.Add(Int32.Parse(getRateget));
 
                     DateTime localDate = DateTime.Now;
                     DateTime appDate = approvedDateTime[i];
                     int diffDays = (int)(localDate - appDate).TotalDays;
-                    Response.Write(localDate);
-                    Response.Write(appDate);
+                    //Response.Write(localDate);
+                    //Response.Write(appDate);
                     float yearDiff = (float)diffDays / 365;
-                    Response.Write("days "+ diffDays.ToString());
+                    /*Response.Write("days "+ diffDays.ToString());
                     Response.Write("years " + yearDiff.ToString());
                     Response.Write(value[i].ToString()+"/n");
-                    Response.Write(salvageValue[i].ToString() + "/n");
+                    Response.Write(salvageValue[i].ToString() + "/n");*/
 
                     
                     float newRate = (float)(Convert.ToInt32(getRateget)/100.0);
@@ -115,21 +115,22 @@ namespace FixAMz_WebApplication
                     float upValue = (value[i] - salvageValue[i]) * (newRate);
                     float upValuefinal = (float)upValue *yearDiff;
                     upValuefinal = value[i] - upValuefinal;
-
+                    //upValuefinal = Math.Round(upValuefinal, 2);
                     updatedValue[i] = upValuefinal;
 
-                    Response.Write("updated value " + upValuefinal.ToString() + "/n");
-                    Response.Write("updated value " + newRate.ToString() + "/n");
+                    //Response.Write("updated value " + upValuefinal.ToString() + "/n");
+                    //Response.Write("updated value " + newRate.ToString() + "/n");
                
 
                     string newValue = "UPDATE Asset SET upDatedValue='" + updatedValue[i] + "'WHERE assetID='" + assetID[i] + "'";
                     SqlCommand cmd3 = new SqlCommand(newValue, conn);
                     cmd3.ExecuteNonQuery();
-                    Response.Write(assetID.Count);
+
+                    /*Response.Write(assetID.Count);
                     Response.Write(assetID[i]);
 
                     Response.Write(depRate[i]);
-                    Response.Write(approvedDateTime[i]);
+                    Response.Write(approvedDateTime[i]);*/
 
                 }
                  conn.Close();
