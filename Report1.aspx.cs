@@ -5,10 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
+
+using System.Web.UI.HtmlControls;
+
 
 namespace FixAMz_WebApplication
 {
@@ -16,12 +20,28 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String assetID = AssetIDTextBox.Text.Trim();
+           /* if (!string.IsNullOrEmpty(Request.QueryString["test"]))
+            {
+                TextBox.Text = Request.QueryString["test"];
+            }
+            else
+            {
+                TextBox.Text = "NO DATA PROVIDED OR COULD NOT BE READ";
+            }
 
+            int i = 0;
+            string html = "";
+            while (i < 5)
+            {
+                html += "<a id='link" + i + "' href='Report1.aspx?test=link " + i + " clicked' runat='server'>Link " + i + "</a><br><br>";
+                i++;
+            }
+            sample.InnerHtml = html;*/
         }
 
         protected void CalDepreciationBtn_Click(object sender, EventArgs e)
         {
+
              try
              {
                  SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -70,22 +90,40 @@ namespace FixAMz_WebApplication
                     Response.Write(subcategory[i]);
                     string getRate = "SELECT depreciationRate FROM SubCategory WHERE scatID='" + subcategory[i] + "'";
                     SqlCommand cmd2 = new SqlCommand(getRate, conn);
-                    String getRateget = (cmd2.ExecuteScalar().ToString()).Trim();
+                    String getRateget = cmd2.ExecuteScalar().ToString().Trim();
                     SqlCommand cmd1 = new SqlCommand(getRate, conn);
 
                     SqlDataReader dr1 = cmd1.ExecuteReader();
                     Response.Write(getRateget);
 
-                    //depRate[i] = Int32.Parse(getRateget);
+                    depRate.Add(Int32.Parse(getRateget));
 
+                    DateTime localDate = DateTime.Now;
+                    DateTime appDate = approvedDateTime[i];
+                    int diffDays = (int)(localDate - appDate).TotalDays;
+                    Response.Write(localDate);
+                    Response.Write(appDate);
+                    float yearDiff = (float)diffDays / 365;
+                    Response.Write("days "+ diffDays.ToString());
+                    Response.Write("years " + yearDiff.ToString());
+                    Response.Write(value[i].ToString()+"/n");
+                    Response.Write(salvageValue[i].ToString() + "/n");
+
+                    float upValue = (value[i] - salvageValue[i]) *  (yearDiff);
+                    float newRate = (float)(Convert.ToInt32(getRateget)/100.0);
+                    float upValuefinal = (float)upValue *newRate;
+                    upValuefinal = Math.Round(upValuefinal, 2);
                     
-
+                    Response.Write("updated value " + upValue.ToString() + "/n");
+                    Response.Write("updated value " + newRate.ToString() + "/n");
                 }
                  for (int i = 0; i < assetID.Count; i++)
                  {
+                   Response.Write(assetID.Count);
                    Response.Write(assetID[i]);
-                   Response.Write(value[i]);
+                   
                    Response.Write(depRate[i]);
+                   Response.Write(approvedDateTime[i]);
                   }
 
                     //updating expandingItems dictionary in javascript
@@ -98,5 +136,8 @@ namespace FixAMz_WebApplication
                  Response.Write(e.ToString());*/
              }
          }
+            /*HtmlAnchor a = (HtmlAnchor)sender;
+            Response.Write("link " + a.ID);*/
+
         }
     }

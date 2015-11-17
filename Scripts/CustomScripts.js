@@ -16,6 +16,12 @@ $(document).ready(function () {
     });
 });
 
+//Notification link click function
+$(".notification").click(function () {
+    //alert(this.id);
+    window.location.assign("NotificationView.aspx?id=" + this.id);
+});
+
 //Exapand content function
 var expandingItems = {};
 $(".expand-item-title").click(function () {
@@ -45,7 +51,7 @@ $(".expand-item-title").click(function () {
         out += item + " : " + expandingItems[item] + "\n";
     }
     document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
-    alert(out);
+    //alert(out);
 });
 
 //Function to call above .click function manually by code behind, when page reloads occur
@@ -60,7 +66,7 @@ function getKeys() {
     for (var k in expandingItems) {
         out += k + ":" + expandingItems[k] + "\n";
     }
-    alert(out);
+    //alert(out);
 }
 
 //Global validation functions=================================================================
@@ -724,5 +730,10 @@ function isValidUpgradeAsset() {
 function upgradeAssetClearAll() {
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Notification view                                                                   //
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 

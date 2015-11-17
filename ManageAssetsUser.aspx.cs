@@ -84,24 +84,22 @@ namespace FixAMz_WebApplication
             while (dr.Read())
             {
                 output +=
-                    "<a href='" + dr["notID"].ToString() + "'>" +
-                    "   <div class='notification";
+                    "<div id='" + dr["notID"].ToString().Trim() + "' class='notification";
                 //Add background color if not-seen
-                if (dr["status"].ToString() == "not-seen")
+                if (dr["status"].ToString().Trim() == "not-seen")
                 {
                     output += " not-seen";
                     count += 1;
                 }
                 output +=
                     "'>" +
-                    "       <img class='col-md-3' src='img/" + dr["type"].ToString() + "Icon.png'/>" +
-                    "       <div class='not-content-box col-md-10'>" +
-                    "           Asset <strong>" + dr["assetName"].ToString() + "</strong> Has been " + "recommended to " + dr["type"].ToString() +
-                    "           by <strong>" + dr["firstName"].ToString() + " " + dr["lastName"].ToString() + "</strong>." +
-                    "           <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString() + "</div>" + 
-                    "       </div>" +
+                    "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
+                    "   <div class='not-content-box col-md-10'>" +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> Has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
+                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" + 
                     "   </div>" +
-                    "</a>";
+                    "</div>";
             }
 
             //set notifications
@@ -615,7 +613,7 @@ namespace FixAMz_WebApplication
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeLocationID = "", UpgradeOwnerID = "";
+                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeOwnerID = "";
                     while (dr.Read())
                     {
                         UpgradeAssetName.InnerHtml = dr["name"].ToString();
@@ -739,7 +737,9 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
+
                 String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve) VALUES (@upid, @assetid, @value, @description, @recommend, @approve)";
+
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
@@ -748,7 +748,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
-
+                cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
