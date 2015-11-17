@@ -345,13 +345,12 @@ namespace FixAMz_WebApplication
                     String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
-                    string z = "0";
                     while (dr1.Read())
                     {
                         UpdateEmpID.InnerHtml = dr1["empID"].ToString();
                         UpdateFirstNameTextBox.Text = dr1["firstName"].ToString();
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
-                        UpdateContactTextBox.Text = z+ dr1["contactNo"].ToString();
+                        UpdateContactTextBox.Text = dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
                         
                     }
@@ -400,6 +399,8 @@ namespace FixAMz_WebApplication
 
         }
 
+        
+
         protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
         {
 
@@ -413,14 +414,24 @@ namespace FixAMz_WebApplication
                 conn.Open();
                 String empID = UpdateEmpIDTextBox.Text;
                 string insertion_Employee = "UPDATE Employee SET firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
+                string insertion_SystemUser = "UPDATE SystemUser SET username = @username WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
+                SqlCommand cmd1 = new SqlCommand(insertion_SystemUser, conn);
+
+                
 
                 cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
                 cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
 
+                cmd1.Parameters.AddWithValue("@username", UpdateUsernameTextBox.Text);
+                
+
+                cmd1.ExecuteNonQuery();
                 cmd.ExecuteNonQuery();
+
+                //Include update query for password here
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
@@ -435,6 +446,113 @@ namespace FixAMz_WebApplication
 
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+            }
+            catch (Exception ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
+
+        //Reset Password
+        protected void ResetPasswordFindBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+
+                String username = ResetPasswordUsernameTextBox.Text;
+
+                string check = "select count(*) from SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(check, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+                if (res == 1)
+                {
+                    String query1 = "SELECT username FROM SystemUser WHERE username='" + username + "'";
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    
+                    while (dr1.Read())
+                    {
+                        ResetUsername.InnerHtml = dr1["username"].ToString();
+
+                    }
+                    dr1.Close();
+                    resetPasswordInitState.Style.Add("display", "none");
+                    resetPasswordSecondState.Style.Add("display", "block");
+                    ResetPasswordContent.Style.Add("display", "block");
+                    ResetPasswordUsernameValidator.InnerHtml = "";
+                }
+                else
+                {
+                    resetPasswordInitState.Style.Add("display", "block");
+                    resetPasswordSecondState.Style.Add("display", "none");
+                    ResetPasswordContent.Style.Add("display", "block");
+                    ResetPasswordUsernameValidator.InnerHtml = "Invalid Username";
+                }
+                conn.Close();
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('ResetPasswordContent');", true);
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+
+        }
+
+        protected void ResetPasswordBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String username = ResetPasswordUsernameTextBox.Text;
+
+                string insertion_SystemUser = "UPDATE SystemUser SET password = @password WHERE username='" + username + "'";
+                SqlCommand cmd = new SqlCommand(insertion_SystemUser, conn);
+
+                string empID = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd1 = new SqlCommand(empID, conn);
+                String empIDget = (cmd1.ExecuteScalar().ToString()).Trim();
+
+                string email = "SELECT email FROM Employee WHERE empID='" + empIDget + "'";
+                SqlCommand cmd2 = new SqlCommand(email, conn);
+                String emailAdd = (cmd2.ExecuteScalar().ToString()).Trim();
+
+                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(ResetNewPasswordTextBox.Text, "SHA1");
+                cmd.Parameters.AddWithValue("@password", encriptedPassword);
+
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
+
+                responseBoxGreen.Style.Add("display", "block");
+                responseMsgGreen.InnerHtml = "Employee password reset completed successfully!";
+
+                resetPasswordInitState.Style.Add("display", "block");
+                resetPasswordSecondState.Style.Add("display", "none");
+                ResetPasswordContent.Style.Add("display", "block");
+                ResetPasswordUsernameTextBox.Text = "";
+
+                //updating expandingItems dictionary in javascript
+                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+                
+                //Sending email to the user with username and password
+                Boolean Email = SendEmail(emailAdd, "Welcome to FixAMz",
+                    "Your password is reseted for FixAmz is as follows.\n\n" +
+                    "Username - " + username + "\n" +
+                    "Password - " + Convert.ToString(ResetNewPasswordTextBox.Text) + "\n\n" +
+                    "\n" +
+                    "Regards,\n" +
+                    "Administrator"
+                    );
             }
             catch (Exception ex)
             {

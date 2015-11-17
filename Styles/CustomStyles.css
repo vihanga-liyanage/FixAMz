@@ -59,7 +59,6 @@ a:focus {
 	position: absolute;
 	top: 35px;
 	margin-left: 435px;
-	width: 400px;
 	z-index: 1;
 	display: none;
 }
@@ -85,11 +84,13 @@ a:focus {
 	border-bottom: 1px solid #dddddd;
 }
 #notificationsBody {
-	padding: 33px 0px 0px 0px !important;
 	min-height:300px;
 }
+#notificationsBody a:hover {
+    background: yellow;   
+}
 #notificationFooter {
-	background-color: #e9eaed;
+	background-color: rgba(246, 246, 246, 0.85);
 	text-align: center;
 	font-weight: bold;
 	padding: 8px;
@@ -97,7 +98,7 @@ a:focus {
 	border-top: 1px solid #dddddd;
 }
 #notification_count {
-	padding: 1px 5px;
+	padding: 0px 5px;
     background: #E90909 none repeat scroll 0% 0%;
     color: #FFF;
     font-weight: bold;
@@ -107,7 +108,33 @@ a:focus {
     margin-top: -4px;
     font-size: 11px;
 }
-
+.notification {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+    min-height: 70px;
+}
+.notifications .col-md-3 {
+    padding: 0px;
+}
+.notifications img {
+    opacity: 0.6;
+    width: 59px;
+}
+.notification a:hover {
+    background: yellow;   
+}
+.not-seen {
+    background: #CAE6F3 none repeat scroll 0% 0%;
+}
+.not-content-box {
+    padding: 0px 0px 0px 5px;
+}
+.not-date {
+    color: #898989;
+    font-size: 13px;
+    float: right;
+}
 /*User name css*/
 #user-name-box
 { 
@@ -389,7 +416,7 @@ a:focus {
     z-index:-1;
 }
 
-#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState, #updateSubCategorySecondState
+#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState, #updateSubCategorySecondState, #resetPasswordSecondState
 {
     display:none;
 }
