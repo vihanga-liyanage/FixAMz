@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-<!--Add asset notification content -->
+<!--notification content -->
     <div class="row">
     <div class="item-title"><div id="NotificationTitle" runat="server" class="custom-label"></div></div>
     <div class="expand-item-row" id="AddNewAssetNotificationContent" runat="server">
