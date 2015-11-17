@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
-<head>
+<head runat="server">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,17 +16,33 @@
     <form id="form1" runat="server">
     <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
-        <div class="container-fluid">
+    <div class="container-fluid">
 <!--Header-->
-            <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
                     <div class="col-md-8 header-right">
-                        <div class="col-sm-12">
-                            
+                        <div class="col-sm-12" id="user-name-box">
+                            <span id="userName" runat="server"></span>
+                                | 
+                            <span id="notification_li">
+						        <span id="notification_count" runat="server"></span>
+						        <a href="#" id="notificationLink">
+                                    <img src="img/bell.jpg" style="width: 27px;"/>
+                                </a>
+						        <div id="notificationContainer">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        <!-- Generated code -->
+							        </div>
+							        <div id="notificationFooter"><a href="#">See All</a></div>
+						        </div>
+					        </span>
+                                | 
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
@@ -39,19 +55,16 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
-                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-                                    <li><a href="#"><u>SYSTEM</u></a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
+                                    <li><a href="">ABOUT</a> </li>
+                                    <li><a href="">HELP</a> </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
-
+        </div>
 <!--Main content-->
         <div class="row">
             <div class="col-md-10 col-xs-offset-1 expand-item-container">
@@ -71,7 +84,7 @@
         </div>
 <!--Add asset notification content -->
     <div class="row">
-    <div class="item-title"><div id="NotificationTitle" runat="server" class="custom-label"></div></div>
+    <div class="item-title"><div id="NotificationHeader" runat="server" class="custom-label"></div></div>
     <div class="expand-item-row" id="AddNewAssetNotificationContent" runat="server">
         <div class="col-md-8">
             <div class="row expand-item-row">
@@ -194,9 +207,9 @@
                 </div>
             </div>
         </div>
-        <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
-        <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
-        <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
-        </form>
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
+    </form>
 </body>
 </html>

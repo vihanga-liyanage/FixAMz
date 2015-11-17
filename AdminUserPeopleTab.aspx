@@ -26,25 +26,24 @@
                         <img src="img/fixamz.png" class="logo" />
                     </div>
                     <div class="col-md-8 header-right">
-
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
                                 | 
                             <span id="notification_li">
-						        <span id="notification_count"></span>
+						        <span id="notification_count" runat="server"></span>
 						        <a href="#" id="notificationLink">
                                     <img src="img/bell.jpg" style="width: 27px;"/>
                                 </a>
 						        <div id="notificationContainer">
-							        <div id="notificationTitle">Notifications</div>
-							        <div id="notificationsBody" class="notifications">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        <!-- Generated code -->
 							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
 					        </span>
                                 | 
                             <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
-
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">

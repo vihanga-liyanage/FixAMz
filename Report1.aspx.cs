@@ -112,7 +112,7 @@ namespace FixAMz_WebApplication
                     float upValue = (value[i] - salvageValue[i]) *  (yearDiff);
                     float newRate = (float)(Convert.ToInt32(getRateget)/100.0);
                     float upValuefinal = (float)upValue *newRate;
-                    upValuefinal = Math.Round(upValuefinal, 2);
+                    //upValuefinal = Math.Round(upValuefinal, 2);
                     
                     Response.Write("updated value " + upValue.ToString() + "/n");
                     Response.Write("updated value " + newRate.ToString() + "/n");

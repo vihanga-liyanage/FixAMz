@@ -27,6 +27,7 @@ namespace FixAMz_WebApplication
             responseMsgRed.InnerHtml = "";
             Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             setUserName();
+            Load_Notifications();
         }
         
         //Setting user name on header
@@ -35,7 +36,7 @@ namespace FixAMz_WebApplication
             try
             {
                 String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
+                String query = "SELECT e.firstName, e.lastName, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -43,7 +44,17 @@ namespace FixAMz_WebApplication
                 String output = "";
                 while (dr.Read())
                 {
-                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
+                    if (dr["type"].ToString().Trim() == "admin")
+                    {
+                        output = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
+                    }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+                    }
                 }
                 userName.InnerHtml = output;
             }
@@ -51,8 +62,70 @@ namespace FixAMz_WebApplication
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(exx.ToString());
+                Response.Write("setUserName:" + exx.ToString());
             }
+        }
+
+        //Loading notifications
+        protected void Load_Notifications()
+        {
+            //getting empID
+            String username = HttpContext.Current.User.Identity.Name;
+            String query = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
+            //selecting relevant notifications
+            query = "SELECT notID, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
+                    "FROM Notification n INNER JOIN Employee e " +
+                    "ON n.sendUser=e.empID " +
+                    "JOIN Asset a ON n.assetID=a.assetID " +
+                    "WHERE receiveUser='" + empID + "' " +
+                    "ORDER BY date DESC";
+
+            cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+            String output = "";
+            while (dr.Read())
+            {
+                output +=
+                    "<div id='" + dr["notID"].ToString().Trim() + "' class='notification";
+                //Add background color if not-seen
+                if (dr["status"].ToString().Trim() == "not-seen")
+                {
+                    output += " not-seen";
+                    count += 1;
+                }
+                output +=
+                    "'>" +
+                    "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
+                    "   <div class='not-content-box col-md-10'>" +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> Has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
+                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
+                    "   </div>" +
+                    "</div>";
+            }
+
+            //set notifications
+            notificationsBody.InnerHtml = output;
+
+            //set count
+            if (count > 0)
+            {
+                notification_count.InnerHtml = Convert.ToString(count);
+            }
+            else
+            {
+                notification_count.Style.Add("display", "none");
+            }
+            
+
+            dr.Close();
+            conn.Close();
         }
 
         //Signing out

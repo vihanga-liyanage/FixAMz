@@ -19,23 +19,24 @@
         <div class="container-fluid">
 <!--Header-->
             <div class="row">
-            <div class="col-md-12">
-                <div class="row header">
-                    <div class="col-md-3 col-md-offset-1">
-                        <img src="img/fixamz.png" class="logo" />
-                    </div>
-                    <div class="col-md-8 header-right">
-                        <div class="col-sm-12" id="user-name-box">
+                <div class="col-md-12">
+                    <div class="row header">
+                        <div class="col-md-3 col-md-offset-1">
+                            <img src="img/fixamz.png" class="logo" />
+                        </div>
+                        <div class="col-md-8 header-right">
+                            <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
                                 | 
                             <span id="notification_li">
-						        <span id="notification_count"></span>
+						        <span id="notification_count" runat="server"></span>
 						        <a href="#" id="notificationLink">
                                     <img src="img/bell.jpg" style="width: 27px;"/>
                                 </a>
 						        <div id="notificationContainer">
-							        <div id="notificationTitle">Notifications</div>
-							        <div id="notificationsBody" class="notifications">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        <!-- Generated code -->
 							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
@@ -43,31 +44,31 @@
                                 | 
                             <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                         </div>
-                        <div class="col-sm-12 nav-bar-container">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="collapse navbar-collapse" style="float:right;">
-                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
-                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
+                            <div class="col-sm-12 nav-bar-container">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="#">HOME</a> </li>
+                                        <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
 
-                                    <li><a href="#" class="active">SYSTEM</a> </li>
-                                    <li><a href="NotificationView.aspx">ABOUT</a> </li>
+                                        <li><a href="#" class="active">SYSTEM</a> </li>
+                                        <li><a href="NotificationView.aspx">ABOUT</a> </li>
 
-                                    <li><a href="#">HELP</a> </li>
-                                </ul>
+                                        <li><a href="#">HELP</a> </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>               
+            </div>               
 <!--Main content-->
             <div class="row">
                 <div class="col-md-9 col-xs-offset-2 expand-item-container">
