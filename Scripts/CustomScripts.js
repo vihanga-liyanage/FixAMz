@@ -350,28 +350,32 @@ function isValidUpdate() {
     }
 
 
-    var isValidPassword = requiredFieldValidator("UpdateNewPassword", "Password cannot be empty.");
-
-        var isValidConfirmPassword = true;
-        if (confirmPassword == "") {
-            document.getElementById("UpdateNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
-            document.forms[0]["UpdateNewConfirmPasswordTextBox"].style.border = "1px solid red";
-            isValidConfirmPassword = false;
-        } else if (confirmPassword != password) {
-            document.getElementById("UpdateNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
-            document.forms[0]["UpdateNewConfirmPasswordTextBox"].style.border = "1px solid red";
-            isValidConfirmPassword = false;
-        } else {
-            document.getElementById("UpdateNewConfirmPasswordValidator").innerHTML = "";
-            document.forms[0]["UpdateNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
-            isValidConfirmPassword = true;
-        }
+    
 
         return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
     }
-    
 
 
+ function isValidResetPassword() {
+     var confirmPassword = document.forms[0]["ResetNewConfirmPasswordTextBox"].value;
+     var password = document.forms[0]["ResetNewPasswordTextBox"].value;
+
+     var isValidConfirmPassword = true;
+     if (confirmPassword == "") {
+         document.getElementById("ResetNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
+         document.forms[0]["ResetNewConfirmPasswordTextBox"].style.border = "1px solid red";
+         isValidConfirmPassword = false;
+     } else if (confirmPassword != password) {
+         document.getElementById("ResetNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
+         document.forms[0]["ResetNewConfirmPasswordTextBox"].style.border = "1px solid red";
+         isValidConfirmPassword = false;
+     } else {
+         document.getElementById("ResetNewConfirmPasswordValidator").innerHTML = "";
+         document.forms[0]["ResetNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
+         isValidConfirmPassword = true;
+     }
+     return isValidConfirmPassword;
+    }
 //Advanced user search functions =============================================================
 function searchClearAll() {
     document.forms[0]["SearchEmployeeIDTextBox"].value = "";
@@ -726,5 +730,10 @@ function isValidUpgradeAsset() {
 function upgradeAssetClearAll() {
     document.forms[0]["DisposeAssetIDTextBox"].value = "";
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//      Notification view                                                                   //
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 

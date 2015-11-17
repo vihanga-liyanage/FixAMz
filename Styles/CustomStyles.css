@@ -647,3 +647,12 @@ a:focus {
 {
     color:White;
 }
+
+/*==============================Notification view styles=========================*/
+
+#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState
+{
+    display:none;
+}
+
+

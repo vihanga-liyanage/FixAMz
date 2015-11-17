@@ -516,35 +516,44 @@ namespace FixAMz_WebApplication
                 String username = ResetPasswordUsernameTextBox.Text;
 
                 string insertion_SystemUser = "UPDATE SystemUser SET password = @password WHERE username='" + username + "'";
-                
                 SqlCommand cmd = new SqlCommand(insertion_SystemUser, conn);
 
+                string empID = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+                SqlCommand cmd1 = new SqlCommand(empID, conn);
+                String empIDget = (cmd1.ExecuteScalar().ToString()).Trim();
 
+                string email = "SELECT email FROM Employee WHERE empID='" + empIDget + "'";
+                SqlCommand cmd2 = new SqlCommand(email, conn);
+                String emailAdd = (cmd2.ExecuteScalar().ToString()).Trim();
 
-                cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
-                cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
-                cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
+                String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(ResetNewPasswordTextBox.Text, "SHA1");
+                cmd.Parameters.AddWithValue("@password", encriptedPassword);
 
-                
-
-
-                
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
                 ScriptManager.RegisterStartupScript(this, GetType(), "updateClearAll", "updateClearAll();", true);
 
                 responseBoxGreen.Style.Add("display", "block");
-                responseMsgGreen.InnerHtml = "Employee '" + username + "' updated successfully!";
+                responseMsgGreen.InnerHtml = "Employee password reset completed successfully!";
 
-                updateUserInitState.Style.Add("display", "block");
-                updateUserSecondState.Style.Add("display", "none");
+                resetPasswordInitState.Style.Add("display", "block");
+                resetPasswordSecondState.Style.Add("display", "none");
                 ResetPasswordContent.Style.Add("display", "block");
                 ResetPasswordUsernameTextBox.Text = "";
 
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateUserContent');", true);
+                
+                //Sending email to the user with username and password
+                Boolean Email = SendEmail(emailAdd, "Welcome to FixAMz",
+                    "Your password is reseted for FixAmz is as follows.\n\n" +
+                    "Username - " + username + "\n" +
+                    "Password - " + Convert.ToString(ResetNewPasswordTextBox.Text) + "\n\n" +
+                    "\n" +
+                    "Regards,\n" +
+                    "Administrator"
+                    );
             }
             catch (Exception ex)
             {

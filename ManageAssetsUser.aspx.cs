@@ -613,7 +613,7 @@ namespace FixAMz_WebApplication
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeLocationID = "", UpgradeOwnerID = "";
+                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeOwnerID = "";
                     while (dr.Read())
                     {
                         UpgradeAssetName.InnerHtml = dr["name"].ToString();
@@ -737,7 +737,9 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
+
                 String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve) VALUES (@upid, @assetid, @value, @description, @recommend, @approve)";
+
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
@@ -746,7 +748,7 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
-
+                cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
