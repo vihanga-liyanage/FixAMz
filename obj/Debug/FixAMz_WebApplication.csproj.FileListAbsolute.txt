@@ -1,4 +1,5 @@
 C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\bin\FixAMz_WebApplication.dll
 C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\bin\FixAMz_WebApplication.pdb
+C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\obj\Debug\FixAMz_WebApplication.csprojResolveAssemblyReference.cache
 C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\obj\Debug\FixAMz_WebApplication.dll
 C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\obj\Debug\FixAMz_WebApplication.pdb
