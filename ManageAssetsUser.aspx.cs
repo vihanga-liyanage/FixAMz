@@ -38,7 +38,7 @@ namespace FixAMz_WebApplication
             try
             {
                 String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
+                String query = "SELECT e.firstName, e.lastName, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -46,7 +46,17 @@ namespace FixAMz_WebApplication
                 String output = "";
                 while (dr.Read())
                 {
-                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
+                    if (dr["type"].ToString().Trim() == "manageAssetUser")
+                    {
+                        output = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
+                    }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+                    }
                 }
                 userName.InnerHtml = output;
             }
@@ -84,31 +94,36 @@ namespace FixAMz_WebApplication
             while (dr.Read())
             {
                 output +=
-                    "<a href='" + dr["notID"].ToString() + "'>" +
-                    "   <div class='notification";
+                    "<div id='" + dr["notID"].ToString().Trim() + "' class='notification";
                 //Add background color if not-seen
-                if (dr["status"].ToString() == "not-seen")
+                if (dr["status"].ToString().Trim() == "not-seen")
                 {
                     output += " not-seen";
                     count += 1;
                 }
                 output +=
                     "'>" +
-                    "       <img class='col-md-3' src='img/" + dr["type"].ToString() + "Icon.png'/>" +
-                    "       <div class='not-content-box col-md-10'>" +
-                    "           Asset <strong>" + dr["assetName"].ToString() + "</strong> Has been " + "recommended to " + dr["type"].ToString() +
-                    "           by <strong>" + dr["firstName"].ToString() + " " + dr["lastName"].ToString() + "</strong>." +
-                    "           <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString() + "</div>" + 
-                    "       </div>" +
+                    "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
+                    "   <div class='not-content-box col-md-10'>" +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
+                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" + 
                     "   </div>" +
-                    "</a>";
+                    "</div>";
             }
 
             //set notifications
             notificationsBody.InnerHtml = output;
 
             //set count
-            notification_count.InnerHtml = Convert.ToString(count);
+            if (count > 0)
+            {
+                notification_count.InnerHtml = Convert.ToString(count);
+            }
+            else
+            {
+                notification_count.Style.Add("display", "none");
+            }
 
             dr.Close();
             conn.Close();
@@ -461,11 +476,12 @@ namespace FixAMz_WebApplication
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notContent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "AddNew");
+                cmd.Parameters.AddWithValue("@type", "Add");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
@@ -613,12 +629,12 @@ namespace FixAMz_WebApplication
 
                 if (res == 1)
                 {
-                    String query = "SELECT name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                    String query = "SELECT name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                     String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeLocationID = "", UpgradeOwnerID = "";
+                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeOwnerID = "";
                     while (dr.Read())
                     {
                         UpgradeAssetName.InnerHtml = dr["name"].ToString();
@@ -626,7 +642,7 @@ namespace FixAMz_WebApplication
                         UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
                       //  UpgradeLocationID = dr["location"].ToString();
                         UpgradeOwnerID = dr["owner"].ToString();
-                        UpgradeValue.InnerHtml = dr["value"].ToString() + " LKR";
+                        UpgradeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                     }
                     dr.Close();
                     // Get category name
@@ -729,11 +745,12 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
                 String notID = setNotID();
-                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @status)";
+                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notcontent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertUpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "Update");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
@@ -742,16 +759,18 @@ namespace FixAMz_WebApplication
 
                 cmd.ExecuteNonQuery();
 
-                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve) VALUES (@upid, @assetid, @value, @description, @recommend, @approve)";
+
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, updatedValue, description, recommend, approve) VALUES (@upid, @assetid, @updatedValue, @description, @recommend, @approve)";
+
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@value", UpgradeAssetValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
                 cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
-
+                cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
@@ -933,7 +952,7 @@ namespace FixAMz_WebApplication
                 String transID = setTransAssetID();
                 String notID = setNotID();
                 string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status,owner, recommend) VALUES (@transid, @assetid, @type, @status, @owner, @recommend)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -948,6 +967,7 @@ namespace FixAMz_WebApplication
 
                 cmd2.Parameters.AddWithValue("@notid", notID);
                 cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd2.Parameters.AddWithValue("@nType", "Transfer");
                 cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
@@ -1076,11 +1096,12 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notcontent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "Delete");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);

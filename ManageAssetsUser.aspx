@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageAssetsUser.aspx.cs"
-    Inherits="FixAMz_WebApplication.ManaageAssetsUser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageAssetsUser.aspx.cs" Inherits="FixAMz_WebApplication.ManaageAssetsUser" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -70,7 +69,7 @@
         </div>
 <!--Main content-->
         <div class="row">
-            <div class="col-md-10 col-xs-offset-1 expand-item-container">
+            <div class="col-md-9 col-xs-offset-2 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
                     <a href="" onclick="this.parentNode.style.display = 'none';">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>

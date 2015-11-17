@@ -26,25 +26,24 @@
                         <img src="img/fixamz.png" class="logo" />
                     </div>
                     <div class="col-md-8 header-right">
-
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
                                 | 
                             <span id="notification_li">
-						        <span id="notification_count"></span>
+						        <span id="notification_count" runat="server"></span>
 						        <a href="#" id="notificationLink">
                                     <img src="img/bell.jpg" style="width: 27px;"/>
                                 </a>
 						        <div id="notificationContainer">
-							        <div id="notificationTitle">Notifications</div>
-							        <div id="notificationsBody" class="notifications">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        <!-- Generated code -->
 							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
 					        </span>
                                 | 
                             <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
-
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
@@ -133,7 +132,7 @@
                                         <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
                                         <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
                                         <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
-                                        <asp:ListItem Text="Manage assets" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="Asset Manager" Value="manageAssetUser"></asp:ListItem>
                                         <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
                                         <asp:ListItem Text="Generate report" Value="generateAssetReportUser"></asp:ListItem>
                                         <asp:ListItem Text="Manage and view assets" Value="manageView"></asp:ListItem>
@@ -310,22 +309,7 @@
                                         <div class="validator" id="UpdateUsernameValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            New Password</div>
-                                        <asp:TextBox ID="UpdateNewPasswordTextBox" class="expand-item-textbox" runat="server"
-                                            type="password"></asp:TextBox>
-                                        <div class="validator" id="UpdateNewPasswordValidator" runat="server">
-                                        </div>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Confirm  New Password</div>
-                                        <asp:TextBox ID="UpdateNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
-                                            type="password"></asp:TextBox>
-                                        <div class="validator" id="UpdateNewConfirmPasswordValidator" runat="server">
-                                        </div>
-                                    </div>
+                                   
                                     <!--
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Access Level</div>
@@ -348,6 +332,70 @@
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
                                         <asp:Button ID="UpdateUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
+                                            OnClientClick="return updateClearAll()" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="update-user-icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--Reset Password-->
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <div id="Div3" runat="server">
+                        </div>
+                        <img src="img/UpdateIcon.png" />
+                        <div class="expand-item-title" id="ResetPasswordHeader">
+                            Reset User Password</div>
+                        <div class="expand-item-content" id="ResetPasswordContent" runat="server">
+                            <div class="col-md-8">
+                                <div id="resetPasswordInitState" runat="server">
+                                    <div class="info-div">
+                                        Enter username to reset user Password </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Username</div>
+                                        <asp:TextBox ID="ResetPasswordUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <div class="validator" id="ResetPasswordUsernameValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <asp:Button ID="ResetPasswordFindBtn" runat="server" Text="Go" class="expand-item-btn"
+                                            OnClientClick="return isValidResetPasswordUsername()" OnClick="ResetPasswordFindBtn_Click" />
+                                    </div>
+                                </div>
+                                <div id="resetPasswordSecondState" runat="server">
+                                    <div class="expand-item-row">
+                                        <div class="expand-item-label">
+                                            Username</div>
+                                        <div id="ResetUsername" runat="server" class="custom-label">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            New Password</div>
+                                        <asp:TextBox ID="ResetNewPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="ResetNewPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">
+                                            Confirm  New Password</div>
+                                        <asp:TextBox ID="ResetNewConfirmPasswordTextBox" class="expand-item-textbox" runat="server"
+                                            type="password"></asp:TextBox>
+                                        <div class="validator" id="ResetNewConfirmPasswordValidator" runat="server">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row expand-item-row">
+                                        <asp:Button ID="ResetPasswordBtn" runat="server" Text="Reset Password" class="expand-item-btn"
+                                            OnClientClick="return isValidResetPassword()" OnClick="ResetPasswordBtn_Click" />
+                                        <asp:Button ID="Button3" runat="server" Text="Cancel" class="expand-item-btn"
                                             OnClientClick="return updateClearAll()" />
                                     </div>
                                 </div>

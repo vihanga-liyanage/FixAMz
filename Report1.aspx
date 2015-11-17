@@ -10,10 +10,16 @@
     <form id="form1" runat="server">
     <div>
 
-    <asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-    <asp:Button ID="CalDepreciationBtn" runat="server" Text="Send for recommendation"
+
+    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
+    <asp:Button ID="CalDepreciationBtn" runat="server" Text="Update on Year End"
                                         OnClick="CalDepreciationBtn_Click"  class="expand-item-btn" />
-    </div>
+
+    
+    
+    </div> 
+
+
     </form>
 </body>
 </html>
