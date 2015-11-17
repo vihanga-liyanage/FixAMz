@@ -93,7 +93,7 @@ namespace FixAMz_WebApplication
                     String getRateget = cmd2.ExecuteScalar().ToString().Trim();
                     SqlCommand cmd1 = new SqlCommand(getRate, conn);
 
-                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    
                     Response.Write(getRateget);
 
                     depRate.Add(Int32.Parse(getRateget));
@@ -109,22 +109,30 @@ namespace FixAMz_WebApplication
                     Response.Write(value[i].ToString()+"/n");
                     Response.Write(salvageValue[i].ToString() + "/n");
 
-                    float upValue = (value[i] - salvageValue[i]) *  (yearDiff);
-                    float newRate = (float)(Convert.ToInt32(getRateget)/100.0);
-                    float upValuefinal = (float)upValue *newRate;
-                    //upValuefinal = Math.Round(upValuefinal, 2);
                     
-                    Response.Write("updated value " + upValue.ToString() + "/n");
+                    float newRate = (float)(Convert.ToInt32(getRateget)/100.0);
+
+                    float upValue = (value[i] - salvageValue[i]) * (newRate);
+                    float upValuefinal = (float)upValue *yearDiff;
+                    upValuefinal = value[i] - upValuefinal;
+
+                    updatedValue[i] = upValuefinal;
+
+                    Response.Write("updated value " + upValuefinal.ToString() + "/n");
                     Response.Write("updated value " + newRate.ToString() + "/n");
+               
+
+                    string newValue = "UPDATE Asset SET upDatedValue='" + updatedValue[i] + "'WHERE assetID='" + assetID[i] + "'";
+                    SqlCommand cmd3 = new SqlCommand(newValue, conn);
+                    cmd3.ExecuteNonQuery();
+                    Response.Write(assetID.Count);
+                    Response.Write(assetID[i]);
+
+                    Response.Write(depRate[i]);
+                    Response.Write(approvedDateTime[i]);
+
                 }
-                 for (int i = 0; i < assetID.Count; i++)
-                 {
-                   Response.Write(assetID.Count);
-                   Response.Write(assetID[i]);
-                   
-                   Response.Write(depRate[i]);
-                   Response.Write(approvedDateTime[i]);
-                  }
+                 conn.Close();
 
                     //updating expandingItems dictionary in javascript
                     ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DeleteUserContent');", true);
