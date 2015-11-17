@@ -17,7 +17,12 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             setEmpID();
-            Load_CostCenter();
+            if (!Page.IsPostBack)
+            {
+                Load_CostCenter();
+                Page.MaintainScrollPositionOnPostBack = true;
+            }
+            
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
@@ -150,9 +155,10 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Employee = "insert into Employee (empID, firstName, lastName, contactNo, email) values (@empid, @firstname, @lastname, @contact, @email)";
+                string insertion_Employee = "insert into Employee (empID, costID, firstName, lastName, contactNo, email) values (@empid, @costID, @firstname, @lastname, @contact, @email)";
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
                 cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@costID", AddUserCostNameDropDown.SelectedItem.Value);
                 cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
@@ -162,13 +168,13 @@ namespace FixAMz_WebApplication
 
                 if (TypeDropDown.SelectedItem.Value != "owner")
                 {
-                    string insertion_User = "insert into SystemUser (empID, costID, username, password, type) values (@empid, @costID, @username, @password, @type)";
+                    string insertion_User = "insert into SystemUser (empID, costID, username, password, type) values (@empid, @costid, @username, @password, @type)";
                     cmd = new SqlCommand(insertion_User, conn);
 
                     String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
                     cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
-                    cmd.Parameters.AddWithValue("@costID", AddUserCostNameDropDown.SelectedValue);
+                    cmd.Parameters.AddWithValue("@costid", AddUserCostNameDropDown.SelectedItem.Value);
                     cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                     cmd.Parameters.AddWithValue("@password", encriptedPassword);
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);

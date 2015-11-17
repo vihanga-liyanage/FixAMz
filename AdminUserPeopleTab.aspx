@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Cost Center Name</div>
-                                    <asp:DropDownList ID="AddUserCostNameDropDown" class="expand-item-textbox" runat="server">
+                                    <asp:DropDownList ID="AddUserCostNameDropDown" class="expand-item-textbox" runat="server" >
                                     </asp:DropDownList>
                                     <div class="validator" id="AddUserCostNameValidator" runat="server"></div>
                                 </div>
@@ -299,6 +299,12 @@
                                         <asp:TextBox ID="UpdateContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="UpdateContactValidator" runat="server">
                                         </div>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Cost Center Name</div>
+                                        <asp:DropDownList ID="UpdateCostCenterDropDown" class="expand-item-textbox" runat="server">
+                                        </asp:DropDownList>
+                                        <div class="validator" id="UpdateCostCenterValidator" runat="server"></div>
                                     </div>
                                     <!--
                                     <div class="row expand-item-row">
