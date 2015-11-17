@@ -113,6 +113,11 @@ a:focus {
     text-align: left;
     border-bottom: 1px solid #DDD;
     min-height: 70px;
+    color: #1363B9;
+    cursor: pointer;
+}
+.notification:hover {
+    background: #DDD;
 }
 .notifications .col-md-3 {
     padding: 0px;
@@ -213,13 +218,12 @@ a:focus {
 }
 .expand-item-label
 {
-    
     padding: 0px 30px 0px 0px;
     float:left;
     width: 37%; 
     text-align: right; 
-    font-size: 20px;
-    color:#8f9194;
+    font-size: 19px;
+    color: #808181;
 }
 .expand-item-labelusername
 {
@@ -227,7 +231,7 @@ a:focus {
     float:left;
     width: 37%; 
     text-align: right; 
-    font-size: 20px;
+    font-size: 19px;
     color:#800102;
 }  
 .expand-item-textbox
@@ -236,12 +240,12 @@ a:focus {
     height:28px;
     padding-left:6px;
     padding-bottom:2px;
-    font-size:17px;
+    font-size:16px;
     border:1px solid #cacaca;
 }
 .expand-item-row
 {
-    padding:0px 0% 1.6% 17%;
+    padding:0px 0% 1.6% 9%;
 }
 .expand-item-btn
 {
@@ -417,7 +421,7 @@ a:focus {
     z-index:-1;
 }
 
-#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState, #updateSubCategorySecondState
+#updateCategorySecondState, #updatelocationSecondState, #disposeAssetSecondState, #updateSubCategorySecondState, #resetPasswordSecondState
 {
     display:none;
 }

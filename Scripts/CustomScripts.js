@@ -16,6 +16,12 @@ $(document).ready(function () {
     });
 });
 
+//Notification link click function
+$(".notification").click(function () {
+    alert(this.id);
+    window.location.assign("Report1.aspx?test=" + this.id);
+});
+
 //Exapand content function
 var expandingItems = {};
 $(".expand-item-title").click(function () {
@@ -210,6 +216,32 @@ function usernameValidator(){
     });
 }
 
+function usernameUpdateValidator() {
+    $.ajax({
+        type: "POST",
+        url: "AdminUserPeopleTab.aspx/checkUsername",
+        data: "{'Username':'" + document.forms[0]["UpdateUsernameTextBox"].value + "'}",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (success) {
+            //called on ajax call success
+            if (success.d == 0) {
+                document.getElementById("UpdateUsernameValidator").innerHTML = "";
+                document.forms[0]["UpdateUsernameTextBox"].style.border = "1px solid #cacaca";
+                usernameNotExists = true;
+            } else {
+                document.getElementById("UpdateUsernameValidator").innerHTML = "User name already exists.";
+                document.forms[0]["UpdateUsernameTextBox"].style.border = "1px solid red";
+                usernameNotExists = false;
+            }
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+            return false;
+        }
+    });
+}
+
 //Function to pause the execution
 function pause(millis) {
     var date = new Date();
@@ -291,18 +323,54 @@ function updateClearAll() {
     return false;
 }
 
+//Reset Password
+function isValidResetPasswordUsername() {
+    return requiredFieldValidator("ResetPasswordUsername", "Username cannot be empty.");
+}
+
 function isValidUpdateEmpID() {
     return requiredFieldValidator("UpdateEmpID", "Employee ID cannot be empty.");
 }
 
 function isValidUpdate() {
+    var confirmPassword = document.forms[0]["UpdateNewConfirmPasswordTextBox"].value;
+    var password = document.forms[0]["UpdateNewPasswordTextBox"].value;
+
     var isValidFirstname = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.") && nameValidator("UpdateFirstName");
     var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.") && nameValidator("UpdateLastName");
     var isValidEmail = emailValidator("UpdateEmail");
     var isValidContact = contactValidator("UpdateContact");
 
-    return (isValidFirstname && isValidLastname && isValidEmail && isValidContact);
-}
+    var isValidUsername = requiredFieldValidator("UpdateUsername", "User name cannot be empty.");
+    if (isValidUsername) {
+        usernameUpdateValidator();
+        pause(300);
+        isValidUsername = usernameNotExists;
+        //alert(isValidUsername);
+    }
+
+
+    var isValidPassword = requiredFieldValidator("UpdateNewPassword", "Password cannot be empty.");
+
+        var isValidConfirmPassword = true;
+        if (confirmPassword == "") {
+            document.getElementById("UpdateNewConfirmPasswordValidator").innerHTML = "Confirm password cannot be empty.";
+            document.forms[0]["UpdateNewConfirmPasswordTextBox"].style.border = "1px solid red";
+            isValidConfirmPassword = false;
+        } else if (confirmPassword != password) {
+            document.getElementById("UpdateNewConfirmPasswordValidator").innerHTML = "Confirm password does not match with password.";
+            document.forms[0]["UpdateNewConfirmPasswordTextBox"].style.border = "1px solid red";
+            isValidConfirmPassword = false;
+        } else {
+            document.getElementById("UpdateNewConfirmPasswordValidator").innerHTML = "";
+            document.forms[0]["UpdateNewConfirmPasswordTextBox"].style.border = "1px solid #cacaca";
+            isValidConfirmPassword = true;
+        }
+
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
+    }
+    
+
 
 //Advanced user search functions =============================================================
 function searchClearAll() {

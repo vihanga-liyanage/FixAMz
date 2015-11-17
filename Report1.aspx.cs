@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace FixAMz_WebApplication
 {
@@ -11,13 +12,29 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String assetID = AssetIDTextBox.Text.Trim();
+            if (!string.IsNullOrEmpty(Request.QueryString["test"]))
+            {
+                TextBox.Text = Request.QueryString["test"];
+            }
+            else
+            {
+                TextBox.Text = "NO DATA PROVIDED OR COULD NOT BE READ";
+            }
 
+            int i = 0;
+            string html = "";
+            while (i < 5)
+            {
+                html += "<a id='link" + i + "' href='Report1.aspx?test=link " + i + " clicked' runat='server'>Link " + i + "</a><br><br>";
+                i++;
+            }
+            sample.InnerHtml = html;
         }
 
-        protected void CalDepreciationBtn_Click(object sender, EventArgs e)
+        protected void SampleLink_clicked(object sender, EventArgs e)
         {
-
+            HtmlAnchor a = (HtmlAnchor)sender;
+            Response.Write("link " + a.ID);
         }
     }
 }
