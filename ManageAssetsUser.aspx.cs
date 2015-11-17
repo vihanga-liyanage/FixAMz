@@ -106,7 +106,14 @@ namespace FixAMz_WebApplication
             notificationsBody.InnerHtml = output;
 
             //set count
-            notification_count.InnerHtml = Convert.ToString(count);
+            if (count > 0)
+            {
+                notification_count.InnerHtml = Convert.ToString(count);
+            }
+            else
+            {
+                notification_count.Style.Add("display", "none");
+            }
 
             dr.Close();
             conn.Close();

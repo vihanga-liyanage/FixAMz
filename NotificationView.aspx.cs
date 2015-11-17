@@ -14,15 +14,77 @@ namespace FixAMz_WebApplication
 {
     public partial class NotificationView : System.Web.UI.Page
     {
+        private String Asset;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             setUserName();
             Load();
-            
-
+            Load_Notifications();
         }
 
-        //Load notification data
+        //Loading notifications
+        protected void Load_Notifications()
+        {
+            //getting empID
+            String username = HttpContext.Current.User.Identity.Name;
+            String query = "SELECT empID FROM SystemUser WHERE username='" + username + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            String empID = (cmd.ExecuteScalar().ToString()).Trim();
+
+            //selecting relevant notifications
+            query = "SELECT notID, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
+                    "FROM Notification n INNER JOIN Employee e " +
+                    "ON n.sendUser=e.empID " +
+                    "JOIN Asset a ON n.assetID=a.assetID " +
+                    "WHERE receiveUser='" + empID + "' " +
+                    "ORDER BY date DESC";
+
+            cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+            String output = "";
+            while (dr.Read())
+            {
+                output +=
+                    "<div id='" + dr["notID"].ToString().Trim() + "' class='notification";
+                //Add background color if not-seen
+                if (dr["status"].ToString().Trim() == "not-seen")
+                {
+                    output += " not-seen";
+                    count += 1;
+                }
+                output +=
+                    "'>" +
+                    "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
+                    "   <div class='not-content-box col-md-10'>" +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> Has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
+                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
+                    "   </div>" +
+                    "</div>";
+            }
+
+            //set notifications
+            notificationsBody.InnerHtml = output;
+
+            //set count
+            if (count > 0)
+            {
+                notification_count.InnerHtml = Convert.ToString(count);
+            }
+            else
+            {
+                notification_count.Style.Add("display", "none");
+            }
+
+            dr.Close();
+            conn.Close();
+        }
+
+        //Load page data
         protected void Load()
         {
             String notid;
@@ -36,7 +98,6 @@ namespace FixAMz_WebApplication
                 notid = "N00001";
             }
 
-            String Asset = "";
             String Type = "";
             String Category = "";
             String Subcategory = "";
@@ -88,13 +149,13 @@ namespace FixAMz_WebApplication
 
             if (Type == "RegRecommend")
             {
-                NotificationTitle.InnerHtml = "Add new asset Notification";
+                NotificationHeader.InnerHtml = "Add new asset Notification";
                 AddnewassetState.Style.Add("display", "block");
             }
 
             if (Type == "Transfer")
             {
-                NotificationTitle.InnerHtml = "Transfer asset Notification";
+                NotificationHeader.InnerHtml = "Transfer asset Notification";
                 TransferassetState.Style.Add("display", "block");
             }
 
@@ -103,7 +164,7 @@ namespace FixAMz_WebApplication
                 string getvalue = "SELECT value FROM UpgradeAsset WHERE assetID='" + Asset + "' AND status= 'pending'";
                 SqlCommand cmd2 = new SqlCommand(getvalue, conn);
                 String value = (cmd2.ExecuteScalar().ToString()).Trim();
-                NotificationTitle.InnerHtml = "Upgrade asset Notification";
+                NotificationHeader.InnerHtml = "Upgrade asset Notification";
                 UpgradeCost.InnerHtml = value;
                 UpgradeDescription.InnerHtml = Content;
                 UpgradeassetState.Style.Add("display", "block");
@@ -111,7 +172,7 @@ namespace FixAMz_WebApplication
 
             if (Type == "Dispose")
             {
-                NotificationTitle.InnerHtml = "Dispose asset Notification";
+                NotificationHeader.InnerHtml = "Dispose asset Notification";
                 DisposeDescription.InnerHtml = Content;
                 DisposeassetState.Style.Add("display", "block");
             }
