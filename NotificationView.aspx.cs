@@ -16,6 +16,15 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            setUserName();
+            Load();
+            
+
+        }
+
+        //Load notification data
+        protected void Load()
+        {
             String notid;
             //Retrieving notID from URL
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
@@ -63,8 +72,6 @@ namespace FixAMz_WebApplication
             }
             dr1.Close();
 
-
-
             // Get category name
             String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + Category + "'";
             cmd = new SqlCommand(getCatNameQuery, conn);
@@ -108,12 +115,41 @@ namespace FixAMz_WebApplication
                 DisposeDescription.InnerHtml = Content;
                 DisposeassetState.Style.Add("display", "block");
             }
-
-
-
-
-
         }
+
+        //Setting user name on header
+        protected void setUserName()
+        {
+            try
+            {
+                String username = HttpContext.Current.User.Identity.Name;
+                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                String output = "";
+                while (dr.Read())
+                {
+                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
+                }
+                userName.InnerHtml = output;
+            }
+            catch (SqlException exx)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write("setUserName:" + exx.ToString());
+            }
+        }
+
+        // Signing out =================================================================
+        protected void SignOutLink_clicked(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
+        }
+
 
         //Reads the last notID from DB, calculates the next=============================
         protected String setNotID()
