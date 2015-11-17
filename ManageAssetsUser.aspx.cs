@@ -476,11 +476,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notContent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "AddNew");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
@@ -741,11 +742,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
                 String notID = setNotID();
-                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @status)";
+                String insertUpgradeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notcontent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertUpgradeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "Update");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
@@ -947,7 +949,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String transID = setTransAssetID();
                 String notID = setNotID();
                 string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status,owner, recommend) VALUES (@transid, @assetid, @type, @status, @owner, @recommend)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -962,6 +964,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 cmd2.Parameters.AddWithValue("@notid", notID);
                 cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd2.Parameters.AddWithValue("@nType", "Transfer");
                 cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
@@ -1090,11 +1093,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
                 String notID = setNotID();
-                String insertDisposeAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notcontent, @senduser, @receiveuser, @status)";
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notcontent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
                 cmd.Parameters.AddWithValue("@type", "Delete");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
