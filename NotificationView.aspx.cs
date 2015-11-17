@@ -14,6 +14,13 @@ namespace FixAMz_WebApplication
 {
     public partial class NotificationView : System.Web.UI.Page
     {
+        String Asset;
+        String Type;
+        String Category;
+        String Subcategory;
+        String Owner;
+        String Content;
+        String senduser;
         protected void Page_Load(object sender, EventArgs e)
         {
             setUserName();
@@ -25,95 +32,101 @@ namespace FixAMz_WebApplication
         //Load notification data
         protected void Load()
         {
-            String notid;
-            //Retrieving notID from URL
-            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+            try
             {
-                notid = Request.QueryString["id"];
+
+                String notid;
+                //Retrieving notID from URL
+                if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+                {
+                    notid = Request.QueryString["id"];
+                }
+                else
+                {
+                    notid = "N00001";
+                }
+
+
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT assetID, type, notContent, sendUser FROM Notification WHERE notID='" + notid + "'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Asset = dr["assetID"].ToString();
+                    Type = dr["type"].ToString();
+                    Content = dr["notContent"].ToString();
+                    senduser = dr["sendUser"].ToString();
+                }
+
+                dr.Close();
+                String query1 = "SELECT * FROM Asset WHERE assetID='" + Asset + "'";
+                SqlCommand cmd1 = new SqlCommand(query1, conn);
+                SqlDataReader dr1 = cmd1.ExecuteReader();
+
+                while (dr1.Read())
+                {
+                    AssetID.InnerHtml = dr1["assetID"].ToString();
+                    AssetName.InnerHtml = dr1["name"].ToString();
+                    AssetValue.InnerHtml = dr1["value"].ToString();
+                    AssetSalvageValue.InnerHtml = dr1["salvageValue"].ToString();
+                    Category = dr1["category"].ToString();
+                    Subcategory = dr1["Subcategory"].ToString();
+                    Owner = dr1["owner"].ToString();
+
+                }
+                dr1.Close();
+
+                // Get category name
+                String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + Category + "'";
+                cmd = new SqlCommand(getCatNameQuery, conn);
+                AssetCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                // Get sub category name
+                String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + Subcategory + "'";
+                cmd = new SqlCommand(getSubCatNameQuery, conn);
+                AssetSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                // Get owner name
+                String getOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Owner + "'";
+                cmd = new SqlCommand(getOwnerNameQuery, conn);
+                AssetOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+                conn.Close();
+
+                if (Type == "AddNew")
+                {
+                    NotificationTitle.InnerHtml = "Add new asset Notification";
+                    AddnewassetState.Style.Add("display", "block");
+                }
+
+                if (Type == "Transfer")
+                {
+                    NotificationTitle.InnerHtml = "Transfer asset Notification";
+                    TransferassetState.Style.Add("display", "block");
+                }
+
+                if (Type == "Update")
+                {
+                    string getvalue = "SELECT value FROM UpgradeAsset WHERE assetID='" + Asset + "' AND status= 'pending'";
+                    SqlCommand cmd2 = new SqlCommand(getvalue, conn);
+                    String value = (cmd2.ExecuteScalar().ToString()).Trim();
+                    NotificationTitle.InnerHtml = "Upgrade asset Notification";
+                    UpgradeCost.InnerHtml = value;
+                    UpgradeDescription.InnerHtml = Content;
+                    UpgradeassetState.Style.Add("display", "block");
+                }
+
+                if (Type == "Dispose")
+                {
+                    NotificationTitle.InnerHtml = "Dispose asset Notification";
+                    DisposeDescription.InnerHtml = Content;
+                    DisposeassetState.Style.Add("display", "block");
+                }
             }
-            else
+            catch (SqlException e)
             {
-                notid = "N00001";
-            }
-
-            String Asset = "";
-            String Type = "";
-            String Category = "";
-            String Subcategory = "";
-            String Owner = "";
-            String Content = "";
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-            conn.Open();
-            String query = "SELECT assetID, type, notContent FROM Notification WHERE notID='" + notid + "'";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                Asset = dr["assetID"].ToString();
-                Type = dr["type"].ToString();
-                Content = dr["notContent"].ToString();
-            }
-
-            dr.Close();
-            String query1 = "SELECT * FROM Asset WHERE assetID='" + Asset + "'";
-            SqlCommand cmd1 = new SqlCommand(query1, conn);
-            SqlDataReader dr1 = cmd1.ExecuteReader();
-
-            while (dr1.Read())
-            {
-                AssetID.InnerHtml = dr1["assetID"].ToString();
-                AssetName.InnerHtml = dr1["name"].ToString();
-                AssetValue.InnerHtml = dr1["value"].ToString();
-                AssetSalvageValue.InnerHtml = dr1["salvageValue"].ToString();
-                Category = dr1["category"].ToString();
-                Subcategory = dr1["Subcategory"].ToString();
-                Owner = dr1["owner"].ToString();
-
-            }
-            dr1.Close();
-
-            // Get category name
-            String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + Category + "'";
-            cmd = new SqlCommand(getCatNameQuery, conn);
-            AssetCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-            // Get sub category name
-            String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + Subcategory + "'";
-            cmd = new SqlCommand(getSubCatNameQuery, conn);
-            AssetSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
-            // Get owner name
-            String getOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Owner + "'";
-            cmd = new SqlCommand(getOwnerNameQuery, conn);
-            AssetOwner.InnerHtml = cmd.ExecuteScalar().ToString();
-            conn.Close();
-
-            if (Type == "RegRecommend")
-            {
-                NotificationTitle.InnerHtml = "Add new asset Notification";
-                AddnewassetState.Style.Add("display", "block");
-            }
-
-            if (Type == "Transfer")
-            {
-                NotificationTitle.InnerHtml = "Transfer asset Notification";
-                TransferassetState.Style.Add("display", "block");
-            }
-
-            if (Type == "Upgrade")
-            {
-                string getvalue = "SELECT value FROM UpgradeAsset WHERE assetID='" + Asset + "' AND status= 'pending'";
-                SqlCommand cmd2 = new SqlCommand(getvalue, conn);
-                String value = (cmd2.ExecuteScalar().ToString()).Trim();
-                NotificationTitle.InnerHtml = "Upgrade asset Notification";
-                UpgradeCost.InnerHtml = value;
-                UpgradeDescription.InnerHtml = Content;
-                UpgradeassetState.Style.Add("display", "block");
-            }
-
-            if (Type == "Dispose")
-            {
-                NotificationTitle.InnerHtml = "Dispose asset Notification";
-                DisposeDescription.InnerHtml = Content;
-                DisposeassetState.Style.Add("display", "block");
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
             }
         }
 
@@ -198,26 +211,26 @@ namespace FixAMz_WebApplication
 
 
 
-        /*    protected void AddNewAssetapprovecancel_Click(object sender, EventArgs e)
+            protected void AddNewAssetapprovecancel_Click(object sender, EventArgs e)
             {
                 try
                 {
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     String notID = setNotID();
-                    String canceladdnewAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, date, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @date, @status)";
+                    String canceladdnewAsset = "INSERT INTO Notification (notID, type, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @assetid, @notContent, @senduser, @receiveuser, @status)";
                     SqlCommand cmd = new SqlCommand(canceladdnewAsset, conn);
                     cmd.Parameters.AddWithValue("@notid", notID);
                     cmd.Parameters.AddWithValue("@type", "Cancel");
                     cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                     cmd.Parameters.AddWithValue("@notContent", " ");
-                    cmd.Parameters.AddWithValue("@senduser", empID);
-                    cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
-                    cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@senduser", userName.InnerHtml);
+                    cmd.Parameters.AddWithValue("@receiveuser",senduser);
+                    //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@status", "not-seen");
                     cmd.ExecuteNonQuery();
                     conn.Close();
-                    Response.Redirect("AdminUserSystemTab.aspx");
+                    Response.Redirect("ManageAssetsUser.aspx");
                 }
                 catch (SqlException ex)
                 {
@@ -226,7 +239,7 @@ namespace FixAMz_WebApplication
                     Response.Write(ex.ToString());
                 }
 
-            }*/
+            }
 
         protected void UpgradeAssetapprovecancel_Click(object sender, EventArgs e)
         {

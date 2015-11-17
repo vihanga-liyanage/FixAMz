@@ -130,7 +130,8 @@
             <div id="AddnewassetState" runat="server">
                 <div class="row expand-item-row">
                     <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" />
-                    <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn" />
+                    <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
+                         OnClick="AddNewAssetapprovecancel_Click" />
                 </div>
             </div>
 <!-- UpgradeassetState-->
