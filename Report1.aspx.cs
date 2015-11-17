@@ -54,7 +54,7 @@ namespace FixAMz_WebApplication
                 List<string> subcategory = new List<string>();
                 List<DateTime> approvedDateTime = new List<DateTime>();
                 
-                String selectAsset = "SELECT * FROM Asset";
+                String selectAsset = "SELECT * FROM Asset WHERE status = '1'";
                 SqlCommand cmd = new SqlCommand(selectAsset,conn);
 
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -115,7 +115,7 @@ namespace FixAMz_WebApplication
                     float upValue = (value[i] - salvageValue[i]) * (newRate);
                     float upValuefinal = (float)upValue *yearDiff;
                     upValuefinal = value[i] - upValuefinal;
-
+                    //upValuefinal = Math.Round(upValuefinal, 2);
                     updatedValue[i] = upValuefinal;
 
                     //Response.Write("updated value " + upValuefinal.ToString() + "/n");

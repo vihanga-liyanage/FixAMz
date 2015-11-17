@@ -461,11 +461,13 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @recommend)";
+                string insertion_Asset = "insert into Asset (assetID, name, value, salvageValue, updatedValue, category, subcategory, owner, status, recommend) values (@assetid, @name, @value, @salvageValue, @updatedValue, @category, @subcategory,@owner, @status, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@salvageValue", AddSalvageValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@updatedValue", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
