@@ -15,11 +15,12 @@ namespace FixAMz_WebApplication
     public partial class NotificationView : System.Web.UI.Page
     {
         private String Asset;
+        private String notid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             setUserName();
-            Load();
+            Load_Content();
             Load_Notifications();
         }
 
@@ -84,10 +85,29 @@ namespace FixAMz_WebApplication
             conn.Close();
         }
 
-        //Load page data
-        protected void Load()
+        //Update notification table when loading
+        protected void Update_Not_DB()
         {
-            String notid;
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "UPDATE Notification SET status='seen' WHERE notID='" + notid + "'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException exx)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write("Update_Not_DB:" + exx.ToString());
+            }
+            
+        }
+
+        //Load page data
+        protected void Load_Content()
+        {
             //Retrieving notID from URL
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
             {
@@ -97,6 +117,9 @@ namespace FixAMz_WebApplication
             {
                 notid = "N00001";
             }
+            
+            //Update notification table when loading
+            Update_Not_DB();
 
             String Type = "";
             String Category = "";
