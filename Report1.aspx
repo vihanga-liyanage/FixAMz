@@ -9,20 +9,17 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    Data : 
-    <asp:TextBox ID="TextBox" class="expand-item-textbox" runat="server" Width="321px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Button" />
-        <asp:HyperLink ID="HyperLink1" runat="server">HyperLink</asp:HyperLink>
-        <asp:LinkButton ID="LinkButton1" runat="server">
-            <div>
-                <img src="img/DeleteIcon.png" />
-                <a id='test' href='' runat='server' onserverclick='SampleLink_clicked'>Link</a>
-                <div id="sample" runat="server">
-                    adasdjnjasndansd aksjdads aks 
-                </div>
-            </div>
-        </asp:LinkButton>
-    </div>
+
+
+    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
+    <asp:Button ID="CalDepreciationBtn" runat="server" Text="Send for recommendation"
+                                        OnClick="CalDepreciationBtn_Click"  class="expand-item-btn" />
+
+    
+    
+    </div> 
+
+
     </form>
 </body>
 </html>

@@ -655,13 +655,13 @@ Request.ApplicationPath + "Login.aspx';", true);
                     String query = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
                     cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
-                    string ini = "0";
+                    
                     while (dr.Read())
                     {
                         DeleteEmpID.InnerHtml = dr["empID"].ToString();
                         DeleteFirstName.InnerHtml = dr["firstName"].ToString();
                         DeleteLastName.InnerHtml = dr["lastName"].ToString();
-                        DeleteContact.InnerHtml = ini + dr["contactNo"].ToString();
+                        DeleteContact.InnerHtml =  dr["contactNo"].ToString();
                         DeleteEmail.InnerHtml = dr["email"].ToString();
                     }
                     deleteUserInitState.Style.Add("display", "none");
