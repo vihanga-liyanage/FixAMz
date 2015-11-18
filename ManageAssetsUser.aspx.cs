@@ -482,7 +482,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd = new SqlCommand(insertDisposeAsset, conn);
 
                 cmd.Parameters.AddWithValue("@notid", notID);
-                cmd.Parameters.AddWithValue("@type", "Add");
+                cmd.Parameters.AddWithValue("@type", "AddNew");
                 cmd.Parameters.AddWithValue("@action", "Recommend");
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
@@ -644,7 +644,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
                       //  UpgradeLocationID = dr["location"].ToString();
                         UpgradeOwnerID = dr["owner"].ToString();
-                        UpgradeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
+                        UpgradeValue.InnerHtml = dr["updatedValue"].ToString();
                     }
                     dr.Close();
                     // Get category name
@@ -770,10 +770,11 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 cmd.Parameters.AddWithValue("@upid", setUpID());
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@value", UpgradeValue.InnerHtml);
                 cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", empID);
-                cmd.Parameters.AddWithValue("@approve", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@approve", "");
                 cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 

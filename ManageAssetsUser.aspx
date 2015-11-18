@@ -332,7 +332,7 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Value</div>
+                                    <div class="expand-item-label">Value(LKR)</div>
                                     <div id="UpgradeValue" runat="server" class="custom-label">
                                     </div>
                                 </div>
