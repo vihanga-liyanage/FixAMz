@@ -353,7 +353,7 @@ function isValidUpdate() {
 
     
 
-        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
+    return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
     }
 
 
@@ -582,7 +582,7 @@ function isValidAddSubCategory() {
             isValidDepreciation = true;
         }
     }
-    var isValidCategory = dropDownRequiredFieldValidator("AddSubCategoryCategory");
+    
     var isValidLifetime = requiredFieldValidator("AddSubCategoryLifetime", "Lifetime cannot be empty.");
     if (isValidLifetime) {
         var lifetime = document.forms[0]["AddSubCategoryLifetimeTextBox"].value;
