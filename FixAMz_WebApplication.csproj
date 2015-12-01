@@ -61,6 +61,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="GridView.aspx" />
     <Content Include="img\developerIcon.png" />
     <Content Include="img\logoSimble.png" />
     <Content Include="Login.aspx" />
@@ -175,6 +176,12 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GridView.aspx.cs">
+      <DependentUpon>GridView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GridView.aspx.designer.cs">
+      <DependentUpon>GridView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
