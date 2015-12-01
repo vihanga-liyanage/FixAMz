@@ -521,10 +521,13 @@ Request.ApplicationPath + "Login.aspx';", true);
             String resultMessage = "";
 
             String query = "SELECT * FROM Asset WHERE";
+
+
             if (assetID != "")
-            {
+            { 
                 query += " assetID='" + assetID + "'";
                 resultMessage += assetID + ", ";
+                
             }
             if (name != "")
             {
@@ -580,7 +583,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
                     responseBoxGreen.Style.Add("display", "block");
-                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
+                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>" ;
                 }
                 else
                 {
