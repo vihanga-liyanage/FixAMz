@@ -140,6 +140,13 @@
                 </div>
             </div>
 
+<!-- AddnewassetStateApprove-->
+            <div id="AddnewassetStateApproveCancel" runat="server">
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"/>
+                </div>
+            </div>
+
 
 <!-- UpgradeassetState-->
             <div id="UpgradeassetState" runat="server">
@@ -156,6 +163,25 @@
                 <div class="row expand-item-row">
                     <asp:Button ID="UpgradeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="UpgradeAssetsendapprove_Click" />
                     <asp:Button ID="UpgradeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
+                        OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
+                </div>
+            </div>
+
+<!--UpgradeassetApprove-->
+            <div id="UpgradeassetApprove" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Upgrade cost</div>
+                    <div id="Div2" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Description</div>
+                    <div id="Div3" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button3" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="UpgradeAssetsendapprove_Click" />
+                    <asp:Button ID="Button5" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
                 </div>
             </div>
@@ -186,7 +212,7 @@
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <asp:Button ID="DisposeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" />
+                    <asp:Button ID="DisposeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="DisposeAssetsendapprove_Click" />
                     <asp:Button ID="DisposeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClientClick="JavaScript:window.history.back(1);return false;" />
                 </div>

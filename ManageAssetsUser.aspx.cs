@@ -760,7 +760,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
 
 
-                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, description, recommend, approve, status) VALUES (@upid, @assetid, @value, @description, @recommend, @approve, @status)";
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, updatedValue, description, recommend, approve, status) VALUES (@upid, @assetid, @value, @updatedValue, @description, @recommend, @approve, @status)";
 
 
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
@@ -770,7 +770,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@value", UpgradeValue.InnerHtml);
                 cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
-                cmd.Parameters.AddWithValue("@recommend", empID);
+                cmd.Parameters.AddWithValue("@recommend", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@approve", "");
                 cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
