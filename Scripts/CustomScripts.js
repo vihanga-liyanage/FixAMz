@@ -596,7 +596,6 @@ function addNewAssetClearAll() {
     document.forms[0]["AddSalvageValueTextBox"].value = "";
     document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
-    document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
     return false;
 }
 
@@ -628,11 +627,10 @@ function isValidAddAsset() {
     var isValidSalvageValue = requiredFieldValidatorValue("AddSalvageValue", "Salvage Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
-    //var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
+    var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
     var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
-    var isValidRecommend = dropDownRequiredFieldValidator("AddAssetPersonToRecommend");
 
-    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidOwner && isValidRecommend);
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner);
 }
 
 //Advanced asset search functions=============================================================
