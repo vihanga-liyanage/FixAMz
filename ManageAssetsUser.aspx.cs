@@ -400,6 +400,14 @@ Request.ApplicationPath + "Login.aspx';", true);
         // Regester new asset ==========================================================
         protected void setAssetID() 
         {
+            //Getting cost center
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+            string costID = data[2];
+
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -410,23 +418,22 @@ Request.ApplicationPath + "Login.aspx';", true);
                 if (cmd.ExecuteScalar() != null)
                 {
                     String lastAssetID = (cmd.ExecuteScalar().ToString()).Trim();
-                    String chr = Convert.ToString(lastAssetID[0]);
-                    String temp = "";
-                    for (int i = 1; i < lastAssetID.Length; i++)
-                    {
-                        temp += Convert.ToString(lastAssetID[i]);
-                    }
-                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
-                    newAssetID = chr;
-                    for (int i = 1; i < lastAssetID.Length - temp.Length; i++)
+                    String prefix = "NWSDB/" + costID + "/A";
+                    //Extracting the number
+                    String num = Convert.ToString(lastAssetID.Substring(15));
+                    //Adding one
+                    
+                    newAssetID = prefix;
+                    for (int i = 1; i < num.Length; i++)
                     {
                         newAssetID += "0";
                     }
-                    newAssetID += temp;
+                    num = Convert.ToString(Convert.ToInt16(num) + 1);
+                    newAssetID += num;
                 }
                 else
                 {
-                    newAssetID = "NWSDB/A00001";
+                    newAssetID = "NWSDB/" + costID + "/A00001";
                 }
 
                 AddNewAssetId.InnerHtml = newAssetID;
