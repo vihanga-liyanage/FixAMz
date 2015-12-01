@@ -20,20 +20,54 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Authenticate_User();
             setEmpID();
+            Load_Notifications();
+
             if (!Page.IsPostBack)
             {
                 Load_CostCenter();
-                Page.MaintainScrollPositionOnPostBack = true;
+                setUserName();
+                Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             }
             
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
-            responseMsgRed.InnerHtml = "";
-            Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
-            setUserName();
-            Load_Notifications();
+            responseMsgRed.InnerHtml = "";            
+        }
+
+        //Checking if the user has access to the page
+        protected void Authenticate_User()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+            
+
+            if (data[1] != "admin")
+            {
+                FormsAuthentication.SignOut();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+            }
+        }
+
+        //Setting user name on header
+        protected void setUserName()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+
+            userName.InnerHtml = data[0];
+
         }
 
         //loading CostCenters
@@ -64,42 +98,6 @@ namespace FixAMz_WebApplication
             catch (Exception ex)
             {
                 Response.Write("Error:" + ex.Message.ToString());
-            }
-        }
-
-        //Setting user name on header
-        protected void setUserName()
-        {
-            try
-            {
-                String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT e.firstName, e.lastName, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                String output = "";
-                while (dr.Read())
-                {
-                    if (dr["type"].ToString().Trim() == "admin")
-                    {
-                        output = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
-                    }
-                    else
-                    {
-                        FormsAuthentication.SignOut();
-
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-                    }
-                }
-                userName.InnerHtml = output;
-            }
-            catch (SqlException exx)
-            {
-                responseBoxRed.Style.Add("display", "block");
-                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write("setUserName:" + exx.ToString());
             }
         }
 
