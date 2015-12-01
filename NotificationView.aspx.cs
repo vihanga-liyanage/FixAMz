@@ -373,7 +373,8 @@ namespace FixAMz_WebApplication
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String quary = "UPDATE Asset SET status='1', approve='E00004' WHERE assetID='" + Asset + "'";
+                DateTime curDate = DateTime.Now;
+                String quary = "UPDATE Asset SET status='1', approve='E00004',approvedDate='" + curDate + "'  WHERE assetID='" + Asset + "'";
                 SqlCommand cmd = new SqlCommand(quary, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
