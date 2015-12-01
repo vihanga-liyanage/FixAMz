@@ -511,6 +511,7 @@ function addSubCategoryClearAll() {
 //Register Asset functions====================================================================
 function addNewAssetClearAll() {
     document.forms[0]["RegisterAssetNameTextBox"].value = "";
+    document.forms[0]["AddNewAssetCostNameDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
@@ -544,6 +545,7 @@ function requiredFieldValidatorValue(controller, msg) {
 }
 
 function isValidAddAsset() {
+    var isValidAssetCostID = dropDownRequiredFieldValidator("AddNewAssetCostNameDropDown");
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && assetNameValidator("RegisterAssetName");
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
     var isValidSalvageValue = requiredFieldValidatorValue("AddSalvageValue", "Salvage Value cannot be empty.");
@@ -553,7 +555,7 @@ function isValidAddAsset() {
     var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
     var isValidRecommend = dropDownRequiredFieldValidator("AddAssetPersonToRecommend");
 
-    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend);
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner && isValidRecommend && isValidAssetCostID);
 }
 
 //Advanced asset search functions=============================================================

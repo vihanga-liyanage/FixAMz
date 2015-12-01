@@ -18,6 +18,7 @@ namespace FixAMz_WebApplication
         {
             if (!Page.IsPostBack)
             {
+                Load_CostCenter();
                 Load_Category();
                 Load_Location();
                 Load_Employee_Data();
@@ -29,6 +30,30 @@ namespace FixAMz_WebApplication
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
+        }
+
+        //loading Cost Center Drop Down
+        protected void Load_CostCenter()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, costID FROM CostCenter", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddNewAssetCostNameDropDown.DataSource = data;
+                AddNewAssetCostNameDropDown.DataTextField = "name";
+                AddNewAssetCostNameDropDown.DataValueField = "costID";
+                AddNewAssetCostNameDropDown.DataBind();
+                AddNewAssetCostNameDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
+                data.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
         }
 
         //Setting user name on header
@@ -387,9 +412,10 @@ namespace FixAMz_WebApplication
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertion_Asset = "insert into Asset (assetID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
+                string insertion_Asset = "insert into Asset (assetID, costID, name, value, category, subcategory, owner, status, location, recommend) values (@assetid, @costID, @name, @value, @category, @subcategory,@owner, @status, @location, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@costID", AddNewAssetCostNameDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
@@ -398,7 +424,6 @@ namespace FixAMz_WebApplication
                 cmd.Parameters.AddWithValue("@status", 0);
                 cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
-
                 cmd.ExecuteNonQuery();
 
                 String notID = setNotID();
