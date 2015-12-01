@@ -14,16 +14,84 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
     <div>
 
+    <!--Header-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row header">
+                    <div class="col-md-3 col-md-offset-1">
+                        <img src="img/fixamz.png" class="logo" />
+                    </div>
+                    <div class="col-md-8 header-right">
+                        <div class="col-sm-12" id="user-name-box">
+                            <span id="userName" runat="server"></span>
+                                | 
+                            <span id="notification_li">
+						        <span id="notification_count" runat="server"></span>
+						        <a href="#" id="notificationLink">
+                                    <img src="img/bell.jpg" style="width: 27px;"/>
+                                </a>
+						        <div id="notificationContainer">
+							        <div id="notificationTitle" runat="server">Notifications</div>
+							        <div id="notificationsBody" class="notifications" runat="server">
+                                        </div>
+							        <div id="notificationFooter"><a href="#">See All</a></div>
+						        </div>
+					        </span>
+                                | 
+                            </div>
+                        <div class="col-sm-12 nav-bar-container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="collapse navbar-collapse" style="float:right;">
+                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="#" class="active">PEOPLE</a> </li>
+                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="#">ABOUT</a> </li>
+                                    <li><a href="#">HELP</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
-    <asp:Button ID="CalDepreciationBtn" runat="server" Text="Update on Year End"
-                                        OnClick="CalDepreciationBtn_Click"  class="expand-item-btn" />
+        <!--Main content-->
+        <div class="row">
+            <div class="col-md-9 col-xs-offset-2 expand-item-container">
+                <div id="responseBoxGreen" runat="server">
+                    <a href="" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #B8F0AD; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgGreen" runat="server"></div>
+                </div>
+                <div id="responseBoxRed" runat="server">
+                    <a href="" onclick="this.parentNode.style.display = 'none';">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" style="float: right; color: #F0AEAE;; margin-top: 5px;"></span>
+                    </a>
+                    <div id="responseMsgRed" runat="server"></div>
+                </div>
 
+            </div>
+
+    <!--Report generation-->
+            <div class="col-md-12">
+                <div class="col-md-7">
+                                    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
+                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  class="expand-item-btn" /> 
+                </div>
+            </div>
     
-    
-    </div> 
     <!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
