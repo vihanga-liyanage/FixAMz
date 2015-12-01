@@ -115,6 +115,7 @@
     <Content Include="ManageAssetsUser.aspx" />
     <Content Include="NotificationView.aspx" />
     <Content Include="Report1.aspx" />
+    <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CustomScripts.js" />
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="Report1.aspx.designer.cs">
       <DependentUpon>Report1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer.aspx.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportViewer.aspx.designer.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
     </Compile>
     <Compile Include="SearchResults.aspx.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
