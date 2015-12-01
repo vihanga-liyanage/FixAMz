@@ -16,56 +16,56 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Authenticate_User();
+            Load_Notifications();
+            setAssetID();
+
             if (!Page.IsPostBack)
             {
+                setUserName();
                 Load_Category();
                 //Load_Location();
                 Load_Employee_Data();
-                setUserName();
-                setAssetID();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
-            Load_Notifications();
+            
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
         }
 
+        //Checking if the user has access to the page
+        protected void Authenticate_User()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+
+            if (data[1] != "manageAssetUser")
+            {
+                FormsAuthentication.SignOut();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+            }
+        }
+
         //Setting user name on header
         protected void setUserName()
         {
-            try
-            {
-                String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT e.firstName, e.lastName, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                String output = "";
-                while (dr.Read())
-                {
-                    if (dr["type"].ToString().Trim() == "manageAssetUser")
-                    {
-                        output = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
-                    }
-                    else
-                    {
-                        FormsAuthentication.SignOut();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
 
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-                    }
-                }
-                userName.InnerHtml = output;
-            }
-            catch (SqlException exx)
-            {
-                responseBoxRed.Style.Add("display", "block");
-                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write("setUserName:" + exx.ToString());
-            }
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+
+            userName.InnerHtml = data[0];
+
         }
         
         //Loading notifications
@@ -426,7 +426,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 }
                 else
                 {
-                    newAssetID = "A00001";
+                    newAssetID = "NWSDB/A00001";
                 }
 
                 AddNewAssetId.InnerHtml = newAssetID;
