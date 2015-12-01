@@ -21,6 +21,12 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             setEmpID();
+            if (!Page.IsPostBack)
+            {
+                Load_CostCenter();
+                Page.MaintainScrollPositionOnPostBack = true;
+            }
+            
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
@@ -29,7 +35,38 @@ namespace FixAMz_WebApplication
             setUserName();
             Load_Notifications();
         }
-        
+
+        //loading CostCenters
+        protected void Load_CostCenter()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, costID FROM CostCenter", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddUserCostNameDropDown.DataSource = data;
+                AddUserCostNameDropDown.DataTextField = "name";
+                AddUserCostNameDropDown.DataValueField = "costID";
+                AddUserCostNameDropDown.DataBind();
+                AddUserCostNameDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
+                data.Close();
+
+                data = cmd.ExecuteReader();
+                UpdateCostCenterDropDown.DataSource = data;
+                UpdateCostCenterDropDown.DataTextField = "name";
+                UpdateCostCenterDropDown.DataValueField = "costID";
+                UpdateCostCenterDropDown.DataBind();
+                UpdateCostCenterDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
+                data.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
+        }
+
         //Setting user name on header
         protected void setUserName()
         {
@@ -203,9 +240,10 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                string insertion_Employee = "insert into Employee (empID, firstName, lastName, contactNo, email) values (@empid, @firstname, @lastname, @contact, @email)";
+                string insertion_Employee = "insert into Employee (empID, costID, firstName, lastName, contactNo, email) values (@empid, @costID, @firstname, @lastname, @contact, @email)";
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
                 cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                cmd.Parameters.AddWithValue("@costID", AddUserCostNameDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@firstname", AddNewFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", AddNewLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", AddNewContactTextBox.Text);
@@ -215,12 +253,13 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (TypeDropDown.SelectedItem.Value != "owner")
                 {
-                    string insertion_User = "insert into SystemUser (empID, username, password, type) values (@empid, @username, @password, @type)";
+                    string insertion_User = "insert into SystemUser (empID, costID, username, password, type) values (@empid, @costid, @username, @password, @type)";
                     cmd = new SqlCommand(insertion_User, conn);
 
                     String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(AddNewPasswordTextBox.Text, "SHA1");
 
                     cmd.Parameters.AddWithValue("@empid", AddNewEmpID.InnerHtml);
+                    cmd.Parameters.AddWithValue("@costid", AddUserCostNameDropDown.SelectedValue);
                     cmd.Parameters.AddWithValue("@username", AddNewUsernameTextBox.Text);
                     cmd.Parameters.AddWithValue("@password", encriptedPassword);
                     cmd.Parameters.AddWithValue("@type", TypeDropDown.SelectedItem.Value);
@@ -309,6 +348,7 @@ Request.ApplicationPath + "Login.aspx';", true);
         protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
             String empID = SearchEmployeeIDTextBox.Text.Trim();
+            String costID = SearchCostIDTextBox.Text.Trim();
             String firstname = SearchFirstNameTextBox.Text.Trim();
             String lastname = SearchLastNameTextBox.Text.Trim();
             String email = SearchEmailTextBox.Text.Trim();
@@ -322,6 +362,11 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 query += " empID='" + empID + "'";
                 resultMessage += empID + ", ";
+            }
+            if (costID != "")
+            {
+                query += " AND costID='" + costID + "'";
+                resultMessage += costID + ", ";
             }
             if (firstname != "")
             {
@@ -390,7 +435,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
-            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
+            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchCostIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
             {
                 textBox.Text = "";
@@ -429,14 +474,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                         
                     }
                     dr1.Close();
-                    String query2 = "SELECT empID, username FROM SystemUser WHERE empID='" + empID + "'";
-                    SqlCommand cmd2 = new SqlCommand(query2, conn);
-                    SqlDataReader dr2 = cmd2.ExecuteReader();
-                    while (dr2.Read())
-                    {
-                        UpdateUsernameTextBox.Text = dr2["username"].ToString();
-                    }
-                    dr2.Close();
                     /*
                     String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
                     SqlCommand cmd2 = new SqlCommand(query2, conn);
@@ -487,22 +524,17 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String empID = UpdateEmpIDTextBox.Text;
-                string insertion_Employee = "UPDATE Employee SET firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
-                string insertion_SystemUser = "UPDATE SystemUser SET username = @username WHERE empID='" + empID + "'";
+
+                string insertion_Employee = "UPDATE Employee SET costID = @costID, firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
+
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
-                SqlCommand cmd1 = new SqlCommand(insertion_SystemUser, conn);
 
-                
-
+                cmd.Parameters.AddWithValue("@costID", UpdateCostCenterDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@firstname", UpdateFirstNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
                 cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
 
-                cmd1.Parameters.AddWithValue("@username", UpdateUsernameTextBox.Text);
-                
-
-                cmd1.ExecuteNonQuery();
                 cmd.ExecuteNonQuery();
 
                 //Include update query for password here
