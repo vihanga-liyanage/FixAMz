@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report1.aspx.cs" Inherits="FixAMz_WebApplication.Report1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReportViewer.aspx.cs" Inherits="FixAMz_WebApplication.ReportViewer" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,17 +13,18 @@
     <link href="Styles/CustomStyles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-
-    <div>
-
-    <!--Header-->
+    <form id="form1" runat="server"> 
+    <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
+        SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
+    <div class="container-fluid">
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
+
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
@@ -36,12 +37,14 @@
 						        <div id="notificationContainer">
 							        <div id="notificationTitle" runat="server">Notifications</div>
 							        <div id="notificationsBody" class="notifications" runat="server">
-                                        </div>
+                                        <!-- Generated code -->
+							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
 					        </span>
                                 | 
-                            </div>
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                        </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -53,19 +56,17 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
-                                    <li><a href="#" class="active">PEOPLE</a> </li>
-                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="#" class="active">HOME</a> </li>
                                     <li><a href="#">ABOUT</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!--Main content-->
         <div class="row">
             <div class="col-md-9 col-xs-offset-2 expand-item-container">
@@ -81,41 +82,6 @@
                     </a>
                     <div id="responseMsgRed" runat="server"></div>
                 </div>
-
-            </div>
-
-    <!--Report generation-->
-            <div class="col-md-12">
-                <div class="col-md-7">
-                                    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
-                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  class="expand-item-btn" /> 
-                </div>
-            </div>
-    
-    <!--Footer-->
-        <div id="footer" class="row">
-            <div class="row footer-up">
-                <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
-                </ul>
-            </div>
-            <div class="row footer-down">
-                <div class="col-md-5">
-                    Copyright &copy; 2015 National Water Supply and Drainage Board.<br>
-                    All Rights Reserved.</div>
-                <div class="col-md-7 developer-link">
-                    <a href="#">Developer site<img src="img/developerIcon.png" /></a>
-                </div>
-                <img src="img/logoSimble.png" style="float: right; width: 47px; opacity: 0.25" />
-            </div>
-        </div>
-    </div>
-    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
-    <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
-    <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
-
-    </form>
+        </form>
 </body>
 </html>

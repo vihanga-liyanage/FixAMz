@@ -202,6 +202,24 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewContactValidator;
         
         /// <summary>
+        /// AddUserCostNameDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddUserCostNameDropDown;
+        
+        /// <summary>
+        /// AddUserCostNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddUserCostNameValidator;
+        
+        /// <summary>
         /// TypeDropDown control.
         /// </summary>
         /// <remarks>
@@ -326,6 +344,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SearchEmployeeIDTextBox;
+        
+        /// <summary>
+        /// SearchCostIDTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchCostIDTextBox;
         
         /// <summary>
         /// SearchFirstNameTextBox control.
@@ -553,22 +580,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateContactValidator;
         
         /// <summary>
-        /// UpdateUsernameTextBox control.
+        /// UpdateCostCenterDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateUsernameTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList UpdateCostCenterDropDown;
         
         /// <summary>
-        /// UpdateUsernameValidator control.
+        /// UpdateCostCenterValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateUsernameValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateCostCenterValidator;
         
         /// <summary>
         /// UpdateTypeDropDown control.

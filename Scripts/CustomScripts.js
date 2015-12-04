@@ -275,6 +275,7 @@ function isValidAddNew() {
     var isValidLastName = requiredFieldValidator("AddNewLastName", "Last name cannot be empty.") && nameValidator("AddNewLastName");
     var isValidEmail = emailValidator("AddNewEmail");
     var isValidContact = contactValidator("AddNewContact");
+    var isValidCostid = dropDownRequiredFieldValidator("AddUserCostName");
     var isValidType = dropDownRequiredFieldValidator("Type");
 
     //Checking for owners
@@ -305,9 +306,9 @@ function isValidAddNew() {
             isValidConfirmPassword = true;
         }
 
-        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType && isValidUsername && isValidPassword && isValidConfirmPassword);
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidCostid && isValidType && isValidUsername && isValidPassword && isValidConfirmPassword);
     } else {
-        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidType);
+        return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidCostid && isValidType);
     }
 }
 
@@ -341,20 +342,10 @@ function isValidUpdate() {
     var isValidLastname = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.") && nameValidator("UpdateLastName");
     var isValidEmail = emailValidator("UpdateEmail");
     var isValidContact = contactValidator("UpdateContact");
+    var isValidCostID = dropDownRequiredFieldValidator("UpdateCostCenter");
 
-    var isValidUsername = requiredFieldValidator("UpdateUsername", "User name cannot be empty.");
-    if (isValidUsername) {
-        usernameUpdateValidator();
-        pause(300);
-        isValidUsername = usernameNotExists;
-        //alert(isValidUsername);
-    }
-
-
-    
-
-    return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidUsername && isValidPassword && isValidConfirmPassword);
-    }
+    return (isValidFirstname && isValidLastname && isValidEmail && isValidContact && isValidCostID);
+}
 
 
  function isValidResetPassword() {
@@ -390,13 +381,14 @@ function searchClearAll() {
 
 function isValidUserSearch() {
     var id = document.forms[0]["SearchEmployeeIDTextBox"].value;
+    var costid = document.forms[0]["SearchCostIDTextBox"].value;
     var fname = document.forms[0]["SearchFirstNameTextBox"].value;
     var lname = document.forms[0]["SearchLastNameTextBox"].value;
     var email = document.forms[0]["SearchEmailTextBox"].value;
     var contact = document.forms[0]["SearchContactTextBox"].value;
-    var username = document.forms[0]["SearchUsernameTextBox"].value;
+    //var username = document.forms[0]["SearchUsernameTextBox"].value;
 
-    if (id == "" && fname == "" && lname == "" && email == "" && contact == "" && username == "") {
+    if (id == "" && costid == "" && fname == "" && lname == "" && email == "" && contact == "") {
         alert("Please fill at least one field");
         return false;
     } else {
@@ -422,39 +414,28 @@ function deleteClearAll() {
 
 //Add new location functions =================================================================
 function isValidAddLoc() {
-   // var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && assetNameValidator("AddLocationName");
+    var isValidLocName = requiredFieldValidator("AddLocationName", "Location name cannot be empty.") && assetNameValidator("AddLocationName");
     var isValidLocAddress = requiredFieldValidator("AddLocationAddress", "Location address cannot be empty.") && addressValidator("AddLocationAddress");
     var isValidContact = contactValidator("AddLocationContact");
-   //var isValidLocManagerOffice = requiredFieldValidator("AddLocationManagerOffice", "Manager office cannot be empty.") && assetNameValidator("AddLocationManagerOffice");
-   // var isValidLocDepartment = requiredFieldValidator("AddLocationDepartment", "Department cannot be empty.") && assetNameValidator("AddLocationDepartment");
-   // var isValidLocBranch = requiredFieldValidator("AddLocationBranch", "Branch cannot be empty.") && assetNameValidator("AddLocationBranch");
-   // var isValidLocZonalOffice = requiredFieldValidator("AddLocationZonalOffice", "Zonal office cannot be empty.") && assetNameValidator("AddLocationZonalOffice");
 
-    return (isValidLocAddress && isValidContact);
+    return (isValidLocName && isValidLocAddress && isValidContact);
 }
 
 function addLocationClearAll() {
-    //document.forms[0]["AddLocationNameTextBox"].value = "";
+    document.forms[0]["AddLocationNameTextBox"].value = "";
     document.forms[0]["AddLocationAddressTextBox"].value = "";
     document.forms[0]["AddLocationContactTextBox"].value = "";
-    //document.forms[0]["AddLocationManagerOfficeTextBox"].value = "";
-    //document.forms[0]["AddLocationDepartmentTextBox"].value = "";
-    //document.forms[0]["AddLocationBranchTextBox"].value = "";
-    //document.forms[0]["AddLocationZonalOfficeTextBox"].value = "";
+
     return true;
 }
 
 //Update location functions ==================================================================
 function isValidUpdateLoc() {
-    //var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && assetNameValidator("UpdateLocName");
+    var isValidUpLocname = requiredFieldValidator("UpdateLocName", "Location name cannot be empty.") && assetNameValidator("UpdateLocName");
     var isValidUpLocaddress = requiredFieldValidator("UpdateLocAddress", "Location address cannot be empty.") && addressValidator("UpdateLocAddress");
     var isValidUpLoccontact = contactValidator("UpdateLocContact");
-    //var isValidUpLocdepartment = requiredFieldValidator("UpdateLocDepartment", "Department cannot be empty.") && assetNameValidator("UpdateLocDepartment");
-    //var isValidUpLocbranch = requiredFieldValidator("UpdateLocBranch", "Branch cannot be empty.") && assetNameValidator("UpdateLocBranch");
-    //var isValidUpLoczonaloffice = requiredFieldValidator("UpdateLocZonalOffice", "Zonal Office cannot be empty.") && assetNameValidator("UpdateLocZonalOffice");
-    //var isValidUpLocmanageroffice = requiredFieldValidator("UpdateLocManagerOffice", "Manager Office cannot be empty.") && assetNameValidator("UpdateLocManagerOffice");
 
-    return (isValidUpLocaddress && isValidUpLoccontact);
+    return (isValidUpLocname && isValidUpLocaddress && isValidUpLoccontact);
 }
 
 function isValidUpdateLocID() {
@@ -462,14 +443,10 @@ function isValidUpdateLocID() {
 }
 
 function updateLocationClearAll() {
-    //document.forms[0]["UpdateLocNameTextBox"].value = "";
+    document.forms[0]["UpdateLocNameTextBox"].value = "";
     document.forms[0]["UpdateLocAddressTextBox"].value = "";
     document.forms[0]["UpdateLocContactTextBox"].value = "";
-    //document.forms[0]["UpdateLocDepartmentTextBox"].value = "";
-    //document.forms[0]["UpdateLocManagerOfficeTextBox"].value = "";
-    //document.forms[0]["UpdateLocBranchTextBox"].value = "";
-    //document.forms[0]["UpdateLocZonalOfficeTextBox"].value = "";
-    //gdocument.forms[0]["UpdateLocationIDTextBox"].value = "";
+    document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
 
@@ -617,7 +594,7 @@ function addNewAssetClearAll() {
     document.forms[0]["AddAssetSubCategoryDropDown"].selectedIndex = 0;
     document.forms[0]["AddValueTextBox"].value = "";
     document.forms[0]["AddSalvageValueTextBox"].value = "";
-   // document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
+    document.forms[0]["AddAssetLocationDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetOwnerDropDown"].selectedIndex = 0;
     document.forms[0]["AddAssetPersonToRecommendDropDown"].selectedIndex = 0;
     return false;

@@ -130,6 +130,24 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetId;
         
         /// <summary>
+        /// AddNewAssetCostNameDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddNewAssetCostNameDropDown;
+        
+        /// <summary>
+        /// AddNewAssetCostNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetCostNameValidator;
+        
+        /// <summary>
         /// RegisterAssetNameTextBox control.
         /// </summary>
         /// <remarks>

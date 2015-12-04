@@ -521,10 +521,13 @@ Request.ApplicationPath + "Login.aspx';", true);
             String resultMessage = "";
 
             String query = "SELECT * FROM Asset WHERE";
+
+
             if (assetID != "")
-            {
+            { 
                 query += " assetID='" + assetID + "'";
                 resultMessage += assetID + ", ";
+                
             }
             if (name != "")
             {
@@ -580,7 +583,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
                     responseBoxGreen.Style.Add("display", "block");
-                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
+                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>" ;
                 }
                 else
                 {
@@ -760,7 +763,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
 
 
-                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, updatedValue, description, recommend, approve, status) VALUES (@upid, @assetid, @value, @updatedValue, @description, @recommend, @approve, @status)";
+                String insertUpgradeAsset_UpgradeAsset = "INSERT INTO UpgradeAsset (upID, assetID, value, updatedValue, description, recommend, status) VALUES (@upid, @assetid, @value, @updatedValue, @description, @recommend, @status)";
 
 
                 cmd = new SqlCommand(insertUpgradeAsset_UpgradeAsset, conn);
@@ -771,7 +774,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@recommend", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@approve", "");
                 cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 

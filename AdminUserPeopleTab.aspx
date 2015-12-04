@@ -126,6 +126,12 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
+                                    <div class="expand-item-label">Cost Center Name</div>
+                                    <asp:DropDownList ID="AddUserCostNameDropDown" class="expand-item-textbox" runat="server" >
+                                    </asp:DropDownList>
+                                    <div class="validator" id="AddUserCostNameValidator" runat="server"></div>
+                                </div>
+                                <div class="row expand-item-row">
                                     <div class="expand-item-label">
                                         Access Level</div>
                                     <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="AddUserTypeDropDown_Selected" AutoPostBack="true">
@@ -198,6 +204,11 @@
                                     <div class="expand-item-label">
                                         Employee ID</div>
                                     <asp:TextBox ID="SearchEmployeeIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Cost ID</div>
+                                    <asp:TextBox ID="SearchCostIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">
@@ -303,13 +314,11 @@
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Username</div>
-                                        <asp:TextBox ID="UpdateUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                        <div class="validator" id="UpdateUsernameValidator" runat="server">
-                                        </div>
+                                        <div class="expand-item-label">Cost Center Name</div>
+                                        <asp:DropDownList ID="UpdateCostCenterDropDown" class="expand-item-textbox" runat="server">
+                                        </asp:DropDownList>
+                                        <div class="validator" id="UpdateCostCenterValidator" runat="server"></div>
                                     </div>
-                                   
                                     <!--
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Access Level</div>
