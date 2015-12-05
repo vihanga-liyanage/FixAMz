@@ -499,6 +499,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferValue;
         
         /// <summary>
+        /// TransferCostCeneterDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TransferCostCeneterDropDown;
+        
+        /// <summary>
         /// TransferLocationDropDown control.
         /// </summary>
         /// <remarks>
@@ -515,6 +524,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList TransferOwnerDropDown;
+        
+        /// <summary>
+        /// TransAssetSendForRecommend control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransAssetSendForRecommend;
         
         /// <summary>
         /// TransAssetSendForRecommendDropDown control.

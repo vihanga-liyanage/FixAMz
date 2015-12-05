@@ -30,6 +30,7 @@ namespace FixAMz_WebApplication
                 personToRecommend();
                 Load_Location();
                 Load_Employee_Data();
+                Load_CostCenter();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
             
@@ -65,6 +66,8 @@ namespace FixAMz_WebApplication
             }
              
             AddAssetPersonToRecommend.InnerHtml = recoPrsn;
+            TransAssetSendForRecommend.InnerHtml = recoPrsn;
+
             conn.Close();
 
             String query2 = "SELECT recommendPerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
@@ -347,6 +350,29 @@ Request.ApplicationPath + "Login.aspx';", true);
             catch (Exception ex)
             {
                 Response.Write("Load_Location_Data:" + ex.Message.ToString());
+            }
+        }
+
+        //loading CostCenters
+        protected void Load_CostCenter()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, costID FROM CostCenter", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                TransferCostCeneterDropDown.DataSource = data;
+                TransferCostCeneterDropDown.DataTextField = "name";
+                TransferCostCeneterDropDown.DataValueField = "costID";
+                TransferCostCeneterDropDown.DataBind();
+                //TransferCostCeneterDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
+                data.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
             }
         }
 
@@ -926,10 +952,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                     {
                         String transferAssetCategoryID = "";
                         String transferAssetSubCategoryID = "";
-                       // String transferAssetLocationID = "";
+                        String transferAssetCostID = "";
+                        String transferAssetLocationID = "";
                         String transferAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, costID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -938,7 +965,8 @@ Request.ApplicationPath + "Login.aspx';", true);
                             TransferItemName.InnerHtml = dr["name"].ToString();
                             transferAssetCategoryID = dr["category"].ToString();
                             transferAssetSubCategoryID = dr["subcategory"].ToString();
-                           // transferAssetLocationID = dr["location"].ToString();
+                            transferAssetCostID = dr["costID"].ToString();
+                            transferAssetLocationID = dr["location"].ToString();
                             transferAssetOwnerID = dr["owner"].ToString();
                             TransferValue.InnerHtml = dr["value"].ToString() + " LKR";
                         }
@@ -951,10 +979,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                         String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + transferAssetSubCategoryID + "'";
                         cmd = new SqlCommand(getSubCatNameQuery, conn);
                         TransferSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                    /*    // Get location name
-                        TransferLocationDropDown.SelectedValue = transferAssetLocationID;*/
-                        // Get owner name
+                        //Get location name
+                        TransferLocationDropDown.SelectedValue = transferAssetLocationID;
+                        //Get owner name
                         TransferOwnerDropDown.SelectedValue = transferAssetOwnerID;
+                        //get costID
+                        TransferCostCeneterDropDown.SelectedValue = transferAssetCostID;
 
                         transferAssetInitState.Style.Add("display", "none");
                         transferAssetSecondState.Style.Add("display", "block");
@@ -1006,18 +1036,19 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String transID = setTransAssetID();
                 String notID = setNotID();
-                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, type, status,owner, recommend) VALUES (@transid, @assetid, @type, @status, @owner, @recommend)";
+                string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, costID, type, status, location, owner, recommend) VALUES (@transid, @assetid, @costID, @type, @status, @location, @owner, @recommend)";
                 string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
                 cmd.Parameters.AddWithValue("@transid", transID);
                 cmd.Parameters.AddWithValue("@assetid", TransferAssetIDTextBox.Text);
+                cmd.Parameters.AddWithValue("@costID", TransferCostCeneterDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@type", "0");
                 cmd.Parameters.AddWithValue("@status", "0");
-               // cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@recommend", TransAssetSendForRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", Session["PRSN_TO_REC"]);
                 cmd.ExecuteNonQuery();
 
                 cmd2.Parameters.AddWithValue("@notid", notID);
@@ -1026,7 +1057,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd2.Parameters.AddWithValue("@nType", "Transfer");
                 cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
-                cmd2.Parameters.AddWithValue("@nReceiveUser", TransAssetSendForRecommendDropDown.SelectedValue);
+                cmd2.Parameters.AddWithValue("@nReceiveUser", Session["PRSN_TO_REC"]);
                 cmd2.Parameters.AddWithValue("@nStatus", "not-seen");
                 cmd2.ExecuteNonQuery();
 
@@ -1188,5 +1219,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         }
 
+
+        public string SelectedValue { get; set; }
     }
 }

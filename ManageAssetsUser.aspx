@@ -260,19 +260,27 @@
                                         <div class="expand-item-label">Value</div>
                                         <div id="TransferValue" runat="server" class="custom-label"></div>
                                     </div>
-                                  <!--  <div class="row expand-item-row">
+                                    <div class="row expand-item-row">
+                                        <div class="expand-item-label">Cost Center</div>
+                                        <asp:DropDownList ID="TransferCostCeneterDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
                                         <asp:DropDownList ID="TransferLocationDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
-                                    </div>-->
+                                    </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Owner</div>
                                         <asp:DropDownList ID="TransferOwnerDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Person to recommend</div>
+                                        <div id="TransAssetSendForRecommend" runat="server" class="custom-label"></div>
+                                    </div>
+                                    <!--<div class="row expand-item-row">
+                                        <div class="expand-item-label">Person to recommend</div>
                                         <asp:DropDownList ID="TransAssetSendForRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                         <div class="validator" id="TransAssetSendForRecommendValidator" runat="server"></div>
-                                    </div>
+                                    </div>-->
                                     <div class="row expand-item-row">
                                         <asp:Button ID="TransferAssetRecommend" runat="server" Text="Send for recommendation" 
                                              onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
