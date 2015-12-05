@@ -58,6 +58,7 @@
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="#" class="active">HOME</a> </li>
                                     <li><a href="#">ABOUT</a> </li>
+                                    <li><a href="GridView.aspx">VIEW</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
