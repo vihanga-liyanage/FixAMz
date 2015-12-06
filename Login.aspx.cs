@@ -21,14 +21,44 @@ namespace FixAMz_WebApplication
         {
             if (AuthenticateUser(UsernameTextBox.Text, PasswordTextBox.Text))
             {
+                string username = UsernameTextBox.Text;
+                bool isPersistent = RememberMeCheckBox.Checked;
+                string userData = "";
+                string type = "";
+
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String check = "select type from SystemUser where username='" + UsernameTextBox.Text + "'";
-                SqlCommand cmd = new SqlCommand(check, conn);
-                String type = (cmd.ExecuteScalar().ToString()).Trim();
+
+                string query = "SELECT e.firstName, e.lastName, s.type, s.costID FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    //userData = "Vihanga Liyanage;admin;CO00001"
+                    userData = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() +
+                                ";" + dr["type"].ToString().Trim() +
+                                ";" + dr["costID"].ToString().Trim();
+                    type = dr["type"].ToString().Trim();
+                }
                 conn.Close();
 
-                FormsAuthentication.SetAuthCookie(UsernameTextBox.Text, RememberMeCheckBox.Checked);
+                // Create a custom FormsAuthenticationTicket containing
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+                  username,
+                  DateTime.Now,
+                  DateTime.Now.AddMinutes(30),
+                  isPersistent,
+                  userData,
+                  FormsAuthentication.FormsCookiePath);
+
+                // Encrypt the ticket.
+                string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                // Create the cookie.
+                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+                //Redirecting to relevent page
                 if (type == "admin")
                 {
                     Response.Redirect("AdminUserPeopleTab.aspx");

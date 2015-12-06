@@ -58,6 +58,7 @@
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="#" class="active">HOME</a> </li>
                                     <li><a href="#">ABOUT</a> </li>
+                                    <li><a href="GridView.aspx">VIEW</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
@@ -97,9 +98,8 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Cost Center Name</div>
-                                    <asp:DropDownList ID="AddNewAssetCostNameDropDown" class="expand-item-textbox" runat="server" >
-                                    </asp:DropDownList>
-                                    <div class="validator" id="AddNewAssetCostNameValidator" runat="server"></div>
+                                    <div id="AddNewCostID" runat="server" class="custom-label">
+                                    </div>
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Name</div>
@@ -132,12 +132,12 @@
                                     <div class="validator" id="AddSalvageValueValidator" runat="server">
                                     </div>
                                 </div>
-                              <!--  <div class="row expand-item-row">
+                                <div class="row expand-item-row">
                                     <div class="expand-item-label">Location</div>
                                     <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server">
                                     </asp:DropDownList>
                                     <div class="validator" id="AddAssetLocationValidator" runat="server"></div>
-                                </div> -->
+                                </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Owner</div>
                                     <asp:DropDownList ID="AddAssetOwnerDropDown" class="expand-item-textbox" runat="server">
@@ -146,9 +146,8 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Person to recommend</div>
-                                    <asp:DropDownList ID="AddAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server">
-                                    </asp:DropDownList>
-                                    <div class="validator" id="AddAssetPersonToRecommendValidator" runat="server"></div>
+                                    <div id="AddAssetPersonToRecommend" runat="server" class="custom-label">
+                                    </div>
                                 </div>
                                 <div class="row expand-item-row">
                                     <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"

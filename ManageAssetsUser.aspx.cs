@@ -11,61 +11,103 @@ using System.Web.Security;
 using System.Web.Services;
 
 namespace FixAMz_WebApplication
-{
+{   
     public partial class ManaageAssetsUser : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Authenticate_User();
+            Load_Notifications();
+            setAssetID();
+
             if (!Page.IsPostBack)
             {
+                setUserName();
                 Load_Category();
-                //Load_Location();
-                Load_Employee_Data();
                 setUserName();
                 setAssetID();
+                costCenter();
+                personToRecommend();
+                Load_Location();
+                Load_Employee_Data();
                 Page.MaintainScrollPositionOnPostBack = true;
             }
-            Load_Notifications();
+            
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
         }
 
+        //set costID by user login
+        protected void costCenter() {
+            String username = HttpContext.Current.User.Identity.Name;
+            String query = "SELECT e.costID FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE s.username='" + username + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            String costid = (cmd.ExecuteScalar().ToString()).Trim();
+            AddNewCostID.InnerHtml = costid;
+            Session["COST_ID_MNG_ASST"] = costid;
+            conn.Close();
+        }
+
+        //set personToRecommend according to costID
+        protected void personToRecommend() {
+            String query = "SELECT e.empID, e.firstName, e.lastName FROM Employee e INNER JOIN CostCenter c ON e.empID = c.recommendPerson WHERE c.costID='" + Session["COST_ID_MNG_ASST"] + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            String recoPrsn = "";
+            while (dr.Read()) {
+                recoPrsn = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
+            }
+             
+            AddAssetPersonToRecommend.InnerHtml = recoPrsn;
+            conn.Close();
+
+            String query2 = "SELECT recommendPerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
+            SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query, conn);
+            String Rec_Prsn_empID = (cmd2.ExecuteScalar().ToString()).Trim();
+            Session["PRSN_TO_REC"] = Rec_Prsn_empID;
+            conn2.Close();
+
+        }
+
+        //Checking if the user has access to the page
+        protected void Authenticate_User()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+
+            if (data[1] != "manageAssetUser")
+            {
+                FormsAuthentication.SignOut();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+            }
+        }
+
         //Setting user name on header
         protected void setUserName()
         {
-            try
-            {
-                String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT e.firstName, e.lastName, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                String output = "";
-                while (dr.Read())
-                {
-                    if (dr["type"].ToString().Trim() == "manageAssetUser")
-                    {
-                        output = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
-                    }
-                    else
-                    {
-                        FormsAuthentication.SignOut();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
 
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-                    }
-                }
-                userName.InnerHtml = output;
-            }
-            catch (SqlException exx)
-            {
-                responseBoxRed.Style.Add("display", "block");
-                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write("setUserName:" + exx.ToString());
-            }
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+
+            userName.InnerHtml = data[0];
+
         }
         
         //Loading notifications
@@ -273,7 +315,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT name, locID FROM Location", conn);
+                SqlCommand cmd = new SqlCommand("SELECT cl.locID, l.name FROM CostLocation cl INNER JOIN Location l ON cl.locID = l.locID WHERE costID='" + Session["COST_ID_MNG_ASST"] + "'", conn);
                 SqlDataReader data = cmd.ExecuteReader();
 
                 AddAssetLocationDropDown.DataSource = data;
@@ -313,9 +355,10 @@ Request.ApplicationPath + "Login.aspx';", true);
         {
             try
             {
+                
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT [firstname]+' '+[lastname] AS [name], empID FROM Employee", conn);
+                SqlCommand cmd = new SqlCommand("SELECT [firstname]+' '+[lastname] AS [name], empID FROM Employee WHERE costID='" + Session["COST_ID_MNG_ASST"] + "'", conn);
                 SqlDataReader data = cmd.ExecuteReader();
                 
                 //Register new asset owner drop down
@@ -327,13 +370,13 @@ Request.ApplicationPath + "Login.aspx';", true);
                 data.Close();
                 
                 //Register new asset recommend person drop down
-                data = cmd.ExecuteReader();
-                AddAssetPersonToRecommendDropDown.DataSource = data;
-                AddAssetPersonToRecommendDropDown.DataTextField = "name";
-                AddAssetPersonToRecommendDropDown.DataValueField = "empID";
-                AddAssetPersonToRecommendDropDown.DataBind();
-                AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
+                //data = cmd.ExecuteReader();
+                //AddAssetPersonToRecommendDropDown.DataSource = data;
+                //AddAssetPersonToRecommendDropDown.DataTextField = "name";
+                //AddAssetPersonToRecommendDropDown.DataValueField = "empID";
+                //AddAssetPersonToRecommendDropDown.DataBind();
+                //AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                //data.Close();
 
                 //Asset search owner drop down
                 data = cmd.ExecuteReader();
@@ -400,6 +443,14 @@ Request.ApplicationPath + "Login.aspx';", true);
         // Regester new asset ==========================================================
         protected void setAssetID() 
         {
+            //Getting cost center
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+            string costID = data[2];
+
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
@@ -410,23 +461,22 @@ Request.ApplicationPath + "Login.aspx';", true);
                 if (cmd.ExecuteScalar() != null)
                 {
                     String lastAssetID = (cmd.ExecuteScalar().ToString()).Trim();
-                    String chr = Convert.ToString(lastAssetID[0]);
-                    String temp = "";
-                    for (int i = 1; i < lastAssetID.Length; i++)
-                    {
-                        temp += Convert.ToString(lastAssetID[i]);
-                    }
-                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
-                    newAssetID = chr;
-                    for (int i = 1; i < lastAssetID.Length - temp.Length; i++)
+                    String prefix = "NWSDB/" + costID + "/A";
+                    //Extracting the number
+                    String num = Convert.ToString(lastAssetID.Substring(15));
+                    //Adding one
+                    
+                    newAssetID = prefix;
+                    for (int i = 1; i < num.Length; i++)
                     {
                         newAssetID += "0";
                     }
-                    newAssetID += temp;
+                    num = Convert.ToString(Convert.ToInt16(num) + 1);
+                    newAssetID += num;
                 }
                 else
                 {
-                    newAssetID = "A00001";
+                    newAssetID = "NWSDB/" + costID + "/A00001";
                 }
 
                 AddNewAssetId.InnerHtml = newAssetID;
@@ -461,9 +511,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlCommand cmd = new SqlCommand(getUserIDQuery, conn);
                 String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
-                string insertion_Asset = "insert into Asset (assetID, name, value, salvageValue, updatedValue, category, subcategory, owner, status, recommend) values (@assetid, @name, @value, @salvageValue, @updatedValue, @category, @subcategory,@owner, @status, @recommend)";
+                string insertion_Asset = "insert into Asset (assetID, costID, name, value, salvageValue, updatedValue, category, subcategory, owner, status, location, recommend) values (@assetid, @costid, @name, @value, @salvageValue, @updatedValue, @category, @subcategory,@owner, @status, @location, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@costid", AddNewCostID.InnerHtml);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@salvageValue", AddSalvageValueTextBox.Text);
@@ -472,11 +523,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@status", 0);
-                //cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
-                cmd.Parameters.AddWithValue("@recommend", AddAssetPersonToRecommendDropDown.SelectedValue);
-
+                cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", Session["PRSN_TO_REC"]);
                 cmd.ExecuteNonQuery();
-
+                
                 String notID = setNotID();
                 String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notContent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
@@ -487,7 +537,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", empID);
-                cmd.Parameters.AddWithValue("@receiveuser", AddAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();

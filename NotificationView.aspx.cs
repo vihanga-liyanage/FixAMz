@@ -28,9 +28,43 @@ namespace FixAMz_WebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Authenticate_User();
             setUserName();
             Load_Content();
             Load_Notifications();
+        }
+
+        //Checking if the user has access to the page
+        protected void Authenticate_User()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+
+            if (data[1] != "manageAssetUser")
+            {
+                FormsAuthentication.SignOut();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+            }
+        }
+
+        //Setting user name on header
+        protected void setUserName()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+
+            userName.InnerHtml = data[0];
+
         }
 
         //Loading notifications
@@ -301,32 +335,6 @@ namespace FixAMz_WebApplication
             
         }
 
-        //Setting user name on header
-        protected void setUserName()
-        {
-            try
-            {
-                String username = HttpContext.Current.User.Identity.Name;
-                String query = "SELECT Employee.firstName, Employee.lastName FROM Employee INNER JOIN SystemUser ON Employee.empID=SystemUser.empID WHERE SystemUser.username='" + username + "'";
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                String output = "";
-                while (dr.Read())
-                {
-                    output = dr["firstName"].ToString() + " " + dr["lastName"].ToString();
-                }
-                userName.InnerHtml = output;
-            }
-            catch (SqlException exx)
-            {
-                responseBoxRed.Style.Add("display", "block");
-                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write("setUserName:" + exx.ToString());
-            }
-        }
-
         // Signing out =================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
@@ -379,6 +387,7 @@ namespace FixAMz_WebApplication
             }
         }
 
+
         //Reads the last dispID from DB, calculates the next=============================
         protected String setdispID() //Reads the last dispID from DB, calculates the next and set it in the web page.
         {
@@ -426,6 +435,7 @@ namespace FixAMz_WebApplication
         }
 
 //Add new asset ==========================================
+
         protected void AddNewAssetSendapprovecancel_Click(object sender, EventArgs e)
 
             {
