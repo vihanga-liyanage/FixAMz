@@ -11,4 +11,3 @@ E:\FixAMz\bin\FixAMz_WebApplication.dll
 E:\FixAMz\bin\FixAMz_WebApplication.pdb
 E:\FixAMz\obj\Debug\FixAMz_WebApplication.dll
 E:\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
-E:\FixAMz\obj\Debug\FixAMz_WebApplication.csprojResolveAssemblyReference.cache

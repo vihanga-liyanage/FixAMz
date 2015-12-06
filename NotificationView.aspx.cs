@@ -596,7 +596,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String getvalue = "SELECT value FROM Asset WHERE assetID='" + Asset + "'";
                 SqlCommand cmd3 = new SqlCommand(getvalue, conn);
                 string val = cmd3.ExecuteScalar().ToString();
-                int value = Convert.ToInt16(val);
+                int value = Convert.ToInt32(val);
                 cmd3.ExecuteNonQuery();
                 String getupdatedvalue = "SELECT updatedValue FROM UpgradeAsset WHERE assetID='" + Asset + "' AND status='pending'";
                 SqlCommand cmd4 = new SqlCommand(getupdatedvalue, conn);
