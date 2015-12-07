@@ -140,6 +140,13 @@
                 </div>
             </div>
 
+<!-- AddnewassetStateApprove cancel-->
+            <div id="AddnewassetStateApproveCancel" runat="server">
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"/>
+                </div>
+            </div>
+
 
 <!-- UpgradeassetState-->
             <div id="UpgradeassetState" runat="server">
@@ -159,6 +166,32 @@
                         OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
                 </div>
             </div>
+
+<!--UpgradeassetApprove-->
+            <div id="UpgradeassetApprove" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Upgrade cost</div>
+                    <div id="UpgradeCostApprove" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Description</div>
+                    <div id="UpgradeDescriptionApprove" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button3" runat="server" Text="Approve"  class="expand-item-btn" OnClick="UpgradeAssetapprove_Click" />
+                    <asp:Button ID="Button5" runat="server" Text="Cancel" class="expand-item-btn" OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
+                </div>
+            </div>
+
+<!-- UpgradeassetApprove cancel-->
+            <div id="UpgradeassetStateApproveCancel" runat="server">
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button6" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"/>
+                </div>
+            </div>
+
 <!-- TransferassetState-->
             <div id="TransferassetState" runat="server">
                 <div class="row expand-item-row">
@@ -186,12 +219,37 @@
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <asp:Button ID="DisposeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" />
+                    <asp:Button ID="DisposeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="DisposeAssetsendapprove_Click" />
                     <asp:Button ID="DisposeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClientClick="JavaScript:window.history.back(1);return false;" />
                 </div>
             </div>
 
+<!-- DisposeassetApprove-->
+            <div id="DisposeassetApprove" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Description</div>
+                    <div id="DisposeassetApproveDescription" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button7" runat="server" Text="Approve"  class="expand-item-btn" OnClick="DisposeAssetapprove_Click" />
+                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn"
+                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                </div>
+            </div>
+<!-- DisposeassetCancel-->
+            <div id="DisposeassetCancel" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Description</div>
+                    <div id="DisposeassetCancelDescription" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button10" runat="server" Text="Back" class="expand-item-btn"
+                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                </div>
+            </div>
 
         </div>
         <div class="col-md-4" style="position: relative; padding-left: 0px;">
