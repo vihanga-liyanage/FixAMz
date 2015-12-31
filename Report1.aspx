@@ -88,7 +88,7 @@
             <div class="col-md-12">
                 <div class="col-md-7">
                                     <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
-                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  class="expand-item-btn" /> 
+                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
                 </div>
             </div>
     
