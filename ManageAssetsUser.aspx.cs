@@ -1036,7 +1036,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String transID = setTransAssetID();
                 String notID = setNotID();
                 string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, costID, type, status, location, owner, recommend) VALUES (@transid, @assetid, @costID, @type, @status, @location, @owner, @recommend)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -1052,11 +1052,12 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 cmd2.Parameters.AddWithValue("@notid", notID);
                 cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@action", "Recommend");
+                cmd2.Parameters.AddWithValue("@action", "Recommend");
                 cmd2.Parameters.AddWithValue("@nType", "Transfer");
                 cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
                 cmd2.Parameters.AddWithValue("@nReceiveUser", Session["PRSN_TO_REC"]);
+                //cmd2.Parameters.AddWithValue("@nDate", get);
                 cmd2.Parameters.AddWithValue("@nStatus", "not-seen");
                 cmd2.ExecuteNonQuery();
 
