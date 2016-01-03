@@ -967,7 +967,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         String transferAssetLocationID = "";
                         String transferAssetOwnerID = "";
 
-                        String query = "SELECT assetID, costID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, costID, name, category, subcategory, location, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -979,7 +979,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                             transferAssetCostID = dr["costID"].ToString();
                             transferAssetLocationID = dr["location"].ToString();
                             transferAssetOwnerID = dr["owner"].ToString();
-                            TransferValue.InnerHtml = dr["value"].ToString() + " LKR";
+                            TransferValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                         }
                         dr.Close();
                         // Get category name
