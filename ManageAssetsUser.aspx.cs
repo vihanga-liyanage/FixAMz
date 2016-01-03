@@ -20,6 +20,14 @@ namespace FixAMz_WebApplication
             Load_Notifications();
             setAssetID();
 
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+            string costID = data[2];
+            
+
             if (!Page.IsPostBack)
             {
                 setUserName();
@@ -31,6 +39,11 @@ namespace FixAMz_WebApplication
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
+
+                
+                TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
+                UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
+                DisposeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 Page.MaintainScrollPositionOnPostBack = true;
             }
             
