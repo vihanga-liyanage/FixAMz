@@ -64,19 +64,28 @@ namespace FixAMz_WebApplication
                     String a = dr.GetString(0);
                     assetID.Add(a);
 
-                    float b = (float)dr.GetDouble(2);
+                    float b = (float)dr.GetDouble(3);
                     value.Add(b);
 
-                    float c = (float)dr.GetDouble(3);
+                    float c = (float)dr.GetDouble(4);
                     salvageValue.Add(c);
 
-                    float d = (float)dr.GetDouble(4);
+                    float d = (float)dr.GetDouble(5);
                     updatedValue.Add(d); 
 
-                    String f = dr.GetString(6);
+                    /*float b = dr.GetFloat(3);
+                    value.Add(b);
+
+                    float c = dr.GetFloat(4);
+                    salvageValue.Add(c);
+
+                    float d = dr.GetFloat(5);
+                    updatedValue.Add(d); */
+
+                    String f = dr.GetString(7);
                     subcategory.Add(f);
 
-                    DateTime g = dr.GetDateTime(9);
+                    DateTime g = dr.GetDateTime(11);
                     approvedDateTime.Add(g);
  
                 }
@@ -115,7 +124,7 @@ namespace FixAMz_WebApplication
                     float upValue = (value[i] - salvageValue[i]) * (newRate);
                     float upValuefinal = (float)upValue *yearDiff;
                     upValuefinal = value[i] - upValuefinal;
-                    //upValuefinal = Math.Round(upValuefinal, 2);
+                    upValuefinal = (float)Math.Round(upValuefinal, 2);
                     updatedValue[i] = upValuefinal;
 
                     //Response.Write("updated value " + upValuefinal.ToString() + "/n");
@@ -140,9 +149,9 @@ namespace FixAMz_WebApplication
              }
              catch (SqlException)
              {
-                 /*responseBoxRed.Style.Add("display", "block");
+                 responseBoxRed.Style.Add("display", "block");
                  responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                 Response.Write(e.ToString());*/
+                 Response.Write(e.ToString());
              }
          }
             /*HtmlAnchor a = (HtmlAnchor)sender;
