@@ -55,15 +55,14 @@ namespace FixAMz_WebApplication
 
         //set costID by user login
         protected void costCenter() {
-            String username = HttpContext.Current.User.Identity.Name;
-            String query = "SELECT e.costID FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE s.username='" + username + "'";
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            String costid = (cmd.ExecuteScalar().ToString()).Trim();
-            AddNewCostID.InnerHtml = costid;
-            Session["COST_ID_MNG_ASST"] = costid;
-            conn.Close();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            Session["COST_ID_MNG_ASST"] = data[2];
         }
 
         //set personToRecommend according to costID
