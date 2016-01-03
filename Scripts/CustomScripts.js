@@ -621,10 +621,33 @@ function requiredFieldValidatorValue(controller, msg) {
     }
 }
 
+function requiredFieldValidatorSalvageValue(controller, msg) {
+    var content = document.forms[0][controller + "TextBox"].value;
+    var actValue = document.forms[0]["AddValueTextBox"].value;
+    var re = /^\d+(\.\d{1,2})?$/;
+    if (content == "") {
+        document.getElementById(controller + "Validator").innerHTML = msg;
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else if (!re.test(content)) {
+        document.getElementById(controller + "Validator").innerHTML = "Enter a valid value.";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else if (parseFloat(content) >=actValue) {
+        document.getElementById(controller + "Validator").innerHTML = "Value must be lesser than Asset Value";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid red";
+        return false;
+    } else {
+        document.getElementById(controller + "Validator").innerHTML = "";
+        document.forms[0][controller + "TextBox"].style.border = "1px solid #cacaca";
+        return true;
+    }
+}
+
 function isValidAddAsset() {
     var isValidAssetName = requiredFieldValidator("RegisterAssetName", "Asset name cannot be empty.") && assetNameValidator("RegisterAssetName");
     var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
-    var isValidSalvageValue = requiredFieldValidatorValue("AddSalvageValue", "Salvage Value cannot be empty.");
+    var isValidSalvageValue = requiredFieldValidatorSalvageValue("AddSalvageValue", "Salvage Value cannot be empty.");
     var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
     var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
     var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
