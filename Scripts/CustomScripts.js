@@ -322,7 +322,6 @@ function updateClearAll() {
     document.getElementById("updateUserSecondState").style.display = "none";
     document.getElementById("updateUserInitState").style.display = "block";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    document.forms[0]["UpdateUsernameTextBox"].value = "";
     return false;
 }
 
@@ -332,8 +331,7 @@ function resetPasswordClearAll() {
     document.forms[0]["ResetNewConfirmPasswordTextBox"].value = "";
     document.getElementById("resetPasswordSecondState").style.display = "none";
     document.getElementById("resetPasswordInitState").style.display = "block";
-    document.forms[0]["UpdateEmpIDTextBox"].value = "";
-
+    document.forms[0]["ResetPasswordUsernameTextBox"].value = "";
     return false;
 }
 
@@ -460,7 +458,6 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-
     return false;
 }
 
@@ -510,13 +507,12 @@ function isValidUpdateScat() {
 }
 
 function updateSubCategoryClearAll() {
-    document.forms[0]["UpdateScatNameTetBox"].value = "";
+    document.forms[0]["UpdateScatNameTextBox"].value = "";
     document.forms[0]["UpdateDepRateTextBox"].value = "";
     document.forms[0]["UpdateLifetimeTextBox"].value = "";
-
     document.getElementById("updateSubCategoryInitState").style.display = "block";
     document.getElementById("updateSubCategorySecondState").style.display = "none";
-
+    document.forms[0]["UpdateSubCategoryIDTextBox"].value = "";
     return false;
 }
 
@@ -541,9 +537,10 @@ function isValidUpdateCat() {
 
 function updateCategoryClearAll() {
     document.forms[0]["UpdateCategoryNameTextBox"].value = "";
-    document.forms[0]["updateCategorySecondState"].style.display = "none";
-    document.forms[0]["updateCategoryInitState"].style.display = "block";
-    return true;
+    document.getElementById("updateCategoryInitState").style.display = "block";
+    document.getElementById("updateCategorySecondState").style.display = "none";
+    document.forms[0]["UpdateCategoryIDTextBox"].value = "";
+    return false;
 }
 
 //Add new sub category functions =============================================================
