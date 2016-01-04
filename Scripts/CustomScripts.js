@@ -1,4 +1,5 @@
-﻿//Notification JS
+﻿
+//Notification JS
 $(document).ready(function () {
     $("#notificationLink").click(function () {
         $("#notificationContainer").fadeToggle(300);
@@ -727,7 +728,13 @@ function isValidUpgradeAsset() {
 }
 
 function upgradeAssetClearAll() {
-    document.forms[0]["DisposeAssetIDTextBox"].value = "";
+    document.forms[0]["UpgradeAssetDescriptionTextBox"].value = "";
+    document.forms[0]["UpgradeAssetValueTextBox"].value = "";
+    document.forms[0]["UpgradeAssetIDTextBox"].value = "";
+    document.getElementById("upgradeAssetSecondState").style.display = "none";
+    document.getElementById("upgradeAssetInitState").style.display = "block";
+    //expandingItems["UpgradeAssetContent"] = true;
+    return false;
 }
 
 

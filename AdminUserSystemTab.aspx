@@ -59,7 +59,7 @@
                                         <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
 
                                         <li><a href="#" class="active">SYSTEM</a> </li>
-                                        <li><a href="NotificationView.aspx">ABOUT</a> </li>
+                                        <li><a href="#">ABOUT</a> </li>
 
                                         <li><a href="#">HELP</a> </li>
                                     </ul>
