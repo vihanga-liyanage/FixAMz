@@ -746,9 +746,9 @@ function isValidUpgradeAsset() {
 function upgradeAssetClearAll() {
     document.forms[0]["UpgradeAssetDescriptionTextBox"].value = "";
     document.forms[0]["UpgradeAssetValueTextBox"].value = "";
-    document.forms[0]["UpgradeAssetIDTextBox"].value = "";
     document.getElementById("upgradeAssetSecondState").style.display = "none";
     document.getElementById("upgradeAssetInitState").style.display = "block";
+    document.forms[0]["UpgradeAssetIDTextBox"].value = "";
     //expandingItems["UpgradeAssetContent"] = true;
     return false;
 }
