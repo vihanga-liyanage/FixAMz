@@ -490,7 +490,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                     cmd.Parameters.AddWithValue("@notContent", " ");
                     cmd.Parameters.AddWithValue("@senduser", receiveuser);
-                    cmd.Parameters.AddWithValue("@receiveuser", "E00004");
+                    cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                     //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@status", "not-seen");
                     cmd.Parameters.AddWithValue("@action", "Approve");
@@ -513,7 +513,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 conn.Open();
                 DateTime curDate = DateTime.Now;
 
-                String quary = "UPDATE Asset SET status='1', approve='E00004',approvedDate='"+ curDate +"' WHERE assetID='" + Asset + "'";
+                String quary = "UPDATE Asset SET status='1', approve='" + Session["PRSN_TO_REC"] + "',approvedDate='" + curDate + "' WHERE assetID='" + Asset + "'";
 
                 SqlCommand cmd = new SqlCommand(quary, conn);
                 cmd.ExecuteNonQuery();
@@ -734,6 +734,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
 
         }
+
 
         protected void DisposeAssetBack_Click(object sender, EventArgs e)
         {
