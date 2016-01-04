@@ -265,7 +265,9 @@ function addNewClearAll() {
     document.forms[0]["AddNewUsernameTextBox"].value = "";
     document.forms[0]["AddNewPasswordTextBox"].value = "";
     document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
-    return true;
+    document.getElementById("AddNewUserContent").style.display = "none";
+    //document.getElementById("AddUserLoginDetailContainer").style.display = "none";
+    return false;
 }
 
 function isValidAddNew() {
