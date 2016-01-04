@@ -75,15 +75,20 @@ namespace FixAMz_WebApplication
              
             AddAssetPersonToRecommend.InnerHtml = recoPrsn;
             TransAssetSendForRecommend.InnerHtml = recoPrsn;
-
+            dr.Close();
             conn.Close();
 
-            String query2 = "SELECT recommendPerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
+            String query2 = "SELECT recommendPerson, approvePerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
             conn2.Open();
             SqlCommand cmd2 = new SqlCommand(query, conn2);
-            String Rec_Prsn_empID = (cmd2.ExecuteScalar().ToString()).Trim();
-            Session["PRSN_TO_REC"] = Rec_Prsn_empID;
+            dr = cmd2.ExecuteReader();
+            while (dr.Read())
+            {
+                Session["PRSN_TO_REC"] = dr["recommendPerson"].ToString().Trim();
+                Session["PRSN_TO_APP"] = dr["approvePerson"].ToString().Trim();
+            }
+            dr.Close();
             conn2.Close();
 
         }
@@ -614,7 +619,12 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             String resultMessage = "";
 
-            String query = "SELECT * FROM Asset WHERE";
+            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, E.owner AS Owner, A.location AS Location, A.approvedDate AS Approved_Date, A.recommend AS Recommended_By, A.approve AS Approved_By " +
+                "FROM Asset A " +
+                "INNER JOIN Category C ON A.category=C.catID " +
+                "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
+                "INNER JOIN Employee E ON A.owner=E.empID " +
+                "WHERE status=1";
 
             if (assetID != "")
             { 
@@ -669,6 +679,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                 if (reader != null && reader.HasRows) //if search results found
                 {
                     DataTable dt = new DataTable();
+                    //dt.Columns.Add("Asset ID");
+                    //DataRow dtrow = dt.NewRow();
+                    //dtrow["Asset ID"] = "E00001";
+                    //dt.Rows.Add(dtrow);
                     dt.Load(reader);
 
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
@@ -1233,7 +1247,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
 
         }
-
 
         public string SelectedValue { get; set; }
     }
