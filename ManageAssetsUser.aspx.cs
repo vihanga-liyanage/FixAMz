@@ -22,6 +22,7 @@ namespace FixAMz_WebApplication
             costCenter();
             Load_Notifications();
             setAssetID();
+            personToRecommend();
             
             if (!Page.IsPostBack)
             {
@@ -29,7 +30,6 @@ namespace FixAMz_WebApplication
                 setCostCenterName();
                 Load_Category();
                 setAssetID();
-                personToRecommend();
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
@@ -44,6 +44,9 @@ namespace FixAMz_WebApplication
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
+
+            //Can give an alert
+            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"" + Session["PRSN_TO_REC"] + "\")</SCRIPT>");
         }
 
         //set costID by user login
@@ -77,8 +80,8 @@ namespace FixAMz_WebApplication
 
             String query2 = "SELECT recommendPerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-            conn.Open();
-            SqlCommand cmd2 = new SqlCommand(query, conn);
+            conn2.Open();
+            SqlCommand cmd2 = new SqlCommand(query, conn2);
             String Rec_Prsn_empID = (cmd2.ExecuteScalar().ToString()).Trim();
             Session["PRSN_TO_REC"] = Rec_Prsn_empID;
             conn2.Close();
@@ -555,7 +558,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 string insertion_Asset = "insert into Asset (assetID, costID, name, value, salvageValue, updatedValue, category, subcategory, owner, status, location, recommend) values (@assetid, @costid, @name, @value, @salvageValue, @updatedValue, @category, @subcategory,@owner, @status, @location, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
-                cmd.Parameters.AddWithValue("@costid", AddNewCostID.InnerHtml);
+                cmd.Parameters.AddWithValue("@costid", costID);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@salvageValue", AddSalvageValueTextBox.Text);
