@@ -20,6 +20,14 @@ namespace FixAMz_WebApplication
             Load_Notifications();
             setAssetID();
 
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+            string costID = data[2];
+            
+
             if (!Page.IsPostBack)
             {
                 setUserName();
@@ -31,6 +39,11 @@ namespace FixAMz_WebApplication
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
+
+                
+                TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
+                UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
+                DisposeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 Page.MaintainScrollPositionOnPostBack = true;
             }
             
@@ -42,15 +55,14 @@ namespace FixAMz_WebApplication
 
         //set costID by user login
         protected void costCenter() {
-            String username = HttpContext.Current.User.Identity.Name;
-            String query = "SELECT e.costID FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE s.username='" + username + "'";
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            String costid = (cmd.ExecuteScalar().ToString()).Trim();
-            AddNewCostID.InnerHtml = costid;
-            Session["COST_ID_MNG_ASST"] = costid;
-            conn.Close();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            Session["COST_ID_MNG_ASST"] = data[2];
         }
 
         //set personToRecommend according to costID
@@ -955,7 +967,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         String transferAssetLocationID = "";
                         String transferAssetOwnerID = "";
 
-                        String query = "SELECT assetID, costID, name, category, subcategory, location, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, costID, name, category, subcategory, location, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -967,7 +979,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                             transferAssetCostID = dr["costID"].ToString();
                             transferAssetLocationID = dr["location"].ToString();
                             transferAssetOwnerID = dr["owner"].ToString();
-                            TransferValue.InnerHtml = dr["value"].ToString() + " LKR";
+                            TransferValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                         }
                         dr.Close();
                         // Get category name
@@ -1036,7 +1048,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String transID = setTransAssetID();
                 String notID = setNotID();
                 string insertion_Asset_to_transferAsset = "INSERT INTO TransferAsset (transID, assetID, costID, type, status, location, owner, recommend) VALUES (@transid, @assetid, @costID, @type, @status, @location, @owner, @recommend)";
-                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nDate, @nStatus)";
+                string insertion_Asset_to_notification = "INSERT INTO Notification (notID, assetID, type, action, notContent, sendUser, receiveUser, status) VALUES (@notid, @nAssetid, @nType, @action, @nNotContent, @nSendUser, @nReceiveUser, @nStatus)";
                 cmd = new SqlCommand(insertion_Asset_to_transferAsset, conn);
                 SqlCommand cmd2 = new SqlCommand(insertion_Asset_to_notification, conn);
 
@@ -1052,11 +1064,12 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 cmd2.Parameters.AddWithValue("@notid", notID);
                 cmd2.Parameters.AddWithValue("@nAssetid", TransferAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@action", "Recommend");
+                cmd2.Parameters.AddWithValue("@action", "Recommend");
                 cmd2.Parameters.AddWithValue("@nType", "Transfer");
                 cmd2.Parameters.AddWithValue("@nNotContent", "0");
                 cmd2.Parameters.AddWithValue("@nSendUser", empID);
                 cmd2.Parameters.AddWithValue("@nReceiveUser", Session["PRSN_TO_REC"]);
+                //cmd2.Parameters.AddWithValue("@nDate", get);
                 cmd2.Parameters.AddWithValue("@nStatus", "not-seen");
                 cmd2.ExecuteNonQuery();
 
@@ -1104,7 +1117,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                        // String disposeAssetLocationID = "";
                         String disposeAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -1115,7 +1128,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                             disposeAssetSubCategoryID = dr["subcategory"].ToString();
                           //  disposeAssetLocationID = dr["location"].ToString();
                             disposeAssetOwnerID = dr["owner"].ToString();
-                            DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
+                            DisposeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                         }
                         dr.Close();
                         // Get category name

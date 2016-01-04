@@ -233,7 +233,7 @@
                                     <div class="info-div">Enter asset ID to transfer the asset</div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Asset ID</div>
-                                        <asp:TextBox ID="TransferAssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="TransferAssetIDTextBox" class="expand-item-textbox" runat="server" Text=""></asp:TextBox>
                                         <div class="validator" id="TransferAssetIDValidator" runat="server">
                                         </div>
                                     </div>

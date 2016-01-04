@@ -363,27 +363,27 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
             if (costID != "")
             {
-                query += " AND costID='" + costID + "'";
+                query += " OR costID='" + costID + "'";
                 resultMessage += costID + ", ";
             }
             if (firstname != "")
             {
-                query += " AND firstname like '" + firstname + "%'";
+                query += " OR firstname like '" + firstname + "%'";
                 resultMessage += firstname + ", ";
             }
             if (lastname != "")
             {
-                query += " AND lastname like '" + lastname + "%'";
+                query += " OR lastname like '" + lastname + "%'";
                 resultMessage += lastname + ", ";
             }
             if (email != "")
             {
-                query += " AND email like '" + email + "%'";
+                query += " OR email like '" + email + "%'";
                 resultMessage += email + ", ";
             }
             if (contactNo != "")
             {
-                query += " AND contactNo like '" + contactNo + "%'";
+                query += " OR contactNo like '" + contactNo + "%'";
                 resultMessage += contactNo + ", ";
             }
 
@@ -391,7 +391,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             UserSearchGridView.DataSource = null;
             UserSearchGridView.DataBind();
 
-            query = query.Replace("WHERE AND", "WHERE ");
+            query = query.Replace("WHERE OR", "WHERE ");
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             try
