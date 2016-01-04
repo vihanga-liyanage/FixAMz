@@ -322,7 +322,6 @@ function updateClearAll() {
     document.getElementById("updateUserSecondState").style.display = "none";
     document.getElementById("updateUserInitState").style.display = "block";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    document.forms[0]["UpdateUsernameTextBox"].value = "";
     return false;
 }
 
@@ -332,8 +331,7 @@ function resetPasswordClearAll() {
     document.forms[0]["ResetNewConfirmPasswordTextBox"].value = "";
     document.getElementById("resetPasswordSecondState").style.display = "none";
     document.getElementById("resetPasswordInitState").style.display = "block";
-    document.forms[0]["UpdateEmpIDTextBox"].value = "";
-
+    document.forms[0]["ResetPasswordUsernameTextBox"].value = "";
     return false;
 }
 
