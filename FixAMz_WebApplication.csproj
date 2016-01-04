@@ -141,6 +141,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="AdminUserPeopleTab.aspx" />
     <Content Include="AdminUserSystemTab.aspx" />
+    <Content Include="testrept.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -179,6 +180,11 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FixAMzDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FixAMzDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="GridView.aspx.cs">
       <DependentUpon>GridView.aspx</DependentUpon>
@@ -254,6 +260,13 @@
     <Compile Include="AdminUserSystemTab.aspx.designer.cs">
       <DependentUpon>AdminUserSystemTab.aspx</DependentUpon>
     </Compile>
+    <Compile Include="testrept.aspx.cs">
+      <DependentUpon>testrept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testrept.aspx.designer.cs">
+      <DependentUpon>testrept.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,6 +276,17 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FixAMzDataSet.xsc">
+      <DependentUpon>FixAMzDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FixAMzDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FixAMzDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FixAMzDataSet.xss">
+      <DependentUpon>FixAMzDataSet.xsd</DependentUpon>
+    </None>
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
@@ -287,7 +311,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>25530</DevelopmentServerPort>
+          <DevelopmentServerPort>6572</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
