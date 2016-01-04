@@ -188,7 +188,7 @@
 <!-- UpgradeassetApprove cancel-->
             <div id="UpgradeassetStateApproveCancel" runat="server">
                 <div class="row expand-item-row">
-                    <asp:Button ID="Button6" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"/>
+                    <asp:Button ID="Button6" runat="server" Text="Back" class="expand-item-btn"  OnClick="upgradeAssetBack_Click"/>
                 </div>
             </div>
 
@@ -221,7 +221,7 @@
                 <div class="row expand-item-row">
                     <asp:Button ID="DisposeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="DisposeAssetsendapprove_Click" />
                     <asp:Button ID="DisposeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
-                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                        OnClick="DisposeAssetcancel_Click" />
                 </div>
             </div>
 
@@ -235,7 +235,7 @@
                 <div class="row expand-item-row">
                     <asp:Button ID="Button7" runat="server" Text="Approve"  class="expand-item-btn" OnClick="DisposeAssetapprove_Click" />
                     <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn"
-                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                        OnClick="DisposeAssetcancel_Click" />
                 </div>
             </div>
 <!-- DisposeassetCancel-->
@@ -247,7 +247,7 @@
                 </div>
                 <div class="row expand-item-row">
                     <asp:Button ID="Button10" runat="server" Text="Back" class="expand-item-btn"
-                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                        OnClick="DisposeAssetBack_Click" />
                 </div>
             </div>
 

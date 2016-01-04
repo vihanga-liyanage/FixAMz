@@ -318,6 +318,14 @@ Request.ApplicationPath + "Login.aspx';", true);
                 if (Type == "Delete" && Action == "Cancel")
                 {
                     NotificationHeader.InnerHtml = "Dispose asset cancel Notification";
+                    SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                    
+                    String getvalue = "SELECT notContent FROM Notification WHERE assetID='" + Asset + "'";
+                    SqlCommand cmd3 = new SqlCommand(getvalue, conn);
+                    string val = cmd3.ExecuteScalar().ToString();
+
+                    cmd3.ExecuteNonQuery();
+                    conn1.Close();
                     DisposeassetCancelDescription.InnerHtml = Content;
                     DisposeassetCancel.Style.Add("display", "block");
                 }
@@ -624,6 +632,11 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        protected void upgradeAssetBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
+
 
 //Dispose asset ==========================================
         protected void DisposeAssetsendapprove_Click(object sender, EventArgs e)
@@ -698,7 +711,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@notid", setNotID());
                 cmd.Parameters.AddWithValue("@type", "Delete");
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
-                cmd.Parameters.AddWithValue("@notContent", " ");
+                cmd.Parameters.AddWithValue("@notContent", DisposeassetApproveDescription.InnerHtml);
                 cmd.Parameters.AddWithValue("@senduser", receiveuser);
                 cmd.Parameters.AddWithValue("@receiveuser", senduser);
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
@@ -721,6 +734,10 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         }
 
+        protected void DisposeAssetBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
 
     }
 }

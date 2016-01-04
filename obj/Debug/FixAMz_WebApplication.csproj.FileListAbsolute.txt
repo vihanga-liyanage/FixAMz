@@ -1,4 +1,0 @@
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\bin\FixAMz_WebApplication.dll
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\bin\FixAMz_WebApplication.pdb
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\obj\Debug\FixAMz_WebApplication.dll
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
