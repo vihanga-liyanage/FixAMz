@@ -1,25 +1,12 @@
-C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\bin\FixAMz_WebApplication.dll
-C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\bin\FixAMz_WebApplication.pdb
-C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\obj\Debug\FixAMz_WebApplication.dll
-C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\obj\Debug\FixAMz_WebApplication.pdb
-C:\Users\Dineth Madusara\Documents\Visual Studio 2012\Projects\FixAMz_WebApplication\FixAMz_WebApplication\obj\Debug\FixAMz_WebApplication.csprojResolveAssemblyReference.cache
-D:\Developer\My Projects\FixAMz\FixAMz\bin\FixAMz_WebApplication.dll
-D:\Developer\My Projects\FixAMz\FixAMz\bin\FixAMz_WebApplication.pdb
-D:\Developer\My Projects\FixAMz\FixAMz\obj\Debug\FixAMz_WebApplication.dll
-D:\Developer\My Projects\FixAMz\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
-E:\FixAMz\bin\FixAMz_WebApplication.dll
-E:\FixAMz\bin\FixAMz_WebApplication.pdb
-E:\FixAMz\obj\Debug\FixAMz_WebApplication.dll
-E:\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\bin\FixAMz_WebApplication.dll
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\bin\FixAMz_WebApplication.pdb
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\obj\Debug\FixAMz_WebApplication.dll
-E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\bin\FixAMz_WebApplication.dll
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\bin\FixAMz_WebApplication.pdb
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\obj\Debug\FixAMz_WebApplication.dll
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
+<<<<<<< HEAD
 E:\fixamz2\FixAMz\bin\FixAMz_WebApplication.dll
 E:\fixamz2\FixAMz\bin\FixAMz_WebApplication.pdb
 E:\fixamz2\FixAMz\obj\Debug\FixAMz_WebApplication.dll
 E:\fixamz2\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
+=======
+E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2016-01-01\FixAMz\obj\Debug\FixAMz_WebApplication.csprojResolveAssemblyReference.cache
+>>>>>>> 091ca2412ac30812ec929e7df5f9e7b3c42743c6

@@ -546,11 +546,11 @@ function isValidAddSubCategory() {
     if (isValidDepreciation) {
         var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
         var intVal = parseFloat(depre);
-        if (!depre.match(/^\d+$/)) {
+        /*if (!depre.match(/^\d+$/)) {
             document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
             document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
-            isValidDepreciation = false;
-        } else if (intVal > 100.0) {
+            isValidDepreciation = false;*/
+        if (intVal > 100.0) {
             document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
             document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
             isValidDepreciation = false;
