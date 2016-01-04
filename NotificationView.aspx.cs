@@ -148,8 +148,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             
         }
 
-        
-
         //Load page data
         protected void Load_Content()
         {
