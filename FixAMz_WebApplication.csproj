@@ -180,6 +180,11 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FixAMzDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FixAMzDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GridView.aspx.cs">
       <DependentUpon>GridView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -263,6 +268,17 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FixAMzDataSet.xsc">
+      <DependentUpon>FixAMzDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FixAMzDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FixAMzDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FixAMzDataSet.xss">
+      <DependentUpon>FixAMzDataSet.xsd</DependentUpon>
+    </None>
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
