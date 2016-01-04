@@ -84,7 +84,7 @@ namespace FixAMz_WebApplication
 
             String query2 = "SELECT recommendPerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-            conn.Open();
+            conn2.Open();
             SqlCommand cmd2 = new SqlCommand(query, conn);
             String Rec_Prsn_empID = (cmd2.ExecuteScalar().ToString()).Trim();
             Session["PRSN_TO_REC"] = Rec_Prsn_empID;
