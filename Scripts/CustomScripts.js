@@ -458,7 +458,6 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-
     return false;
 }
 
@@ -539,9 +538,10 @@ function isValidUpdateCat() {
 
 function updateCategoryClearAll() {
     document.forms[0]["UpdateCategoryNameTextBox"].value = "";
-    document.forms[0]["updateCategorySecondState"].style.display = "none";
-    document.forms[0]["updateCategoryInitState"].style.display = "block";
-    return true;
+    document.getElementById("updateCategoryInitState").style.display = "block";
+    document.getElementById("updateCategorySecondState").style.display = "none";
+    document.forms[0]["UpdateCategoryIDTextBox"].value = "";
+    return false;
 }
 
 //Add new sub category functions =============================================================
