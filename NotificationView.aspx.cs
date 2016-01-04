@@ -576,7 +576,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", " ");
                 cmd.Parameters.AddWithValue("@senduser", receiveuser);
-                cmd.Parameters.AddWithValue("@receiveuser", "E00004");
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Approve");
@@ -652,7 +652,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notContent", DisposeDescription.InnerHtml);
                 cmd.Parameters.AddWithValue("@senduser", receiveuser);
-                cmd.Parameters.AddWithValue("@receiveuser", "E00004");
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Approve");
@@ -675,7 +675,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "INSERT INTO DisposeAsset (dispID, assetID, description, recommend, approve, status) VALUES (@dispid, @assetid, @description, @recommend, @approve, @status)";
+                String query = "INSERT INTO DisposeAsset (dispID, assetID, description, recommend, approve) VALUES (@dispid, @assetid, @description, @recommend, @approve)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@dispid", setdispID());
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
@@ -683,7 +683,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@recommend", senduser);
                 cmd.Parameters.AddWithValue("@approve", receiveuser);
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@status", "1");
+                
                 cmd.ExecuteNonQuery();
 
                 String query1 = "UPDATE Asset SET status='0' WHERE assetID = '" + Asset + "'";
