@@ -346,7 +346,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="update-user-icon">
+                                <div class="update-user-icon hidden-sm hidden-xs">
                                 </div>
                             </div>
                         </div>
@@ -405,7 +405,7 @@
                                         <asp:Button ID="ResetPasswordBtn" runat="server" Text="Reset Password" class="expand-item-btn"
                                             OnClientClick="return isValidResetPassword()" OnClick="ResetPasswordBtn_Click" />
                                         <asp:Button ID="Button3" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return updateClearAll()" />
+                                            OnClientClick="return resetPasswordClearAll()" />
                                     </div>
                                 </div>
                             </div>
