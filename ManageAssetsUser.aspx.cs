@@ -1116,7 +1116,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                        // String disposeAssetLocationID = "";
                         String disposeAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, owner, value FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -1127,7 +1127,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                             disposeAssetSubCategoryID = dr["subcategory"].ToString();
                           //  disposeAssetLocationID = dr["location"].ToString();
                             disposeAssetOwnerID = dr["owner"].ToString();
-                            DisposeValue.InnerHtml = dr["value"].ToString() + " LKR";
+                            DisposeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                         }
                         dr.Close();
                         // Get category name
