@@ -596,6 +596,7 @@ function addSubCategoryClearAll() {
     document.forms[0]["AddSubCategoryNameTextBox"].value = "";
     document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value = "";
     document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
+    document.forms[0]["AddSubCategoryCategoryDropDown"].selectedIndex = 0;
     return true;
 }
 
