@@ -264,6 +264,8 @@ function addNewClearAll() {
     document.forms[0]["AddNewContactTextBox"].value = "";
     document.forms[0]["AddNewUsernameTextBox"].value = "";
     document.forms[0]["AddNewPasswordTextBox"].value = "";
+    document.forms[0]["AddUserCostNameDropDown"].selectedIndex = 0;
+    document.forms[0]["TypeDropDown"].selectedIndex = 0;
     document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
     document.getElementById("AddNewUserContent").style.display = "none";
     //document.getElementById("AddUserLoginDetailContainer").style.display = "none";
@@ -387,7 +389,9 @@ function searchClearAll() {
     document.forms[0]["SearchEmailTextBox"].value = "";
     document.forms[0]["SearchContactTextBox"].value = "";
     document.forms[0]["SearchUsernameTextBox"].value = "";
-    return true;
+    document.getElementById("UserSearchInitState").style.display = "none";
+    //document.getElementById("UserSearchSecondState").style.display = "none";
+    return false;
 }
 
 function isValidUserSearch() {
