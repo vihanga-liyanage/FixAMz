@@ -14,32 +14,25 @@ namespace FixAMz_WebApplication
 {   
     public partial class ManaageAssetsUser : System.Web.UI.Page
     {
+        private string costID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
+            costCenter();
             Load_Notifications();
             setAssetID();
-
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            string[] data = userData.Split(';');
-            string costID = data[2];
             
-
             if (!Page.IsPostBack)
             {
                 setUserName();
+                setCostCenterName();
                 Load_Category();
-                setUserName();
                 setAssetID();
-                costCenter();
                 personToRecommend();
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
-
                 
                 TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
@@ -61,7 +54,7 @@ namespace FixAMz_WebApplication
             string userData = ticket.UserData;
             //userData = "Vihanga Liyanage;admin;CO00001"
             string[] data = userData.Split(';');
-
+            costID = data[2];
             Session["COST_ID_MNG_ASST"] = data[2];
         }
 
@@ -526,6 +519,16 @@ Request.ApplicationPath + "Login.aspx';", true);
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
                 Response.Write("setAssetID:" + e.ToString());
             }
+        }
+
+        protected void setCostCenterName()
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT name FROM CostCenter WHERE costID='" + costID + "'", conn);
+            String costCenterName = (cmd.ExecuteScalar().ToString()).Trim();
+            AddNewCostID.InnerHtml = costCenterName;
+            conn.Close();
         }
 
         protected void Category_Selected_for_register(object sender, EventArgs e)
