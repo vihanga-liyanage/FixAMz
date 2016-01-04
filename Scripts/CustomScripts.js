@@ -507,13 +507,12 @@ function isValidUpdateScat() {
 }
 
 function updateSubCategoryClearAll() {
-    document.forms[0]["UpdateScatNameTetBox"].value = "";
+    document.forms[0]["UpdateScatNameTextBox"].value = "";
     document.forms[0]["UpdateDepRateTextBox"].value = "";
     document.forms[0]["UpdateLifetimeTextBox"].value = "";
-
     document.getElementById("updateSubCategoryInitState").style.display = "block";
     document.getElementById("updateSubCategorySecondState").style.display = "none";
-
+    document.forms[0]["UpdateSubCategoryIDTextBox"].value = "";
     return false;
 }
 
