@@ -319,10 +319,11 @@ function updateClearAll() {
     document.forms[0]["UpdateLastNameTextBox"].value = "";
     document.forms[0]["UpdateEmailTextBox"].value = "";
     document.forms[0]["UpdateContactTextBox"].value = "";
+    document.forms[0]["UpdateEmpIDTextBox"].value = "";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.getElementById("updateUserInitState").style.display = "block";
-    document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    document.forms[0]["UpdateUsernameTextBox"].value = "";
+    //expandingItems["UpdateUserContent"] = true;
+    
     return false;
 }
 
@@ -332,7 +333,7 @@ function resetPasswordClearAll() {
     document.forms[0]["ResetNewConfirmPasswordTextBox"].value = "";
     document.getElementById("resetPasswordSecondState").style.display = "none";
     document.getElementById("resetPasswordInitState").style.display = "block";
-    document.forms[0]["UpdateEmpIDTextBox"].value = "";
+    document.forms[0]["ResetPasswordUsernameTextBox"].value = "";
 
     return false;
 }
@@ -540,10 +541,13 @@ function isValidUpdateCat() {
 }
 
 function updateCategoryClearAll() {
+    
     document.forms[0]["UpdateCategoryNameTextBox"].value = "";
-    document.forms[0]["updateCategorySecondState"].style.display = "none";
     document.forms[0]["updateCategoryInitState"].style.display = "block";
-    return true;
+    document.forms[0]["updateCategorySecondState"].style.display = "none";
+    
+    
+    return false;
 }
 
 //Add new sub category functions =============================================================
