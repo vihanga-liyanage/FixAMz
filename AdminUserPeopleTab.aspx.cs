@@ -508,8 +508,6 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         }
 
-        
-
         protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
         {
 

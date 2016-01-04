@@ -616,12 +616,10 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             String query = "SELECT * FROM Asset WHERE";
 
-
             if (assetID != "")
             { 
                 query += " assetID='" + assetID + "'";
                 resultMessage += assetID + ", ";
-                
             }
             if (name != "")
             {
@@ -666,7 +664,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             try
             {
                 conn.Open();
-                
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader != null && reader.HasRows) //if search results found
