@@ -16,3 +16,7 @@ E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\obj\Debug\FixAMz_WebApplication.csprojResolveAssemblyReference.cache
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\obj\Debug\FixAMz_WebApplication.dll
 E:\ACADAMIC\2nd year\1st SEMESTER\scs 2102 Group Project 1 - Development\2015-12-31\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
+C:\Users\Charee\Desktop\‍ප්‍රොජෙක්ට්\FixAMz_12.10.15\New\FixAMz\bin\FixAMz_WebApplication.dll
+C:\Users\Charee\Desktop\‍ප්‍රොජෙක්ට්\FixAMz_12.10.15\New\FixAMz\bin\FixAMz_WebApplication.pdb
+C:\Users\Charee\Desktop\‍ප්‍රොජෙක්ට්\FixAMz_12.10.15\New\FixAMz\obj\Debug\FixAMz_WebApplication.dll
+C:\Users\Charee\Desktop\‍ප්‍රොජෙක්ට්\FixAMz_12.10.15\New\FixAMz\obj\Debug\FixAMz_WebApplication.pdb
