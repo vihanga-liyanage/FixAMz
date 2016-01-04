@@ -304,7 +304,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     NotificationHeader.InnerHtml = "Dispose asset approve Notification";
                     SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                    conn.Open();
+                    //conn.Open();
                     String getvalue = "SELECT notContent FROM Notification WHERE assetID='" + Asset + "'";
                     SqlCommand cmd3 = new SqlCommand(getvalue, conn);
                     string val = cmd3.ExecuteScalar().ToString();
@@ -675,7 +675,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "INSERT INTO DispoeAsset (dispID, assetID, description, recommend, approve) VALUES (@dispid, @assetid, @description, @recommend, @approve)";
+                String query = "INSERT INTO DisposeAsset (dispID, assetID, description, recommend, approve, status) VALUES (@dispid, @assetid, @description, @recommend, @approve, @status)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@dispid", setdispID());
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
@@ -683,6 +683,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@recommend", senduser);
                 cmd.Parameters.AddWithValue("@approve", receiveuser);
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@status", "1");
                 cmd.ExecuteNonQuery();
 
                 String query1 = "UPDATE Asset SET status='0' WHERE assetID = '" + Asset + "'";
@@ -711,7 +712,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@notid", setNotID());
                 cmd.Parameters.AddWithValue("@type", "Delete");
                 cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
-                cmd.Parameters.AddWithValue("@notContent", DisposeassetApproveDescription.InnerHtml);
+                cmd.Parameters.AddWithValue("@notContent", DisposeDescription.InnerHtml);
                 cmd.Parameters.AddWithValue("@senduser", receiveuser);
                 cmd.Parameters.AddWithValue("@receiveuser", senduser);
                 //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
