@@ -220,18 +220,18 @@
             <div id="TransferassetApproveState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
-                    <div id="Div2" runat="server" class="custom-label">
+                    <div id="TransferAssetnewlocation" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New owner</div>
-                    <div id="Div3" runat="server" class="custom-label">
+                    <div id="TransferAssetnewowner" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <asp:Button ID="Button9" runat="server" Text="Approve"  class="expand-item-btn" />
+                    <asp:Button ID="Button9" runat="server" Text="Approve"  class="expand-item-btn" OnClick="TransferAssetapprove_Click" />
                     <asp:Button ID="Button11" runat="server" Text="Back" class="expand-item-btn"
-                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                        OnClick="transferAssetBack_Click" />
                 </div>
             </div>
 
@@ -239,17 +239,17 @@
             <div id="TransferassetCancelState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
-                    <div id="Div5" runat="server" class="custom-label">
+                    <div id="TransfernewlocationCancel" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New owner</div>
-                    <div id="Div6" runat="server" class="custom-label">
+                    <div id="TransfernewownerCancel" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <asp:Button ID="Button13" runat="server" Text="Back" class="expand-item-btn"
-                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                        OnClick="transferAssetBack_Click" />
                 </div>
             </div>
 <!-- DisposeassetState-->

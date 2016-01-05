@@ -1093,10 +1093,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                     {
                         String disposeAssetCategoryID = "";
                         String disposeAssetSubCategoryID = "";
-                       // String disposeAssetLocationID = "";
+                        String disposeAssetLocationID = "";
                         String disposeAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, name, category, subcategory,location, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -1105,7 +1105,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                             DisposeItemName.InnerHtml = dr["name"].ToString();
                             disposeAssetCategoryID = dr["category"].ToString();
                             disposeAssetSubCategoryID = dr["subcategory"].ToString();
-                          //  disposeAssetLocationID = dr["location"].ToString();
+                            disposeAssetLocationID = dr["location"].ToString();
                             disposeAssetOwnerID = dr["owner"].ToString();
                             DisposeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                         }
@@ -1118,10 +1118,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                         String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
                         cmd = new SqlCommand(getSubCatNameQuery, conn);
                         DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                    /*    // Get location name
+                        // Get location name
                         String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
                         cmd = new SqlCommand(getLocationNameQuery, conn);
-                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();*/
+                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
                         // Get owner name
                         String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
                         cmd = new SqlCommand(getOwnerNameQuery, conn);

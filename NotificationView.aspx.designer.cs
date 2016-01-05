@@ -436,22 +436,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferassetApproveState;
         
         /// <summary>
-        /// Div2 control.
+        /// TransferAssetnewlocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferAssetnewlocation;
         
         /// <summary>
-        /// Div3 control.
+        /// TransferAssetnewowner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferAssetnewowner;
         
         /// <summary>
         /// Button9 control.
@@ -481,22 +481,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferassetCancelState;
         
         /// <summary>
-        /// Div5 control.
+        /// TransfernewlocationCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransfernewlocationCancel;
         
         /// <summary>
-        /// Div6 control.
+        /// TransfernewownerCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransfernewownerCancel;
         
         /// <summary>
         /// Button13 control.
