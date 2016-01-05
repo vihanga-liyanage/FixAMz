@@ -653,7 +653,7 @@ a:focus {
 
 /*==============================Notification view styles=========================*/
 
-#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel
+#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel,#TransferassetApproveState,#TransferassetCancelState
 {
     display:none;
 }

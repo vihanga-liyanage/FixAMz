@@ -1072,7 +1072,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", TransferAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@costID", TransferCostCeneterDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@type", "0");
-                cmd.Parameters.AddWithValue("@status", "0");
+                cmd.Parameters.AddWithValue("@status", "pendding");
                 cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", Session["PRSN_TO_REC"]);
