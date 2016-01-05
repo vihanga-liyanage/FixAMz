@@ -81,16 +81,15 @@ namespace FixAMz_WebApplication
             String query2 = "SELECT recommendPerson, approvePerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
             conn2.Open();
-            SqlCommand cmd2 = new SqlCommand(query, conn2);
-            dr = cmd2.ExecuteReader();
-            while (dr.Read())
+            SqlCommand cmd2 = new SqlCommand(query2, conn2);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
             {
-                Session["PRSN_TO_REC"] = dr["recommendPerson"].ToString().Trim();
-                Session["PRSN_TO_APP"] = dr["approvePerson"].ToString().Trim();
+                Session["PRSN_TO_REC"] = dr2["recommendPerson"].ToString().Trim();
+                Session["PRSN_TO_APP"] = dr2["approvePerson"].ToString().Trim();
             }
-            dr.Close();
+            dr2.Close();
             conn2.Close();
-
         }
 
         //Checking if the user has access to the page
