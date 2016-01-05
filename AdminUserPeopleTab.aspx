@@ -174,7 +174,7 @@
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" OnClick="AddUserBtn_Click"
                                         class="expand-item-btn" OnClientClick="return isValidAddNew()" /> 
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                        OnClientClick="return addNewClearAll()" />
+                                        OnClick="cancel_clicked" />
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -234,7 +234,7 @@
                                     <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
                                         OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
                                     <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                        OnClick="CancelSearchBtn_Click" />
+                                        OnClick="cancel_clicked" />
                                 </div>
                             </div>
                              <div id="UserSearchSecondState" runat="server">
@@ -336,7 +336,7 @@
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
                                         <asp:Button ID="UpdateUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return updateClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
@@ -400,7 +400,7 @@
                                         <asp:Button ID="ResetPasswordBtn" runat="server" Text="Reset Password" class="expand-item-btn"
                                             OnClientClick="return isValidResetPassword()" OnClick="ResetPasswordBtn_Click" />
                                         <asp:Button ID="Button3" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return resetPasswordClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
@@ -471,7 +471,7 @@
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn"
                                             OnClick="DeleteUserBtn_Click" OnClientClick="return window.confirm('Confirm user deletion.')" />
                                         <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return deleteClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
