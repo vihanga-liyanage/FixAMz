@@ -739,8 +739,8 @@ function isValidDisposeAsset() {
 function isValidUpgradeAsset() {
     var isValidValue = requiredFieldValidator("UpgradeAssetValue", "Value cannot be empty.");
     var isValidDiscription = requiredFieldValidator("UpgradeAssetDescription", "Description cannot be empty.");
-    var isValidRecommend = dropDownRequiredFieldValidator("UpgradeAssetPersonToRecommend");
-    return (isValidValue && isValidDiscription && isValidRecommend);
+    //var isValidRecommend = dropDownRequiredFieldValidator("UpgradeAssetPersonToRecommend");
+    return (isValidValue && isValidDiscription);
 }
 
 function upgradeAssetClearAll() {
