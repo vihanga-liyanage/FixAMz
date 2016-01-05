@@ -711,7 +711,7 @@ function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";
     document.getElementById("transferAssetSecondState").style.display = "none";
     document.getElementById("transferAssetInitState").style.display = "block";
-    expandingItems["TransferAssetContent"] = true;
+    //expandingItems["TransferAssetContent"] = true;
     return false;
 }
 
