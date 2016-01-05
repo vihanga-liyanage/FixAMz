@@ -266,12 +266,54 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (Type == "Transfer" && Action == "Approve")
                 {
+                    String get = "SELECT * FROM TransferAsset WHERE assetID='" + Asset + "' ";
+                    SqlCommand cmd2 = new SqlCommand(get, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+
+                    String newlocation = "";
+                    String newowner = "";
+                    while (dr2.Read())
+                    {
+                        newlocation = dr2["location"].ToString().Trim();
+                        newowner = dr2["owner"].ToString().Trim();
+                    }
+                    dr2.Close();
+                    // Get location name
+                    String getnewLocationNameQuery = "SELECT name FROM Location WHERE locID='" + newlocation + "'";
+                    cmd1 = new SqlCommand(getnewLocationNameQuery, conn);
+                    TransferAssetnewlocation.InnerHtml = cmd1.ExecuteScalar().ToString();
+                    // Get owner name
+                    String getnewOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + newowner + "'";
+                    cmd1 = new SqlCommand(getnewOwnerNameQuery, conn);
+                    TransferAssetnewowner.InnerHtml = cmd1.ExecuteScalar().ToString();
+
                     NotificationHeader.InnerHtml = "Transfer asset approve Notification";
                     TransferassetApproveState.Style.Add("display", "block");
                 }
 
                 if (Type == "Transfer" && Action == "Cancel")
                 {
+                    String get = "SELECT * FROM TransferAsset WHERE assetID='" + Asset + "' ";
+                    SqlCommand cmd2 = new SqlCommand(get, conn);
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+
+                    String newlocation = "";
+                    String newowner = "";
+                    while (dr2.Read())
+                    {
+                        newlocation = dr2["location"].ToString().Trim();
+                        newowner = dr2["owner"].ToString().Trim();
+                    }
+                    dr2.Close();
+                    // Get location name
+                    String getnewLocationNameQuery = "SELECT name FROM Location WHERE locID='" + newlocation + "'";
+                    cmd1 = new SqlCommand(getnewLocationNameQuery, conn);
+                    TransfernewlocationCancel.InnerHtml = cmd1.ExecuteScalar().ToString();
+                    // Get owner name
+                    String getnewOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + newowner + "'";
+                    cmd1 = new SqlCommand(getnewOwnerNameQuery, conn);
+                    TransfernewownerCancel.InnerHtml = cmd1.ExecuteScalar().ToString();
+
                     NotificationHeader.InnerHtml = "Transfer asset cancel Notification";
                     TransferassetCancelState.Style.Add("display", "block");
                 }
@@ -588,6 +630,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Cancel");
                 cmd.ExecuteNonQuery();
+
+                String query = "UPDATE TransferAsset SET status='cancel' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pendding' ";
+                SqlCommand cmd1 = new SqlCommand(query, conn);
+                cmd1.ExecuteNonQuery();
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }
@@ -630,8 +676,46 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        protected void transferAssetBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
 
+        protected void TransferAssetapprove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String get = "SELECT * FROM TransferAsset WHERE assetID='" + Asset + "' AND status='pendding' ";
+                SqlCommand cmd2 = new SqlCommand(get, conn);
+                SqlDataReader dr2 = cmd2.ExecuteReader();
 
+                String newlocation = "";
+                String newowner = "";
+                while (dr2.Read())
+                {
+                    newlocation = dr2["location"].ToString().Trim();
+                    newowner = dr2["owner"].ToString().Trim();
+                }
+                dr2.Close();
+                String quary = "UPDATE Asset SET owner= '"+ newowner +"', location='"+ newlocation +"' WHERE assetID='" + Asset + "'";
+                SqlCommand cmd = new SqlCommand(quary, conn);
+                cmd.ExecuteNonQuery();
+                String query = "UPDATE TransferAsset SET status='complete' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pendding' ";
+                SqlCommand cmd1 = new SqlCommand(query, conn);
+                cmd1.ExecuteNonQuery();
+                conn.Close();
+                Response.Redirect("ManageAssetsUser.aspx");
+            
+            }
+            catch (SqlException ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
 
 
 
