@@ -361,8 +361,8 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <div class="expand-item-label">Person to recommend</div>
-                                    <asp:DropDownList ID="UpgradeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
-                                    <div class="validator" id="UpgradeAssetPersonToRecommendValidator" runat="server"></div>
+                                    <div id="UpgradeAssetPersonToRecommend" runat="server" class="custom-label">
+                                    </div>
                                 </div>
                                 <div class="row expand-item-row">
                                     <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" OnClientClick="return isValidUpgradeAsset()" />
@@ -446,10 +446,9 @@
                                         </div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">
-                                            Person to recommend</div>
-                                        <asp:DropDownList ID="DisposeAssetPersonToRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
-                                        <div class="validator" id="DisposeAssetPersonToRecommendValidator" runat="server"></div>
+                                        <div class="expand-item-label">Person to recommend</div>
+                                        <div id="DisposeAssetPersonToRecommend" runat="server" class="custom-label">
+                                        </div>
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click"
