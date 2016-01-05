@@ -478,6 +478,12 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        //reload after click cancel button
+        protected void cancel_clicked(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
+
         // Regester new asset ==========================================================
         protected void setAssetID() 
         {

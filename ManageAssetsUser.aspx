@@ -152,7 +152,7 @@
                                 <div class="row expand-item-row">
                                     <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
                                         OnClick="AddAssetRecommendBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
-                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="addNewAssetClearAll()" />
+                                    <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked"/>
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -208,7 +208,7 @@
                                     <div class="row expand-item-row">
                                         <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
                                             OnClick="SearchAssetBtn_Click" OnClientClick="return isValidAssetSearch()" />
-                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="assetSearchClearAll()" />
+                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
                                     </div>
                                 </div>
                                 <div id="AssetSearchSecondState" runat="server">
@@ -286,7 +286,7 @@
                                         <asp:Button ID="TransferAssetRecommend" runat="server" Text="Send for recommendation" 
                                              onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
                                         <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return transferClearAll()" />
+                                            onClick="cancel_clicked"/>
                                     </div>
                                 </div>
                             </div>
@@ -366,7 +366,7 @@
                                 </div>
                                 <div class="row expand-item-row">
                                     <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" OnClientClick="return isValidUpgradeAsset()" />
-                                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return upgradeAssetClearAll()" />
+                                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
                                 </div>
                             </div>
                             </div>
@@ -455,7 +455,7 @@
                                         <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click"
                                             OnClientClick="return isValidDisposeAsset()" runat="server" Text="Send for recommendation"
                                             class="expand-item-btn" />
-                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return disposeClearAll()" />
+                                        <asp:Button ID="Button2" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
