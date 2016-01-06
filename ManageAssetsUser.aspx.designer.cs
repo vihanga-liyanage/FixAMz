@@ -715,22 +715,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetDescriptionValidator;
         
         /// <summary>
-        /// UpgradeAssetPersonToRecommendDropDown control.
+        /// UpgradeAssetPersonToRecommend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList UpgradeAssetPersonToRecommendDropDown;
-        
-        /// <summary>
-        /// UpgradeAssetPersonToRecommendValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetPersonToRecommendValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeAssetPersonToRecommend;
         
         /// <summary>
         /// UpgradeAssetRecommendBtn control.
@@ -886,22 +877,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetDescriptionValidator;
         
         /// <summary>
-        /// DisposeAssetPersonToRecommendDropDown control.
+        /// DisposeAssetPersonToRecommend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DisposeAssetPersonToRecommendDropDown;
-        
-        /// <summary>
-        /// DisposeAssetPersonToRecommendValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetPersonToRecommendValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeAssetPersonToRecommend;
         
         /// <summary>
         /// DisposeAssetRecommendBtn control.

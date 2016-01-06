@@ -152,6 +152,12 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        //reload after click cancel button
+        protected void cancel_clicked(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminUserSystemTab.aspx");
+        }
+
         //Signing out
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {

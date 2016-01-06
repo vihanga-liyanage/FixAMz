@@ -114,7 +114,7 @@
                                         <asp:Button ID="AddLocationUserBtn" runat="server" Text="Add Location" class="expand-item-btn"
                                             OnClick="AddLocationBtn_Click" OnClientClick="return isValidAddLoc()" />
                                         <asp:Button ID="AddLocationCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return addLocationClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -171,7 +171,7 @@
                                             <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn"
                                                 OnClientClick="return isValidUpdateLoc()" OnClick="UpdateLocBtn_click" />
                                             <asp:Button ID="updateLocCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                                OnClientClick="return updateLocationClearAll() " />
+                                                OnClick="cancel_clicked" />
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
                                         <asp:Button ID="AddCategoryUserBtn" runat="server" Text="Add Category"
                                             class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
                                         <asp:Button ID="AddCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return addCategoryClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -245,7 +245,7 @@
                                             <asp:Button ID="UpdateCatBtn" runat="server" Text="Update Category" class="expand-item-btn" 
                                                 OnClientClick="return isValidUpdateCat()"  onclick="UpdateCatBtn_click" />
                                             <asp:Button ID="updateCatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
-                                                OnClientClick="return updateCategoryClearAll() " />
+                                                OnClick="cancel_clicked" />
                                         </div> 
                                     </div>
                                 </div>
@@ -293,7 +293,7 @@
                                         <asp:Button ID="AddSubCategoryBtn" runat="server" Text="Add Sub Category" OnClick="AddSubCategoryBtn_click"
                                             class="expand-item-btn" OnClientClick="return isValidAddSubCategory()" />
                                         <asp:Button ID="AddSubCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return addSubCategoryClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -351,7 +351,7 @@
                                             <asp:Button ID="UpdateScatBtn" runat="server" Text="Update Sub Category" class="expand-item-btn"
                                                 OnClientClick="return isValidUpdateScat()" OnClick="UpdateScatBtn_click" />
                                             <asp:Button ID="UpdateScatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                                OnClientClick="return updateSubCategoryClearAll() " />
+                                                OnClick="cancel_clicked" />
                                         </div>
                                     </div>
                                 </div>
