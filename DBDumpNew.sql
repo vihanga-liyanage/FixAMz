@@ -355,19 +355,19 @@ CREATE TABLE [dbo].[UpgradeAsset](
 GO
 SET ANSI_PADDING OFF
 GO
-INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00001         ', N'CC00001        ', N'Vihanga', N'Liyanage', N'0758598063', N'vihangaliyanage007@gmail.com')
-INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00002         ', N'CC00001        ', N'Thisara', N'Salgado', N'0712233445', N'mtysalgado@gmail.com')
-INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00003         ', N'CC00001        ', N'Nipuna', N'Jayaweera', N'0712233445', N'nipuna.player@gmail.com')
-INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00004         ', N'CC00002        ', N'Dineth', N'Madusara', N'0722323235', N'dineth454@gmail.com')
-INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00005         ', N'CC00002        ', N'Charee', N'Paranamana', N'0712233445', N'chareep@gmail.com')
-INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00006         ', N'CC00002        ', N'Tom', N'Cruize', N'0717504859', N'tom@gmail.com')
+INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00001         ', N'CC001        ', N'Vihanga', N'Liyanage', N'0758598063', N'vihangaliyanage007@gmail.com')
+INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00002         ', N'CC001        ', N'Thisara', N'Salgado', N'0712233445', N'mtysalgado@gmail.com')
+INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00003         ', N'CC001        ', N'Nipuna', N'Jayaweera', N'0712233445', N'nipuna.player@gmail.com')
+INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00004         ', N'CC002        ', N'Dineth', N'Madusara', N'0722323235', N'dineth454@gmail.com')
+INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00005         ', N'CC002        ', N'Charee', N'Paranamana', N'0712233445', N'chareep@gmail.com')
+INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00006         ', N'CC002        ', N'Tom', N'Cruize', N'0717504859', N'tom@gmail.com')
 GO
-INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00001         ', N'CC00001        ', N'vihanga', N'FC5C0C549DF84268B7DEDD4BD5535B89DF39271D', N'admin')
-INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00002         ', N'CC00001        ', N'thisara', N'04CA103AF9F8DCB9E7B9697D2C07E3CC91B30AC7', N'manageAssetUser')
-INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00003         ', N'CC00001        ', N'sanju', N'47F10DB6BD41F394D2514249987D23DE96A09998', N'manageAssetUser')
-INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00004         ', N'CC00002        ', N'dineth', N'661DE767AD0182B809C501DD199EA4E210D79E60', N'manageAssetUser')
-INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00005         ', N'CC00002        ', N'charee', N'4DF7032F53875FA8A59E555BDF5BF2B22A9C0517', N'manageAssetUser')
-INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00006         ', N'CC00002        ', N'tom', N'96835DD8BFA718BD6447CCC87AF89AE1675DAECA', N'manageAssetUser')
+INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00001         ', N'CC001        ', N'vihanga', N'FC5C0C549DF84268B7DEDD4BD5535B89DF39271D', N'admin')
+INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00002         ', N'CC001        ', N'thisara', N'04CA103AF9F8DCB9E7B9697D2C07E3CC91B30AC7', N'manageAssetUser')
+INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00003         ', N'CC001        ', N'sanju', N'47F10DB6BD41F394D2514249987D23DE96A09998', N'manageAssetUser')
+INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00004         ', N'CC002        ', N'dineth', N'661DE767AD0182B809C501DD199EA4E210D79E60', N'manageAssetUser')
+INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00005         ', N'CC002        ', N'charee', N'4DF7032F53875FA8A59E555BDF5BF2B22A9C0517', N'manageAssetUser')
+INSERT [dbo].[SystemUser] ([empID], [costID], [username], [password], [type]) VALUES (N'E00006         ', N'CC002        ', N'tom', N'96835DD8BFA718BD6447CCC87AF89AE1675DAECA', N'manageAssetUser')
 GO
 INSERT [dbo].[Category] ([catID], [name]) VALUES (N'C00001', N'Furniture')
 INSERT [dbo].[Category] ([catID], [name]) VALUES (N'C00002', N' Computer Accessories')
@@ -377,17 +377,17 @@ INSERT [dbo].[SubCategory] ([scatID], [catID], [name], [depreciationRate], [life
 INSERT [dbo].[SubCategory] ([scatID], [catID], [name], [depreciationRate], [lifetime]) VALUES (N'SC00003        ', N'C00002         ', N'Desktop Computers', 12, 4)
 INSERT [dbo].[SubCategory] ([scatID], [catID], [name], [depreciationRate], [lifetime]) VALUES (N'SC00004        ', N'C00001         ', N'Chair', 7, 5)
 GO
-INSERT [dbo].[CostCenter] ([costID], [name], [recommendPerson], [approvePerson]) VALUES (N'CC00001', N'IT Department', N'E00002', N'E00003')
-INSERT [dbo].[CostCenter] ([costID], [name], [recommendPerson], [approvePerson]) VALUES (N'CC00002', N'Finance', N'E00004', N'E00005')
+INSERT [dbo].[CostCenter] ([costID], [name], [recommendPerson], [approvePerson]) VALUES (N'CC001', N'IT Department', N'E00002', N'E00003')
+INSERT [dbo].[CostCenter] ([costID], [name], [recommendPerson], [approvePerson]) VALUES (N'CC002', N'Finance', N'E00004', N'E00005')
 GO
 INSERT [dbo].[Location] ([locID], [name], [address], [contactNo]) VALUES (N'L00001         ', N'Thelawala', N'No. 23, Thelawala Road.', N'0718899887')
 INSERT [dbo].[Location] ([locID], [name], [address], [contactNo]) VALUES (N'L00002         ', N'Kegalle', N'No. 32, Dewalagama', N'0717504859')
 INSERT [dbo].[Location] ([locID], [name], [address], [contactNo]) VALUES (N'L00003         ', N'Head Office', N'No. 54, Rathmalane', N'0717504859')
 GO
-INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00001         ', N'CC00001        ')
-INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00002         ', N'CC00002        ')
-INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00003         ', N'CC00001        ')
-INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00003         ', N'CC00002        ')
+INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00001         ', N'CC001        ')
+INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00002         ', N'CC002        ')
+INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00003         ', N'CC001        ')
+INSERT [dbo].[CostLocation] ([locID], [costID]) VALUES (N'L00003         ', N'CC002        ')
 GO
 ALTER TABLE [dbo].[Notification] ADD  DEFAULT (getdate()) FOR [date]
 GO

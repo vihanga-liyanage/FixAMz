@@ -474,20 +474,19 @@ Request.ApplicationPath + "Login.aspx';", true);
                     String lastAssetID = (cmd.ExecuteScalar().ToString()).Trim();
                     String prefix = "NWSDB/" + costID + "/A";
                     //Extracting the number
-                    String num = Convert.ToString(lastAssetID.Substring(15));
+                    String num = Convert.ToString(lastAssetID.Substring(13));
                     //Adding one
-                    
-                    newAssetID = prefix;
-                    for (int i = 1; i < num.Length; i++)
+
+                    newAssetID = Convert.ToString(Convert.ToInt16(num) + 1);
+                    while (newAssetID.Length < 7)
                     {
-                        newAssetID += "0";
+                        newAssetID = "0" + newAssetID;
                     }
-                    num = Convert.ToString(Convert.ToInt16(num) + 1);
-                    newAssetID += num;
+                    newAssetID = prefix + newAssetID;
                 }
                 else
                 {
-                    newAssetID = "NWSDB/" + costID + "/A00001";
+                    newAssetID = "NWSDB/" + costID + "/A0000001";
                 }
 
                 AddNewAssetId.InnerHtml = newAssetID;
