@@ -1,4 +1,53 @@
-﻿//Notification JS
+﻿//Exapand content function
+var expandingItems = {};
+var curExpItem = "nothing";
+$(".expand-item-title").click(function () {
+    
+    $header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide - if visible, slide up, if not slidedown.
+    $content.slideToggle(800, function () { });
+
+    //extracting the expand content id
+    var headerId = this.id;
+    curExpItem = headerId;
+    var contentId = headerId.slice(0, headerId.length - 6) + "Content";
+    //store the status of expand item in expandedItems object
+    if (expandingItems[contentId] != null) {
+        expandingItems[contentId] = !expandingItems[contentId];
+    } else {
+        expandingItems[contentId] = true;
+    }
+    
+    //get one by one, inactive if active
+    for (var item in expandingItems) {
+        if (item != contentId && expandingItems[item] == true) {
+            $(document.getElementById(item)).slideToggle(800, function () { });
+            expandingItems[item] = false;
+        }
+    }
+    getOut();
+    document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
+    
+   
+});
+
+//Function to call above .click function manually by code behind, when page reloads occur
+//Should give full id ex. - "UpdateUserContent"
+function setExpandingItem(id) {
+    expandingItems[id] = true;
+}
+
+function getOut() {
+    var out = curExpItem + " clicked\n";
+    for (var item in expandingItems) {
+        out += item + " : " + expandingItems[item] + "\n";
+    }
+    alert(out);
+}
+
+//Notification JS
 $(document).ready(function () {
     $("#notificationLink").click(function () {
         $("#notificationContainer").fadeToggle(300);
@@ -21,55 +70,6 @@ $(".notification").click(function () {
     //alert(this.id);
     window.location.assign("NotificationView.aspx?id=" + this.id);
 });
-
-
-
-//Exapand content function
-var expandingItems = {};
-$(".expand-item-title").click(function () {
-
-    $header = $(this);
-    //getting the next element
-    $content = $header.next();
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(800, function () { });
-
-    //extracting the expand content id
-    var headerId = this.id;
-    var contentId = headerId.slice(0, headerId.length - 6) + "Content";
-    //store the status of expand item in expandedItems object
-    if (expandingItems[contentId] != null) {
-        expandingItems[contentId] = !expandingItems[contentId];
-    } else {
-        expandingItems[contentId] = true;
-    }
-    //get one by one, inactive if active
-    var out = "";
-    for (var item in expandingItems) {
-        if (item != contentId && expandingItems[item] == true) {
-            $(document.getElementById(item)).slideToggle(800, function () { });
-            expandingItems[item] = false;
-        }
-        out += item + " : " + expandingItems[item] + "\n";
-    }
-    document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
-    //alert(out);
-});
-
-//Function to call above .click function manually by code behind, when page reloads occur
-//Should give full id ex. - "UpdateUserContent"
-function setExpandingItem(id) {
-    expandingItems[id] = true;
-}
-
-//Testing functions
-function getKeys() {
-    var out = "";
-    for (var k in expandingItems) {
-        out += k + ":" + expandingItems[k] + "\n";
-    }
-    //alert(out);
-}
 
 //Global validation functions=================================================================
 function requiredFieldValidator(controller, msg) {
