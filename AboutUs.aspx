@@ -90,10 +90,9 @@
                 <div class="row">
                     <img src="img/AboutUsNWSDB.png"/>
                 </div>
-                <!--/div-- class="row">
-                    <!--div class="row header"-->
                         <h3>About Us</h3> <br/>
-                        <p>The Organization had its beginning as a sub department under the Public Works Department, for Water Supply & Drainage. 
+                      
+                        <p>The National Water Supply and Drainage Board had its beginning as a sub department under the Public Works Department, for Water Supply & Drainage. 
                            In 1965, it became a division under the Ministry of Local Government.
                            From 1970, this division functioned as a separate department under the Ministry of Irrigation, 
                            Power & Highways and remained so until the present Board was established in January 1975 by an Act of Parliament.</p>
@@ -110,12 +109,13 @@
                            10.5% of the population is served with pipe borne water supply by some Local Authorities, 
                            NGO’s and Community Based Organizations. 
                            13% of the population is served with hand pump tube wells. 
-                           We hope to increase the coverage with pipe borne water to 45.7% 
+                           NWS&DB hopes to increase the coverage with pipe borne water to 45.7% 
                            by 2015 so that the United Nations Millennium Development Goal of 85% safe drinking water coverage can be achieved by that year.
                            The NWS&DB is also in charge of the sewerage system in Colombo and suburbs, Hantane, Koggala, Hikkaduwa, Kataragama and in few housing schemes.</p>
-                    <!--/div-->
-                    </div>
-                            <p><a href="http://www.waterboard.lk">Link to our site -</a></p>
+                    
+                           <p><a href="http://www.waterboard.lk">Link to our site - www.waterboard.lk</a></p>
+                </div>
+                            
                 </div>
 
 <!--Footer-->
