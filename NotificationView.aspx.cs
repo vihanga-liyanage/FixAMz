@@ -764,10 +764,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
-
-
-
-
 //Upgrade asset ==========================================
 
         protected void UpgradeAssetsendapprovecancel_Click(object sender, EventArgs e)
@@ -855,20 +851,28 @@ Request.ApplicationPath + "Login.aspx';", true);
                 conn.Open();
                 //update asset table
                 String getvalue = "SELECT value FROM Asset WHERE assetID='" + Asset + "'";
-                SqlCommand cmd3 = new SqlCommand(getvalue, conn);
-                string val = cmd3.ExecuteScalar().ToString();
+                String getupvalue = "SELECT updatedValue FROM Asset WHERE assetID='" + Asset + "'";
+                SqlCommand cmd1 = new SqlCommand(getvalue, conn);
+                SqlCommand cmd3 = new SqlCommand(getupvalue, conn);
+                string val = cmd1.ExecuteScalar().ToString();
+                string upval = cmd3.ExecuteScalar().ToString();
                 int value = Convert.ToInt32(val);
+                int upvalue = Convert.ToInt32(val);
+                cmd1.ExecuteNonQuery();
                 cmd3.ExecuteNonQuery();
                 String getupdatedvalue = "SELECT updatedValue FROM UpgradeAsset WHERE assetID='" + Asset + "' AND status='pending'";
                 SqlCommand cmd4 = new SqlCommand(getupdatedvalue, conn);
                 string updatedval = cmd4.ExecuteScalar().ToString();
                 int updatedvalue = Convert.ToInt16(updatedval);
                 cmd4.ExecuteNonQuery();
-                updatedvalue = updatedvalue + value;
-                String quary = "UPDATE Asset SET value= '"+ updatedvalue +"' WHERE assetID='" + Asset + "'";
+                value = updatedvalue + value;
+                upvalue = upvalue + updatedvalue;
+                String quary = "UPDATE Asset SET value= '"+ value +"' WHERE assetID='" + Asset + "'";
+                String quaryup = "UPDATE Asset SET updatedValue= '" + upvalue + "' WHERE assetID='" + Asset + "'";
                 SqlCommand cmd = new SqlCommand(quary, conn);
+                SqlCommand cmd5 = new SqlCommand(quaryup, conn);
                 cmd.ExecuteNonQuery();
-                
+                cmd5.ExecuteNonQuery();
                 //update updateAsset table
                 String quary1 = "UPDATE UpgradeAsset SET approve= '" + receiveuser + "', status='complete' WHERE assetID='" + Asset + "'AND status='pending'";
                 SqlCommand cmd2 = new SqlCommand(quary1, conn);
