@@ -14,32 +14,25 @@ namespace FixAMz_WebApplication
 {   
     public partial class ManaageAssetsUser : System.Web.UI.Page
     {
+        private string costID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
+            costCenter();
             Load_Notifications();
             setAssetID();
-
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            string[] data = userData.Split(';');
-            string costID = data[2];
+            personToRecommend();
             
-
             if (!Page.IsPostBack)
             {
                 setUserName();
+                setCostCenterName();
                 Load_Category();
-                setUserName();
                 setAssetID();
-                costCenter();
-                personToRecommend();
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
-
                 
                 TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
@@ -51,6 +44,9 @@ namespace FixAMz_WebApplication
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
+
+            //Can give an alert
+            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"" + Session["PRSN_TO_REC"] + "\")</SCRIPT>");
         }
 
         //set costID by user login
@@ -61,7 +57,7 @@ namespace FixAMz_WebApplication
             string userData = ticket.UserData;
             //userData = "Vihanga Liyanage;admin;CO00001"
             string[] data = userData.Split(';');
-
+            costID = data[2];
             Session["COST_ID_MNG_ASST"] = data[2];
         }
 
@@ -79,17 +75,23 @@ namespace FixAMz_WebApplication
              
             AddAssetPersonToRecommend.InnerHtml = recoPrsn;
             TransAssetSendForRecommend.InnerHtml = recoPrsn;
-
+            UpgradeAssetPersonToRecommend.InnerHtml = recoPrsn;
+            DisposeAssetPersonToRecommend.InnerHtml = recoPrsn;
+            dr.Close();
             conn.Close();
 
-            String query2 = "SELECT recommendPerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
+            String query2 = "SELECT recommendPerson, approvePerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
             SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-            conn.Open();
-            SqlCommand cmd2 = new SqlCommand(query, conn);
-            String Rec_Prsn_empID = (cmd2.ExecuteScalar().ToString()).Trim();
-            Session["PRSN_TO_REC"] = Rec_Prsn_empID;
+            conn2.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn2);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                Session["PRSN_TO_REC"] = dr2["recommendPerson"].ToString().Trim();
+                Session["PRSN_TO_APP"] = dr2["approvePerson"].ToString().Trim();
+            }
+            dr2.Close();
             conn2.Close();
-
         }
 
         //Checking if the user has access to the page
@@ -406,15 +408,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 AddAssetOwnerDropDown.DataBind();
                 AddAssetOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
-                
-                //Register new asset recommend person drop down
-                //data = cmd.ExecuteReader();
-                //AddAssetPersonToRecommendDropDown.DataSource = data;
-                //AddAssetPersonToRecommendDropDown.DataTextField = "name";
-                //AddAssetPersonToRecommendDropDown.DataValueField = "empID";
-                //AddAssetPersonToRecommendDropDown.DataBind();
-                //AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                //data.Close();
 
                 //Asset search owner drop down
                 data = cmd.ExecuteReader();
@@ -434,48 +427,18 @@ Request.ApplicationPath + "Login.aspx';", true);
                 //TransferOwnerDropDown.Items.Insert(0, new ListItem("-- Select an owner --", ""));
                 data.Close();
 
-                //Transfer asset recommend person drop down
-                data = cmd.ExecuteReader();
-                TransAssetSendForRecommendDropDown.DataSource = data;
-                TransAssetSendForRecommendDropDown.DataTextField = "name";
-                TransAssetSendForRecommendDropDown.DataValueField = "empID";
-                TransAssetSendForRecommendDropDown.DataBind();
-                TransAssetSendForRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
-                //Upgrade asset recommend person drop down
-                data = cmd.ExecuteReader();
-                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
-                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
-                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
-                UpgradeAssetPersonToRecommendDropDown.DataBind();
-                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
-                //Dispose asset recommend person drop down
-                data = cmd.ExecuteReader(); 
-                DisposeAssetPersonToRecommendDropDown.DataSource = data;
-                DisposeAssetPersonToRecommendDropDown.DataTextField = "name";
-                DisposeAssetPersonToRecommendDropDown.DataValueField = "empID";
-                DisposeAssetPersonToRecommendDropDown.DataBind();
-                DisposeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
-                //Upgrade asset recommend person drop down
-                data = cmd.ExecuteReader();
-                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
-                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
-                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
-                UpgradeAssetPersonToRecommendDropDown.DataBind();
-                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
                 conn.Close();
             }
             catch (Exception ex)
             {
                 Response.Write("Load_Employee_Data:" + ex.Message.ToString());
             }
+        }
+
+        //reload after click cancel button
+        protected void cancel_clicked(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageAssetsUser.aspx");
         }
 
         // Regester new asset ==========================================================
@@ -528,6 +491,16 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        protected void setCostCenterName()
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT name FROM CostCenter WHERE costID='" + costID + "'", conn);
+            String costCenterName = (cmd.ExecuteScalar().ToString()).Trim();
+            AddNewCostID.InnerHtml = costCenterName;
+            conn.Close();
+        }
+
         protected void Category_Selected_for_register(object sender, EventArgs e)
         {
             Load_SubCategory_for_register();
@@ -552,7 +525,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 string insertion_Asset = "insert into Asset (assetID, costID, name, value, salvageValue, updatedValue, category, subcategory, owner, status, location, recommend) values (@assetid, @costid, @name, @value, @salvageValue, @updatedValue, @category, @subcategory,@owner, @status, @location, @recommend)";
                 cmd = new SqlCommand(insertion_Asset, conn);
                 cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
-                cmd.Parameters.AddWithValue("@costid", AddNewCostID.InnerHtml);
+                cmd.Parameters.AddWithValue("@costid", costID);
                 cmd.Parameters.AddWithValue("@name", RegisterAssetNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@salvageValue", AddSalvageValueTextBox.Text);
@@ -608,14 +581,17 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             String resultMessage = "";
 
-            String query = "SELECT * FROM Asset WHERE";
-
+            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, E.owner AS Owner, A.location AS Location, A.approvedDate AS Approved_Date, A.recommend AS Recommended_By, A.approve AS Approved_By " +
+                "FROM Asset A " +
+                "INNER JOIN Category C ON A.category=C.catID " +
+                "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
+                "INNER JOIN Employee E ON A.owner=E.empID " +
+                "WHERE status=1";
 
             if (assetID != "")
             { 
                 query += " assetID='" + assetID + "'";
                 resultMessage += assetID + ", ";
-                
             }
             if (name != "")
             {
@@ -660,12 +636,15 @@ Request.ApplicationPath + "Login.aspx';", true);
             try
             {
                 conn.Open();
-                
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader != null && reader.HasRows) //if search results found
                 {
                     DataTable dt = new DataTable();
+                    //dt.Columns.Add("Asset ID");
+                    //DataRow dtrow = dt.NewRow();
+                    //dtrow["Asset ID"] = "E00001";
+                    //dt.Rows.Add(dtrow);
                     dt.Load(reader);
 
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
@@ -844,7 +823,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
-                cmd.Parameters.AddWithValue("@receiveuser", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
@@ -861,7 +840,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@value", UpgradeValue.InnerHtml);
                 cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
-                cmd.Parameters.AddWithValue("@recommend", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 
@@ -1056,7 +1035,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", TransferAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@costID", TransferCostCeneterDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@type", "0");
-                cmd.Parameters.AddWithValue("@status", "0");
+                cmd.Parameters.AddWithValue("@status", "pendding");
                 cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@owner", TransferOwnerDropDown.SelectedValue);
                 cmd.Parameters.AddWithValue("@recommend", Session["PRSN_TO_REC"]);
@@ -1114,10 +1093,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                     {
                         String disposeAssetCategoryID = "";
                         String disposeAssetSubCategoryID = "";
-                       // String disposeAssetLocationID = "";
+                        String disposeAssetLocationID = "";
                         String disposeAssetOwnerID = "";
 
-                        String query = "SELECT assetID, name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
+                        String query = "SELECT assetID, name, category, subcategory,location, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
                         cmd = new SqlCommand(query, conn);
                         SqlDataReader dr = cmd.ExecuteReader();
                         while (dr.Read())
@@ -1126,7 +1105,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                             DisposeItemName.InnerHtml = dr["name"].ToString();
                             disposeAssetCategoryID = dr["category"].ToString();
                             disposeAssetSubCategoryID = dr["subcategory"].ToString();
-                          //  disposeAssetLocationID = dr["location"].ToString();
+                            disposeAssetLocationID = dr["location"].ToString();
                             disposeAssetOwnerID = dr["owner"].ToString();
                             DisposeValue.InnerHtml = dr["updatedValue"].ToString() + " LKR";
                         }
@@ -1139,10 +1118,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                         String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + disposeAssetSubCategoryID + "'";
                         cmd = new SqlCommand(getSubCatNameQuery, conn);
                         DisposeSubCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                    /*    // Get location name
+                        // Get location name
                         String getLocationNameQuery = "SELECT name FROM Location WHERE locID='" + disposeAssetLocationID + "'";
                         cmd = new SqlCommand(getLocationNameQuery, conn);
-                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();*/
+                        DisposeLocation.InnerHtml = cmd.ExecuteScalar().ToString();
                         // Get owner name
                         String getOwnerNameQuery = "SELECT [firstname] + ' ' + [lastname] FROM Employee WHERE empID='" + disposeAssetOwnerID + "'";
                         cmd = new SqlCommand(getOwnerNameQuery, conn);
@@ -1203,7 +1182,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
-                cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
@@ -1230,7 +1209,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
 
         }
-
 
         public string SelectedValue { get; set; }
     }

@@ -122,6 +122,11 @@
                 <div id="AssetOwner" runat="server" class="custom-label">
             </div>
             </div>
+            <div class="row expand-item-row">
+                <div class="expand-item-label">Location</div>
+                <div id="AssetLocation" runat="server" class="custom-label">
+            </div>
+            </div>
 
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
@@ -181,7 +186,7 @@
                 </div>
                 <div class="row expand-item-row">
                     <asp:Button ID="Button3" runat="server" Text="Approve"  class="expand-item-btn" OnClick="UpgradeAssetapprove_Click" />
-                    <asp:Button ID="Button5" runat="server" Text="Cancel" class="expand-item-btn" OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
+                    <asp:Button ID="Button5" runat="server" Text="Back" class="expand-item-btn" OnClick="upgradeAssetBack_Click" />
                 </div>
             </div>
 
@@ -196,21 +201,57 @@
             <div id="TransferassetState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
-                    <div id="TransferNewlocation" runat="server" class="custom-label">
+                    <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New owner</div>
-                    <div id="TransferNewowner" runat="server" class="custom-label">
+                    <div id="TransferNewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <asp:Button ID="TransferAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" />
+                    <asp:Button ID="TransferAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="TransferAssetSendapprove_Click" />
                     <asp:Button ID="TransferAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
-                        OnClientClick="JavaScript:window.history.back(1);return false;" />
+                        OnClick="TransferAssetSendapprovecancel_Click" />
                 </div>
             </div>
 
+<!-- TransferassetApproveState-->
+            <div id="TransferassetApproveState" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">New location</div>
+                    <div id="TransferAssetnewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">New owner</div>
+                    <div id="TransferAssetnewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button9" runat="server" Text="Approve"  class="expand-item-btn" OnClick="TransferAssetapprove_Click" />
+                    <asp:Button ID="Button11" runat="server" Text="Back" class="expand-item-btn"
+                        OnClick="transferAssetBack_Click" />
+                </div>
+            </div>
+
+<!-- TransferassetCancelState-->
+            <div id="TransferassetCancelState" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">New location</div>
+                    <div id="TransfernewlocationCancel" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">New owner</div>
+                    <div id="TransfernewownerCancel" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <asp:Button ID="Button13" runat="server" Text="Back" class="expand-item-btn"
+                        OnClick="transferAssetBack_Click" />
+                </div>
+            </div>
 <!-- DisposeassetState-->
              <div id="DisposeassetState" runat="server">
                 <div class="row expand-item-row">
@@ -234,8 +275,8 @@
                 </div>
                 <div class="row expand-item-row">
                     <asp:Button ID="Button7" runat="server" Text="Approve"  class="expand-item-btn" OnClick="DisposeAssetapprove_Click" />
-                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn"
-                        OnClick="DisposeAssetcancel_Click" />
+                    <asp:Button ID="Button8" runat="server" Text="Back" class="expand-item-btn" OnClick="DisposeAssetBack_Click"
+                        />
                 </div>
             </div>
 <!-- DisposeassetCancel-->

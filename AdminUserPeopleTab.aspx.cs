@@ -92,7 +92,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 UpdateCostCenterDropDown.DataTextField = "name";
                 UpdateCostCenterDropDown.DataValueField = "costID";
                 UpdateCostCenterDropDown.DataBind();
-                UpdateCostCenterDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
                 data.Close();
             }
             catch (Exception ex)
@@ -161,6 +160,12 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             dr.Close();
             conn.Close();
+        }
+
+        //reload after click cancel button
+        protected void cancel_clicked(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminUserPeopleTab.aspx");
         }
 
         //Signing out
@@ -431,7 +436,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         }
 
-        protected void CancelSearchBtn_Click(object sender, EventArgs e)
+        /*protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
             var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchCostIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
@@ -441,7 +446,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 responseMsgGreen.InnerHtml = "";
                 UserSearchGridView.Visible = false;
             }
-        }
+        }*/
 
         //Update user
         protected void UpdateUserFindBtn_Click(object sender, EventArgs e)
@@ -472,17 +477,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         
                     }
                     dr1.Close();
-                    /*
-                    String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
-                    SqlCommand cmd2 = new SqlCommand(query2, conn);
-                    SqlDataReader dr2 = cmd2.ExecuteReader();
-                    UpdateTypeDropDown.SelectedValue = "owner";
-                    while (dr2.Read())
-                    {
-                        UpdateTypeDropDown.SelectedValue = dr2["type"].ToString();
-                    }
-                    dr2.Close();
-                    */
+                   
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
                     UpdateUserContent.Style.Add("display", "block");
@@ -507,8 +502,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
 
         }
-
-        
 
         protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
         {

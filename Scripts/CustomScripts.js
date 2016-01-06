@@ -264,8 +264,12 @@ function addNewClearAll() {
     document.forms[0]["AddNewContactTextBox"].value = "";
     document.forms[0]["AddNewUsernameTextBox"].value = "";
     document.forms[0]["AddNewPasswordTextBox"].value = "";
+    document.forms[0]["AddUserCostNameDropDown"].selectedIndex = 0;
+    document.forms[0]["TypeDropDown"].selectedIndex = 0;
     document.forms[0]["AddNewConfirmPasswordTextBox"].value = "";
-    return true;
+    document.getElementById("AddNewUserContent").style.display = "none";
+    //document.getElementById("AddUserLoginDetailContainer").style.display = "none";
+    return false;
 }
 
 function isValidAddNew() {
@@ -322,7 +326,6 @@ function updateClearAll() {
     document.getElementById("updateUserSecondState").style.display = "none";
     document.getElementById("updateUserInitState").style.display = "block";
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
-    document.forms[0]["UpdateUsernameTextBox"].value = "";
     return false;
 }
 
@@ -332,8 +335,7 @@ function resetPasswordClearAll() {
     document.forms[0]["ResetNewConfirmPasswordTextBox"].value = "";
     document.getElementById("resetPasswordSecondState").style.display = "none";
     document.getElementById("resetPasswordInitState").style.display = "block";
-    document.forms[0]["UpdateEmpIDTextBox"].value = "";
-
+    document.forms[0]["ResetPasswordUsernameTextBox"].value = "";
     return false;
 }
 
@@ -387,7 +389,9 @@ function searchClearAll() {
     document.forms[0]["SearchEmailTextBox"].value = "";
     document.forms[0]["SearchContactTextBox"].value = "";
     document.forms[0]["SearchUsernameTextBox"].value = "";
-    return true;
+    document.getElementById("UserSearchInitState").style.display = "none";
+    //document.getElementById("UserSearchSecondState").style.display = "none";
+    return false;
 }
 
 function isValidUserSearch() {
@@ -460,7 +464,6 @@ function updateLocationClearAll() {
     document.forms[0]["UpdateLocationIDTextBox"].value = "";
     document.getElementById("updatelocationInitState").style.display = "block";
     document.getElementById("updatelocationSecondState").style.display = "none";
-
     return false;
 }
 
@@ -510,13 +513,12 @@ function isValidUpdateScat() {
 }
 
 function updateSubCategoryClearAll() {
-    document.forms[0]["UpdateScatNameTetBox"].value = "";
+    document.forms[0]["UpdateScatNameTextBox"].value = "";
     document.forms[0]["UpdateDepRateTextBox"].value = "";
     document.forms[0]["UpdateLifetimeTextBox"].value = "";
-
     document.getElementById("updateSubCategoryInitState").style.display = "block";
     document.getElementById("updateSubCategorySecondState").style.display = "none";
-
+    document.forms[0]["UpdateSubCategoryIDTextBox"].value = "";
     return false;
 }
 
@@ -541,9 +543,10 @@ function isValidUpdateCat() {
 
 function updateCategoryClearAll() {
     document.forms[0]["UpdateCategoryNameTextBox"].value = "";
-    document.forms[0]["updateCategorySecondState"].style.display = "none";
-    document.forms[0]["updateCategoryInitState"].style.display = "block";
-    return true;
+    document.getElementById("updateCategoryInitState").style.display = "block";
+    document.getElementById("updateCategorySecondState").style.display = "none";
+    document.forms[0]["UpdateCategoryIDTextBox"].value = "";
+    return false;
 }
 
 //Add new sub category functions =============================================================
@@ -556,11 +559,13 @@ function isValidAddSubCategory() {
     if (isValidDepreciation) {
         var depre = document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value;
         var intVal = parseFloat(depre);
-        /*if (!depre.match(/^\d+$/)) {
+        
+        if (!depre.match(/^\d+$/)) {
             document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot have non-digits.";
             document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
-            isValidDepreciation = false;*/
-        if (intVal > 100.0) {
+            isValidDepreciation = false;
+        }
+        else if(intVal > 100.0) {
             document.getElementById("AddSubCategoryDepreciationRateValidator").innerHTML = "Depreciation rate cannot be larger than 100";
             document.forms[0]["AddSubCategoryDepreciationRateTextBox"].style.border = "1px solid red";
             isValidDepreciation = false;
@@ -591,6 +596,7 @@ function addSubCategoryClearAll() {
     document.forms[0]["AddSubCategoryNameTextBox"].value = "";
     document.forms[0]["AddSubCategoryDepreciationRateTextBox"].value = "";
     document.forms[0]["AddSubCategoryLifetimeTextBox"].value = "";
+    document.forms[0]["AddSubCategoryCategoryDropDown"].selectedIndex = 0;
     return true;
 }
 
@@ -705,7 +711,7 @@ function transferClearAll() {
     document.forms[0]["TransferAssetIDTextBox"].value = "";
     document.getElementById("transferAssetSecondState").style.display = "none";
     document.getElementById("transferAssetInitState").style.display = "block";
-    expandingItems["TransferAssetContent"] = true;
+    //expandingItems["TransferAssetContent"] = true;
     return false;
 }
 
@@ -733,16 +739,16 @@ function isValidDisposeAsset() {
 function isValidUpgradeAsset() {
     var isValidValue = requiredFieldValidator("UpgradeAssetValue", "Value cannot be empty.");
     var isValidDiscription = requiredFieldValidator("UpgradeAssetDescription", "Description cannot be empty.");
-    var isValidRecommend = dropDownRequiredFieldValidator("UpgradeAssetPersonToRecommend");
-    return (isValidValue && isValidDiscription && isValidRecommend);
+    //var isValidRecommend = dropDownRequiredFieldValidator("UpgradeAssetPersonToRecommend");
+    return (isValidValue && isValidDiscription);
 }
 
 function upgradeAssetClearAll() {
     document.forms[0]["UpgradeAssetDescriptionTextBox"].value = "";
     document.forms[0]["UpgradeAssetValueTextBox"].value = "";
-    document.forms[0]["UpgradeAssetIDTextBox"].value = "";
     document.getElementById("upgradeAssetSecondState").style.display = "none";
     document.getElementById("upgradeAssetInitState").style.display = "block";
+    document.forms[0]["UpgradeAssetIDTextBox"].value = "";
     //expandingItems["UpgradeAssetContent"] = true;
     return false;
 }

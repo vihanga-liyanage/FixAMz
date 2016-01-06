@@ -136,20 +136,15 @@
                                         Access Level</div>
                                     <asp:DropDownList ID="TypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="AddUserTypeDropDown_Selected" AutoPostBack="true">
                                         <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
-                                        <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
                                         <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
                                         <asp:ListItem Text="Asset Manager" Value="manageAssetUser"></asp:ListItem>
-                                        <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
-                                        <asp:ListItem Text="Generate report" Value="generateAssetReportUser"></asp:ListItem>
-                                        <asp:ListItem Text="Manage and view assets" Value="manageView"></asp:ListItem>
-                                        <asp:ListItem Text="Manage assets and generate reports" Value="manageReport"></asp:ListItem>
-                                        <asp:ListItem Text="View assets and generate reports" Value="viewReport"></asp:ListItem>
-                                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                                        <asp:ListItem Text="Report Generator" Value="generateReportUser"></asp:ListItem>
+                                        <asp:ListItem Text="Asset Manager and Report Generator" Value="manageReport"></asp:ListItem>
+                                        <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
                                     </asp:DropDownList>
                                     <div class="validator" id="TypeValidator" runat="server"></div>
                                 </div>
                                 <div id="AddUserLoginDetailContainer" runat="server">
-
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">
                                             Username</div>
@@ -179,7 +174,7 @@
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" OnClick="AddUserBtn_Click"
                                         class="expand-item-btn" OnClientClick="return isValidAddNew()" /> 
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                        OnClientClick="return addNewClearAll()" />
+                                        OnClick="cancel_clicked" />
                                 </div>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -239,7 +234,7 @@
                                     <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
                                         OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
                                     <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                        OnClick="CancelSearchBtn_Click" />
+                                        OnClick="cancel_clicked" />
                                 </div>
                             </div>
                              <div id="UserSearchSecondState" runat="server">
@@ -341,7 +336,7 @@
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
                                         <asp:Button ID="UpdateUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return updateClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
@@ -405,7 +400,7 @@
                                         <asp:Button ID="ResetPasswordBtn" runat="server" Text="Reset Password" class="expand-item-btn"
                                             OnClientClick="return isValidResetPassword()" OnClick="ResetPasswordBtn_Click" />
                                         <asp:Button ID="Button3" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return resetPasswordClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
@@ -476,7 +471,7 @@
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn"
                                             OnClick="DeleteUserBtn_Click" OnClientClick="return window.confirm('Confirm user deletion.')" />
                                         <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                            OnClientClick="return deleteClearAll()" />
+                                            OnClick="cancel_clicked" />
                                     </div>
                                 </div>
                             </div>
