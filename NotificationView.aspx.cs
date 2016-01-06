@@ -553,6 +553,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd.Parameters.AddWithValue("@status", "not-seen");
                     cmd.Parameters.AddWithValue("@action", "Cancel");
                     cmd.ExecuteNonQuery();
+
+                    //delete notification
+                    String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                    cmd = new SqlCommand(deleteNotQuery, conn);
+                    cmd.ExecuteNonQuery();
                     conn.Close();
                     Response.Redirect("ManageAssetsUser.aspx");
                 }
@@ -583,6 +588,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd.Parameters.AddWithValue("@status", "not-seen");
                     cmd.Parameters.AddWithValue("@action", "Approve");
                     cmd.ExecuteNonQuery();
+
+                    //delete notification
+                    String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                    cmd = new SqlCommand(deleteNotQuery, conn);
+                    cmd.ExecuteNonQuery();
+
                     conn.Close();
                     Response.Redirect("ManageAssetsUser.aspx");
                 }catch (SqlException ex)
@@ -605,6 +616,12 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 SqlCommand cmd = new SqlCommand(quary, conn);
                 cmd.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }
@@ -616,6 +633,10 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        protected void AddNewAssetBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
 
 
 //Transfer asset =========================================
@@ -643,6 +664,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String query = "UPDATE TransferAsset SET status='cancel' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pendding' ";
                 SqlCommand cmd1 = new SqlCommand(query, conn);
                 cmd1.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }
@@ -674,6 +700,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Approve");
                 cmd.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }
@@ -714,6 +746,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String query = "UPDATE TransferAsset SET status='complete' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pendding' ";
                 SqlCommand cmd1 = new SqlCommand(query, conn);
                 cmd1.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             
@@ -754,6 +792,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String query1 = "UPDATE UpgradeAsset SET status='cancel' WHERE assetID = '"+ Asset +"' and status='pending' ";
                 SqlCommand cmd1 = new SqlCommand(query1, conn);
                 cmd1.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }
@@ -784,6 +828,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Approve");
                 cmd.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
 
@@ -824,6 +874,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlCommand cmd2 = new SqlCommand(quary1, conn);
                 cmd2.ExecuteNonQuery();
 
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }
@@ -860,6 +915,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
                 cmd.Parameters.AddWithValue("@action", "Approve");
                 cmd.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
 
@@ -892,6 +953,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String query1 = "UPDATE Asset SET status='0' WHERE assetID = '" + Asset + "'";
                 SqlCommand cmd1 = new SqlCommand(query1, conn);
                 cmd1.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
 
@@ -926,6 +993,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String query1 = "UPDATE UpgradeAsset SET status='cancel' WHERE assetID = '" + Asset + "' and status='pending' ";
                 SqlCommand cmd1 = new SqlCommand(query1, conn);
                 cmd1.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
                 conn.Close();
                 Response.Redirect("ManageAssetsUser.aspx");
             }

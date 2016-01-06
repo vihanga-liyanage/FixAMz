@@ -148,7 +148,7 @@
 <!-- AddnewassetStateApprove cancel-->
             <div id="AddnewassetStateApproveCancel" runat="server">
                 <div class="row expand-item-row">
-                    <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"/>
+                    <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClick="AddNewAssetBack_Click"/>
                 </div>
             </div>
 
