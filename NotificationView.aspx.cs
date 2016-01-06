@@ -612,7 +612,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 conn.Open();
                 DateTime curDate = DateTime.Now;
 
-                String quary = "UPDATE Asset SET status='1', approve='" + Session["PRSN_TO_REC"] + "',approvedDate='" + curDate + "' WHERE assetID='" + Asset + "'";
+                String quary = "UPDATE Asset SET status='1', approve='" + Session["PRSN_TO_APP"] + "',approvedDate='" + curDate + "' WHERE assetID='" + Asset + "'";
 
                 SqlCommand cmd = new SqlCommand(quary, conn);
                 cmd.ExecuteNonQuery();
@@ -743,7 +743,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String quary = "UPDATE Asset SET owner= '"+ newowner +"', location='"+ newlocation +"' WHERE assetID='" + Asset + "'";
                 SqlCommand cmd = new SqlCommand(quary, conn);
                 cmd.ExecuteNonQuery();
-                String query = "UPDATE TransferAsset SET status='complete' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pendding' ";
+                String query = "UPDATE TransferAsset SET status='complete',approve='" + Session["PRSN_TO_APP"] + "' WHERE assetID='" + AssetID.InnerHtml + "' AND status= 'pendding' ";
                 SqlCommand cmd1 = new SqlCommand(query, conn);
                 cmd1.ExecuteNonQuery();
 
