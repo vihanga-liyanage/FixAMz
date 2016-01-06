@@ -92,7 +92,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 UpdateCostCenterDropDown.DataTextField = "name";
                 UpdateCostCenterDropDown.DataValueField = "costID";
                 UpdateCostCenterDropDown.DataBind();
-                UpdateCostCenterDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
                 data.Close();
             }
             catch (Exception ex)
@@ -507,8 +506,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
 
         }
-
-        
 
         protected void UpdateUserTypeDropDown_Selected(object sender, EventArgs e)
         {

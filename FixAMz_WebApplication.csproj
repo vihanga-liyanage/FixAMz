@@ -64,6 +64,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AboutUs.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -157,6 +158,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
