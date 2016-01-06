@@ -323,9 +323,15 @@ function updateClearAll() {
     document.forms[0]["UpdateLastNameTextBox"].value = "";
     document.forms[0]["UpdateEmailTextBox"].value = "";
     document.forms[0]["UpdateContactTextBox"].value = "";
+    document.forms[0]["UpdateEmpIDTextBox"].value = "";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.getElementById("updateUserInitState").style.display = "block";
+<<<<<<< HEAD
+    //expandingItems["UpdateUserContent"] = true;
+    
+=======
     document.forms[0]["UpdateEmpIDTextBox"].value = "";
+>>>>>>> 541b9c4897f8a33684386b3731a5b80a3b48d1a6
     return false;
 }
 
@@ -336,6 +342,10 @@ function resetPasswordClearAll() {
     document.getElementById("resetPasswordSecondState").style.display = "none";
     document.getElementById("resetPasswordInitState").style.display = "block";
     document.forms[0]["ResetPasswordUsernameTextBox"].value = "";
+<<<<<<< HEAD
+
+=======
+>>>>>>> 541b9c4897f8a33684386b3731a5b80a3b48d1a6
     return false;
 }
 
@@ -542,10 +552,18 @@ function isValidUpdateCat() {
 }
 
 function updateCategoryClearAll() {
+    
     document.forms[0]["UpdateCategoryNameTextBox"].value = "";
+<<<<<<< HEAD
+    document.forms[0]["updateCategoryInitState"].style.display = "block";
+    document.forms[0]["updateCategorySecondState"].style.display = "none";
+    
+    
+=======
     document.getElementById("updateCategoryInitState").style.display = "block";
     document.getElementById("updateCategorySecondState").style.display = "none";
     document.forms[0]["UpdateCategoryIDTextBox"].value = "";
+>>>>>>> 541b9c4897f8a33684386b3731a5b80a3b48d1a6
     return false;
 }
 
