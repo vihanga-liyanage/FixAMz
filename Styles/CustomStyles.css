@@ -653,9 +653,12 @@ a:focus {
 
 /*==============================Notification view styles=========================*/
 
-#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel,#TransferassetApproveState,#TransferassetCancelState
+#AddnewassetState, #UpgradeassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel
 {
     display:none;
 }
 
-
+#TransferassetState,#TransferassetApproveState,#TransferassetCancelState
+{
+    display:none;
+}

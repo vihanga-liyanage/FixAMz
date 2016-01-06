@@ -569,7 +569,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd.Parameters.AddWithValue("@assetid", AssetID.InnerHtml);
                     cmd.Parameters.AddWithValue("@notContent", " ");
                     cmd.Parameters.AddWithValue("@senduser", receiveuser);
-                    cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
+                    cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_APP"]);
                     //cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd"));
                     cmd.Parameters.AddWithValue("@status", "not-seen");
                     cmd.Parameters.AddWithValue("@action", "Approve");
