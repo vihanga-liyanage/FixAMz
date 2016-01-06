@@ -75,6 +75,8 @@ namespace FixAMz_WebApplication
              
             AddAssetPersonToRecommend.InnerHtml = recoPrsn;
             TransAssetSendForRecommend.InnerHtml = recoPrsn;
+            UpgradeAssetPersonToRecommend.InnerHtml = recoPrsn;
+            DisposeAssetPersonToRecommend.InnerHtml = recoPrsn;
             dr.Close();
             conn.Close();
 
@@ -137,11 +139,11 @@ Request.ApplicationPath + "Login.aspx';", true);
             String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
             //selecting relevant notifications
-            query = "SELECT notID, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
+            query = "SELECT notID, action, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
                     "FROM Notification n INNER JOIN Employee e " +
                     "ON n.sendUser=e.empID " +
                     "JOIN Asset a ON n.assetID=a.assetID " +
-                    "WHERE receiveUser='" + empID + "' " + 
+                    "WHERE receiveUser='" + empID + "' " +
                     "ORDER BY date DESC";
 
             cmd = new SqlCommand(query, conn);
@@ -158,13 +160,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                     output += " not-seen";
                     count += 1;
                 }
+                //setting action
+                string action = "None";
+                if (dr["action"].ToString().Trim() == "Recommend")
+                {
+                    action = "requested";
+                }
+                else if (dr["action"].ToString().Trim() == "Approve")
+                {
+                    action = "recommended";
+                }
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
-                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" + 
+                    "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
                     "</div>";
             }
@@ -406,15 +418,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 AddAssetOwnerDropDown.DataBind();
                 AddAssetOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
-                
-                //Register new asset recommend person drop down
-                //data = cmd.ExecuteReader();
-                //AddAssetPersonToRecommendDropDown.DataSource = data;
-                //AddAssetPersonToRecommendDropDown.DataTextField = "name";
-                //AddAssetPersonToRecommendDropDown.DataValueField = "empID";
-                //AddAssetPersonToRecommendDropDown.DataBind();
-                //AddAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                //data.Close();
 
                 //Asset search owner drop down
                 data = cmd.ExecuteReader();
@@ -432,42 +435,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 TransferOwnerDropDown.DataValueField = "empID";
                 TransferOwnerDropDown.DataBind();
                 //TransferOwnerDropDown.Items.Insert(0, new ListItem("-- Select an owner --", ""));
-                data.Close();
-
-                //Transfer asset recommend person drop down
-                data = cmd.ExecuteReader();
-                TransAssetSendForRecommendDropDown.DataSource = data;
-                TransAssetSendForRecommendDropDown.DataTextField = "name";
-                TransAssetSendForRecommendDropDown.DataValueField = "empID";
-                TransAssetSendForRecommendDropDown.DataBind();
-                TransAssetSendForRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
-                //Upgrade asset recommend person drop down
-                data = cmd.ExecuteReader();
-                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
-                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
-                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
-                UpgradeAssetPersonToRecommendDropDown.DataBind();
-                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
-                //Dispose asset recommend person drop down
-                data = cmd.ExecuteReader(); 
-                DisposeAssetPersonToRecommendDropDown.DataSource = data;
-                DisposeAssetPersonToRecommendDropDown.DataTextField = "name";
-                DisposeAssetPersonToRecommendDropDown.DataValueField = "empID";
-                DisposeAssetPersonToRecommendDropDown.DataBind();
-                DisposeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
-                //Upgrade asset recommend person drop down
-                data = cmd.ExecuteReader();
-                UpgradeAssetPersonToRecommendDropDown.DataSource = data;
-                UpgradeAssetPersonToRecommendDropDown.DataTextField = "name";
-                UpgradeAssetPersonToRecommendDropDown.DataValueField = "empID";
-                UpgradeAssetPersonToRecommendDropDown.DataBind();
-                UpgradeAssetPersonToRecommendDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
                 conn.Close();
@@ -624,11 +591,12 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             String resultMessage = "";
 
-            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, E.owner AS Owner, A.location AS Location, A.approvedDate AS Approved_Date, A.recommend AS Recommended_By, A.approve AS Approved_By " +
+            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (E.firstName+' '+E.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date, A.recommend AS Recommended_By, A.approve AS Approved_By " +
                 "FROM Asset A " +
                 "INNER JOIN Category C ON A.category=C.catID " +
                 "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
                 "INNER JOIN Employee E ON A.owner=E.empID " +
+                "INNER JOIN Location L ON A.location=L.locID " +
                 "WHERE status=1";
 
             if (assetID != "")
@@ -866,7 +834,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", UpgradeAssetIDTextBox.Text);
                 cmd.Parameters.AddWithValue("@notcontent", UpgradeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
-                cmd.Parameters.AddWithValue("@receiveuser", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();
@@ -883,7 +851,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@value", UpgradeValue.InnerHtml);
                 cmd.Parameters.AddWithValue("@updatedValue", UpgradeAssetValueTextBox.Text);
                 cmd.Parameters.AddWithValue("@description", UpgradeAssetDescriptionTextBox.Text);
-                cmd.Parameters.AddWithValue("@recommend", UpgradeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@recommend", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "pending");
                 cmd.ExecuteNonQuery();
 
@@ -1225,7 +1193,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@assetid", DisposeAssetID.InnerHtml);
                 cmd.Parameters.AddWithValue("@notcontent", DisposeAssetDescriptionTextBox.Text);
                 cmd.Parameters.AddWithValue("@senduser", empID);
-                cmd.Parameters.AddWithValue("@receiveuser", DisposeAssetPersonToRecommendDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@receiveuser", Session["PRSN_TO_REC"]);
                 cmd.Parameters.AddWithValue("@status", "not-seen");
 
                 cmd.ExecuteNonQuery();

@@ -201,12 +201,12 @@
             <div id="TransferassetState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
-                    <div id="TransferNewlocation" runat="server" class="custom-label">
+                    <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New owner</div>
-                    <div id="TransferNewowner" runat="server" class="custom-label">
+                    <div id="TransferNewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
@@ -220,12 +220,12 @@
             <div id="TransferassetApproveState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
-                    <div id="TransferAssetnewlocation" runat="server" class="custom-label">
+                    <div id="TransferAssetnewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New owner</div>
-                    <div id="TransferAssetnewowner" runat="server" class="custom-label">
+                    <div id="TransferAssetnewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
@@ -239,12 +239,12 @@
             <div id="TransferassetCancelState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
-                    <div id="TransfernewlocationCancel" runat="server" class="custom-label">
+                    <div id="TransfernewlocationCancel" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New owner</div>
-                    <div id="TransfernewownerCancel" runat="server" class="custom-label">
+                    <div id="TransfernewownerCancel" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">

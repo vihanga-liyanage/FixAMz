@@ -112,7 +112,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             String empID = (cmd.ExecuteScalar().ToString()).Trim();
 
             //selecting relevant notifications
-            query = "SELECT notID, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
+            query = "SELECT notID, action, type, a.name AS assetName, notContent, e.firstName, e.lastname, date, n.status " +
                     "FROM Notification n INNER JOIN Employee e " +
                     "ON n.sendUser=e.empID " +
                     "JOIN Asset a ON n.assetID=a.assetID " +
@@ -133,11 +133,21 @@ Request.ApplicationPath + "Login.aspx';", true);
                     output += " not-seen";
                     count += 1;
                 }
+                //setting action
+                string action = "None";
+                if (dr["action"].ToString().Trim() == "Recommend")
+                {
+                    action = "requested";
+                }
+                else if (dr["action"].ToString().Trim() == "Approve")
+                {
+                    action = "recommended";
+                }
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + "recommended to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -156,10 +166,15 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 notification_count.Style.Add("display", "none");
             }
-            
 
             dr.Close();
             conn.Close();
+        }
+
+        //reload after click cancel button
+        protected void cancel_clicked(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminUserPeopleTab.aspx");
         }
 
         //Signing out
@@ -430,7 +445,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         }
 
-        protected void CancelSearchBtn_Click(object sender, EventArgs e)
+        /*protected void CancelSearchBtn_Click(object sender, EventArgs e)
         {
             var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchCostIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
             foreach (var textBox in tbs)
@@ -440,7 +455,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 responseMsgGreen.InnerHtml = "";
                 UserSearchGridView.Visible = false;
             }
-        }
+        }*/
 
         //Update user
         protected void UpdateUserFindBtn_Click(object sender, EventArgs e)
@@ -471,17 +486,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         
                     }
                     dr1.Close();
-                    /*
-                    String query2 = "SELECT type FROM SystemUser WHERE empID='" + empID + "'";
-                    SqlCommand cmd2 = new SqlCommand(query2, conn);
-                    SqlDataReader dr2 = cmd2.ExecuteReader();
-                    UpdateTypeDropDown.SelectedValue = "owner";
-                    while (dr2.Read())
-                    {
-                        UpdateTypeDropDown.SelectedValue = dr2["type"].ToString();
-                    }
-                    dr2.Close();
-                    */
+                   
                     updateUserInitState.Style.Add("display", "none");
                     updateUserSecondState.Style.Add("display", "block");
                     UpdateUserContent.Style.Add("display", "block");
