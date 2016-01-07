@@ -658,4 +658,14 @@ a:focus {
     display:none;
 }
 
+.notification-icon
+{
+    position:absolute;
+    background:url(/img/notification-bell.jpg) no-repeat;
+    width:350px;
+    height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+} 
 

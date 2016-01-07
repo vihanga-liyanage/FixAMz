@@ -250,6 +250,8 @@
                 <div class="row expand-item-row">
                     <asp:Button ID="Button13" runat="server" Text="Back" class="expand-item-btn"
                         OnClick="transferAssetBack_Click" />
+                    <asp:Button ID="Button12" runat="server" Text="Edit" class="expand-item-btn"
+                         OnClientClick="return transferAssetEdit_Click" />
                 </div>
             </div>
 <!-- DisposeassetState-->
@@ -294,7 +296,7 @@
 
         </div>
         <div class="col-md-4" style="position: relative; padding-left: 0px;">
-            <div class="add-user-icon hidden-sm hidden-xs">
+            <div class="notification-icon hidden-sm hidden-xs">
             </div>
         </div>
     </div>

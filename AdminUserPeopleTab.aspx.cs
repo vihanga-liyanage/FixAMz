@@ -283,7 +283,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         "Your username and password for FixAmz is as follows.\n\n" +
                         "Username - " + AddNewUsernameTextBox.Text + "\n" + 
                         "Password - " + Convert.ToString(AddNewPasswordTextBox.Text) + "\n\n" +
-                        "Please login to your account and change your password as you prefer.\n\n" +
+                        "Please contact system administrator incase a password reset is needed.\n\n" +
                         "Regards,\n" +
                         "Administrator"
                         );
@@ -309,7 +309,7 @@ Request.ApplicationPath + "Login.aspx';", true);
         {
             Boolean result = true;
 
-            string senderID = "sandyperera1993@gmail.com";// use sender’s email id here..
+            string senderID = "FixAMz@gmail.com";// use sender’s email id here..
             const string senderPassword = "ucsc@123"; // sender password here…
 
             try
