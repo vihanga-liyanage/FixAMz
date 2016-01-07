@@ -72,6 +72,7 @@
     <Content Include="GridView.aspx" />
     <Content Include="img\developerIcon.png" />
     <Content Include="img\logoSimble.png" />
+    <Content Include="img\notification-bell.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\1.png" />

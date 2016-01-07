@@ -316,7 +316,7 @@
                                 <div class="row expand-item-row">
                                     <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" OnClientClick="return isValidUpgradeAsset()" />
 
-                                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" ClientClick="return upgradeAssetClearAll()" />
+                                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return upgradeAssetClearAll()" />
 
                                     
 
