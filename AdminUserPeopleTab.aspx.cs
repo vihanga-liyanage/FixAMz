@@ -283,7 +283,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         "Your username and password for FixAmz is as follows.\n\n" +
                         "Username - " + AddNewUsernameTextBox.Text + "\n" + 
                         "Password - " + Convert.ToString(AddNewPasswordTextBox.Text) + "\n\n" +
-                        "Please login to your account and change your password as you prefer.\n\n" +
+                        "Please contact system administrator incase a password reset is needed.\n\n" +
                         "Regards,\n" +
                         "Administrator"
                         );
