@@ -764,6 +764,12 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+     //   protected void transferAssetEdit_Click(object sender, EventArgs e)
+     //   {
+     //       Response.Redirect("ManageAssetsUser.aspx");
+     //   }
+
+
 //Upgrade asset ==========================================
 
         protected void UpgradeAssetsendapprovecancel_Click(object sender, EventArgs e)
