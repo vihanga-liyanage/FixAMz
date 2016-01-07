@@ -309,7 +309,7 @@ Request.ApplicationPath + "Login.aspx';", true);
         {
             Boolean result = true;
 
-            string senderID = "sandyperera1993@gmail.com";// use sender’s email id here..
+            string senderID = "FixAMz@gmail.com";// use sender’s email id here..
             const string senderPassword = "ucsc@123"; // sender password here…
 
             try
