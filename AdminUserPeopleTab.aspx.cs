@@ -473,7 +473,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (res == 1)
                 {
-                    String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    String query1 = "SELECT e.empID, e.firstName, e.lastName, e.contactNo, e.email, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE e.empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
                     while (dr1.Read())
@@ -483,6 +483,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
                         UpdateContactTextBox.Text = dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
+                        UpdateTypeDropDown.SelectedValue = dr1["type"].ToString();
                         
                     }
                     dr1.Close();
@@ -524,9 +525,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String empID = UpdateEmpIDTextBox.Text;
-
                 string insertion_Employee = "UPDATE Employee SET costID = @costID, firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
-
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
 
                 cmd.Parameters.AddWithValue("@costID", UpdateCostCenterDropDown.SelectedValue);
@@ -534,7 +533,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
                 cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
+                cmd.ExecuteNonQuery();
 
+                string insertion_SystemUser = "UPDATE SystemUser SET costID = @costid, type = @type WHERE empID='" + empID + "'";
+                cmd = new SqlCommand(insertion_SystemUser, conn);
+                cmd.Parameters.AddWithValue("@costid", UpdateCostCenterDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@type", UpdateTypeDropDown.SelectedValue);
                 cmd.ExecuteNonQuery();
 
                 //Include update query for password here
