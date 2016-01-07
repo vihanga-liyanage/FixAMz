@@ -57,9 +57,8 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#" class="active">HOME</a> </li>
+                                    <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
                                     <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="GridView.aspx">VIEW</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
@@ -70,7 +69,7 @@
             </div>
         </div>
 <!--Main content-->
-                <div class="row">
+        <div class="row">
             <div class="col-md-9 col-xs-offset-2 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
                     <a href="" onclick="this.parentNode.style.display = 'none';">
@@ -129,9 +128,7 @@
                                         <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
                                     </div>
                                 </div>
-                                <div id="AssetSearchSecondState" runat="server">
-                                    <asp:GridView ID="AssetSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
-                                </div>
+                                
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
                                 <div class="advanced-asset-search-icon hidden-sm hidden-xs">
@@ -139,6 +136,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div id="AssetSearchSecondState" runat="server">
+                    <asp:GridView ID="AssetSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                 </div>
             </div>
         </div>

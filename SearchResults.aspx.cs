@@ -334,11 +334,13 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             String resultMessage = "";
 
-            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (E.firstName+' '+E.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date, A.recommend AS Recommended_By, A.approve AS Approved_By " +
+            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (Eo.firstName+' '+Eo.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date, (Er.firstName+' '+Er.lastName) AS Recommended_By, (Ea.firstName+' '+Ea.lastName) AS Approved_By " +
                 "FROM Asset A " +
                 "INNER JOIN Category C ON A.category=C.catID " +
                 "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
-                "INNER JOIN Employee E ON A.owner=E.empID " +
+                "INNER JOIN Employee Eo ON A.owner=Eo.empID " +
+                "INNER JOIN Employee Er ON A.recommend=Er.empID " +
+                "INNER JOIN Employee Ea ON A.approve=Ea.empID " +
                 "INNER JOIN Location L ON A.location=L.locID " +
                 "WHERE status=1";
 
