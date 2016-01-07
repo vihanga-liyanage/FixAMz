@@ -17,6 +17,7 @@ namespace FixAMz_WebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             Authenticate_User();
             costCenter();
             Load_Notifications();
@@ -28,7 +29,6 @@ namespace FixAMz_WebApplication
                 Load_Location();
                 Load_Employee_Data();
 
-                AssetSearchIDTextBox.Text = "NWSDB/" + costID + "/"; 
                 Page.MaintainScrollPositionOnPostBack = true;
             }
 
@@ -325,7 +325,6 @@ Request.ApplicationPath + "Login.aspx';", true);
         // Advanced asset search =======================================================
         protected void SearchAssetBtn_Click(object sender, EventArgs e)
         {
-            String assetID = AssetSearchIDTextBox.Text.Trim();
             String name = AssetSearchNameTextBox.Text.Trim();
             String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
             String categoryID = AssetSearchCategoryDropDown.SelectedValue;
@@ -343,11 +342,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 "INNER JOIN Location L ON A.location=L.locID " +
                 "WHERE status=1";
 
-            if (assetID != "")
-            {
-                query += " assetID='" + assetID + "'";
-                resultMessage += assetID + ", ";
-            }
             if (name != "")
             {
                 query += " AND name='" + name + "'";
@@ -386,6 +380,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             //Remove unnessary 'and'
             query = query.Replace("WHERE AND", "WHERE ");
+
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             try

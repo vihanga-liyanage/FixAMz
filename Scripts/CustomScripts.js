@@ -679,7 +679,6 @@ function isValidAddAsset() {
 
 //Advanced asset search functions=============================================================
 function isValidAssetSearch() {
-    var id = document.forms[0]["AssetSearchIDTextBox"].value;
     var name = document.forms[0]["AssetSearchNameTextBox"].value;
     var dropdown = document.forms[0]["AssetSearchCategoryDropDown"];
     var category = dropdown.options[dropdown.selectedIndex].value;
@@ -691,7 +690,7 @@ function isValidAssetSearch() {
     dropdown = document.forms[0]["AssetSearchOwnerDropDown"];
     var owner = dropdown.options[dropdown.selectedIndex].value;
 
-    if (id == "" && name == "" && category == "" && subCategory == "" && value == "" && owner == "") {
+    if (name == "" && category == "" && subCategory == "" && value == "" && owner == "") {
         alert("Please fill at least one field");
         return false;
     } else {

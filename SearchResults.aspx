@@ -88,16 +88,12 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
-                        <div class="expand-item-title" id="AdvancedAssetSearchHeader">
+                        <div class="" id="AdvancedAssetSearchHeader">
                             Advanced assets search</div>
-                        <div class="expand-item-content" id="AdvancedAssetSearchContent" runat="server">
+                        <div class="expand-item-content" id="AdvancedAssetSearchContent" runat="server" style="display:block">
                             <div class="col-md-8">
                                 <div id="AssetSearchInitState" runat="server">
                                     <div class="info-div">Enter any information you have on the asset, to begin.</div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Asset ID</div>
-                                        <asp:TextBox ID="AssetSearchIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
                                     <div class="row expand-item-row">
                                         <div class="expand-item-label">Name</div>
                                         <asp:TextBox ID="AssetSearchNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
