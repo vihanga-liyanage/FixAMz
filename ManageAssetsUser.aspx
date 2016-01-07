@@ -167,7 +167,7 @@
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
                         <div class="expand-item-title" id="AdvancedAssetSearchHeader">
-                            <a href="SearchResults.aspx">Advanced assets search</a>
+                            <a href="AdvancedAssetSearch.aspx">Advanced assets search</a>
                         </div>
                     </div>
                 </div>
