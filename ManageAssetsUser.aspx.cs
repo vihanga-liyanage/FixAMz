@@ -33,7 +33,8 @@ namespace FixAMz_WebApplication
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
-                
+
+                AssetSearchIDTextBox.Text = "NWSDB/" + costID + "/"; 
                 TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 DisposeAssetIDTextBox.Text = "NWSDB/" + costID + "/";

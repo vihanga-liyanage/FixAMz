@@ -27,7 +27,7 @@ $(".expand-item-title").click(function () {
             expandingItems[item] = false;
         }
     }
-    getOut();
+    //getOut();
     document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
     
    
