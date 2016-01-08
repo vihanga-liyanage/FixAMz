@@ -466,7 +466,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 else
                 {
                     responseBoxRed.Style.Add("display", "block");
-                    responseMsgRed.InnerHtml = "No Results Found for " + resultMessage;
+                    responseMsgRed.InnerHtml = "No results found for " + resultMessage;
                 }
                 conn.Close();
 
