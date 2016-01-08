@@ -83,7 +83,7 @@
                         <div class="icon">
                             <img src="img/multy-user.png" style="width: 100px;" alt=""/>
                         </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
