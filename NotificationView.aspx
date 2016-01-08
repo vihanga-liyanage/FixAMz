@@ -84,7 +84,10 @@
         </div>
 <!--notification content -->
     <div class="row">
-    <div class="item-title"><div id="NotificationHeader" runat="server" class="custom-label"></div></div>
+        <div class="item-title">
+            <div id="NotificationHeader" runat="server" class="custom-label">
+            </div>
+        </div>
     <div class="expand-item-row" runat="server">
         <div class="col-md-8">
 <!-- Default notification content-->

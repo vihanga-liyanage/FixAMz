@@ -131,11 +131,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -340,7 +352,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
                 "INNER JOIN Employee Eo ON A.owner=Eo.empID " +
                 "INNER JOIN Location L ON A.location=L.locID " +
-                "WHERE status=1";
+                "WHERE A.status=1 AND A.costID='" + costID + "'";
 
             if (name != "")
             {
@@ -380,6 +392,8 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             //Remove unnessary 'and'
             query = query.Replace("WHERE AND", "WHERE ");
+
+            resultMessage += costID;
 
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
