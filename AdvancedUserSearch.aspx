@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="padding: 0px 30px 0px 30px;">
                 <div id="UserSearchSecondState" runat="server">
                       <asp:GridView ID="UserSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                 </div>
