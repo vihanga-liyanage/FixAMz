@@ -130,22 +130,22 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSearchInitState;
         
         /// <summary>
-        /// SearchEmployeeIDTextBox control.
+        /// SearchUserCostNameDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchEmployeeIDTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList SearchUserCostNameDropDown;
         
         /// <summary>
-        /// SearchCostIDTextBox control.
+        /// SearchUserCostNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchCostIDTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SearchUserCostNameValidator;
         
         /// <summary>
         /// SearchFirstNameTextBox control.

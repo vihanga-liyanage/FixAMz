@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Cost Center Name</div>
+                                    <div class="expand-item-label">Cost Center</div>
                                     <asp:DropDownList ID="AddUserCostNameDropDown" class="expand-item-textbox" runat="server" >
                                     </asp:DropDownList>
                                     <div class="validator" id="AddUserCostNameValidator" runat="server"></div>
@@ -189,63 +189,8 @@
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
                         <div class="expand-item-title" id="AdvancedUserSearchHeader">
-                            Advanced User Search</div>
-                        <div class="expand-item-content" id="AdvancedUserSearchContent" runat="server">
-                            <div class="col-md-8">
-                            <div id="UserSearchInitState" runat="server">
-                                <div class="info-div">
-                                    Enter any information you have on the user to search.</div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Employee ID</div>
-                                    <asp:TextBox ID="SearchEmployeeIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Cost ID</div>
-                                    <asp:TextBox ID="SearchCostIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        First Name</div>
-                                    <asp:TextBox ID="SearchFirstNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Last Name</div>
-                                    <asp:TextBox ID="SearchLastNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Email</div>
-                                    <asp:TextBox ID="SearchEmailTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Contact</div>
-                                    <asp:TextBox ID="SearchContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                               <!-- <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Username</div>
-                                    <asp:TextBox ID="SearchUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div> -->
-                                <div class="row expand-item-row">
-                                    <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
-                                        OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
-                                    <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                        OnClick="cancel_clicked" />
-                                </div>
-                            </div>
-                             <div id="UserSearchSecondState" runat="server">
-                                    <asp:GridView ID="UserSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="adv-user-search-icon">
-                                </div>
-                            </div>
-                        </div>  
+                            <a href="AdvancedUserSearch.aspx">Advanced user search</a>    
+                        </div>
                     </div>
                 </div>
 <!--Update user-->

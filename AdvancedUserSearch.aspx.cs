@@ -21,9 +21,11 @@ namespace FixAMz_WebApplication
         {
             Authenticate_User();
             Load_Notifications();
+            
 
             if (!Page.IsPostBack)
             {
+                Load_CostCenter();
                 setUserName();
                 Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             }
@@ -170,48 +172,68 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        //loading CostCenters
+        protected void Load_CostCenter()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, costID FROM CostCenter", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                SearchUserCostNameDropDown.DataSource = data;
+                SearchUserCostNameDropDown.DataTextField = "name";
+                SearchUserCostNameDropDown.DataValueField = "costID";
+                SearchUserCostNameDropDown.DataBind();
+                SearchUserCostNameDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
+                data.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
+        }
+
         //Advanced user search
         protected void SearchUserBtn_Click(object sender, EventArgs e)
         {
-            String empID = SearchEmployeeIDTextBox.Text.Trim();
-            String costID = SearchCostIDTextBox.Text.Trim();
+            String costID = SearchUserCostNameDropDown.SelectedValue;
             String firstname = SearchFirstNameTextBox.Text.Trim();
             String lastname = SearchLastNameTextBox.Text.Trim();
             String email = SearchEmailTextBox.Text.Trim();
             String contactNo = SearchContactTextBox.Text.Trim();
-            //String username = SearchUsernameTextBox.Text.Trim();
 
             String resultMessage = "";
 
-            String query = "SELECT * FROM Employee WHERE";
-            if (empID != "")
-            {
-                query += " empID='" + empID + "'";
-                resultMessage += empID + ", ";
-            }
+            String query = "SELECT E.empID AS Employee_ID, C.name AS Cost_Center, (E.firstName+' '+E.lastName) AS Name, E.contactNo AS Contact, E.email AS Email " +
+                "FROM Employee E " +
+                "INNER JOIN CostCenter C ON E.costID=C.costID " +
+                "WHERE";
+
             if (costID != "")
             {
-                query += " OR costID='" + costID + "'";
+                query += " AND E.costID='" + costID + "'";
                 resultMessage += costID + ", ";
             }
             if (firstname != "")
             {
-                query += " OR firstname like '" + firstname + "%'";
+                query += " AND firstname like '" + firstname + "%'";
                 resultMessage += firstname + ", ";
             }
             if (lastname != "")
             {
-                query += " OR lastname like '" + lastname + "%'";
+                query += " AND lastname like '" + lastname + "%'";
                 resultMessage += lastname + ", ";
             }
             if (email != "")
             {
-                query += " OR email like '" + email + "%'";
+                query += " AND email like '" + email + "%'";
                 resultMessage += email + ", ";
             }
             if (contactNo != "")
             {
-                query += " OR contactNo like '" + contactNo + "%'";
+                query += " AND contactNo like '" + contactNo + "%'";
                 resultMessage += contactNo + ", ";
             }
 
@@ -219,7 +241,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             UserSearchGridView.DataSource = null;
             UserSearchGridView.DataBind();
 
-            query = query.Replace("WHERE OR", "WHERE ");
+            query = query.Replace("WHERE AND", "WHERE ");
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             try
