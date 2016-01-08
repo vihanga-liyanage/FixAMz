@@ -112,11 +112,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -214,34 +226,39 @@ Request.ApplicationPath + "Login.aspx';", true);
             if (costID != "")
             {
                 query += " AND E.costID='" + costID + "'";
-                resultMessage += costID + ", ";
+                resultMessage += "Cost Center <strong>" + SearchUserCostNameDropDown.SelectedItem + "</strong>, ";
             }
             if (firstname != "")
             {
                 query += " AND firstname like '" + firstname + "%'";
-                resultMessage += firstname + ", ";
+                resultMessage += "First Name <strong>" + firstname + "</strong>, ";
             }
             if (lastname != "")
             {
                 query += " AND lastname like '" + lastname + "%'";
-                resultMessage += lastname + ", ";
+                resultMessage += "Last Name <strong>" + lastname + "</strong>, ";
             }
             if (email != "")
             {
                 query += " AND email like '" + email + "%'";
-                resultMessage += email + ", ";
+                resultMessage += "Email <strong>" + email + "</strong>, ";
             }
             if (contactNo != "")
             {
                 query += " AND contactNo like '" + contactNo + "%'";
-                resultMessage += contactNo + ", ";
+                resultMessage += "Contact <strong>" + contactNo + "</strong>, ";
             }
 
             // Clearing the grid view
             UserSearchGridView.DataSource = null;
             UserSearchGridView.DataBind();
 
+            //Remove unnessary 'and'
             query = query.Replace("WHERE AND", "WHERE ");
+
+            //Remove result message last comma
+            resultMessage = resultMessage.Substring(0, resultMessage.Length - 2);
+
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
             try
@@ -258,12 +275,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                     UserSearchGridView.DataSource = dt;  //display found data in grid view
                     UserSearchGridView.DataBind();
                     responseBoxGreen.Style.Add("display", "block");
-                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
+                    responseMsgGreen.InnerHtml = "Search results found for " + resultMessage;
                 }
                 else
                 {
                     responseBoxRed.Style.Add("display", "block");
-                    responseMsgRed.InnerHtml = "No Results Found for <strong>" + resultMessage + "</strong>";
+                    responseMsgRed.InnerHtml = "No results found for " + resultMessage;
                 }
                 conn.Close();
 

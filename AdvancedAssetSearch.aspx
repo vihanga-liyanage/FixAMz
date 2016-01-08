@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="row expand-item-row">
                                         <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
-                                            OnClick="SearchAssetBtn_Click" OnClientClick="return isValidAssetSearch()" />
+                                            OnClick="SearchAssetBtn_Click" />
                                         <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="padding: 0px 30px 0px 30px;">
                 <div id="AssetSearchSecondState" runat="server">
                     <asp:GridView ID="AssetSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                 </div>

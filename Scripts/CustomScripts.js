@@ -678,6 +678,7 @@ function isValidAddAsset() {
 }
 
 //Advanced asset search functions=============================================================
+//Not using since 2016.01.08
 function isValidAssetSearch() {
     var name = document.forms[0]["AssetSearchNameTextBox"].value;
     var dropdown = document.forms[0]["AssetSearchCategoryDropDown"];
