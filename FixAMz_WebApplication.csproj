@@ -127,6 +127,7 @@
     <Content Include="img\ViewAssetUserHome.png" />
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
     <Content Include="ManageAssetsUser.aspx" />
+    <Content Include="ManageAssetUserSitemap.aspx" />
     <Content Include="NotificationView.aspx" />
     <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -136,6 +137,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="AdvancedAssetSearch.aspx" />
+    <Content Include="AdminSitemap.aspx" />
     <Content Include="Styles\background.css" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
@@ -251,6 +253,13 @@
     <Compile Include="ManageAssetsUser.aspx.designer.cs">
       <DependentUpon>ManageAssetsUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.designer.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NotificationView.aspx.cs">
       <DependentUpon>NotificationView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,6 +299,13 @@
     </Compile>
     <Compile Include="AdminUserSystemTab.aspx.designer.cs">
       <DependentUpon>AdminUserSystemTab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSitemap.aspx.cs">
+      <DependentUpon>AdminSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSitemap.aspx.designer.cs">
+      <DependentUpon>AdminSitemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="testrept.aspx.cs">
       <DependentUpon>testrept.aspx</DependentUpon>
