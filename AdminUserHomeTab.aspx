@@ -59,11 +59,9 @@
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                         <li><a href="AdminUserHomeTab.aspx" class="active">HOME</a> </li>
                                         <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-
                                         <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
-
-                                        <li><a href="#">HELP</a> </li>
+                                        <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -124,9 +122,9 @@
             <div id="footer" class="row">
                 <div class="row footer-up">
                     <ul class="footer-nav">
-				        <li><a href="#">About</a></li>
-				        <li><a href="#">help</a></li>
-				        <li><a href="#">site map</a></li>
+				        <li><a href="AdminAboutUs.aspx">About</a></li>
+				        <li><a href="AdminHelpTab.aspx">Help</a></li>
+				        <li><a href="AdminSitemap.aspx">Site map</a></li>
 			        </ul>
                 </div>
                 <div class="row footer-down">
