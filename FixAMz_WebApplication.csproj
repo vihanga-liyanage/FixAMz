@@ -69,9 +69,11 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
     <Content Include="ManageAssetUserAboutUs.aspx" />
     <Content Include="GridView.aspx" />
+    <Content Include="img\costcenter.png" />
     <Content Include="img\developerIcon.png" />
     <Content Include="img\logoSimble.png" />
     <Content Include="img\notification-bell.jpg" />
@@ -197,6 +199,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUserHomeTab.aspx.cs">
+      <DependentUpon>AdminUserHomeTab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUserHomeTab.aspx.designer.cs">
+      <DependentUpon>AdminUserHomeTab.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdvancedUserSearch.aspx.cs">
       <DependentUpon>AdvancedUserSearch.aspx</DependentUpon>

@@ -762,4 +762,11 @@ function upgradeAssetClearAll() {
 //      Notification view                                                                   //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
+function transferAssetEdit_Click() {
+    var id = document.forms[0]["AssetID"].value;
+    document.forms[0]["TransferAssetIDTextBox"].value = id;
+    document.getElementById("disposeAssetSecondState").style.display = "none";
+    document.getElementById("transferAssetInitState").style.display = "block";
+    //expandingItems["DisposeAssetContent"] = true;
+    return true;
+}

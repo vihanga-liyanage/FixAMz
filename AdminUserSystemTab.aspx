@@ -55,11 +55,19 @@
                                 </div>
                                 <div class="collapse navbar-collapse" style="float:right;">
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                        <li><a href="#">HOME</a> </li>
+                                        <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                         <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
+<<<<<<< HEAD
+
+                                        <li><a href="AdminUserSystemTab.aspx" class="active">SYSTEM</a> </li>
+                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
+
+                                        <li><a href="#">HELP</a> </li>
+=======
                                         <li><a href="#" class="active">SYSTEM</a> </li>
                                         <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
                                         <li><a href="AdminHelpTab.aspx">HELP</a> </li>
+>>>>>>> 99709dadcbe611465a15bc232a2e997a930eeaf2
                                     </ul>
                                 </div>
                             </div>
@@ -351,6 +359,24 @@
                                             <asp:Button ID="UpdateScatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                                 OnClick="cancel_clicked" />
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                    <div class="update-sub-category-icon hidden-sm hidden-xs"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <!--Update System-->
+                    <div class="row expand-item">
+                        <div class="col-md-12">
+                            <img src="img/UpdateIcon.png" />
+                            <div class="expand-item-title" id="Div4">Year end Update</div>
+                            <div class="expand-item-content" id="Div5" runat="server">
+                                <div class="col-md-8">
+                                    <div id="Div8" runat="server">
+                                        <asp:Button ID="Button1" runat="server" style="float: left;margin-left: 120px;" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">
