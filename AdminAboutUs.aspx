@@ -122,8 +122,8 @@
             <div class="row footer-up">
                 <ul class="footer-nav">
                     <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="AdminHelpTab.aspx">Help</a></li>
+                    <li><a href="#">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">
