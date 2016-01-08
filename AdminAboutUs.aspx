@@ -25,7 +25,6 @@
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
-
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
@@ -44,7 +43,7 @@
 						        </div>
 					        </span>
                                 | 
-                            
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
@@ -57,14 +56,13 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="AdminUserPeopleTab.aspx">HOME</a> </li>
+                                    <li><a href="#">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="#" class="active">ABOUT</a> </li>                                    
+                                    <li><a href="AdminAboutUs.aspx"  class="active">ABOUT</a> </li>
                                     <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </div>
