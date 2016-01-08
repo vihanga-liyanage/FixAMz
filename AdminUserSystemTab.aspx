@@ -57,11 +57,9 @@
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                         <li><a href="#">HOME</a> </li>
                                         <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-
                                         <li><a href="#" class="active">SYSTEM</a> </li>
-                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
-
-                                        <li><a href="AdminUserHelpTab.aspx">HELP</a> </li>
+                                        <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                     </ul>
                                 </div>
                             </div>
