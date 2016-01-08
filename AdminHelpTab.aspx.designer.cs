@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class SearchResults {
+    public partial class WebForm1 {
         
         /// <summary>
         /// form1 control.

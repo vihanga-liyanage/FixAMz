@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AboutUs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminAboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AdminAboutUs" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,7 +25,6 @@
                     <div class="col-md-3 col-md-offset-1">
                         <img src="img/fixamz.png" class="logo" />
                     </div>
-
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12" id="user-name-box">
                             <span id="userName" runat="server"></span>
@@ -44,7 +43,7 @@
 						        </div>
 					        </span>
                                 | 
-                            
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
                         </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
@@ -57,13 +56,13 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#" class="active">HOME</a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="GridView.aspx">VIEW</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
+                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="AdminAboutUs.aspx"  class="active">ABOUT</a> </li>
+                                    <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -123,8 +122,8 @@
             <div class="row footer-up">
                 <ul class="footer-nav">
                     <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="AdminHelpTab.aspx">Help</a></li>
+                    <li><a href="#">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

@@ -59,8 +59,8 @@
                                     <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="#" class="active">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
+                                    <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="row expand-item-row">
-                                    <div class="expand-item-label">Cost Center Name</div>
+                                    <div class="expand-item-label">Cost Center</div>
                                     <asp:DropDownList ID="AddUserCostNameDropDown" class="expand-item-textbox" runat="server" >
                                     </asp:DropDownList>
                                     <div class="validator" id="AddUserCostNameValidator" runat="server"></div>
@@ -189,63 +189,8 @@
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
                         <div class="expand-item-title" id="AdvancedUserSearchHeader">
-                            Advanced User Search</div>
-                        <div class="expand-item-content" id="AdvancedUserSearchContent" runat="server">
-                            <div class="col-md-8">
-                            <div id="UserSearchInitState" runat="server">
-                                <div class="info-div">
-                                    Enter any information you have on the user to search.</div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Employee ID</div>
-                                    <asp:TextBox ID="SearchEmployeeIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Cost ID</div>
-                                    <asp:TextBox ID="SearchCostIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        First Name</div>
-                                    <asp:TextBox ID="SearchFirstNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Last Name</div>
-                                    <asp:TextBox ID="SearchLastNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Email</div>
-                                    <asp:TextBox ID="SearchEmailTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                                <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Contact</div>
-                                    <asp:TextBox ID="SearchContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div>
-                               <!-- <div class="row expand-item-row">
-                                    <div class="expand-item-label">
-                                        Username</div>
-                                    <asp:TextBox ID="SearchUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                </div> -->
-                                <div class="row expand-item-row">
-                                    <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
-                                        OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
-                                    <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"
-                                        OnClick="cancel_clicked" />
-                                </div>
-                            </div>
-                             <div id="UserSearchSecondState" runat="server">
-                                    <asp:GridView ID="UserSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="adv-user-search-icon">
-                                </div>
-                            </div>
-                        </div>  
+                            <a href="AdvancedUserSearch.aspx">Advanced user search</a>    
+                        </div>
                     </div>
                 </div>
 <!--Update user-->
@@ -314,24 +259,18 @@
                                         </asp:DropDownList>
                                         <div class="validator" id="UpdateCostCenterValidator" runat="server"></div>
                                     </div>
-                                    <!--
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">Access Level</div>
-                                        <asp:DropDownList ID="UpdateTypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="UpdateUserTypeDropDown_Selected" AutoPostBack="true">
-                                            <asp:ListItem Text="-- Select Level --" Value=""></asp:ListItem>
-                                            <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
-                                            <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
-                                            <asp:ListItem Text="Manage assets" Value="manageAssetUser"></asp:ListItem>
-                                            <asp:ListItem Text="View assets" Value="viewAssetUser"></asp:ListItem>
-                                            <asp:ListItem Text="Generate report" Value="generateAssetReportUser"></asp:ListItem>
-                                            <asp:ListItem Text="Manage and view assets" Value="manageView"></asp:ListItem>
-                                            <asp:ListItem Text="Manage assets and generate reports" Value="manageReport"></asp:ListItem>
-                                            <asp:ListItem Text="View assets and generate reports" Value="viewReport"></asp:ListItem>
-                                            <asp:ListItem Text="All" Value="all"></asp:ListItem>
-                                        </asp:DropDownList>
-                                        <div class="validator" id="UpdateTypeValidator" runat="server"></div>
+                                    <div class="expand-item-label">
+                                        Access Level</div>
+                                    <asp:DropDownList ID="UpdateTypeDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="AddUserTypeDropDown_Selected" AutoPostBack="true">
+                                        <asp:ListItem Text="Administrator" Value="admin"></asp:ListItem>
+                                        <asp:ListItem Text="Asset Manager" Value="manageAssetUser"></asp:ListItem>
+                                        <asp:ListItem Text="Report Generator" Value="generateReportUser"></asp:ListItem>
+                                        <asp:ListItem Text="Asset Manager and Report Generator" Value="manageReport"></asp:ListItem>
+                                        <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <div class="validator" id="UpdateTypeValidator" runat="server"></div>
                                     </div>
-                                    -->
                                     <div class="row expand-item-row">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
@@ -491,9 +430,9 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="AdminAboutUs.aspx">About</a></li>
+                    <li><a href="AdminHelpTab.aspx">Help</a></li>
+                    <li><a href="#">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

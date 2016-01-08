@@ -57,8 +57,7 @@
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="#" class="active">HOME</a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="GridView.aspx">VIEW</a> </li>
+                                    <li><a href="ManageAssetUserAboutUs.aspx">ABOUT</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
@@ -167,58 +166,7 @@
                     <div class="col-md-12">
                         <img src="img/SearchIcon.png" />
                         <div class="expand-item-title" id="AdvancedAssetSearchHeader">
-                            Advanced assets search</div>
-                        <div class="expand-item-content" id="AdvancedAssetSearchContent" runat="server">
-                            <div class="col-md-8">
-                                <div id="AssetSearchInitState" runat="server">
-                                    <div class="info-div">Enter any information you have on the asset, to begin.</div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Asset ID</div>
-                                        <asp:TextBox ID="AssetSearchIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Name</div>
-                                        <asp:TextBox ID="AssetSearchNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Category</div>
-                                        <asp:DropDownList ID="AssetSearchCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected_for_search" AutoPostBack="true"></asp:DropDownList>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Subcategory</div>
-                                        <asp:DropDownList ID="AssetSearchSubCategoryDropDown" class="expand-item-textbox"
-                                            runat="server">
-                                            <asp:ListItem Text="-- Select Subcategory --" Value=""></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Value</div>
-                                        <asp:TextBox ID="AssetSearchValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                                    </div>
-                                   <!-- <div class="row expand-item-row">
-                                        <div class="expand-item-label">Location</div>
-                                        <asp:DropDownList ID="AssetSearchLocationDropDown" class="expand-item-textbox" runat="server">
-                                        </asp:DropDownList>
-                                    </div>-->
-                                    <div class="row expand-item-row">
-                                        <div class="expand-item-label">Owner</div>
-                                        <asp:DropDownList ID="AssetSearchOwnerDropDown" class="expand-item-textbox" runat="server">
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
-                                            OnClick="SearchAssetBtn_Click" OnClientClick="return isValidAssetSearch()" />
-                                        <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
-                                    </div>
-                                </div>
-                                <div id="AssetSearchSecondState" runat="server">
-                                    <asp:GridView ID="AssetSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="advanced-asset-search-icon hidden-sm hidden-xs">
-                                </div>
-                            </div>
+                            <a href="AdvancedAssetSearch.aspx">Advanced assets search</a>
                         </div>
                     </div>
                 </div>
@@ -475,9 +423,9 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="ManageAssetUserAboutUs.aspx">About</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

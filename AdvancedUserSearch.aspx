@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report1.aspx.cs" Inherits="FixAMz_WebApplication.Report1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdvancedUserSearch.aspx.cs" Inherits="FixAMz_WebApplication.AdvancedUserSearch" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +14,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
-    <div>
-
-    <!--Header-->
+    <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
+        SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
+    <div class="container-fluid">
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
@@ -36,12 +36,14 @@
 						        <div id="notificationContainer">
 							        <div id="notificationTitle" runat="server">Notifications</div>
 							        <div id="notificationsBody" class="notifications" runat="server">
-                                        </div>
+                                        <!-- Generated code -->
+							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
 					        </span>
                                 | 
-                            </div>
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                        </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -54,7 +56,7 @@
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="#">HOME</a> </li>
-                                    <li><a href="#" class="active">PEOPLE</a> </li>
+                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
                                     <li><a href="#">ABOUT</a> </li>
                                     <li><a href="#">HELP</a> </li>
@@ -65,8 +67,7 @@
                 </div>
             </div>
         </div>
-
-        <!--Main content-->
+<!--Main content-->
         <div class="row">
             <div class="col-md-9 col-xs-offset-2 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
@@ -81,18 +82,72 @@
                     </a>
                     <div id="responseMsgRed" runat="server"></div>
                 </div>
-
-            </div>
-
-    <!--Report generation-->
-            <div class="col-md-12">
-                <div class="col-md-7">
-                                    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
-                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
+<!--Advanced user search-->
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <img src="img/SearchIcon.png" />
+                        <div class="" id="AdvancedUserSearchHeader">
+                            Advanced User Search</div>
+                        <div class="expand-item-content" id="AdvancedUserSearchContent" runat="server" style="display:block">
+                            <div class="col-md-8">
+                            <div id="UserSearchInitState" runat="server">
+                                <div class="info-div">
+                                    Enter any information you have on the user to search.</div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">Cost Center</div>
+                                    <asp:DropDownList ID="SearchUserCostNameDropDown" class="expand-item-textbox" runat="server" >
+                                    </asp:DropDownList>
+                                    <div class="validator" id="SearchUserCostNameValidator" runat="server"></div>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        First Name</div>
+                                    <asp:TextBox ID="SearchFirstNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Last Name</div>
+                                    <asp:TextBox ID="SearchLastNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Email</div>
+                                    <asp:TextBox ID="SearchEmailTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div>
+                                <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Contact</div>
+                                    <asp:TextBox ID="SearchContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div>
+                               <!-- <div class="row expand-item-row">
+                                    <div class="expand-item-label">
+                                        Username</div>
+                                    <asp:TextBox ID="SearchUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                                </div> -->
+                                <div class="row expand-item-row">
+                                    <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
+                                        OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
+                                    <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"
+                                        OnClick="cancel_clicked" />
+                                </div>
+                            </div>
+                             
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="adv-user-search-icon">
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
                 </div>
             </div>
-    
-    <!--Footer-->
+            <div class="col-md-12">
+                <div id="UserSearchSecondState" runat="server">
+                      <asp:GridView ID="UserSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
+                </div>
+            </div>
+        </div>
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
@@ -112,10 +167,10 @@
             </div>
         </div>
     </div>
+
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
     <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
-
     </form>
 </body>
 </html>

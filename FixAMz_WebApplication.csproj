@@ -64,12 +64,14 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AboutUs.aspx" />
+    <Content Include="AdminAboutUs.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="AdminUserHomeTab.aspx" />
+    <Content Include="AdvancedUserSearch.aspx" />
+    <Content Include="ManageAssetUserAboutUs.aspx" />
     <Content Include="GridView.aspx" />
     <Content Include="img\costcenter.png" />
     <Content Include="img\developerIcon.png" />
@@ -126,7 +128,6 @@
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
     <Content Include="ManageAssetsUser.aspx" />
     <Content Include="NotificationView.aspx" />
-    <Content Include="Report1.aspx" />
     <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -134,7 +135,7 @@
     <Content Include="Scripts\JQuery-1.11.3.min.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\npm.js" />
-    <Content Include="SearchResults.aspx" />
+    <Content Include="AdvancedAssetSearch.aspx" />
     <Content Include="Styles\background.css" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
@@ -159,14 +160,15 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="AdminHelpTab.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutUs.aspx.cs">
-      <DependentUpon>AboutUs.aspx</DependentUpon>
+    <Compile Include="AdminAboutUs.aspx.cs">
+      <DependentUpon>AdminAboutUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AboutUs.aspx.designer.cs">
-      <DependentUpon>AboutUs.aspx</DependentUpon>
+    <Compile Include="AdminAboutUs.aspx.designer.cs">
+      <DependentUpon>AdminAboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -202,6 +204,20 @@
     </Compile>
     <Compile Include="AdminUserHomeTab.aspx.designer.cs">
       <DependentUpon>AdminUserHomeTab.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedUserSearch.aspx.cs">
+      <DependentUpon>AdvancedUserSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdvancedUserSearch.aspx.designer.cs">
+      <DependentUpon>AdvancedUserSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAssetUserAboutUs.aspx.cs">
+      <DependentUpon>ManageAssetUserAboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssetUserAboutUs.aspx.designer.cs">
+      <DependentUpon>ManageAssetUserAboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="FixAMzDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -243,13 +259,6 @@
       <DependentUpon>NotificationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report1.aspx.cs">
-      <DependentUpon>Report1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report1.aspx.designer.cs">
-      <DependentUpon>Report1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ReportViewer.aspx.cs">
       <DependentUpon>ReportViewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,12 +266,12 @@
     <Compile Include="ReportViewer.aspx.designer.cs">
       <DependentUpon>ReportViewer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SearchResults.aspx.cs">
-      <DependentUpon>SearchResults.aspx</DependentUpon>
+    <Compile Include="AdvancedAssetSearch.aspx.cs">
+      <DependentUpon>AdvancedAssetSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SearchResults.aspx.designer.cs">
-      <DependentUpon>SearchResults.aspx</DependentUpon>
+    <Compile Include="AdvancedAssetSearch.aspx.designer.cs">
+      <DependentUpon>AdvancedAssetSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -288,6 +297,13 @@
     </Compile>
     <Compile Include="testrept.aspx.designer.cs">
       <DependentUpon>testrept.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminHelpTab.aspx.cs">
+      <DependentUpon>AdminHelpTab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminHelpTab.aspx.designer.cs">
+      <DependentUpon>AdminHelpTab.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

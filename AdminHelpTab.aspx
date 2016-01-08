@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchResults.aspx.cs" Inherits="FixAMz_WebApplication.SearchResults" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHelpTab.aspx.cs" Inherits="FixAMz_WebApplication.WebForm1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-     
+    
     </div>
     </form>
 </body>
