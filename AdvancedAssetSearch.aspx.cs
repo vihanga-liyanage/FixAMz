@@ -14,6 +14,7 @@ namespace FixAMz_WebApplication
     public partial class SearchResults : System.Web.UI.Page
     {
         private string costID;
+        private string costName;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +22,7 @@ namespace FixAMz_WebApplication
             Authenticate_User();
             costCenter();
             Load_Notifications();
+            Load_CostCenter();
 
             if (!Page.IsPostBack)
             {
@@ -53,7 +55,6 @@ namespace FixAMz_WebApplication
             costID = data[2];
             Session["COST_ID_MNG_ASST"] = data[2];
         }
-
 
         //Checking if the user has access to the page
         protected void Authenticate_User()
@@ -328,6 +329,22 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        //loading CostCenters
+        protected void Load_CostCenter()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name FROM CostCenter WHERE costID='" + costID + "'", conn);
+                costName = (cmd.ExecuteScalar().ToString()).Trim();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error:" + ex.Message.ToString());
+            }
+        }
+
         //reload after click cancel button
         protected void cancel_clicked(object sender, EventArgs e)
         {
@@ -335,6 +352,14 @@ Request.ApplicationPath + "Login.aspx';", true);
         }
 
         // Advanced asset search =======================================================
+        protected void AssetSearchGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[0].Text = Server.HtmlDecode(e.Row.Cells[0].Text);
+            }
+        }
+
         protected void SearchAssetBtn_Click(object sender, EventArgs e)
         {
             String name = AssetSearchNameTextBox.Text.Trim();
@@ -344,7 +369,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             // String locationID = AssetSearchLocationDropDown.SelectedValue;
             String ownerID = AssetSearchOwnerDropDown.SelectedValue;
 
-            String resultMessage = "";
+            String resultMessage = "Cost Center <strong>" + costName + "</strong>, ";
 
             String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (Eo.firstName+' '+Eo.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date " +
                 "FROM Asset A " +
@@ -356,23 +381,24 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             if (name != "")
             {
-                query += " AND name='" + name + "'";
-                resultMessage += name + ", ";
-            }
-            if (subCategoryID != "")
-            {
-                query += " AND subcategory='" + subCategoryID + "'";
-                resultMessage += subCategoryID + ", ";
+                query += " AND A.name='" + name + "'";
+                resultMessage += "Asset Name <strong>" + name + "</strong>, ";
             }
             if (categoryID != "")
             {
                 query += " AND category='" + categoryID + "'";
-                resultMessage += categoryID + ", ";
+                resultMessage += "Category <strong>" + AssetSearchCategoryDropDown.SelectedItem + "</strong>, ";
             }
+            if (subCategoryID != "")
+            {
+                query += " AND subcategory='" + subCategoryID + "'";
+                resultMessage += "Sub Category <strong>" + AssetSearchSubCategoryDropDown.SelectedItem + "</strong>, ";
+            }
+            
             if (value != "")
             {
-                query += " AND value='" + Convert.ToInt16(value) + "'";
-                resultMessage += value + ", ";
+                query += " AND value='" + Convert.ToInt32(value) + "'";
+                resultMessage += "Value <strong>" + value + "</strong>, ";
             }
             /* if (locationID != "")
              {
@@ -382,7 +408,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             if (ownerID != "")
             {
                 query += " AND owner='" + ownerID + "'";
-                resultMessage += ownerID + ", ";
+                resultMessage += "Asset Owner <strong>" + AssetSearchOwnerDropDown.SelectedItem + "</strong>, ";
             }
 
 
@@ -393,7 +419,8 @@ Request.ApplicationPath + "Login.aspx';", true);
             //Remove unnessary 'and'
             query = query.Replace("WHERE AND", "WHERE ");
 
-            resultMessage += costID;
+            //Remove result message last comma
+            resultMessage = resultMessage.Substring(0, resultMessage.Length - 2);
 
             //Response.Write(query + "<br>");
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
@@ -422,8 +449,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                     c1 = new DataColumn("Approved Date", typeof(string));
                     dt.Columns.Add(c1);
 
+                    int count = 0;
                     while (reader.Read())
                     {
+                        count++;
                         dt.Rows.Add(reader["Asset_ID"], reader["Name"], reader["Value"] + ".00 (LKR)", reader["Category"], reader["Subcategory"], reader["Owner"], reader["Location"], reader["Approved_Date"]);
                     }
 
@@ -432,7 +461,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
                     responseBoxGreen.Style.Add("display", "block");
-                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
+                    responseMsgGreen.InnerHtml = "<strong>" + count + "</strong> results found for " + resultMessage;
                 }
                 else
                 {
