@@ -334,13 +334,11 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             String resultMessage = "";
 
-            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (Eo.firstName+' '+Eo.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date, (Er.firstName+' '+Er.lastName) AS Recommended_By, (Ea.firstName+' '+Ea.lastName) AS Approved_By " +
+            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (Eo.firstName+' '+Eo.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date " +
                 "FROM Asset A " +
                 "INNER JOIN Category C ON A.category=C.catID " +
                 "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
                 "INNER JOIN Employee Eo ON A.owner=Eo.empID " +
-                "INNER JOIN Employee Er ON A.recommend=Er.empID " +
-                "INNER JOIN Employee Ea ON A.approve=Ea.empID " +
                 "INNER JOIN Location L ON A.location=L.locID " +
                 "WHERE status=1";
 
@@ -393,11 +391,29 @@ Request.ApplicationPath + "Login.aspx';", true);
                 if (reader != null && reader.HasRows) //if search results found
                 {
                     DataTable dt = new DataTable();
-                    //dt.Columns.Add("Asset ID");
-                    //DataRow dtrow = dt.NewRow();
-                    //dtrow["Asset ID"] = "E00001";
-                    //dt.Rows.Add(dtrow);
-                    dt.Load(reader);
+                    DataColumn c1 = new DataColumn("Asset ID", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Name", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Value", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Category", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Sub Category", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Owner", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Location", typeof(string));
+                    dt.Columns.Add(c1);
+                    c1 = new DataColumn("Approved Date", typeof(string));
+                    dt.Columns.Add(c1);
+
+                    while (reader.Read())
+                    {
+                        dt.Rows.Add(reader["Asset_ID"], reader["Name"], reader["Value"] + ".00 (LKR)", reader["Category"], reader["Subcategory"], reader["Owner"], reader["Location"], reader["Approved_Date"]);
+                    }
+
+                    //dt.Load(reader);
 
                     AssetSearchGridView.DataSource = dt;  //display found data in grid view
                     AssetSearchGridView.DataBind();
