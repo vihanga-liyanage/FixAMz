@@ -59,11 +59,9 @@
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                         <li><a href="AdminUserHomeTab.aspx" class="active">HOME</a> </li>
                                         <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-
                                         <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
-
-                                        <li><a href="#">HELP</a> </li>
+                                        <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -85,7 +83,7 @@
                         <div class="icon">
                             <img src="img/multy-user.png" style="width: 100px;" alt=""/>
                         </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 

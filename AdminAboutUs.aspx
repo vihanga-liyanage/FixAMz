@@ -56,10 +56,10 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="AdminAboutUs.aspx"  class="active">ABOUT</a> </li>
+                                    <li><a href="AdminAboutUs.aspx" class="active">ABOUT</a> </li>
                                     <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
