@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace FixAMz_WebApplication
 {
-    public partial class AboutUs : System.Web.UI.Page
+    public partial class AdminAboutUs : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

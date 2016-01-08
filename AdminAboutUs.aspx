@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AboutUs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminAboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AdminAboutUs" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,10 +57,11 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#" class="active">HOME</a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="GridView.aspx">VIEW</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="AdminUserPeopleTab.aspx">HOME</a> </li>
+                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
+                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                    <li><a href="#" class="active">ABOUT</a> </li>                                    
+                                    <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
 

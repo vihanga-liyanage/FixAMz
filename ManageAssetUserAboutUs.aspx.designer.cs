@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class AboutUs {
+    public partial class ManageAssetUserAboutUs {
         
         /// <summary>
         /// form1 control.
