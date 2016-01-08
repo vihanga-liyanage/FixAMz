@@ -64,13 +64,7 @@
         </div>
 <!--Footer-->
         <div id="footer" class="row">
-            <div class="row footer-up">
-                <ul class="footer-nav">
-				    <li><a href="#">About</a></li>
-				    <li><a href="#">help</a></li>
-				    <li><a href="#">site map</a></li>
-			    </ul>
-            </div>
+           
             <div class="row footer-down">
                 <div class="col-md-5">Copyright &copy; 2015 National Water Supply and Drainage Board.<br>All Rights Reserved.</div>
 		        

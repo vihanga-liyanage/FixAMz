@@ -423,9 +423,9 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="ManageAssetUserAboutUs.aspx">About</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">
