@@ -121,13 +121,13 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotificationHeader;
         
         /// <summary>
-        /// AddNewAssetNotificationContent control.
+        /// NotificationContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetNotificationContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotificationContent;
         
         /// <summary>
         /// AssetID control.
@@ -200,6 +200,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetLocation;
+        
+        /// <summary>
+        /// UpdateNotificationContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdateNotificationContent;
         
         /// <summary>
         /// AddnewassetState control.

@@ -85,49 +85,55 @@
 <!--notification content -->
     <div class="row">
     <div class="item-title"><div id="NotificationHeader" runat="server" class="custom-label"></div></div>
-    <div class="expand-item-row" id="AddNewAssetNotificationContent" runat="server">
+    <div class="expand-item-row" runat="server">
         <div class="col-md-8">
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Asset ID</div>
-                <div id="AssetID" runat="server" class="custom-label">
+<!-- Default notification content-->
+            <div id="NotificationContent" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Asset ID</div>
+                    <div id="AssetID" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Name</div>
+                    <div id="AssetName" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Category</div>
+                    <div id="AssetCategory" runat="server" class="custom-label">
+                </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Subcategory</div>
+                    <div id="AssetSubcategory" runat="server" class="custom-label">
+                </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Value (LKR)</div>
+                   <div id="AssetValue" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Salvage Value (LKR)</div>
+                    <div id="AssetSalvageValue" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Owner</div>
+                    <div id="AssetOwner" runat="server" class="custom-label">
+                </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Location</div>
+                    <div id="AssetLocation" runat="server" class="custom-label">
+                </div>
                 </div>
             </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Name</div>
-                <div id="AssetName" runat="server" class="custom-label">
-                </div>
+<!-- Update notification content-->
+            <div id="UpdateNotificationContent" runat="server">
+                <!-- content-->
             </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Category</div>
-                <div id="AssetCategory" runat="server" class="custom-label">
-            </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Subcategory</div>
-                <div id="AssetSubcategory" runat="server" class="custom-label">
-            </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Value (LKR)</div>
-               <div id="AssetValue" runat="server" class="custom-label">
-                </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Salvage Value (LKR)</div>
-                <div id="AssetSalvageValue" runat="server" class="custom-label">
-                </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Owner</div>
-                <div id="AssetOwner" runat="server" class="custom-label">
-            </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Location</div>
-                <div id="AssetLocation" runat="server" class="custom-label">
-            </div>
-            </div>
-
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
                 <div class="row expand-item-row">
@@ -144,14 +150,12 @@
                           />
                 </div>
             </div>
-
 <!-- AddnewassetStateApprove cancel-->
             <div id="AddnewassetStateApproveCancel" runat="server">
                 <div class="row expand-item-row">
                     <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClick="AddNewAssetBack_Click"/>
                 </div>
             </div>
-
 
 <!-- UpgradeassetState-->
             <div id="UpgradeassetState" runat="server">
@@ -171,8 +175,7 @@
                         OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
                 </div>
             </div>
-
-<!--UpgradeassetApprove-->
+<!-- UpgradeassetApprove-->
             <div id="UpgradeassetApprove" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Upgrade cost</div>
@@ -189,7 +192,6 @@
                     <asp:Button ID="Button5" runat="server" Text="Back" class="expand-item-btn" OnClick="upgradeAssetBack_Click" />
                 </div>
             </div>
-
 <!-- UpgradeassetApprove cancel-->
             <div id="UpgradeassetStateApproveCancel" runat="server">
                 <div class="row expand-item-row">
@@ -215,7 +217,6 @@
                         OnClick="TransferAssetSendapprovecancel_Click" />
                 </div>
             </div>
-
 <!-- TransferassetApproveState-->
             <div id="TransferassetApproveState" runat="server">
                 <div class="row expand-item-row">
@@ -234,7 +235,6 @@
                         OnClick="transferAssetBack_Click" />
                 </div>
             </div>
-
 <!-- TransferassetCancelState-->
             <div id="TransferassetCancelState" runat="server">
                 <div class="row expand-item-row">
@@ -254,8 +254,9 @@
                          OnClientClick="return transferAssetEdit_Click" />
                 </div>
             </div>
+
 <!-- DisposeassetState-->
-             <div id="DisposeassetState" runat="server">
+            <div id="DisposeassetState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Description</div>
                     <div id="DisposeDescription" runat="server" class="custom-label">
@@ -267,7 +268,6 @@
                         OnClick="DisposeAssetcancel_Click" />
                 </div>
             </div>
-
 <!-- DisposeassetApprove-->
             <div id="DisposeassetApprove" runat="server">
                 <div class="row expand-item-row">
