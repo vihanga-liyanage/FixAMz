@@ -618,10 +618,41 @@ a:focus {
     z-index:-1;
 }
 
+/*==============================Report transfer icon========================*/
+.report-transfer-icon
+{
+    position:absolute;
+    background:url(/img/report-transfer.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
 
+/*==============================Report upgrade icon========================*/
+.report-upgrade-icon
+{
+    position:absolute;
+    background:url(/img/report-upgrade.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
 
-
-
+/*==============================Report dispose icon========================*/
+.report-dispose-icon
+{
+    position:absolute;
+    background:url(/img/report-dispose.png) no-repeat;
+    width:270px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
 
 /*================================footer styles===========================*/
 
