@@ -199,7 +199,7 @@ a:focus {
 {
     padding:10px 10px 10px 0px;
 }
-.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader
+.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader, #ReportsHeader
 {
     font-size:20px;
     color:#1f69b9;
@@ -315,6 +315,77 @@ a:focus {
     
 }
 
+.small-box {
+    border-radius: 6px;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.bg-aqua{
+    background-color: rgba(53, 114, 158, 0.92) !important;
+}
+
+.newstyle {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.small-box .icon {
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    z-index: 0;
+    font-size: 90px;
+    color: rgba(0,0,0,0.15);
+}
+.small-box>.inner {
+    padding: 13px;
+    color: white;
+}
+
+.icon img
+{
+    width:100px;
+}
+
+.small-box:hover
+{
+    border-radius: 2px;
+}
+.small-box>.icon>img:hover
+{
+    width:98px;
+    padding-left:2px;
+    padding-bottom:2px;
+    
+    
+}
+
+.small-box-footer
+{
+    position:relative;
+    text-align:center;
+    padding:3px 0;
+    color:#fff;
+    color:rgba(255,255,255,0.8);
+    display:block;
+    z-index:10;
+    background:rgba(0,0,0,0.1);
+    text-decoration:none;
+    }
+.small-box>.small-box-footer:hover
+{
+    color:#fff;
+    background:rgba(0,0,0,0.15)
+}
 
 /*================================Add user================================*/
 .add-user-icon
@@ -523,6 +594,66 @@ a:focus {
     z-index:-1;
 }
 
+/*==============================Report finance icon========================*/
+.report-finance-icon
+{
+    position:absolute;
+    background:url(/img/finance-report.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report genaral icon========================*/
+.report-general-icon
+{
+    position:absolute;
+    background:url(/img/report-genaral.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report transfer icon========================*/
+.report-transfer-icon
+{
+    position:absolute;
+    background:url(/img/report-transfer.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report upgrade icon========================*/
+.report-upgrade-icon
+{
+    position:absolute;
+    background:url(/img/report-upgrade.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report dispose icon========================*/
+.report-dispose-icon
+{
+    position:absolute;
+    background:url(/img/report-dispose.png) no-repeat;
+    width:270px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
 /*================================footer styles===========================*/
 
 #footer
@@ -657,7 +788,6 @@ a:focus {
 {
     display:none;
 }
-
 .notification-icon
 {
     position:absolute;
@@ -669,3 +799,18 @@ a:focus {
     z-index:-1;
 } 
 
+/*==============================Notification view styles=========================*/
+.report-ul
+{
+    color: #337BAA;
+    list-style: none;
+}
+.report-label
+{
+    color: #337BAA;
+    padding: 0px 30px 0px 0px;
+    float: left;
+    width: 37%;
+    font-size: 19px;
+    list-style: none;
+}

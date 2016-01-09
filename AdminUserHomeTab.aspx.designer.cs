@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class ManageAssetUserAboutUs {
+    public partial class AdminUserHomeTab {
         
         /// <summary>
         /// form1 control.
@@ -76,39 +76,39 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// responseBoxGreen control.
+        /// totalusers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseBoxGreen;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalusers;
         
         /// <summary>
-        /// responseMsgGreen control.
+        /// totalcats control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgGreen;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalcats;
         
         /// <summary>
-        /// responseBoxRed control.
+        /// totalsubcats control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseBoxRed;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalsubcats;
         
         /// <summary>
-        /// responseMsgRed control.
+        /// totalcostcenter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgRed;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalcostcenter;
     }
 }

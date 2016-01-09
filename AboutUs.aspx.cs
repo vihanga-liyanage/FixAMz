@@ -12,14 +12,16 @@ using System.Web.Services;
 using System.Net;
 using System.Net.Mail;
 using System.IO;
+
 namespace FixAMz_WebApplication
 {
-    public partial class ManageAssetUserAboutUs : System.Web.UI.Page
+    public partial class AdminAboutUs : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Authenticate_User();
+            
             Load_Notifications();
+            setNavBar();
 
             if (!Page.IsPostBack)
             {
@@ -31,26 +33,6 @@ namespace FixAMz_WebApplication
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
-        }
-
-        //Checking if the user has access to the page
-        protected void Authenticate_User()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-
-
-            if (data[1] != "manageAssetUser")
-            {
-                FormsAuthentication.SignOut();
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-            }
         }
 
         //Setting user name on header
@@ -109,11 +91,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -137,10 +131,38 @@ Request.ApplicationPath + "Login.aspx';", true);
             conn.Close();
         }
 
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "generateReportUser")
+            {
+                generateReportUserNavBar.Style.Add("display", "block");
+            }
+            if (data[1] == "admin")
+            {
+                adminAboutNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
+            }
+        }
+
         //reload after click cancel button
         protected void cancel_clicked(object sender, EventArgs e)
         {
-            Response.Redirect("AdminAboutUs.aspx");
+            Response.Redirect("AboutUs.aspx");
         }
 
         //Signing out

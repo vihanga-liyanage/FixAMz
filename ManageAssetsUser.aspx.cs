@@ -23,6 +23,7 @@ namespace FixAMz_WebApplication
             Load_Notifications();
             setAssetID();
             personToRecommend();
+            setNavBar();
             
             if (!Page.IsPostBack)
             {
@@ -105,7 +106,7 @@ namespace FixAMz_WebApplication
             string[] data = userData.Split(';');
 
 
-            if (data[1] != "manageAssetUser")
+            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport"))
             {
                 FormsAuthentication.SignOut();
 
@@ -170,11 +171,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -196,6 +209,26 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             dr.Close();
             conn.Close();
+        }
+
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
+            }
         }
 
         // Signing out =================================================================
@@ -401,7 +434,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
-        // Regester new asset ==========================================================
+// Regester new asset ==========================================================
         protected void setAssetID() 
         {
             //Getting cost center
@@ -416,7 +449,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT TOP 1 assetID FROM Asset ORDER BY assetID DESC";
+                String query = "SELECT TOP 1 assetID FROM Asset WHERE costID='" + costID + "' ORDER BY assetID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 String newAssetID;
                 if (cmd.ExecuteScalar() != null)

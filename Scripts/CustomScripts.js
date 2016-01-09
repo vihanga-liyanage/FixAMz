@@ -678,6 +678,7 @@ function isValidAddAsset() {
 }
 
 //Advanced asset search functions=============================================================
+//Not using since 2016.01.08
 function isValidAssetSearch() {
     var name = document.forms[0]["AssetSearchNameTextBox"].value;
     var dropdown = document.forms[0]["AssetSearchCategoryDropDown"];
@@ -761,4 +762,11 @@ function upgradeAssetClearAll() {
 //      Notification view                                                                   //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
+function transferAssetEdit_Click() {
+    var id = document.forms[0]["AssetID"].value;
+    document.forms[0]["TransferAssetIDTextBox"].value = id;
+    document.getElementById("disposeAssetSecondState").style.display = "none";
+    document.getElementById("transferAssetInitState").style.display = "block";
+    //expandingItems["DisposeAssetContent"] = true;
+    return true;
+}

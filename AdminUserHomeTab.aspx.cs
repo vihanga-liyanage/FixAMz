@@ -8,63 +8,31 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
-using System.Web.Services;
-using System.Net;
-using System.Net.Mail;
-using System.IO;
-
 namespace FixAMz_WebApplication
 {
-    public partial class AdminAboutUs : System.Web.UI.Page
+    public partial class AdminUserHomeTab : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
             Load_Notifications();
-
-            if (!Page.IsPostBack)
+            setTotalUsers();
+            setTotalcategories();
+            setTotalcostcenter();
+            setTotalsubcategories();
+            if (!IsPostBack)
             {
                 setUserName();
-                Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
+               
             }
 
-            responseBoxGreen.Style.Add("display", "none");
-            responseMsgGreen.InnerHtml = "";
-            responseBoxRed.Style.Add("display", "none");
-            responseMsgRed.InnerHtml = "";
         }
 
-        //Checking if the user has access to the page
-        protected void Authenticate_User()
+        //Signing out
+        protected void SignOutLink_clicked(object sender, EventArgs e)
         {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-
-
-            if (data[1] != "admin")
-            {
-                FormsAuthentication.SignOut();
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-            }
-        }
-
-        //Setting user name on header
-        protected void setUserName()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            string[] data = userData.Split(';');
-
-            userName.InnerHtml = data[0];
-
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
         }
 
         //Loading notifications
@@ -138,36 +106,85 @@ Request.ApplicationPath + "Login.aspx';", true);
             conn.Close();
         }
 
-        //reload after click cancel button
-        protected void cancel_clicked(object sender, EventArgs e)
+        //Checking if the user has access to the page
+        protected void Authenticate_User()
         {
-            Response.Redirect("AdminAboutUs.aspx");
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+
+            if (data[1] != "admin")
+            {
+                FormsAuthentication.SignOut();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
+            }
         }
 
-        //Signing out
-        protected void SignOutLink_clicked(object sender, EventArgs e)
+        //Setting user name on header
+        protected void setUserName()
         {
-            FormsAuthentication.SignOut();
-            Response.Redirect("Login.aspx");
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+
+            userName.InnerHtml = data[0];
+
         }
 
-        [WebMethod]//username validity checking in client side with ajax
-        public static int checkUsername(string Username)
+        //getting total users
+        protected void setTotalUsers()
         {
-            //To send a JSON object -> HttpContext.Current.Response.Write("{'response' : '" + res + "'}");
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                String query = "SELECT COUNT(*) FROM SystemUser WHERE username='" + Username + "'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                return res;
-            }
-            catch (SqlException)
-            {
-                return 2;
-            }
+            String query = "SELECT count(*) FROM SystemUser";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalusers.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total categories
+        protected void setTotalcategories()
+        {
+            String query = "SELECT count(*) FROM Category";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalcats.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total sub categories
+        protected void setTotalsubcategories()
+        {
+            String query = "SELECT count(*) FROM SubCategory";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalsubcats.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total cost centers
+        protected void setTotalcostcenter()
+        {
+            String query = "SELECT count(*) FROM CostCenter";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalcostcenter.InnerHtml = empID;
+            conn.Close();
         }
     }
 }

@@ -55,11 +55,11 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="AboutUs.aspx">ABOUT</a> </li>
+                                    <li><a href="Help.aspx">HELP</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="padding: 0px 30px 0px 30px;">
                 <div id="UserSearchSecondState" runat="server">
                       <asp:GridView ID="UserSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
                 </div>
@@ -151,9 +151,9 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
+                    <li><a href="Help.aspx">Help</a></li>
+                    <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

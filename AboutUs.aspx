@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminAboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AdminAboutUs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AdminAboutUs" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -54,14 +54,44 @@
                                     <span class="icon-bar"></span>
                                 </button>
                             </div>
-                            <div class="collapse navbar-collapse" style="float:right;">
-                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
-                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
-                                    <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="AdminAboutUs.aspx"  class="active">ABOUT</a> </li>
-                                    <li><a href="AdminHelpTab.aspx">HELP</a> </li>
-                                </ul>
+                            <div id="adminAboutNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
+                                        <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
+                                        <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
+                                        <li><a href="AboutUs.aspx"  class="active">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="manageAssetUserNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
+                                        <li><a href="AboutUs.aspx" class="active">ABOUT</a> </li>                                 
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="generateReportUserNavBar" runat="server" style="display:none;">
+                                <div id="Div1" class="collapse navbar-collapse" runat="server" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ReportViewer.aspx">Reports</a> </li>
+                                        <li><a href="AboutUs.aspx"  class="active">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="manageReportNavBar" runat="server" style="display:none;">
+                                <div id="Div2" class="collapse navbar-collapse" runat="server" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
+                                        <li><a href="ReportViewer.aspx">Reports</a> </li>
+                                        <li><a href="AboutUs.aspx"  class="active">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,9 +151,9 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="AdminHelpTab.aspx">Help</a></li>
-                    <li><a href="#">Site map</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
+                    <li><a href="Help.aspx">Help</a></li>
+                    <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

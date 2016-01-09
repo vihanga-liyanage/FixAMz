@@ -30,6 +30,7 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
+            setNavBar();
             setUserName();
             Load_Notifications();
             //Load_Content_for_cancel();
@@ -62,12 +63,32 @@ namespace FixAMz_WebApplication
             string[] data = userData.Split(';');
 
 
-            if (data[1] != "manageAssetUser")
+            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport"))
             {
                 FormsAuthentication.SignOut();
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
 Request.ApplicationPath + "Login.aspx';", true);
+            }
+        }
+
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
             }
         }
 
@@ -169,11 +190,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -335,7 +368,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 //Add new==================
                 if (Type == "AddNew" && Action == "Recommend")
                 {
-                    NotificationHeader.InnerHtml = "Add new asset Notification";
+                    NotificationHeader.InnerHtml = "Register New Asset - Recommend";
                     AddnewassetState.Style.Add("display", "block");
                     NotificationContent.Style.Add("display", "block");
                     EditableNotificationContent.Style.Add("display", "none");
@@ -343,7 +376,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (Type == "AddNew" && Action == "Approve")
                 {
-                    NotificationHeader.InnerHtml = "Add new asset approve Notification";
+                    NotificationHeader.InnerHtml = "Register New Asset - Approve";
                     AddnewassetStateApprove.Style.Add("display", "block");
                     NotificationContent.Style.Add("display", "block");
                     EditableNotificationContent.Style.Add("display", "none");
@@ -351,11 +384,16 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (Type == "AddNew" && Action == "Cancel")
                 {
+<<<<<<< HEAD
                     NotificationHeader.InnerHtml = "Add new asset cancel Notification";
                     AddnewassetStateApproveCancel.Style.Add("display", "none");
                     NotificationContent.Style.Add("display", "none");
                     EditableNotificationContent.Style.Add("display", "block");
                     
+=======
+                    NotificationHeader.InnerHtml = "Register New Asset - Rejected";
+                    AddnewassetStateApproveCancel.Style.Add("display", "block");
+>>>>>>> 3aa4db50cae383f71312785dd190dfb123108c66
                 }
 
 //Transfer=================
@@ -382,7 +420,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd1 = new SqlCommand(getnewOwnerNameQuery, conn);
                     TransferNewowner.InnerHtml = cmd1.ExecuteScalar().ToString();
 
-                    NotificationHeader.InnerHtml = "Transfer asset Notification";                  
+                    NotificationHeader.InnerHtml = "Transfer Asset - Recommend";                  
                     TransferassetState.Style.Add("display", "block");
                 }
 
@@ -409,7 +447,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd1 = new SqlCommand(getnewOwnerNameQuery, conn);
                     TransferAssetnewowner.InnerHtml = cmd1.ExecuteScalar().ToString();
 
-                    NotificationHeader.InnerHtml = "Transfer asset approve Notification";
+                    NotificationHeader.InnerHtml = "Transfer Asset - Approve";
                     TransferassetApproveState.Style.Add("display", "block");
                 }
 
@@ -436,7 +474,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     cmd1 = new SqlCommand(getnewOwnerNameQuery, conn);
                     TransfernewownerCancel.InnerHtml = cmd1.ExecuteScalar().ToString();
 
-                    NotificationHeader.InnerHtml = "Transfer asset cancel Notification";
+                    NotificationHeader.InnerHtml = "Transfer Asset - Rejected";
                     TransferassetCancelState.Style.Add("display", "block");
                 }
 
@@ -456,7 +494,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         updatedescription = dr2["description"].ToString().Trim();
                     }
 
-                    NotificationHeader.InnerHtml = "Upgrade asset Notification";
+                    NotificationHeader.InnerHtml = "Upgrade Asset - Recommend";
 
                     UpgradeCost.InnerHtml = updatevalue;
                     UpgradeDescription.InnerHtml = updatedescription;
@@ -477,7 +515,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         updatevalue = dr2["updatedValue"].ToString().Trim();
                         updatedescription = dr2["description"].ToString().Trim();
                     }
-                    NotificationHeader.InnerHtml = "Upgrade asset approve Notification";
+                    NotificationHeader.InnerHtml = "Upgrade Asset - Approve";
 
                     UpgradeCostApprove.InnerHtml = updatevalue;
                     UpgradeDescriptionApprove.InnerHtml = updatedescription;
@@ -486,7 +524,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (Type == "Update" && Action == "Cancel")
                 {
-                    NotificationHeader.InnerHtml = "Upgrade asset cancel Notification";
+                    NotificationHeader.InnerHtml = "Upgrade Asset - Rejected";
                     UpgradeassetStateApproveCancel.Style.Add("display", "block");
                 }
 
@@ -496,14 +534,14 @@ Request.ApplicationPath + "Login.aspx';", true);
 //Dispose ====================================================
                 if (Type == "Delete" && Action == "Recommend")
                 {
-                    NotificationHeader.InnerHtml = "Dispose asset Notification";
+                    NotificationHeader.InnerHtml = "Dispose Asset - Recommend";
                     DisposeDescription.InnerHtml = Content;
                     DisposeassetState.Style.Add("display", "block");
                 }
 
                 if (Type == "Delete" && Action == "Approve")
                 {
-                    NotificationHeader.InnerHtml = "Dispose asset approve Notification";
+                    NotificationHeader.InnerHtml = "Dispose Asset - Approve";
                     SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     //conn.Open();
                     String getvalue = "SELECT notContent FROM Notification WHERE assetID='" + Asset + "'";
@@ -518,7 +556,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (Type == "Delete" && Action == "Cancel")
                 {
-                    NotificationHeader.InnerHtml = "Dispose asset cancel Notification";
+                    NotificationHeader.InnerHtml = "Dispose Asset - Rejected";
                     SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     
                     String getvalue = "SELECT notContent FROM Notification WHERE assetID='" + Asset + "'";
