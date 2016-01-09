@@ -31,8 +31,24 @@ namespace FixAMz_WebApplication
         {
             Authenticate_User();
             setUserName();
-            Load_Content();
             Load_Notifications();
+            //Load_Content_for_cancel();
+
+            if (!Page.IsPostBack)
+            {
+                //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"not postback\")</SCRIPT>");
+                costCenter();
+                personToRecommend();
+                Load_Location();
+                Load_Employee_Data();
+                Load_Category();
+                Load_SubCategory_for_register();
+                Load_Content();
+                Load_Content_for_cancel();
+                
+                //Page.MaintainScrollPositionOnPostBack = true;
+            }
+            
         }
 
         //Checking if the user has access to the page
@@ -66,6 +82,48 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             userName.InnerHtml = data[0];
 
+        }
+
+        //set personToRecommend according to costID
+        protected void personToRecommend()
+        {
+            String query = "SELECT e.empID, e.firstName, e.lastName FROM Employee e INNER JOIN CostCenter c ON e.empID = c.recommendPerson WHERE c.costID='" + Session["COST_ID_MNG_ASST"] + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            String recoPrsn = "";
+            while (dr.Read())
+            {
+                recoPrsn = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
+            }
+            dr.Close();
+            conn.Close();
+
+            String query2 = "SELECT recommendPerson, approvePerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
+            SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn2.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn2);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                Session["PRSN_TO_APP"] = dr2["approvePerson"].ToString().Trim();
+            }
+            dr2.Close();
+            conn2.Close();
+        }
+
+        //set costID by user login
+        protected void costCenter()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+            //costID = data[2];
+            Session["COST_ID_MNG_ASST"] = data[2];
         }
 
         //Loading notifications
@@ -159,6 +217,44 @@ Request.ApplicationPath + "Login.aspx';", true);
             
         }
 
+        //Load data for cancel
+        protected void Load_Content_for_cancel()
+        {
+            try
+            {
+               
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query1 = "SELECT * FROM Asset WHERE assetID='" + Asset + "'";
+                SqlCommand cmd1 = new SqlCommand(query1, conn);
+                SqlDataReader dr1 = cmd1.ExecuteReader();
+
+                while (dr1.Read())
+                {
+
+                    AddNewAssetId.InnerHtml = dr1["assetID"].ToString();
+                    AssetNameTextBox.Text = dr1["name"].ToString();
+                    AddValueTextBox.Text = dr1["value"].ToString();
+                    AddSalvageValueTextBox.Text = dr1["salvageValue"].ToString();
+                    AddAssetCategoryDropDown.SelectedValue = dr1["category"].ToString();
+                    AddAssetSubCategoryDropDown.SelectedValue = dr1["Subcategory"].ToString();
+                    AddAssetOwnerDropDown.SelectedValue = dr1["owner"].ToString();
+                    AddAssetLocationDropDown.SelectedValue = dr1["location"].ToString();
+
+                }
+                dr1.Close();
+                conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+            }
+
+        }
+
         //Load page data
         protected void Load_Content()
         {
@@ -207,6 +303,15 @@ Request.ApplicationPath + "Login.aspx';", true);
                     Owner = dr1["owner"].ToString();
                     Location = dr1["location"].ToString();
 
+                    /*AddNewAssetId.InnerHtml = dr1["assetID"].ToString();
+                    AssetNameTextBox.Text = dr1["name"].ToString();
+                    AddValueTextBox.Text = dr1["value"].ToString();
+                    AddSalvageValueTextBox.Text = dr1["salvageValue"].ToString();
+                    AddAssetCategoryDropDown.SelectedValue = dr1["category"].ToString();
+                    AddAssetSubCategoryDropDown.SelectedValue = dr1["Subcategory"].ToString();
+                    AddAssetOwnerDropDown.SelectedValue = dr1["owner"].ToString();
+                    AddAssetLocationDropDown.SelectedValue = dr1["location"].ToString();*/
+
                 }
                 dr1.Close();
 
@@ -232,18 +337,25 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     NotificationHeader.InnerHtml = "Add new asset Notification";
                     AddnewassetState.Style.Add("display", "block");
+                    NotificationContent.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "AddNew" && Action == "Approve")
                 {
                     NotificationHeader.InnerHtml = "Add new asset approve Notification";
                     AddnewassetStateApprove.Style.Add("display", "block");
+                    NotificationContent.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "AddNew" && Action == "Cancel")
                 {
                     NotificationHeader.InnerHtml = "Add new asset cancel Notification";
-                    AddnewassetStateApproveCancel.Style.Add("display", "block");
+                    AddnewassetStateApproveCancel.Style.Add("display", "none");
+                    NotificationContent.Style.Add("display", "none");
+                    EditableNotificationContent.Style.Add("display", "block");
+                    
                 }
 
 //Transfer=================
@@ -432,6 +544,107 @@ Request.ApplicationPath + "Login.aspx';", true);
             
         }
 
+        //Loading category dropdown
+        protected void Load_Category()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, catID FROM Category", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddAssetCategoryDropDown.DataSource = data;
+                AddAssetCategoryDropDown.DataTextField = "name";
+                AddAssetCategoryDropDown.DataValueField = "catID";
+                AddAssetCategoryDropDown.DataBind();
+                data.Close();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Load_Category:" + ex.Message.ToString());
+            }
+        }
+
+        //Loading sub category dropdown
+        protected void Load_SubCategory_for_register()
+        {
+            try
+            {
+                String cateID = AddAssetCategoryDropDown.SelectedValue;
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cateID + "'", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddAssetSubCategoryDropDown.DataSource = data;
+                AddAssetSubCategoryDropDown.DataTextField = "name";
+                AddAssetSubCategoryDropDown.DataValueField = "scatID";
+                AddAssetSubCategoryDropDown.DataBind();
+                AddAssetSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
+                data.Close();
+                conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Load_SubCategory_for_register:" + ex.Message.ToString());
+            }
+        }
+
+        //Loading location dropdown
+        protected void Load_Location()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT cl.locID, l.name FROM CostLocation cl INNER JOIN Location l ON cl.locID = l.locID WHERE costID='" + Session["COST_ID_MNG_ASST"] + "'", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                AddAssetLocationDropDown.DataSource = data;
+                AddAssetLocationDropDown.DataTextField = "name";
+                AddAssetLocationDropDown.DataValueField = "locID";
+                AddAssetLocationDropDown.DataBind();
+                //AddAssetLocationDropDown.Items.Insert(0, new ListItem("-- Select a location --", ""));
+                data.Close();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Load_Location_Data:" + ex.Message.ToString());
+            }
+        }
+
+        //Loading employee data
+        protected void Load_Employee_Data()
+        {
+            try
+            {
+
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT [firstname]+' '+[lastname] AS [name], empID FROM Employee WHERE costID='" + Session["COST_ID_MNG_ASST"] + "'", conn);
+                SqlDataReader data = cmd.ExecuteReader();
+
+                //Register new asset owner drop down
+                AddAssetOwnerDropDown.DataSource = data;
+                AddAssetOwnerDropDown.DataTextField = "name";
+                AddAssetOwnerDropDown.DataValueField = "empID";
+                AddAssetOwnerDropDown.DataBind();
+                //AddAssetOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
+                data.Close();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Load_Employee_Data:" + ex.Message.ToString());
+            }
+        }
+
         // Signing out =================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
@@ -531,6 +744,8 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
+        
+
 //Add new asset ==========================================
 
         protected void AddNewAssetSendapprovecancel_Click(object sender, EventArgs e)
@@ -538,6 +753,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 try
                 {
+                    Load_Content();
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     String notID = setNotID();
@@ -574,6 +790,8 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 try
                 {
+                    Load_Content();
+                    Load_Content_for_cancel();
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     String notID = setNotID();
@@ -608,6 +826,8 @@ Request.ApplicationPath + "Login.aspx';", true);
         {
             try
             {
+                Load_Content();
+                Load_Content_for_cancel();
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 DateTime curDate = DateTime.Now;
@@ -638,6 +858,73 @@ Request.ApplicationPath + "Login.aspx';", true);
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
+        //for editable part
+        protected void Category_Selected_for_register(object sender, EventArgs e)
+        {
+            Load_SubCategory_for_register();
+
+            EditableNotificationContent.Style.Add("display", "block");
+            //updating expandingItems dictionary in javascript
+            ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AddNewAssetContent');", true);
+        }
+
+        protected void SendForRecAgainBtn_click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                //update asset table with changes
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String assetID = AddNewAssetId.InnerHtml;
+                string update_Asset = "UPDATE Asset SET name = @name, category = @category, subcategory = @subcategory, value = @value, salvageValue = @salvageValue, location = @location, owner = @owner WHERE assetID='" + assetID + "'";
+                SqlCommand cmd = new SqlCommand(update_Asset, conn);
+
+                cmd.Parameters.AddWithValue("@name", AssetNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@category", AddAssetCategoryDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@subcategory", AddAssetSubCategoryDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@value", AddValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@salvageValue", AddSalvageValueTextBox.Text);
+                cmd.Parameters.AddWithValue("@location", AddAssetLocationDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@owner", AddAssetOwnerDropDown.SelectedValue);
+                cmd.ExecuteNonQuery();
+
+                //set new notification for new changes
+
+                //Load_Content_for_cancel();
+                Load_Content();
+                Load_Content_for_cancel();
+                String notID = setNotID();
+                String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notContent, @senduser, @receiveuser, @status)";
+                cmd = new SqlCommand(insertDisposeAsset, conn);
+
+                cmd.Parameters.AddWithValue("@notid", notID);
+                cmd.Parameters.AddWithValue("@type", "AddNew");
+                cmd.Parameters.AddWithValue("@action", "Recommend");
+                cmd.Parameters.AddWithValue("@assetid", AddNewAssetId.InnerHtml);
+                cmd.Parameters.AddWithValue("@notContent", " ");
+                cmd.Parameters.AddWithValue("@senduser", receiveuser);
+                cmd.Parameters.AddWithValue("@receiveuser", senduser);
+                cmd.Parameters.AddWithValue("@status", "not-seen");
+                cmd.ExecuteNonQuery();
+
+                //delete notification
+                String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+                cmd = new SqlCommand(deleteNotQuery, conn);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+                ScriptManager.RegisterStartupScript(this, GetType(), "addNewAssetClearAll", "addNewAssetClearAll();", true);
+                //ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpdateLocationContent');", true);
+                Response.Redirect("ManageAssetsUser.aspx");
+            }
+            catch (Exception ex)
+            {
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(ex.ToString());
+            }
+        }
 
 //Transfer asset =========================================
 

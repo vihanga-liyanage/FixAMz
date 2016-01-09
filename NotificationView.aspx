@@ -129,7 +129,71 @@
                     <div id="AssetLocation" runat="server" class="custom-label">
                 </div>
                 </div>
+            </div> 
+
+            <!-- Editable content-->
+            <div id="EditableNotificationContent" runat="server">
+                <div class="col-md-8">
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Asset ID</div>
+                        <div id="AddNewAssetId" runat="server" class="custom-label">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Name</div>
+                        <asp:TextBox ID="AssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                        <div class="validator" id="RegisterAssetNameValidator" runat="server">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Category</div>
+                        <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected_for_register" AutoPostBack="true">
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetCategoryValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Subcategory</div>
+                        <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server">
+                            <asp:ListItem Text="-- Select Subcategory --" Value=""></asp:ListItem>
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetSubCategoryValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Value (LKR)</div>
+                        <asp:TextBox ID="AddValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                        <div class="validator" id="AddValueValidator" runat="server">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Salvage Value (LKR)</div>
+                        <asp:TextBox ID="AddSalvageValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                        <div class="validator" id="AddSalvageValueValidator" runat="server">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Location</div>
+                        <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server">
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetLocationValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Owner</div>
+                        <asp:DropDownList ID="AddAssetOwnerDropDown" class="expand-item-textbox" runat="server">
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetOwnerValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
+                            OnClick="SendForRecAgainBtn_click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
+                        <asp:Button ID="Button14" runat="server" Text="Cancel" class="expand-item-btn" OnClick="AddNewAssetBack_Click" />
+                    </div>
+                </div>
+                <!--<div class="col-md-4" style="position: relative; padding-left: 0px;">
+                    <div class="register-new-asset-icon hidden-sm hidden-xs">
+                    </div>
+                </div>-->
             </div>
+
 <!-- Update notification content-->
             <div id="UpdateNotificationContent" runat="server">
                 <!-- content-->
