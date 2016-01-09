@@ -123,6 +123,7 @@
     <Content Include="ManageAssetsUser.aspx" />
     <Content Include="NotificationView.aspx" />
     <Content Include="Report1.aspx" />
+    <Content Include="ReportMasterFinance.aspx" />
     <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -231,6 +232,13 @@
     </Compile>
     <Compile Include="Report1.aspx.designer.cs">
       <DependentUpon>Report1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterFinance.aspx.cs">
+      <DependentUpon>ReportMasterFinance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportMasterFinance.aspx.designer.cs">
+      <DependentUpon>ReportMasterFinance.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReportViewer.aspx.cs">
       <DependentUpon>ReportViewer.aspx</DependentUpon>
