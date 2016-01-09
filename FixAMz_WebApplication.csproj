@@ -69,6 +69,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="AdminSitemap.aspx" />
     <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
     <Content Include="ManageAssetUserAboutUs.aspx" />
@@ -137,7 +138,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="AdvancedAssetSearch.aspx" />
-    <Content Include="AdminSitemap.aspx" />
     <Content Include="Styles\background.css" />
     <Content Include="Styles\bootstrap-theme.css" />
     <Content Include="Styles\bootstrap-theme.min.css" />
@@ -199,6 +199,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSitemap.aspx.cs">
+      <DependentUpon>AdminSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSitemap.aspx.designer.cs">
+      <DependentUpon>AdminSitemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminUserHomeTab.aspx.cs">
       <DependentUpon>AdminUserHomeTab.aspx</DependentUpon>
@@ -299,13 +306,6 @@
     </Compile>
     <Compile Include="AdminUserSystemTab.aspx.designer.cs">
       <DependentUpon>AdminUserSystemTab.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminSitemap.aspx.cs">
-      <DependentUpon>AdminSitemap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminSitemap.aspx.designer.cs">
-      <DependentUpon>AdminSitemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="testrept.aspx.cs">
       <DependentUpon>testrept.aspx</DependentUpon>
