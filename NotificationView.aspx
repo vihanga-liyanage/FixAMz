@@ -218,7 +218,7 @@
                 <div class="row expand-item-row">
                     <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" OnClick="AddNewAssetSendapprove_Click" />
                     <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
-                         OnClick="AddNewAssetSendapprovecancel_Click" />
+                         OnClick="AddNewAssetSendApproveCancel_Click" />
                 </div>
             </div>
 <!-- AddnewassetStateApprove-->
