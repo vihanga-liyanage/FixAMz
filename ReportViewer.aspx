@@ -102,18 +102,15 @@
                         </div> 
                         <div class="expand-item-content" id="AddNewAssetContent" runat="server">
                             <div class="col-md-8">
-                                <ul class="footer-nav">
+                                <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -127,23 +124,20 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
-                        <div class="expand-item-title" id="Div1">
+                        <div class="expand-item-title" id="GeneralReportsHeader">
                             General Reports
                         </div> 
-                        <div class="expand-item-content" id="Div2" runat="server">
+                        <div class="expand-item-content" id="GeneralReportsContent" runat="server">
                             <div class="col-md-8">
-                                <ul class="footer-nav">
+                                <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -157,23 +151,20 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
-                        <div class="expand-item-title" id="Div3">
-                            Transfer Reports
+                        <div class="expand-item-title" id="AssetTransferHeader">
+                            Asset Transfer Reports
                         </div> 
-                        <div class="expand-item-content" id="Div4" runat="server">
+                        <div class="expand-item-content" id="AssetTransferContent" runat="server">
                             <div class="col-md-8">
-                                <ul class="footer-nav">
+                                <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -187,23 +178,20 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
-                        <div class="expand-item-title" id="Div5">
-                            Upgrade Reports
+                        <div class="expand-item-title" id="AssetUpgradeHeader">
+                            Asset Upgrade Reports
                         </div> 
-                        <div class="expand-item-content" id="Div6" runat="server">
+                        <div class="expand-item-content" id="AssetUpgradeContent" runat="server">
                             <div class="col-md-8">
-                                <ul class="footer-nav">
+                                <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -217,23 +205,20 @@
                 <div class="row expand-item">
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
-                        <div class="expand-item-title" id="Div7">
-                            Dispose Reports
+                        <div class="expand-item-title" id="AssetDisposeHeader">
+                            Asset Dispose Reports
                         </div> 
-                        <div class="expand-item-content" id="Div8" runat="server">
+                        <div class="expand-item-content" id="AssetDisposeContent" runat="server">
                             <div class="col-md-8">
-                                <ul class="footer-nav">
+                                <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
-                                    <div class="row expand-item-row">
-                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
                                     </div>
                                 </ul>
                             </div>
