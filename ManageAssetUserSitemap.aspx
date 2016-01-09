@@ -60,7 +60,7 @@
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
                                     <li><a href="AboutUs.aspx">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="Help.aspx">HELP</a> </li>
                                 </ul>
                             </div>
 
@@ -113,7 +113,7 @@
             <div class="row footer-up">
                 <ul class="footer-nav">
                     <li><a href="AboutUs.aspx">About</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a href="Help.aspx">Help</a></li>
                     <li><a href="ManageAssetUserSitemap.aspx">Site map</a></li>
                 </ul>
             </div>

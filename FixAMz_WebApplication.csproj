@@ -136,6 +136,7 @@
     <Content Include="MoreinfoCategory.aspx" />
     <Content Include="MoreinfoCostcenter.aspx" />
     <Content Include="MoreinfoSubcategory.aspx" />
+    <Content Include="ManageAssetUserSitemap.aspx" />
     <Content Include="NotificationView.aspx" />
     <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -280,6 +281,13 @@
     </Compile>
     <Compile Include="MoreinfoSubcategory.aspx.designer.cs">
       <DependentUpon>MoreinfoSubcategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.designer.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="NotificationView.aspx.cs">
       <DependentUpon>NotificationView.aspx</DependentUpon>

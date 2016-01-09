@@ -60,7 +60,7 @@
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
                                     <li><a href="AboutUs.aspx">ABOUT</a> </li>
-                                    <li><a href="AdminHelpTab.aspx">HELP</a> </li>
+                                    <li><a href="Help.aspx">HELP</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                             <li><a href="AdminUserSystemTab.aspx">Update Sub Category</a></li> <br/>
                         </ul>
                     <li><a href="AboutUs.aspx">About Us</li><br/>
-                    <li><a href="AdminHelpTab.aspx">Help</li><br/>
+                    <li><a href="Help.aspx">Help</li><br/>
                     <li><a id="A2" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign Out</a></li>
                </ul> 
                            
