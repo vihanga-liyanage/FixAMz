@@ -30,6 +30,7 @@ namespace FixAMz_WebApplication
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
+            setNavBar();
             setUserName();
             Load_Content();
             Load_Notifications();
@@ -46,12 +47,32 @@ namespace FixAMz_WebApplication
             string[] data = userData.Split(';');
 
 
-            if (data[1] != "manageAssetUser")
+            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport"))
             {
                 FormsAuthentication.SignOut();
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
 Request.ApplicationPath + "Login.aspx';", true);
+            }
+        }
+
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
             }
         }
 

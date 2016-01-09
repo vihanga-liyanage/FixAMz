@@ -53,12 +53,24 @@
                                     <span class="icon-bar"></span>
                                 </button>
                             </div>
-                            <div class="collapse navbar-collapse" style="float:right;">
-                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
-                                    <li><a href="">ABOUT</a> </li>
-                                    <li><a href="">HELP</a> </li>
-                                </ul>
+                            <div id="manageAssetUserNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ManageAssetUser.aspx">HOME</a> </li>
+                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="manageReportNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ManageAssetUser.aspx">HOME</a> </li>
+                                        <li><a href="ReportViewer.aspx">Reports</a> </li>
+                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -308,9 +320,9 @@
             <div id="footer" class="row">
                 <div class="row footer-up">
                     <ul class="footer-nav">
-				        <li><a href="#">About</a></li>
-				        <li><a href="#">help</a></li>
-				        <li><a href="#">site map</a></li>
+				        <li><a href="AboutUs.aspx">About</a></li>
+				        <li><a href="Help.aspx">help</a></li>
+				        <li><a href="ManageAssetUserSitemap.aspx">site map</a></li>
 			        </ul>
                 </div>
                 <div class="row footer-down">
