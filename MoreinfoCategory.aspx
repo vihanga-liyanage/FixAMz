@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminUserHomeTab.aspx.cs" Inherits="FixAMz_WebApplication.AdminUserHomeTab" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MoreinfoCategory.aspx.cs" Inherits="FixAMz_WebApplication.more_info" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -12,11 +12,10 @@
     <meta name="author" content="LayoutIt!">
     <link href="Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/CustomStyles.css" rel="stylesheet" type="text/css" />
-    
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
+    <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
             SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
         <div class="container-fluid">
 <!--Header-->
@@ -69,73 +68,19 @@
                     </div>
                 </div>
             </div>
-
-<!--Main content-->
-            <div class="row" style="min-height: 270px;">
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
-                        <div class="inner">
-                            <div id="totalusers" runat="server" class="custom-label newstyle" ></div>
-
-                            <p style="padding-top: 15px;">Total Users</p>
-                        </div>
-                        <div class="icon">
-                            <img src="img/multy-user.png"  />
-                        </div>
-                    <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+<!--contain-->
+            <div  style="min-height: 500px;">
+                <div id="new" class="col-md-4 col-md-offset-1" style="min-height: 500px;">
+                    <div class="" id="AdvancedUserSearchHeader"><h3><span>All Categories (<span id="totcategories" runat="server" class="custom-label"></span></span>)</h3></div>
+                    <asp:GridView ID="CategorySearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
+            
                 </div>
-
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
-                        <div class="inner">
-                            <div id="totalcats" runat="server" class="custom-label newstyle" ></div>
-
-                            <p style="padding-top: 15px;">Total Categories</p>
-                        </div>
-                        <div class="icon">
-                            <img src="img/Fixed-Assets-Icon.png" />
-                        </div>
-                    <a href="MoreinfoCategory.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
-                        <div class="inner">
-                            <div id="totalsubcats" runat="server" class="custom-label newstyle" ></div>
-
-                            <p style="padding-top: 15px;">Total Sub Categories</p>
-                        </div>
-                        <div class="icon">
-                            <img src="img/sub.png"  />
-                        </div>
-                    <a href="MoreinfoSubcategory.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
-                        <div class="inner">
-                            <div id="totalcostcenter" runat="server" class="custom-label newstyle" ></div>
-
-                            <p style="padding-top: 15px;">Total Cost Centers</p>
-                        </div>
-                        <div class="icon">
-                            <img src="img/costcenter.png"/>
-                        </div>
-                    <a href="MoreinfoCostcenter.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+                <div class="col-md-4 col-md-offset-2" style="position: relative; padding-left: 0px;">
+                    <div class="admin-category-icon hidden-sm hidden-xs" style="margin-top: 60px;"></div>
                 </div>
             </div>
-            
-            
 <!--Footer-->
-            <div id="footer" class="row">
+            <div id="footer" class="row" style="margin-top: 0px;">
                 <div class="row footer-up">
                     <ul class="footer-nav">
 				        <li><a href="AboutUs.aspx">About</a></li>

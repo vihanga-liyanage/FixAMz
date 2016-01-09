@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
-                        <img src="img/fixamz.png" class="logo" />
+                        <a href="AboutUs.aspx"><img src="img/fixamz.png" class="logo" /></a>
                     </div>
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12" id="user-name-box">
