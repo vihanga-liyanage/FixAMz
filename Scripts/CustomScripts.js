@@ -1,4 +1,52 @@
-﻿
+﻿//Exapand content function
+var expandingItems = {};
+var curExpItem = "nothing";
+$(".expand-item-title").click(function () {
+    
+    $header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide - if visible, slide up, if not slidedown.
+    $content.slideToggle(800, function () { });
+
+    //extracting the expand content id
+    var headerId = this.id;
+    curExpItem = headerId;
+    var contentId = headerId.slice(0, headerId.length - 6) + "Content";
+    //store the status of expand item in expandedItems object
+    if (expandingItems[contentId] != null) {
+        expandingItems[contentId] = !expandingItems[contentId];
+    } else {
+        expandingItems[contentId] = true;
+    }
+    
+    //get one by one, inactive if active
+    for (var item in expandingItems) {
+        if (item != contentId && expandingItems[item] == true) {
+            $(document.getElementById(item)).slideToggle(800, function () { });
+            expandingItems[item] = false;
+        }
+    }
+    //getOut();
+    document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
+    
+   
+});
+
+//Function to call above .click function manually by code behind, when page reloads occur
+//Should give full id ex. - "UpdateUserContent"
+function setExpandingItem(id) {
+    expandingItems[id] = true;
+}
+
+function getOut() {
+    var out = curExpItem + " clicked\n";
+    for (var item in expandingItems) {
+        out += item + " : " + expandingItems[item] + "\n";
+    }
+    alert(out);
+}
+
 //Notification JS
 $(document).ready(function () {
     $("#notificationLink").click(function () {
@@ -22,53 +70,6 @@ $(".notification").click(function () {
     //alert(this.id);
     window.location.assign("NotificationView.aspx?id=" + this.id);
 });
-
-//Exapand content function
-var expandingItems = {};
-$(".expand-item-title").click(function () {
-
-    $header = $(this);
-    //getting the next element
-    $content = $header.next();
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(800, function () { });
-
-    //extracting the expand content id
-    var headerId = this.id;
-    var contentId = headerId.slice(0, headerId.length - 6) + "Content";
-    //store the status of expand item in expandedItems object
-    if (expandingItems[contentId] != null) {
-        expandingItems[contentId] = !expandingItems[contentId];
-    } else {
-        expandingItems[contentId] = true;
-    }
-    //get one by one, inactive if active
-    var out = "";
-    for (var item in expandingItems) {
-        if (item != contentId && expandingItems[item] == true) {
-            $(document.getElementById(item)).slideToggle(800, function () { });
-            expandingItems[item] = false;
-        }
-        out += item + " : " + expandingItems[item] + "\n";
-    }
-    document.forms[0]["expandingItemsHiddenField"].val = expandingItems;
-    //alert(out);
-});
-
-//Function to call above .click function manually by code behind, when page reloads occur
-//Should give full id ex. - "UpdateUserContent"
-function setExpandingItem(id) {
-    expandingItems[id] = true;
-}
-
-//Testing functions
-function getKeys() {
-    var out = "";
-    for (var k in expandingItems) {
-        out += k + ":" + expandingItems[k] + "\n";
-    }
-    //alert(out);
-}
 
 //Global validation functions=================================================================
 function requiredFieldValidator(controller, msg) {
@@ -323,19 +324,21 @@ function updateClearAll() {
     document.forms[0]["UpdateLastNameTextBox"].value = "";
     document.forms[0]["UpdateEmailTextBox"].value = "";
     document.forms[0]["UpdateContactTextBox"].value = "";
+    document.forms[0]["UpdateEmpIDTextBox"].value = "";
     document.getElementById("updateUserSecondState").style.display = "none";
     document.getElementById("updateUserInitState").style.display = "block";
-    document.forms[0]["UpdateEmpIDTextBox"].value = "";
+    //expandingItems["UpdateUserContent"] = true;
     return false;
 }
 
-//Reset Password
+//Reset Password =============================================================================
 function resetPasswordClearAll() {
     document.forms[0]["ResetNewPasswordTextBox"].value = "";
     document.forms[0]["ResetNewConfirmPasswordTextBox"].value = "";
     document.getElementById("resetPasswordSecondState").style.display = "none";
     document.getElementById("resetPasswordInitState").style.display = "block";
     document.forms[0]["ResetPasswordUsernameTextBox"].value = "";
+
     return false;
 }
 
@@ -360,7 +363,6 @@ function isValidUpdate() {
     return (isValidFirstname && isValidLastname && isValidEmail && isValidContact && isValidCostID);
 }
 
-
  function isValidResetPassword() {
      var confirmPassword = document.forms[0]["ResetNewConfirmPasswordTextBox"].value;
      var password = document.forms[0]["ResetNewPasswordTextBox"].value;
@@ -381,6 +383,7 @@ function isValidUpdate() {
      }
      return isValidConfirmPassword;
     }
+
 //Advanced user search functions =============================================================
 function searchClearAll() {
     document.forms[0]["SearchEmployeeIDTextBox"].value = "";
@@ -395,15 +398,15 @@ function searchClearAll() {
 }
 
 function isValidUserSearch() {
-    var id = document.forms[0]["SearchEmployeeIDTextBox"].value;
-    var costid = document.forms[0]["SearchCostIDTextBox"].value;
+    var dropdown = document.forms[0]["SearchUserCostNameDropDown"];
+    var costid = dropdown.options[dropdown.selectedIndex].value;
     var fname = document.forms[0]["SearchFirstNameTextBox"].value;
     var lname = document.forms[0]["SearchLastNameTextBox"].value;
     var email = document.forms[0]["SearchEmailTextBox"].value;
     var contact = document.forms[0]["SearchContactTextBox"].value;
     //var username = document.forms[0]["SearchUsernameTextBox"].value;
 
-    if (id == "" && costid == "" && fname == "" && lname == "" && email == "" && contact == "") {
+    if (costid == "" && fname == "" && lname == "" && email == "" && contact == "") {
         alert("Please fill at least one field");
         return false;
     } else {
@@ -542,6 +545,7 @@ function isValidUpdateCat() {
 }
 
 function updateCategoryClearAll() {
+    
     document.forms[0]["UpdateCategoryNameTextBox"].value = "";
     document.getElementById("updateCategoryInitState").style.display = "block";
     document.getElementById("updateCategorySecondState").style.display = "none";
@@ -674,8 +678,8 @@ function isValidAddAsset() {
 }
 
 //Advanced asset search functions=============================================================
+//Not using since 2016.01.08
 function isValidAssetSearch() {
-    var id = document.forms[0]["AssetSearchIDTextBox"].value;
     var name = document.forms[0]["AssetSearchNameTextBox"].value;
     var dropdown = document.forms[0]["AssetSearchCategoryDropDown"];
     var category = dropdown.options[dropdown.selectedIndex].value;
@@ -687,7 +691,7 @@ function isValidAssetSearch() {
     dropdown = document.forms[0]["AssetSearchOwnerDropDown"];
     var owner = dropdown.options[dropdown.selectedIndex].value;
 
-    if (id == "" && name == "" && category == "" && subCategory == "" && value == "" && owner == "") {
+    if (name == "" && category == "" && subCategory == "" && value == "" && owner == "") {
         alert("Please fill at least one field");
         return false;
     } else {
@@ -758,4 +762,11 @@ function upgradeAssetClearAll() {
 //      Notification view                                                                   //
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
+function transferAssetEdit_Click() {
+    var id = document.forms[0]["AssetID"].value;
+    document.forms[0]["TransferAssetIDTextBox"].value = id;
+    document.getElementById("disposeAssetSecondState").style.display = "none";
+    document.getElementById("transferAssetInitState").style.display = "block";
+    //expandingItems["DisposeAssetContent"] = true;
+    return true;
+}

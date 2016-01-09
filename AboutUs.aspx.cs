@@ -9,65 +9,30 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
+using System.Net;
+using System.Net.Mail;
+using System.IO;
 
 namespace FixAMz_WebApplication
 {
-    public partial class ReportViewer : System.Web.UI.Page
+    public partial class AdminAboutUs : System.Web.UI.Page
     {
-        private string costID;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            Authenticate_User();
-            costCenter();
+            
             Load_Notifications();
             setNavBar();
 
             if (!Page.IsPostBack)
             {
                 setUserName();
-                Page.MaintainScrollPositionOnPostBack = true;
+                Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             }
 
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
-
-            //Can give an alert
-            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"" + Session["PRSN_TO_REC"] + "\")</SCRIPT>");
-        }
-
-        //set costID by user login
-        protected void costCenter()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-            costID = data[2];
-            Session["COST_ID_MNG_ASST"] = data[2];
-        }
-
-        //Checking if the user has access to the page
-        protected void Authenticate_User()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-
-            if ((data[1] != "manageReport") && (data[1] != "generateReportUser"))
-            {
-                FormsAuthentication.SignOut();
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-            }
         }
 
         //Setting user name on header
@@ -176,7 +141,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             //userData = "Vihanga Liyanage;admin;CO00001"
             string[] data = userData.Split(';');
 
-            if (data[1] == "manageReport") 
+            if (data[1] == "manageReport")
             {
                 manageReportNavBar.Style.Add("display", "block");
             }
@@ -184,19 +149,46 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 generateReportUserNavBar.Style.Add("display", "block");
             }
+            if (data[1] == "admin")
+            {
+                adminAboutNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
+            }
         }
 
-        // Signing out =================================================================
+        //reload after click cancel button
+        protected void cancel_clicked(object sender, EventArgs e)
+        {
+            Response.Redirect("AboutUs.aspx");
+        }
+
+        //Signing out
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
         }
 
-        //reload after click cancel button
-        protected void cancel_clicked(object sender, EventArgs e)
+        [WebMethod]//username validity checking in client side with ajax
+        public static int checkUsername(string Username)
         {
-            Response.Redirect("ManageAssetsUser.aspx");
+            //To send a JSON object -> HttpContext.Current.Response.Write("{'response' : '" + res + "'}");
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+                conn.Open();
+                String query = "SELECT COUNT(*) FROM SystemUser WHERE username='" + Username + "'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                return res;
+            }
+            catch (SqlException)
+            {
+                return 2;
+            }
         }
     }
 }

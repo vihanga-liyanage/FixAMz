@@ -61,16 +61,21 @@ namespace FixAMz_WebApplication
                 //Redirecting to relevent page
                 if (type == "admin")
                 {
-                    Response.Redirect("AdminUserPeopleTab.aspx");
+                    Response.Redirect("AdminUserHomeTab.aspx");
                 }
                 else if (type == "manageAssetUser")
                 {
                     Response.Redirect("ManageAssetsUser.aspx");
                 }
-                else if (type == "generateAssetReportUser")
+                else if (type == "generateReportUser")
                 {
-                    Response.Redirect("Report1.aspx");
+                    Response.Redirect("ReportViewer.aspx");
                 }
+                else if (type == "manageReport")
+                {
+                    Response.Redirect("ManageAssetsUser.aspx");
+                }
+                
             }
             else
             {

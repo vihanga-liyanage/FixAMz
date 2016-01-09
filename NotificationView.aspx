@@ -53,12 +53,24 @@
                                     <span class="icon-bar"></span>
                                 </button>
                             </div>
-                            <div class="collapse navbar-collapse" style="float:right;">
-                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
-                                    <li><a href="">ABOUT</a> </li>
-                                    <li><a href="">HELP</a> </li>
-                                </ul>
+                            <div id="manageAssetUserNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ManageAssetUser.aspx">HOME</a> </li>
+                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="manageReportNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="ManageAssetUser.aspx">HOME</a> </li>
+                                        <li><a href="ReportViewer.aspx">Reports</a> </li>
+                                        <li><a href="AboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -84,50 +96,123 @@
         </div>
 <!--notification content -->
     <div class="row">
-    <div class="item-title"><div id="NotificationHeader" runat="server" class="custom-label"></div></div>
-    <div class="expand-item-row" id="AddNewAssetNotificationContent" runat="server">
+        <div class="item-title">
+            <div id="NotificationHeader" runat="server" class="custom-label">
+            </div>
+        </div>
+    <div class="expand-item-row" runat="server">
         <div class="col-md-8">
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Asset ID</div>
-                <div id="AssetID" runat="server" class="custom-label">
+<!-- Default notification content-->
+            <div id="NotificationContent" runat="server">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Asset ID</div>
+                    <div id="AssetID" runat="server" class="custom-label">
+                    </div>
                 </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Name</div>
-                <div id="AssetName" runat="server" class="custom-label">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Name</div>
+                    <div id="AssetName" runat="server" class="custom-label">
+                    </div>
                 </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Category</div>
-                <div id="AssetCategory" runat="server" class="custom-label">
-            </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Subcategory</div>
-                <div id="AssetSubcategory" runat="server" class="custom-label">
-            </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Value (LKR)</div>
-               <div id="AssetValue" runat="server" class="custom-label">
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Category</div>
+                    <div id="AssetCategory" runat="server" class="custom-label">
                 </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Salvage Value (LKR)</div>
-                <div id="AssetSalvageValue" runat="server" class="custom-label">
                 </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Owner</div>
-                <div id="AssetOwner" runat="server" class="custom-label">
-            </div>
-            </div>
-            <div class="row expand-item-row">
-                <div class="expand-item-label">Location</div>
-                <div id="AssetLocation" runat="server" class="custom-label">
-            </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Subcategory</div>
+                    <div id="AssetSubcategory" runat="server" class="custom-label">
+                </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Value (LKR)</div>
+                   <div id="AssetValue" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Salvage Value (LKR)</div>
+                    <div id="AssetSalvageValue" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Owner</div>
+                    <div id="AssetOwner" runat="server" class="custom-label">
+                </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Location</div>
+                    <div id="AssetLocation" runat="server" class="custom-label">
+                </div>
+                </div>
+            </div> 
+
+            <!-- Editable content-->
+            <div id="EditableNotificationContent" runat="server">
+                <div class="col-md-8">
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Asset ID</div>
+                        <div id="AddNewAssetId" runat="server" class="custom-label">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Name</div>
+                        <asp:TextBox ID="AssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                        <div class="validator" id="RegisterAssetNameValidator" runat="server">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Category</div>
+                        <asp:DropDownList ID="AddAssetCategoryDropDown" class="expand-item-textbox" runat="server" OnSelectedIndexChanged="Category_Selected_for_register" AutoPostBack="true">
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetCategoryValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Subcategory</div>
+                        <asp:DropDownList ID="AddAssetSubCategoryDropDown" class="expand-item-textbox" runat="server">
+                            <asp:ListItem Text="-- Select Subcategory --" Value=""></asp:ListItem>
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetSubCategoryValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Value (LKR)</div>
+                        <asp:TextBox ID="AddValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                        <div class="validator" id="AddValueValidator" runat="server">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Salvage Value (LKR)</div>
+                        <asp:TextBox ID="AddSalvageValueTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
+                        <div class="validator" id="AddSalvageValueValidator" runat="server">
+                        </div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Location</div>
+                        <asp:DropDownList ID="AddAssetLocationDropDown" class="expand-item-textbox" runat="server">
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetLocationValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <div class="expand-item-label">Owner</div>
+                        <asp:DropDownList ID="AddAssetOwnerDropDown" class="expand-item-textbox" runat="server">
+                        </asp:DropDownList>
+                        <div class="validator" id="AddAssetOwnerValidator" runat="server"></div>
+                    </div>
+                    <div class="row expand-item-row">
+                        <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
+                            OnClick="SendForRecAgainBtn_click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
+                        <asp:Button ID="Button14" runat="server" Text="Cancel" class="expand-item-btn" OnClick="AddNewAssetBack_Click" />
+                    </div>
+                </div>
+                <!--<div class="col-md-4" style="position: relative; padding-left: 0px;">
+                    <div class="register-new-asset-icon hidden-sm hidden-xs">
+                    </div>
+                </div>-->
             </div>
 
+<!-- Update notification content-->
+            <div id="UpdateNotificationContent" runat="server">
+                <!-- content-->
+            </div>
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
                 <div class="row expand-item-row">
@@ -144,14 +229,12 @@
                           />
                 </div>
             </div>
-
 <!-- AddnewassetStateApprove cancel-->
             <div id="AddnewassetStateApproveCancel" runat="server">
                 <div class="row expand-item-row">
-                    <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClientClick="JavaScript:window.history.back(1);return false;"/>
+                    <asp:Button ID="Button4" runat="server" Text="Back" class="expand-item-btn"  OnClick="AddNewAssetBack_Click"/>
                 </div>
             </div>
-
 
 <!-- UpgradeassetState-->
             <div id="UpgradeassetState" runat="server">
@@ -171,8 +254,7 @@
                         OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
                 </div>
             </div>
-
-<!--UpgradeassetApprove-->
+<!-- UpgradeassetApprove-->
             <div id="UpgradeassetApprove" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Upgrade cost</div>
@@ -189,7 +271,6 @@
                     <asp:Button ID="Button5" runat="server" Text="Back" class="expand-item-btn" OnClick="upgradeAssetBack_Click" />
                 </div>
             </div>
-
 <!-- UpgradeassetApprove cancel-->
             <div id="UpgradeassetStateApproveCancel" runat="server">
                 <div class="row expand-item-row">
@@ -200,13 +281,13 @@
 <!-- TransferassetState-->
             <div id="TransferassetState" runat="server">
                 <div class="row expand-item-row">
-                    <div class="expand-item-label">New location</div>
-                    <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    <div class="expand-item-label">New owner</div>
+                    <div id="TransferNewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <div class="expand-item-label">New owner</div>
-                    <div id="TransferNewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    <div class="expand-item-label">New location</div>
+                    <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
@@ -215,7 +296,6 @@
                         OnClick="TransferAssetSendapprovecancel_Click" />
                 </div>
             </div>
-
 <!-- TransferassetApproveState-->
             <div id="TransferassetApproveState" runat="server">
                 <div class="row expand-item-row">
@@ -234,7 +314,6 @@
                         OnClick="transferAssetBack_Click" />
                 </div>
             </div>
-
 <!-- TransferassetCancelState-->
             <div id="TransferassetCancelState" runat="server">
                 <div class="row expand-item-row">
@@ -250,10 +329,13 @@
                 <div class="row expand-item-row">
                     <asp:Button ID="Button13" runat="server" Text="Back" class="expand-item-btn"
                         OnClick="transferAssetBack_Click" />
+                    <asp:Button ID="Button12" runat="server" Text="Edit" class="expand-item-btn"
+                         OnClientClick="return transferAssetEdit_Click"  />
                 </div>
             </div>
+
 <!-- DisposeassetState-->
-             <div id="DisposeassetState" runat="server">
+            <div id="DisposeassetState" runat="server">
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Description</div>
                     <div id="DisposeDescription" runat="server" class="custom-label">
@@ -265,7 +347,6 @@
                         OnClick="DisposeAssetcancel_Click" />
                 </div>
             </div>
-
 <!-- DisposeassetApprove-->
             <div id="DisposeassetApprove" runat="server">
                 <div class="row expand-item-row">
@@ -294,7 +375,7 @@
 
         </div>
         <div class="col-md-4" style="position: relative; padding-left: 0px;">
-            <div class="add-user-icon hidden-sm hidden-xs">
+            <div class="notification-icon hidden-sm hidden-xs">
             </div>
         </div>
     </div>
@@ -303,9 +384,9 @@
             <div id="footer" class="row">
                 <div class="row footer-up">
                     <ul class="footer-nav">
-				        <li><a href="#">About</a></li>
-				        <li><a href="#">help</a></li>
-				        <li><a href="#">site map</a></li>
+				        <li><a href="AboutUs.aspx">About</a></li>
+				        <li><a href="Help.aspx">help</a></li>
+				        <li><a href="ManageAssetUserSitemap.aspx">site map</a></li>
 			        </ul>
                 </div>
                 <div class="row footer-down">

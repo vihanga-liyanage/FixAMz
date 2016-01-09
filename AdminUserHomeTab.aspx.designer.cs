@@ -10,16 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class ReportViewer {
-        
-        /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class AdminUserHomeTab {
         
         /// <summary>
         /// form1 control.
@@ -85,102 +76,39 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// generateReportUserNavBar control.
+        /// totalusers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl generateReportUserNavBar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalusers;
         
         /// <summary>
-        /// manageReportNavBar control.
+        /// totalcats control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manageReportNavBar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalcats;
         
         /// <summary>
-        /// responseBoxGreen control.
+        /// totalsubcats control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseBoxGreen;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalsubcats;
         
         /// <summary>
-        /// responseMsgGreen control.
+        /// totalcostcenter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgGreen;
-        
-        /// <summary>
-        /// responseBoxRed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseBoxRed;
-        
-        /// <summary>
-        /// responseMsgRed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgRed;
-        
-        /// <summary>
-        /// AddNewAssetContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetContent;
-        
-        /// <summary>
-        /// GeneralReportsContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GeneralReportsContent;
-        
-        /// <summary>
-        /// AssetTransferContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetTransferContent;
-        
-        /// <summary>
-        /// AssetUpgradeContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetUpgradeContent;
-        
-        /// <summary>
-        /// AssetDisposeContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetDisposeContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalcostcenter;
     }
 }

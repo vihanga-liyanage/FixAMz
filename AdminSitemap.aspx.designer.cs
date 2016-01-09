@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class ReportViewer {
+    public partial class AdminSitemap {
         
         /// <summary>
         /// Head1 control.
@@ -85,24 +85,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// generateReportUserNavBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl generateReportUserNavBar;
-        
-        /// <summary>
-        /// manageReportNavBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manageReportNavBar;
-        
-        /// <summary>
         /// responseBoxGreen control.
         /// </summary>
         /// <remarks>
@@ -139,48 +121,12 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgRed;
         
         /// <summary>
-        /// AddNewAssetContent control.
+        /// A2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetContent;
-        
-        /// <summary>
-        /// GeneralReportsContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GeneralReportsContent;
-        
-        /// <summary>
-        /// AssetTransferContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetTransferContent;
-        
-        /// <summary>
-        /// AssetUpgradeContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetUpgradeContent;
-        
-        /// <summary>
-        /// AssetDisposeContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetDisposeContent;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
     }
 }

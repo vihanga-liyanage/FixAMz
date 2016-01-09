@@ -10,16 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class ReportViewer {
-        
-        /// <summary>
-        /// Head1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    public partial class AdvancedUserSearch {
         
         /// <summary>
         /// form1 control.
@@ -85,24 +76,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// generateReportUserNavBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl generateReportUserNavBar;
-        
-        /// <summary>
-        /// manageReportNavBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manageReportNavBar;
-        
-        /// <summary>
         /// responseBoxGreen control.
         /// </summary>
         /// <remarks>
@@ -139,48 +112,120 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgRed;
         
         /// <summary>
-        /// AddNewAssetContent control.
+        /// AdvancedUserSearchContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdvancedUserSearchContent;
         
         /// <summary>
-        /// GeneralReportsContent control.
+        /// UserSearchInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GeneralReportsContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSearchInitState;
         
         /// <summary>
-        /// AssetTransferContent control.
+        /// SearchUserCostNameDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetTransferContent;
+        protected global::System.Web.UI.WebControls.DropDownList SearchUserCostNameDropDown;
         
         /// <summary>
-        /// AssetUpgradeContent control.
+        /// SearchUserCostNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetUpgradeContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SearchUserCostNameValidator;
         
         /// <summary>
-        /// AssetDisposeContent control.
+        /// SearchFirstNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetDisposeContent;
+        protected global::System.Web.UI.WebControls.TextBox SearchFirstNameTextBox;
+        
+        /// <summary>
+        /// SearchLastNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchLastNameTextBox;
+        
+        /// <summary>
+        /// SearchEmailTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchEmailTextBox;
+        
+        /// <summary>
+        /// SearchContactTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchContactTextBox;
+        
+        /// <summary>
+        /// SearchUsernameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SearchUsernameTextBox;
+        
+        /// <summary>
+        /// SearchUserBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchUserBtn;
+        
+        /// <summary>
+        /// CancelSearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
+        
+        /// <summary>
+        /// UserSearchSecondState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserSearchSecondState;
+        
+        /// <summary>
+        /// UserSearchGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView UserSearchGridView;
     }
 }

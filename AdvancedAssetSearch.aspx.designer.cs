@@ -10,7 +10,7 @@
 namespace FixAMz_WebApplication {
     
     
-    public partial class ReportViewer {
+    public partial class SearchResults {
         
         /// <summary>
         /// Head1 control.
@@ -85,24 +85,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// generateReportUserNavBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl generateReportUserNavBar;
-        
-        /// <summary>
-        /// manageReportNavBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manageReportNavBar;
-        
-        /// <summary>
         /// responseBoxGreen control.
         /// </summary>
         /// <remarks>
@@ -139,48 +121,111 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl responseMsgRed;
         
         /// <summary>
-        /// AddNewAssetContent control.
+        /// AdvancedAssetSearchContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdvancedAssetSearchContent;
         
         /// <summary>
-        /// GeneralReportsContent control.
+        /// AssetSearchInitState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GeneralReportsContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetSearchInitState;
         
         /// <summary>
-        /// AssetTransferContent control.
+        /// AssetSearchNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetTransferContent;
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchNameTextBox;
         
         /// <summary>
-        /// AssetUpgradeContent control.
+        /// AssetSearchCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetUpgradeContent;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchCategoryDropDown;
         
         /// <summary>
-        /// AssetDisposeContent control.
+        /// AssetSearchSubCategoryDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetDisposeContent;
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchSubCategoryDropDown;
+        
+        /// <summary>
+        /// AssetSearchValueTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AssetSearchValueTextBox;
+        
+        /// <summary>
+        /// AssetSearchLocationDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchLocationDropDown;
+        
+        /// <summary>
+        /// AssetSearchOwnerDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AssetSearchOwnerDropDown;
+        
+        /// <summary>
+        /// SearchAssetBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchAssetBtn;
+        
+        /// <summary>
+        /// CancelSearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelSearchBtn;
+        
+        /// <summary>
+        /// AssetSearchSecondState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetSearchSecondState;
+        
+        /// <summary>
+        /// AssetSearchGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView AssetSearchGridView;
     }
 }

@@ -143,11 +143,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -283,7 +295,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         "Your username and password for FixAmz is as follows.\n\n" +
                         "Username - " + AddNewUsernameTextBox.Text + "\n" + 
                         "Password - " + Convert.ToString(AddNewPasswordTextBox.Text) + "\n\n" +
-                        "Please login to your account and change your password as you prefer.\n\n" +
+                        "Please contact system administrator incase a password reset is needed.\n\n" +
                         "Regards,\n" +
                         "Administrator"
                         );
@@ -309,8 +321,8 @@ Request.ApplicationPath + "Login.aspx';", true);
         {
             Boolean result = true;
 
-            string senderID = "sandyperera1993@gmail.com";// use sender’s email id here..
-            const string senderPassword = "ucsc@123"; // sender password here…
+            string senderID = "fixamz@gmail.com";// use sender’s email id here..
+            const string senderPassword = "fixamz@123"; // sender password here…
 
             try
             {
@@ -356,107 +368,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
-        //Advanced user search
-        protected void SearchUserBtn_Click(object sender, EventArgs e)
-        {
-            String empID = SearchEmployeeIDTextBox.Text.Trim();
-            String costID = SearchCostIDTextBox.Text.Trim();
-            String firstname = SearchFirstNameTextBox.Text.Trim();
-            String lastname = SearchLastNameTextBox.Text.Trim();
-            String email = SearchEmailTextBox.Text.Trim();
-            String contactNo = SearchContactTextBox.Text.Trim();
-            //String username = SearchUsernameTextBox.Text.Trim();
-
-            String resultMessage = "";
-
-            String query = "SELECT * FROM Employee WHERE";
-            if (empID != "")
-            {
-                query += " empID='" + empID + "'";
-                resultMessage += empID + ", ";
-            }
-            if (costID != "")
-            {
-                query += " OR costID='" + costID + "'";
-                resultMessage += costID + ", ";
-            }
-            if (firstname != "")
-            {
-                query += " OR firstname like '" + firstname + "%'";
-                resultMessage += firstname + ", ";
-            }
-            if (lastname != "")
-            {
-                query += " OR lastname like '" + lastname + "%'";
-                resultMessage += lastname + ", ";
-            }
-            if (email != "")
-            {
-                query += " OR email like '" + email + "%'";
-                resultMessage += email + ", ";
-            }
-            if (contactNo != "")
-            {
-                query += " OR contactNo like '" + contactNo + "%'";
-                resultMessage += contactNo + ", ";
-            }
-
-            // Clearing the grid view
-            UserSearchGridView.DataSource = null;
-            UserSearchGridView.DataBind();
-
-            query = query.Replace("WHERE OR", "WHERE ");
-            //Response.Write(query + "<br>");
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-            try
-            {
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader != null && reader.HasRows) //if search results found
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-                    UserSearchGridView.DataSource = dt;  //display found data in grid view
-                    UserSearchGridView.DataBind();
-                    responseBoxGreen.Style.Add("display", "block");
-                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>";
-                }
-                else
-                {
-                    responseBoxRed.Style.Add("display", "block");
-                    responseMsgRed.InnerHtml = "No Results Found for <strong>" + resultMessage + "</strong>";
-                }
-                conn.Close();
-
-                //expanding block
-                AdvancedUserSearchContent.Style.Add("display", "block");
-                //updating expandingItems dictionary in javascript
-                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedUserSearchContent');", true);
-            }
-            catch (Exception ex)
-            {
-                responseBoxRed.Style.Add("display", "block");
-                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
-
-        }
-
-        /*protected void CancelSearchBtn_Click(object sender, EventArgs e)
-        {
-            var tbs = new List<TextBox>() { SearchEmployeeIDTextBox, SearchCostIDTextBox, SearchFirstNameTextBox, SearchLastNameTextBox, SearchEmailTextBox, SearchContactTextBox, SearchUsernameTextBox };
-            foreach (var textBox in tbs)
-            {
-                textBox.Text = "";
-                responseBoxGreen.Style.Add("display", "none");
-                responseMsgGreen.InnerHtml = "";
-                UserSearchGridView.Visible = false;
-            }
-        }*/
-
         //Update user
         protected void UpdateUserFindBtn_Click(object sender, EventArgs e)
         {
@@ -473,7 +384,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (res == 1)
                 {
-                    String query1 = "SELECT empID, firstName, lastName, contactNo, email FROM Employee WHERE empID='" + empID + "'";
+                    String query1 = "SELECT e.empID, e.firstName, e.lastName, e.contactNo, e.email, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE e.empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
                     while (dr1.Read())
@@ -483,6 +394,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         UpdateLastNameTextBox.Text = dr1["lastName"].ToString();
                         UpdateContactTextBox.Text = dr1["contactNo"].ToString();
                         UpdateEmailTextBox.Text = dr1["email"].ToString();
+                        UpdateTypeDropDown.SelectedValue = dr1["type"].ToString();
                         
                     }
                     dr1.Close();
@@ -524,9 +436,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String empID = UpdateEmpIDTextBox.Text;
-
                 string insertion_Employee = "UPDATE Employee SET costID = @costID, firstName = @firstname, lastName = @lastname, contactNo = @contact, email = @email WHERE empID='" + empID + "'";
-
                 SqlCommand cmd = new SqlCommand(insertion_Employee, conn);
 
                 cmd.Parameters.AddWithValue("@costID", UpdateCostCenterDropDown.SelectedValue);
@@ -534,7 +444,12 @@ Request.ApplicationPath + "Login.aspx';", true);
                 cmd.Parameters.AddWithValue("@lastname", UpdateLastNameTextBox.Text);
                 cmd.Parameters.AddWithValue("@contact", UpdateContactTextBox.Text);
                 cmd.Parameters.AddWithValue("@email", UpdateEmailTextBox.Text);
+                cmd.ExecuteNonQuery();
 
+                string insertion_SystemUser = "UPDATE SystemUser SET costID = @costid, type = @type WHERE empID='" + empID + "'";
+                cmd = new SqlCommand(insertion_SystemUser, conn);
+                cmd.Parameters.AddWithValue("@costid", UpdateCostCenterDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@type", UpdateTypeDropDown.SelectedValue);
                 cmd.ExecuteNonQuery();
 
                 //Include update query for password here

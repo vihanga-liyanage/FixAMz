@@ -8,79 +8,31 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
-using System.Web.Services;
-
 namespace FixAMz_WebApplication
 {
-    public partial class ReportViewer : System.Web.UI.Page
+    public partial class AdminUserHomeTab : System.Web.UI.Page
     {
-        private string costID;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
-            costCenter();
             Load_Notifications();
-            setNavBar();
-
-            if (!Page.IsPostBack)
+            setTotalUsers();
+            setTotalcategories();
+            setTotalcostcenter();
+            setTotalsubcategories();
+            if (!IsPostBack)
             {
                 setUserName();
-                Page.MaintainScrollPositionOnPostBack = true;
+               
             }
 
-            responseBoxGreen.Style.Add("display", "none");
-            responseMsgGreen.InnerHtml = "";
-            responseBoxRed.Style.Add("display", "none");
-            responseMsgRed.InnerHtml = "";
-
-            //Can give an alert
-            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"" + Session["PRSN_TO_REC"] + "\")</SCRIPT>");
         }
 
-        //set costID by user login
-        protected void costCenter()
+        //Signing out
+        protected void SignOutLink_clicked(object sender, EventArgs e)
         {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-            costID = data[2];
-            Session["COST_ID_MNG_ASST"] = data[2];
-        }
-
-        //Checking if the user has access to the page
-        protected void Authenticate_User()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-
-            if ((data[1] != "manageReport") && (data[1] != "generateReportUser"))
-            {
-                FormsAuthentication.SignOut();
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-            }
-        }
-
-        //Setting user name on header
-        protected void setUserName()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            string[] data = userData.Split(';');
-
-            userName.InnerHtml = data[0];
-
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
         }
 
         //Loading notifications
@@ -126,23 +78,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
-                else if (dr["action"].ToString().Trim() == "Cancel")
-                {
-                    action = "rejected";
-                }
-
-                //setting type
-                string type = dr["type"].ToString().Trim();
-                if (type == "AddNew")
-                {
-                    type = "Register";
-                }
-
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -166,8 +106,8 @@ Request.ApplicationPath + "Login.aspx';", true);
             conn.Close();
         }
 
-        //Dynamically setting nav bar
-        protected void setNavBar()
+        //Checking if the user has access to the page
+        protected void Authenticate_User()
         {
             FormsIdentity id = (FormsIdentity)User.Identity;
             FormsAuthenticationTicket ticket = id.Ticket;
@@ -176,27 +116,75 @@ Request.ApplicationPath + "Login.aspx';", true);
             //userData = "Vihanga Liyanage;admin;CO00001"
             string[] data = userData.Split(';');
 
-            if (data[1] == "manageReport") 
+
+            if (data[1] != "admin")
             {
-                manageReportNavBar.Style.Add("display", "block");
-            }
-            else if (data[1] == "generateReportUser")
-            {
-                generateReportUserNavBar.Style.Add("display", "block");
+                FormsAuthentication.SignOut();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
+Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
-        // Signing out =================================================================
-        protected void SignOutLink_clicked(object sender, EventArgs e)
+        //Setting user name on header
+        protected void setUserName()
         {
-            FormsAuthentication.SignOut();
-            Response.Redirect("Login.aspx");
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            string[] data = userData.Split(';');
+
+            userName.InnerHtml = data[0];
+
         }
 
-        //reload after click cancel button
-        protected void cancel_clicked(object sender, EventArgs e)
+        //getting total users
+        protected void setTotalUsers()
         {
-            Response.Redirect("ManageAssetsUser.aspx");
+            String query = "SELECT count(*) FROM SystemUser";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalusers.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total categories
+        protected void setTotalcategories()
+        {
+            String query = "SELECT count(*) FROM Category";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalcats.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total sub categories
+        protected void setTotalsubcategories()
+        {
+            String query = "SELECT count(*) FROM SubCategory";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalsubcats.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total cost centers
+        protected void setTotalcostcenter()
+        {
+            String query = "SELECT count(*) FROM CostCenter";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalcostcenter.InnerHtml = empID;
+            conn.Close();
         }
     }
 }

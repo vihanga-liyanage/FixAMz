@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report1.aspx.cs" Inherits="FixAMz_WebApplication.Report1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminSitemap.aspx.cs" Inherits="FixAMz_WebApplication.AdminSitemap" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,10 +14,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:SqlDataSource ID="SqlDataSourceFixAMz" runat="server" ConnectionString="<%$ ConnectionStrings:SystemUserConnectionString %>"
+        SelectCommand="SELECT * FROM [SystemUser]"></asp:SqlDataSource>
+    <div class="container-fluid">
 
-    <div>
-
-    <!--Header-->
+<!--Header-->
         <div class="row">
             <div class="col-md-12">
                 <div class="row header">
@@ -36,12 +37,14 @@
 						        <div id="notificationContainer">
 							        <div id="notificationTitle" runat="server">Notifications</div>
 							        <div id="notificationsBody" class="notifications" runat="server">
-                                        </div>
+                                        <!-- Generated code -->
+							        </div>
 							        <div id="notificationFooter"><a href="#">See All</a></div>
 						        </div>
 					        </span>
                                 | 
-                            </div>
+                            <a id="A1" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign out</a>
+                        </div>
                         <div class="col-sm-12 nav-bar-container">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -53,11 +56,11 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
-                                    <li><a href="#" class="active">PEOPLE</a> </li>
+                                    <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
+                                    <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="#">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="AboutUs.aspx">ABOUT</a> </li>
+                                    <li><a href="Help.aspx">HELP</a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -66,7 +69,7 @@
             </div>
         </div>
 
-        <!--Main content-->
+<!--Main content-->
         <div class="row">
             <div class="col-md-9 col-xs-offset-2 expand-item-container">
                 <div id="responseBoxGreen" runat="server">
@@ -82,38 +85,44 @@
                     <div id="responseMsgRed" runat="server"></div>
                 </div>
 
+<!--Sitemap-->
+               <h3>Site Map</h3> <br/>
+                      
+               <ul style="disc">
+                   <li><a href="AdminUserHomeTab.aspx">Home</a></li> <br/>
+                   <li><a href="AdminUserPeopleTab.aspx">User Management</a></li> 
+                        <ul>
+                            <li><a href="AdminUserPeopleTab.aspx">Add New User</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Advanced User Search</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Update User</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Reset User Password</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Delete User</a></li> <br/>
+                        </ul> 
+                   <li><a href="AdminUserSystemTab.aspx">System Management</li>
+                        <ul>
+                            <li><a href="AdminUserSystemTab.aspx">Add Location</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Add Category</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Add Sub Category</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Update Location</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Update Category</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Update Sub Category</a></li> <br/>
+                        </ul>
+                    <li><a href="AboutUs.aspx">About Us</li><br/>
+                    <li><a href="Help.aspx">Help</li><br/>
+                    <li><a id="A2" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign Out</a></li>
+               </ul> 
+                           
             </div>
+                            
+        </div>
 
-    <!--Report generation-->
-            <div class="col-md-12">
-                <div class="col-md-7">
-                                    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
-                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
-                </div>
-                <div class="col-md-5">
-                    <!-- small box -->
-                  <div class="small-box bg-aqua">
-                    <div class="inner">
-                      <h3>150</h3>
-
-                      <p>New Orders</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                  </div>
-               </div>
-
-            </div>
-    
-    <!--Footer-->
+<!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">help</a></li>
-                    <li><a href="#">site map</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
+                    <li><a href="AdminHelpTab.aspx">Help</a></li>
+                    <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">
@@ -130,7 +139,6 @@
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="Scripts/JQuery-1.11.3.min.js" type="text/javascript"></script>
     <script src="Scripts/CustomScripts.js" type="text/javascript"></script>
-
     </form>
 </body>
 </html>

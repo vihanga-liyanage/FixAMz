@@ -23,6 +23,7 @@ namespace FixAMz_WebApplication
             Load_Notifications();
             setAssetID();
             personToRecommend();
+            setNavBar();
             
             if (!Page.IsPostBack)
             {
@@ -33,7 +34,7 @@ namespace FixAMz_WebApplication
                 Load_Location();
                 Load_Employee_Data();
                 Load_CostCenter();
-                
+
                 TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 DisposeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
@@ -105,7 +106,7 @@ namespace FixAMz_WebApplication
             string[] data = userData.Split(';');
 
 
-            if (data[1] != "manageAssetUser")
+            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport"))
             {
                 FormsAuthentication.SignOut();
 
@@ -170,11 +171,23 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
+                else if (dr["action"].ToString().Trim() == "Cancel")
+                {
+                    action = "rejected";
+                }
+
+                //setting type
+                string type = dr["type"].ToString().Trim();
+                if (type == "AddNew")
+                {
+                    type = "Register";
+                }
+
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -196,6 +209,26 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             dr.Close();
             conn.Close();
+        }
+
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
+            }
         }
 
         // Signing out =================================================================
@@ -277,31 +310,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
-        protected void Load_SubCategory_for_search()
-        {
-            try
-            {
-                String cate2ID = AssetSearchCategoryDropDown.SelectedValue;
-                SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn2.Open();
-                SqlCommand cmd2 = new SqlCommand("SELECT name, scatID FROM SubCategory where catID='" + cate2ID + "'", conn2);
-                SqlDataReader data2 = cmd2.ExecuteReader();
-
-                AssetSearchSubCategoryDropDown.DataSource = data2;
-                AssetSearchSubCategoryDropDown.DataTextField = "name";
-                AssetSearchSubCategoryDropDown.DataValueField = "scatID";
-                AssetSearchSubCategoryDropDown.DataBind();
-                AssetSearchSubCategoryDropDown.Items.Insert(0, new ListItem("-- Select a sub category--", ""));
-                data2.Close();
-                conn2.Close();
-
-            }
-            catch (Exception ex)
-            {
-                Response.Write("Load_SubCategory_for_search:" + ex.Message.ToString());
-            }
-        }
-
         //Loading category dropdown
         protected void Load_Category()
         {
@@ -317,14 +325,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 AddAssetCategoryDropDown.DataValueField = "catID";
                 AddAssetCategoryDropDown.DataBind();
                 AddAssetCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
-                data.Close();
-
-                data = cmd.ExecuteReader();
-                AssetSearchCategoryDropDown.DataSource = data;
-                AssetSearchCategoryDropDown.DataTextField = "name";
-                AssetSearchCategoryDropDown.DataValueField = "catID";
-                AssetSearchCategoryDropDown.DataBind();
-                AssetSearchCategoryDropDown.Items.Insert(0, new ListItem("-- Select a category --", ""));
                 data.Close();
 
                 conn.Close();
@@ -350,14 +350,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 AddAssetLocationDropDown.DataValueField = "locID";
                 AddAssetLocationDropDown.DataBind();
                 AddAssetLocationDropDown.Items.Insert(0, new ListItem("-- Select a location --", ""));
-                data.Close();
-
-                data = cmd.ExecuteReader();
-                AssetSearchLocationDropDown.DataSource = data;
-                AssetSearchLocationDropDown.DataTextField = "name";
-                AssetSearchLocationDropDown.DataValueField = "locID";
-                AssetSearchLocationDropDown.DataBind();
-                AssetSearchLocationDropDown.Items.Insert(0, new ListItem("-- Select a sub location --", ""));
                 data.Close();
 
                 //Transfer asset location drop down
@@ -419,15 +411,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 AddAssetOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
                 data.Close();
 
-                //Asset search owner drop down
-                data = cmd.ExecuteReader();
-                AssetSearchOwnerDropDown.DataSource = data;
-                AssetSearchOwnerDropDown.DataTextField = "name";
-                AssetSearchOwnerDropDown.DataValueField = "empID";
-                AssetSearchOwnerDropDown.DataBind();
-                AssetSearchOwnerDropDown.Items.Insert(0, new ListItem("-- Select an employee --", ""));
-                data.Close();
-
                 //Transfer asset owner drop down
                 data = cmd.ExecuteReader();
                 TransferOwnerDropDown.DataSource = data;
@@ -451,7 +434,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
-        // Regester new asset ==========================================================
+// Regester new asset ==========================================================
         protected void setAssetID() 
         {
             //Getting cost center
@@ -466,7 +449,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT TOP 1 assetID FROM Asset ORDER BY assetID DESC";
+                String query = "SELECT TOP 1 assetID FROM Asset WHERE costID='" + costID + "' ORDER BY assetID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 String newAssetID;
                 if (cmd.ExecuteScalar() != null)
@@ -474,20 +457,19 @@ Request.ApplicationPath + "Login.aspx';", true);
                     String lastAssetID = (cmd.ExecuteScalar().ToString()).Trim();
                     String prefix = "NWSDB/" + costID + "/A";
                     //Extracting the number
-                    String num = Convert.ToString(lastAssetID.Substring(15));
+                    String num = Convert.ToString(lastAssetID.Substring(13));
                     //Adding one
-                    
-                    newAssetID = prefix;
-                    for (int i = 1; i < num.Length; i++)
+
+                    newAssetID = Convert.ToString(Convert.ToInt16(num) + 1);
+                    while (newAssetID.Length < 7)
                     {
-                        newAssetID += "0";
+                        newAssetID = "0" + newAssetID;
                     }
-                    num = Convert.ToString(Convert.ToInt16(num) + 1);
-                    newAssetID += num;
+                    newAssetID = prefix + newAssetID;
                 }
                 else
                 {
-                    newAssetID = "NWSDB/" + costID + "/A00001";
+                    newAssetID = "NWSDB/" + costID + "/A0000001";
                 }
 
                 AddNewAssetId.InnerHtml = newAssetID;
@@ -577,121 +559,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 Response.Write(ex.ToString());
             }
         }
-       
-        // Advanced asset search =======================================================
-        protected void SearchAssetBtn_Click(object sender, EventArgs e)
-        {
-            String assetID = AssetSearchIDTextBox.Text.Trim();
-            String name = AssetSearchNameTextBox.Text.Trim();
-            String subCategoryID = AssetSearchSubCategoryDropDown.SelectedValue;
-            String categoryID = AssetSearchCategoryDropDown.SelectedValue;
-            String value = AssetSearchValueTextBox.Text;
-           // String locationID = AssetSearchLocationDropDown.SelectedValue;
-            String ownerID = AssetSearchOwnerDropDown.SelectedValue;
-
-            String resultMessage = "";
-
-            String query = "SELECT A.assetID AS Asset_ID, A.name AS Name, A.value AS Value, C.name AS Category, SC.name AS Subcategory, (E.firstName+' '+E.lastName) AS Owner, L.name AS Location, A.approvedDate AS Approved_Date, A.recommend AS Recommended_By, A.approve AS Approved_By " +
-                "FROM Asset A " +
-                "INNER JOIN Category C ON A.category=C.catID " +
-                "INNER JOIN SubCategory SC ON A.subcategory=SC.scatID " +
-                "INNER JOIN Employee E ON A.owner=E.empID " +
-                "INNER JOIN Location L ON A.location=L.locID " +
-                "WHERE status=1";
-
-            if (assetID != "")
-            { 
-                query += " assetID='" + assetID + "'";
-                resultMessage += assetID + ", ";
-            }
-            if (name != "")
-            {
-                query += " AND name='" + name + "'";
-                resultMessage += name + ", ";
-            }
-            if (subCategoryID != "")
-            {
-                query += " AND subcategory='" + subCategoryID + "'";
-                resultMessage += subCategoryID + ", ";
-            }
-            if (categoryID != "")
-            {
-                query += " AND category='" + categoryID + "'";
-                resultMessage += categoryID + ", ";
-            }
-            if (value != "")
-            {
-                query += " AND value='" + Convert.ToInt16(value) + "'";
-                resultMessage += value + ", ";
-            }
-           /* if (locationID != "")
-            {
-                query += " AND location='" + locationID + "'";
-                resultMessage += locationID + ", ";
-            }*/
-            if (ownerID != "")
-            {
-                query += " AND owner='" + ownerID + "'";
-                resultMessage += ownerID + ", ";
-            }
-            
-
-            // Clearing the grid view
-            AssetSearchGridView.DataSource = null;
-            AssetSearchGridView.DataBind();
-
-            //Remove unnessary 'and'
-            query = query.Replace("WHERE AND", "WHERE ");
-            //Response.Write(query + "<br>");
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString); //database connectivity
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader != null && reader.HasRows) //if search results found
-                {
-                    DataTable dt = new DataTable();
-                    //dt.Columns.Add("Asset ID");
-                    //DataRow dtrow = dt.NewRow();
-                    //dtrow["Asset ID"] = "E00001";
-                    //dt.Rows.Add(dtrow);
-                    dt.Load(reader);
-
-                    AssetSearchGridView.DataSource = dt;  //display found data in grid view
-                    AssetSearchGridView.DataBind();
-                    responseBoxGreen.Style.Add("display", "block");
-                    responseMsgGreen.InnerHtml = "Search Results Found for <strong>" + resultMessage + "</strong>" ;
-                }
-                else
-                {
-                    responseBoxRed.Style.Add("display", "block");
-                    responseMsgRed.InnerHtml = "No Results Found for " + resultMessage;
-                }
-                conn.Close();
-
-                //expanding block
-                AdvancedAssetSearchContent.Style.Add("display", "block");
-                //updating expandingItems dictionary in javascript
-                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedAssetSearchContent');", true);
-            }
-            catch (Exception ex)
-            {
-                responseBoxRed.Style.Add("display", "block");
-                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(ex.ToString());
-            }
-
-        }
-
-        protected void Category_Selected_for_search(object sender, EventArgs e)
-        {
-            Load_SubCategory_for_search();
-
-            AdvancedAssetSearchContent.Style.Add("display", "block");
-            //updating expandingItems dictionary in javascript
-            ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('AdvancedAssetSearchContent');", true);
-        }
 
         // Upgrade asset ===============================================================
         protected void UpgradeAssetFindBtn_Click(object sender, EventArgs e)
@@ -703,49 +570,71 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String assetID = UpgradeAssetIDTextBox.Text;
 
-                string check = "SELECT count(*) from Asset WHERE assetID='" + assetID + "'";
+                string check = "SELECT count(*) from Asset WHERE assetID='" + assetID + "'AND status='1'";
+                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
                 SqlCommand cmd = new SqlCommand(check, conn);
+                SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-
+                int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
                 if (res == 1)
                 {
-                    String query = "SELECT name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
-                    String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
-                    cmd = new SqlCommand(query, conn);
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeOwnerID = "";
-                    while (dr.Read())
+                    if (res1 == 0)
                     {
-                        UpgradeAssetName.InnerHtml = dr["name"].ToString();
-                        UpgradeAssetCategoryID = dr["category"].ToString();
-                        UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
-                      //  UpgradeLocationID = dr["location"].ToString();
-                        UpgradeOwnerID = dr["owner"].ToString();
-                        UpgradeValue.InnerHtml = dr["updatedValue"].ToString();
-                    }
-                    dr.Close();
-                    // Get category name
-                    String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + UpgradeAssetCategoryID + "'";
-                    cmd = new SqlCommand(getCatNameQuery, conn);
-                    UpgradeAssetCategory.InnerHtml = cmd.ExecuteScalar().ToString();
-                    // Get sub category name
-                    String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + UpgradeAssetSubcategoryID + "'";
-                    cmd = new SqlCommand(getSubCatNameQuery, conn);
-                    UpgradeAssetSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
-              /*      // Get location name
-                    String getLocNameQuery = "SELECT name FROM Location WHERE locID='" + UpgradeLocationID + "'";
-                    cmd = new SqlCommand(getLocNameQuery, conn);
-                    UpgradeLocation.InnerHtml = cmd.ExecuteScalar().ToString();*/
-                    // Get owner name
-                    String getOwnerNameQuery = "SELECT [firstname]+' '+[lastname] FROM Employee WHERE empID='" + UpgradeOwnerID + "'";
-                    cmd = new SqlCommand(getOwnerNameQuery, conn);
-                    UpgradeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+                        String query = "SELECT name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
+                        String query2 = "SELECT depreciationRate, lifetime FROM Asset WHERE assetID='" + assetID + "'";
+                        cmd = new SqlCommand(query, conn);
+                        SqlDataReader dr = cmd.ExecuteReader();
 
-                    upgradeAssetInitState.Style.Add("display", "none");
-                    upgradeAssetSecondState.Style.Add("display", "block");
-                    UpgradeAssetContent.Style.Add("display", "block");
-                    UpgradeAssetIDValidator.InnerHtml = "";
+                        String UpgradeAssetCategoryID = "", UpgradeAssetSubcategoryID = "", UpgradeOwnerID = "";
+                        while (dr.Read())
+                        {
+                            UpgradeAssetName.InnerHtml = dr["name"].ToString();
+                            UpgradeAssetCategoryID = dr["category"].ToString();
+                            UpgradeAssetSubcategoryID = dr["subcategory"].ToString();
+                            //  UpgradeLocationID = dr["location"].ToString();
+                            UpgradeOwnerID = dr["owner"].ToString();
+                            UpgradeValue.InnerHtml = dr["updatedValue"].ToString();
+                        }
+                        dr.Close();
+                        // Get category name
+                        String getCatNameQuery = "SELECT name FROM Category WHERE catID='" + UpgradeAssetCategoryID + "'";
+                        cmd = new SqlCommand(getCatNameQuery, conn);
+                        UpgradeAssetCategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                        // Get sub category name
+                        String getSubCatNameQuery = "SELECT name FROM SubCategory WHERE scatID='" + UpgradeAssetSubcategoryID + "'";
+                        cmd = new SqlCommand(getSubCatNameQuery, conn);
+                        UpgradeAssetSubcategory.InnerHtml = cmd.ExecuteScalar().ToString();
+                        /*      // Get location name
+                              String getLocNameQuery = "SELECT name FROM Location WHERE locID='" + UpgradeLocationID + "'";
+                              cmd = new SqlCommand(getLocNameQuery, conn);
+                              UpgradeLocation.InnerHtml = cmd.ExecuteScalar().ToString();*/
+                        // Get owner name
+                        String getOwnerNameQuery = "SELECT [firstname]+' '+[lastname] FROM Employee WHERE empID='" + UpgradeOwnerID + "'";
+                        cmd = new SqlCommand(getOwnerNameQuery, conn);
+                        UpgradeOwner.InnerHtml = cmd.ExecuteScalar().ToString();
+
+                        upgradeAssetInitState.Style.Add("display", "none");
+                        upgradeAssetSecondState.Style.Add("display", "block");
+                        UpgradeAssetContent.Style.Add("display", "block");
+                        UpgradeAssetIDValidator.InnerHtml = "";
+                    }
+                    else
+                    {
+                        string gettype = "select type from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
+                        SqlCommand cmdtype = new SqlCommand(gettype, conn);
+                        string type = cmdtype.ExecuteScalar().ToString();
+                        cmdtype.ExecuteNonQuery();
+
+                        upgradeAssetInitState.Style.Add("display", "block");
+                        upgradeAssetSecondState.Style.Add("display", "none");
+                        UpgradeAssetContent.Style.Add("display", "block");
+                        UpgradeAssetIDValidator.InnerHtml = "Asset already recommended to " + type + "!";
+                        TransferItemName.Focus();
+                    }
+
+                    conn.Close();
+                    //updating expandingItems dictionary in javascript
+                    ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('TransferAssetContent');", true);
                 }
                 else
                 {
@@ -754,9 +643,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     UpgradeAssetContent.Style.Add("display", "block");
                     UpgradeAssetIDValidator.InnerHtml = "Invalid asset ID";
                 }
-                conn.Close();
-                //updating expandingItems dictionary in javascript
-                ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('UpgradeAssetContent');", true);
+                
             }
             catch (SqlException ex)
             {
@@ -938,8 +825,8 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String assetID = TransferAssetIDTextBox.Text;
 
-                string check = "select count(*) from Asset WHERE assetID='" + assetID + "'";
-                string getassetid = "select count(*) from TransferAsset WHERE assetID='" + assetID + "'";
+                string check = "select count(*) from Asset WHERE assetID='" + assetID + "' AND status='1'";
+                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
@@ -995,10 +882,15 @@ Request.ApplicationPath + "Login.aspx';", true);
                     }
                     else
                     {
+                        string gettype = "select type from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
+                        SqlCommand cmdtype = new SqlCommand(gettype, conn);
+                        string type = cmdtype.ExecuteScalar().ToString();
+                        cmdtype.ExecuteNonQuery();
+
                         transferAssetInitState.Style.Add("display", "block");
                         transferAssetSecondState.Style.Add("display", "none");
                         TransferAssetContent.Style.Add("display", "block");
-                        TransferAssetIDValidator.InnerHtml = "Asset already recommended to transfer!";
+                        TransferAssetIDValidator.InnerHtml = "Asset already recommended to "+ type +"!";
                         TransferItemName.Focus();
                     }
 
@@ -1090,7 +982,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String assetID = DisposeAssetIDTextBox.Text;
 
                 string check = "select count(*) from Asset WHERE assetID='" + assetID + "'";
-                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' and type='Dispose'";
+                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' and action='Recommend'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
@@ -1145,10 +1037,15 @@ Request.ApplicationPath + "Login.aspx';", true);
                     }
                     else
                     {
+                        string gettype = "select type from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
+                        SqlCommand cmdtype = new SqlCommand(gettype, conn);
+                        string type = cmdtype.ExecuteScalar().ToString();
+                        cmdtype.ExecuteNonQuery();
+
                         disposeAssetInitState.Style.Add("display", "block");
                         disposeAssetSecondState.Style.Add("display", "none");
                         DisposeAssetContent.Style.Add("display", "block");
-                        DisposeAssetIDValidator.InnerHtml = "Asset already recommended to dispose!";
+                        DisposeAssetIDValidator.InnerHtml = "Asset already recommended to "+type+"!";
                     }
 
                     conn.Close();
