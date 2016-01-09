@@ -9,46 +9,31 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
+using System.Net;
+using System.Net.Mail;
+using System.IO;
 
 namespace FixAMz_WebApplication
 {
-    public partial class ReportViewer : System.Web.UI.Page
+    public partial class AdminSitemap : System.Web.UI.Page
     {
-        private string costID;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
-            costCenter();
+
             Load_Notifications();
-            setNavBar();
 
             if (!Page.IsPostBack)
             {
+
                 setUserName();
-                Page.MaintainScrollPositionOnPostBack = true;
+                Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
             }
 
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
-
-            //Can give an alert
-            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"" + Session["PRSN_TO_REC"] + "\")</SCRIPT>");
-        }
-
-        //set costID by user login
-        protected void costCenter()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-            costID = data[2];
-            Session["COST_ID_MNG_ASST"] = data[2];
         }
 
         //Checking if the user has access to the page
@@ -61,7 +46,8 @@ namespace FixAMz_WebApplication
             //userData = "Vihanga Liyanage;admin;CO00001"
             string[] data = userData.Split(';');
 
-            if ((data[1] != "manageReport") && (data[1] != "generateReportUser"))
+
+            if (data[1] != "admin")
             {
                 FormsAuthentication.SignOut();
 
@@ -82,6 +68,15 @@ Request.ApplicationPath + "Login.aspx';", true);
             userName.InnerHtml = data[0];
 
         }
+
+        //Signing out
+        protected void SignOutLink_clicked(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
+        }
+
+
 
         //Loading notifications
         protected void Load_Notifications()
@@ -126,23 +121,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
-                else if (dr["action"].ToString().Trim() == "Cancel")
-                {
-                    action = "rejected";
-                }
-
-                //setting type
-                string type = dr["type"].ToString().Trim();
-                if (type == "AddNew")
-                {
-                    type = "Register";
-                }
-
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -164,39 +147,6 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             dr.Close();
             conn.Close();
-        }
-
-        //Dynamically setting nav bar
-        protected void setNavBar()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-
-            if (data[1] == "manageReport") 
-            {
-                manageReportNavBar.Style.Add("display", "block");
-            }
-            else if (data[1] == "generateReportUser")
-            {
-                generateReportUserNavBar.Style.Add("display", "block");
-            }
-        }
-
-        // Signing out =================================================================
-        protected void SignOutLink_clicked(object sender, EventArgs e)
-        {
-            FormsAuthentication.SignOut();
-            Response.Redirect("Login.aspx");
-        }
-
-        //reload after click cancel button
-        protected void cancel_clicked(object sender, EventArgs e)
-        {
-            Response.Redirect("ManageAssetsUser.aspx");
         }
     }
 }

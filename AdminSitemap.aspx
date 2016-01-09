@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminAboutUs.aspx.cs" Inherits="FixAMz_WebApplication.AdminAboutUs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminSitemap.aspx.cs" Inherits="FixAMz_WebApplication.AdminSitemap" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +59,7 @@
                                     <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="AdminAboutUs.aspx" class="active">ABOUT</a> </li>
+                                    <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                     <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
@@ -85,43 +85,42 @@
                     <div id="responseMsgRed" runat="server"></div>
                 </div>
 
-<!--NWSDB-->
-                <div class="row">
-                    <img src="img/AboutUsNWSDB.png"/>
-                </div>
-                        <h3>About Us</h3> <br/>
+<!--Sitemap-->
+               <h3>Site Map</h3> <br/>
                       
-                        <p>The National Water Supply and Drainage Board had its beginning as a sub department under the Public Works Department, for Water Supply & Drainage. 
-                           In 1965, it became a division under the Ministry of Local Government.
-                           From 1970, this division functioned as a separate department under the Ministry of Irrigation, 
-                           Power & Highways and remained so until the present Board was established in January 1975 by an Act of Parliament.</p>
-
-                           <p>The National Water Supply Drainage Board (NWS&DB), which presently functions under the Ministry of Urban Development, 
-                           Water Supply & Drainage is the principal authority providing safe drinking water and facilitating the provision of sanitation in Sri Lanka. 
-                           In accordance with the NWS&DB Act, a number of major Urban Water Supply Schemes operated by Local Authorities were taken over by the NWS&DB to provide more coverage and improved service. 
-                           Consumer metering and billing commenced in 1982. 
-                           Rural Water Supply & Sanitation programmes including deep well programmes are also being implemented by the NWS&DB.</p>
-
-                           <p>During the past years, the organization has considerably expanded its scope of activities.</p>
-
-                           <p>The NWS&DB is presently operating 324 Water Supply Schemes which cover 34% of the total population with pipe borne water supply. 
-                           10.5% of the population is served with pipe borne water supply by some Local Authorities, 
-                           NGO’s and Community Based Organizations. 
-                           13% of the population is served with hand pump tube wells. 
-                           NWS&DB hopes to increase the coverage with pipe borne water to 45.7% 
-                           by 2015 so that the United Nations Millennium Development Goal of 85% safe drinking water coverage can be achieved by that year.
-                           The NWS&DB is also in charge of the sewerage system in Colombo and suburbs, Hantane, Koggala, Hikkaduwa, Kataragama and in few housing schemes.</p>
-                    
-                           <p><a href="http://www.waterboard.lk">Link to our site - www.waterboard.lk</a></p>
-                </div>
+               <ul style="disc">
+                   <li><a href="AdminUserHomeTab.aspx">Home</a></li> <br/>
+                   <li><a href="AdminUserPeopleTab.aspx">User Management</a></li> 
+                        <ul>
+                            <li><a href="AdminUserPeopleTab.aspx">Add New User</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Advanced User Search</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Update User</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Reset User Password</a></li>
+                            <li><a href="AdminUserPeopleTab.aspx">Delete User</a></li> <br/>
+                        </ul> 
+                   <li><a href="AdminUserSystemTab.aspx">System Management</li>
+                        <ul>
+                            <li><a href="AdminUserSystemTab.aspx">Add Location</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Add Category</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Add Sub Category</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Update Location</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Update Category</a></li>
+                            <li><a href="AdminUserSystemTab.aspx">Update Sub Category</a></li> <br/>
+                        </ul>
+                    <li><a href="AboutUs.aspx">About Us</li><br/>
+                    <li><a href="AdminHelpTab.aspx">Help</li><br/>
+                    <li><a id="A2" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign Out</a></li>
+               </ul> 
+                           
+            </div>
                             
-                </div>
+        </div>
 
 <!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="AdminAboutUs.aspx">About</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
                     <li><a href="AdminHelpTab.aspx">Help</a></li>
                     <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>

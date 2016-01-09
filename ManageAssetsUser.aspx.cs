@@ -23,6 +23,7 @@ namespace FixAMz_WebApplication
             Load_Notifications();
             setAssetID();
             personToRecommend();
+            setNavBar();
             
             if (!Page.IsPostBack)
             {
@@ -105,7 +106,7 @@ namespace FixAMz_WebApplication
             string[] data = userData.Split(';');
 
 
-            if (data[1] != "manageAssetUser")
+            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport"))
             {
                 FormsAuthentication.SignOut();
 
@@ -208,6 +209,26 @@ Request.ApplicationPath + "Login.aspx';", true);
 
             dr.Close();
             conn.Close();
+        }
+
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
+            }
         }
 
         // Signing out =================================================================
@@ -413,7 +434,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
-        // Regester new asset ==========================================================
+// Regester new asset ==========================================================
         protected void setAssetID() 
         {
             //Getting cost center
@@ -428,7 +449,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT TOP 1 assetID FROM Asset ORDER BY assetID DESC";
+                String query = "SELECT TOP 1 assetID FROM Asset WHERE costID='" + costID + "' ORDER BY assetID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 String newAssetID;
                 if (cmd.ExecuteScalar() != null)

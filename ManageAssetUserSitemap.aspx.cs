@@ -9,28 +9,81 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Security;
 using System.Web.Services;
-using System.Net;
-using System.Net.Mail;
-using System.IO;
+
 namespace FixAMz_WebApplication
 {
-    public partial class ManageAssetUserAboutUs : System.Web.UI.Page
+    public partial class ManageAssetUserSitemap : System.Web.UI.Page
     {
+        private string costID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Authenticate_User();
+            costCenter();
             Load_Notifications();
+            personToRecommend();
 
             if (!Page.IsPostBack)
             {
                 setUserName();
-                Page.MaintainScrollPositionOnPostBack = true; //remember the scroll position on post back
+
+
+
+                Page.MaintainScrollPositionOnPostBack = true;
             }
 
             responseBoxGreen.Style.Add("display", "none");
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
+
+            //Can give an alert
+            //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"" + Session["PRSN_TO_REC"] + "\")</SCRIPT>");
+        }
+
+        //set costID by user login
+        protected void costCenter()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+            costID = data[2];
+            Session["COST_ID_MNG_ASST"] = data[2];
+        }
+
+        //set personToRecommend according to costID
+        protected void personToRecommend()
+        {
+            String query = "SELECT e.empID, e.firstName, e.lastName FROM Employee e INNER JOIN CostCenter c ON e.empID = c.recommendPerson WHERE c.costID='" + Session["COST_ID_MNG_ASST"] + "'";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            String recoPrsn = "";
+            while (dr.Read())
+            {
+                recoPrsn = dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim();
+            }
+
+
+            dr.Close();
+            conn.Close();
+
+            String query2 = "SELECT recommendPerson, approvePerson FROM CostCenter WHERE CostID='" + Session["COST_ID_MNG_ASST"] + "'";
+            SqlConnection conn2 = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn2.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn2);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                Session["PRSN_TO_REC"] = dr2["recommendPerson"].ToString().Trim();
+                Session["PRSN_TO_APP"] = dr2["approvePerson"].ToString().Trim();
+            }
+            dr2.Close();
+            conn2.Close();
         }
 
         //Checking if the user has access to the page
@@ -109,23 +162,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                 {
                     action = "recommended";
                 }
-                else if (dr["action"].ToString().Trim() == "Cancel")
-                {
-                    action = "rejected";
-                }
-
-                //setting type
-                string type = dr["type"].ToString().Trim();
-                if (type == "AddNew")
-                {
-                    type = "Register";
-                }
-
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
+                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + dr["type"].ToString().Trim() +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -149,36 +190,58 @@ Request.ApplicationPath + "Login.aspx';", true);
             conn.Close();
         }
 
-        //reload after click cancel button
-        protected void cancel_clicked(object sender, EventArgs e)
-        {
-            Response.Redirect("AdminAboutUs.aspx");
-        }
-
-        //Signing out
+        // Signing out =================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
         }
 
-        [WebMethod]//username validity checking in client side with ajax
-        public static int checkUsername(string Username)
+        //Reads the last notID from DB, calculates the next=============================
+        protected String setNotID()
         {
-            //To send a JSON object -> HttpContext.Current.Response.Write("{'response' : '" + res + "'}");
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT COUNT(*) FROM SystemUser WHERE username='" + Username + "'";
+                String query = "SELECT TOP 1 notID FROM Notification ORDER BY notID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                return res;
+                String newNotID;
+                if (cmd.ExecuteScalar() != null)
+                {
+                    String lastNotID = (cmd.ExecuteScalar().ToString()).Trim();
+                    String chr = Convert.ToString(lastNotID[0]);
+                    String temp = "";
+                    for (int i = 1; i < lastNotID.Length; i++)
+                    {
+                        temp += Convert.ToString(lastNotID[i]);
+                    }
+                    temp = Convert.ToString(Convert.ToInt16(temp) + 1);
+                    newNotID = chr;
+                    for (int i = 1; i < lastNotID.Length - temp.Length; i++)
+                    {
+                        newNotID += "0";
+                    }
+                    newNotID += temp;
+                    conn.Close();
+                    return newNotID;
+                }
+                else
+                {
+                    newNotID = "N00001";
+                    conn.Close();
+                    return newNotID;
+                }
             }
-            catch (SqlException)
+            catch (SqlException e)
             {
-                return 2;
+                responseBoxRed.Style.Add("display", "block");
+                responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
+                Response.Write(e.ToString());
+                return "";
             }
         }
+
+        public string SelectedValue { get; set; }
     }
 }

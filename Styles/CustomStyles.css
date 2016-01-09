@@ -199,7 +199,7 @@ a:focus {
 {
     padding:10px 10px 10px 0px;
 }
-.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader
+.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader, #ReportsHeader
 {
     font-size:20px;
     color:#1f69b9;
@@ -718,7 +718,6 @@ a:focus {
 {
     display:none;
 }
-
 .notification-icon
 {
     position:absolute;
@@ -730,3 +729,18 @@ a:focus {
     z-index:-1;
 } 
 
+/*==============================Notification view styles=========================*/
+.report-ul
+{
+    color: #337BAA;
+    list-style: none;
+}
+.report-label
+{
+    color: #337BAA;
+    padding: 0px 30px 0px 0px;
+    float: left;
+    width: 37%;
+    font-size: 19px;
+    list-style: none;
+}
