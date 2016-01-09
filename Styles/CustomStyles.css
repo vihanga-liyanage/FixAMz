@@ -316,7 +316,7 @@ a:focus {
 }
 
 .small-box {
-    border-radius: 2px;
+    border-radius: 6px;
     position: relative;
     display: block;
     margin-bottom: 20px;
@@ -347,15 +347,25 @@ a:focus {
     color: rgba(0,0,0,0.15);
 }
 .small-box>.inner {
-    padding: 10px;
+    padding: 13px;
     color: white;
 }
 
-.icon>img:hover
+.icon img
 {
+    width:100px;
+}
+
+.small-box:hover
+{
+    border-radius: 2px;
+}
+.small-box>.icon>img:hover
+{
+    width:98px;
     padding-left:2px;
     padding-bottom:2px;
-    width:80px;
+    
     
 }
 
@@ -579,6 +589,66 @@ a:focus {
     background:url(/img/disposeAsset.png) no-repeat;
     width:350px;
     height:350px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report finance icon========================*/
+.report-finance-icon
+{
+    position:absolute;
+    background:url(/img/finance-report.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report genaral icon========================*/
+.report-general-icon
+{
+    position:absolute;
+    background:url(/img/report-genaral.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report transfer icon========================*/
+.report-transfer-icon
+{
+    position:absolute;
+    background:url(/img/report-transfer.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report upgrade icon========================*/
+.report-upgrade-icon
+{
+    position:absolute;
+    background:url(/img/report-upgrade.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report dispose icon========================*/
+.report-dispose-icon
+{
+    position:absolute;
+    background:url(/img/report-dispose.png) no-repeat;
+    width:270px;
+    height:310px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;

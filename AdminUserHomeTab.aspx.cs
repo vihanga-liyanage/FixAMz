@@ -19,6 +19,7 @@ namespace FixAMz_WebApplication
             setTotalUsers();
             setTotalcategories();
             setTotalcostcenter();
+            setTotalsubcategories();
             if (!IsPostBack)
             {
                 setUserName();
@@ -159,6 +160,18 @@ Request.ApplicationPath + "Login.aspx';", true);
             SqlCommand cmd = new SqlCommand(query, conn);
             string empID = (cmd.ExecuteScalar().ToString()).Trim();
             totalcats.InnerHtml = empID;
+            conn.Close();
+        }
+
+        //getting total sub categories
+        protected void setTotalsubcategories()
+        {
+            String query = "SELECT count(*) FROM SubCategory";
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string empID = (cmd.ExecuteScalar().ToString()).Trim();
+            totalsubcats.InnerHtml = empID;
             conn.Close();
         }
 

@@ -115,7 +115,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                <div class="report-finance-icon hidden-sm hidden-xs">
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                <div class="report-general-icon hidden-sm hidden-xs">
                                 </div>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                <div class="report-transfer-icon hidden-sm hidden-xs">
                                 </div>
                             </div>
                         </div>
@@ -196,7 +196,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                <div class="report-upgrade-icon hidden-sm hidden-xs">
                                 </div>
                             </div>
                         </div>
@@ -223,7 +223,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
-                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                <div class="report-dispose-icon hidden-sm hidden-xs">
                                 </div>
                             </div>
                         </div>

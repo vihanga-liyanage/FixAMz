@@ -72,6 +72,12 @@
     <Content Include="AdminSitemap.aspx" />
     <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
+    <Content Include="img\finance-report.png" />
+    <Content Include="img\report-dispose.png" />
+    <Content Include="img\report-genaral.png" />
+    <Content Include="img\report-transfer.png" />
+    <Content Include="img\report-upgrade.png" />
+    <Content Include="img\sub.png" />
     <Content Include="GridView.aspx" />
     <Content Include="img\costcenter.png" />
     <Content Include="img\developerIcon.png" />
@@ -349,7 +355,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6572</DevelopmentServerPort>
+          <DevelopmentServerPort>5659</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

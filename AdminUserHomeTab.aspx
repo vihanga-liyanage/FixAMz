@@ -61,7 +61,7 @@
                                         <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                         <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
                                         <li><a href="AboutUs.aspx">ABOUT</a> </li>
-                                        <li><a href="AdminHelpTab.aspx">HELP</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
                                     </ul>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                             <p style="padding-top: 15px;">Total Users</p>
                         </div>
                         <div class="icon">
-                            <img src="img/multy-user.png" style="width: 100px;" alt=""/>
+                            <img src="img/multy-user.png"  />
                         </div>
                     <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -96,9 +96,24 @@
                             <p style="padding-top: 15px;">Total Categories</p>
                         </div>
                         <div class="icon">
-                            <img src="img/Fixed-Assets-Icon.png" style="width: 95px;" alt=""/>
+                            <img src="img/Fixed-Assets-Icon.png" />
                         </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
+                        <div class="inner">
+                            <div id="totalsubcats" runat="server" class="custom-label newstyle" ></div>
+
+                            <p style="padding-top: 15px;">Total Sub Categories</p>
+                        </div>
+                        <div class="icon">
+                            <img src="img/sub.png"  />
+                        </div>
+                    <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -111,19 +126,20 @@
                             <p style="padding-top: 15px;">Total Cost Centers</p>
                         </div>
                         <div class="icon">
-                            <img src="img/costcenter.png" style="width: 100px;" alt="" />
+                            <img src="img/costcenter.png"/>
                         </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
             
+            
 <!--Footer-->
             <div id="footer" class="row">
                 <div class="row footer-up">
                     <ul class="footer-nav">
 				        <li><a href="AboutUs.aspx">About</a></li>
-				        <li><a href="AdminHelpTab.aspx">Help</a></li>
+				        <li><a href="Help.aspx">Help</a></li>
 				        <li><a href="AdminSitemap.aspx">Site map</a></li>
 			        </ul>
                 </div>
