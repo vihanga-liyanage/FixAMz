@@ -98,7 +98,8 @@
                     <div class="col-md-12">
                         <img src="img/AddNewIcon.png" />
                         <div class="expand-item-title" id="AddNewAssetHeader">
-                            Register New Asset</div> 
+                            Register New Asset
+                        </div> 
                         <div class="expand-item-content" id="AddNewAssetContent" runat="server">
                             <div class="col-md-8">
                                 <div class="row expand-item-row">

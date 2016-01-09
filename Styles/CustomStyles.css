@@ -199,7 +199,7 @@ a:focus {
 {
     padding:10px 10px 10px 0px;
 }
-.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader
+.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader, #ReportsHeader
 {
     font-size:20px;
     color:#1f69b9;

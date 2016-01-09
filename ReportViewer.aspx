@@ -93,8 +93,157 @@
                     </a>
                     <div id="responseMsgRed" runat="server"></div>
                 </div>
-                Report list
-
+<!-- Reports list-->
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <img src="img/AddNewIcon.png" />
+                        <div class="expand-item-title" id="AddNewAssetHeader">
+                            Finance Reports
+                        </div> 
+                        <div class="expand-item-content" id="AddNewAssetContent" runat="server">
+                            <div class="col-md-8">
+                                <ul class="footer-nav">
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <img src="img/AddNewIcon.png" />
+                        <div class="expand-item-title" id="Div1">
+                            General Reports
+                        </div> 
+                        <div class="expand-item-content" id="Div2" runat="server">
+                            <div class="col-md-8">
+                                <ul class="footer-nav">
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <img src="img/AddNewIcon.png" />
+                        <div class="expand-item-title" id="Div3">
+                            Transfer Reports
+                        </div> 
+                        <div class="expand-item-content" id="Div4" runat="server">
+                            <div class="col-md-8">
+                                <ul class="footer-nav">
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <img src="img/AddNewIcon.png" />
+                        <div class="expand-item-title" id="Div5">
+                            Upgrade Reports
+                        </div> 
+                        <div class="expand-item-content" id="Div6" runat="server">
+                            <div class="col-md-8">
+                                <ul class="footer-nav">
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row expand-item">
+                    <div class="col-md-12">
+                        <img src="img/AddNewIcon.png" />
+                        <div class="expand-item-title" id="Div7">
+                            Dispose Reports
+                        </div> 
+                        <div class="expand-item-content" id="Div8" runat="server">
+                            <div class="col-md-8">
+                                <ul class="footer-nav">
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="expand-item-label" href="AboutUs.aspx">About</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="col-md-4" style="position: relative; padding-left: 0px;">
+                                <div class="register-new-asset-icon hidden-sm hidden-xs">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 <!--Footer-->
