@@ -54,14 +54,25 @@
                                     <span class="icon-bar"></span>
                                 </button>
                             </div>
-                            <div class="collapse navbar-collapse" style="float:right;">
-                                <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#" class="active">HOME</a> </li>
-                                    <li><a href="ManageAssetUserAboutUs.aspx">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
-                                </ul>
+                            <div id="manageAssetUserNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="" class="active">HOME</a> </li>
+                                        <li><a href="ManageAssetUserAboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
                             </div>
-
+                            <div id="manageReportNavBar" runat="server" style="display:none;">
+                                <div class="collapse navbar-collapse" style="float:right;">
+                                    <ul class="custom-nav-bar nav nav-tabs navbar-nav">
+                                        <li><a href="" class="active">HOME</a> </li>
+                                        <li><a href="ReportViewer.aspx">Reports</a> </li>
+                                        <li><a href="ManageAssetUserAboutUs.aspx">ABOUT</a> </li>
+                                        <li><a href="Help.aspx">HELP</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -315,7 +326,7 @@
                                 <div class="row expand-item-row">
                                     <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" OnClientClick="return isValidUpgradeAsset()" />
 
-                                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" OnClientClick="return upgradeAssetClearAll()" />
+                                    <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" OnClick="cancel_clicked" />
 
                                     
 

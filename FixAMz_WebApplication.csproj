@@ -158,7 +158,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="AdminHelpTab.aspx" />
+    <Content Include="Help.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminAboutUs.aspx.cs">
@@ -289,12 +289,12 @@
     <Compile Include="testrept.aspx.designer.cs">
       <DependentUpon>testrept.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminHelpTab.aspx.cs">
-      <DependentUpon>AdminHelpTab.aspx</DependentUpon>
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminHelpTab.aspx.designer.cs">
-      <DependentUpon>AdminHelpTab.aspx</DependentUpon>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

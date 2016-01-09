@@ -400,15 +400,6 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferassetState;
         
         /// <summary>
-        /// TransferNewlocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferNewlocation;
-        
-        /// <summary>
         /// TransferNewowner control.
         /// </summary>
         /// <remarks>
@@ -416,6 +407,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferNewowner;
+        
+        /// <summary>
+        /// TransferNewlocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferNewlocation;
         
         /// <summary>
         /// TransferAssetsendforapprove control.
