@@ -384,16 +384,11 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 if (Type == "AddNew" && Action == "Cancel")
                 {
-<<<<<<< HEAD
-                    NotificationHeader.InnerHtml = "Add new asset cancel Notification";
+                    NotificationHeader.InnerHtml = "Register New Asset - Rejected";
                     AddnewassetStateApproveCancel.Style.Add("display", "none");
                     NotificationContent.Style.Add("display", "none");
                     EditableNotificationContent.Style.Add("display", "block");
                     
-=======
-                    NotificationHeader.InnerHtml = "Register New Asset - Rejected";
-                    AddnewassetStateApproveCancel.Style.Add("display", "block");
->>>>>>> 3aa4db50cae383f71312785dd190dfb123108c66
                 }
 
 //Transfer=================
