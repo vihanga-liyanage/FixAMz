@@ -64,7 +64,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminAboutUs.aspx" />
+    <Content Include="AboutUs.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -72,7 +72,6 @@
     <Content Include="AdminSitemap.aspx" />
     <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
-    <Content Include="ManageAssetUserAboutUs.aspx" />
     <Content Include="GridView.aspx" />
     <Content Include="img\costcenter.png" />
     <Content Include="img\developerIcon.png" />
@@ -165,12 +164,12 @@
     <Content Include="Help.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminAboutUs.aspx.cs">
-      <DependentUpon>AdminAboutUs.aspx</DependentUpon>
+    <Compile Include="AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminAboutUs.aspx.designer.cs">
-      <DependentUpon>AdminAboutUs.aspx</DependentUpon>
+    <Compile Include="AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -220,13 +219,6 @@
     </Compile>
     <Compile Include="AdvancedUserSearch.aspx.designer.cs">
       <DependentUpon>AdvancedUserSearch.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManageAssetUserAboutUs.aspx.cs">
-      <DependentUpon>ManageAssetUserAboutUs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageAssetUserAboutUs.aspx.designer.cs">
-      <DependentUpon>ManageAssetUserAboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="FixAMzDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

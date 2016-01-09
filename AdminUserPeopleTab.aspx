@@ -59,7 +59,7 @@
                                     <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx" class="active">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
+                                    <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                     <li><a href="Help.aspx">HELP</a> </li>
                                 </ul>
                             </div>
@@ -430,7 +430,7 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="AdminAboutUs.aspx">About</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
                     <li><a href="Help.aspx">Help</a></li>
                     <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>
