@@ -19,8 +19,9 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Authenticate_User();
+            
             Load_Notifications();
+            setNavBar();
 
             if (!Page.IsPostBack)
             {
@@ -32,26 +33,6 @@ namespace FixAMz_WebApplication
             responseMsgGreen.InnerHtml = "";
             responseBoxRed.Style.Add("display", "none");
             responseMsgRed.InnerHtml = "";
-        }
-
-        //Checking if the user has access to the page
-        protected void Authenticate_User()
-        {
-            FormsIdentity id = (FormsIdentity)User.Identity;
-            FormsAuthenticationTicket ticket = id.Ticket;
-
-            string userData = ticket.UserData;
-            //userData = "Vihanga Liyanage;admin;CO00001"
-            string[] data = userData.Split(';');
-
-
-            if (data[1] != "admin")
-            {
-                FormsAuthentication.SignOut();
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "alert('You do not have access to this page. Please sign in to continue.'); window.location='" +
-Request.ApplicationPath + "Login.aspx';", true);
-            }
         }
 
         //Setting user name on header
@@ -150,10 +131,38 @@ Request.ApplicationPath + "Login.aspx';", true);
             conn.Close();
         }
 
+        //Dynamically setting nav bar
+        protected void setNavBar()
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+
+            string userData = ticket.UserData;
+            //userData = "Vihanga Liyanage;admin;CO00001"
+            string[] data = userData.Split(';');
+
+            if (data[1] == "manageReport")
+            {
+                manageReportNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "generateReportUser")
+            {
+                generateReportUserNavBar.Style.Add("display", "block");
+            }
+            if (data[1] == "admin")
+            {
+                adminAboutNavBar.Style.Add("display", "block");
+            }
+            else if (data[1] == "manageAssetUser")
+            {
+                manageAssetUserNavBar.Style.Add("display", "block");
+            }
+        }
+
         //reload after click cancel button
         protected void cancel_clicked(object sender, EventArgs e)
         {
-            Response.Redirect("AdminAboutUs.aspx");
+            Response.Redirect("AboutUs.aspx");
         }
 
         //Signing out

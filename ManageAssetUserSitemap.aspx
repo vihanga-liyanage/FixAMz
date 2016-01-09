@@ -59,7 +59,7 @@
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
-                                    <li><a href="ManageAssetUserAboutUs.aspx">ABOUT</a> </li>
+                                    <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                     <li><a href="#">HELP</a> </li>
                                 </ul>
                             </div>
@@ -99,8 +99,8 @@
                             <li><a href="ManageAssetsUser.aspx">Dispose Assets</a></li> <br/>
                         </ul> 
                    
-                    <li><a href="ManageAssetUserAboutUs.aspx">About Us</li><br/>
-                    <li><a href="#">Help</li><br/>
+                    <li><a href="AboutUs.aspx">About Us</li><br/>
+                    <li><a href="Help.aspx">Help</li><br/>
                     <li><a id="A2" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign Out</a></li>
                </ul> 
                            
@@ -112,7 +112,7 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="ManageAssetUserAboutUs.aspx">About</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
                     <li><a href="#">Help</a></li>
                     <li><a href="ManageAssetUserSitemap.aspx">Site map</a></li>
                 </ul>

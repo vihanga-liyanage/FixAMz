@@ -199,7 +199,7 @@ a:focus {
 {
     padding:10px 10px 10px 0px;
 }
-.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader
+.expand-item-title, #AdvancedAssetSearchHeader, #AdvancedUserSearchHeader, #ReportsHeader
 {
     font-size:20px;
     color:#1f69b9;
@@ -593,6 +593,35 @@ a:focus {
     background-size:contain;
     z-index:-1;
 }
+
+/*==============================Report finance icon========================*/
+.report-finance-icon
+{
+    position:absolute;
+    background:url(/img/finance-report.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================Report genaral icon========================*/
+.report-general-icon
+{
+    position:absolute;
+    background:url(/img/report-genaral.png) no-repeat;
+    width:310px;
+    height:310px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+
+
+
+
 
 /*================================footer styles===========================*/
 

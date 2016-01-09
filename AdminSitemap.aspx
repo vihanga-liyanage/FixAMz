@@ -59,7 +59,7 @@
                                     <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
-                                    <li><a href="AdminAboutUs.aspx">ABOUT</a> </li>
+                                    <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                     <li><a href="AdminHelpTab.aspx">HELP</a> </li>
                                 </ul>
                             </div>
@@ -107,7 +107,7 @@
                             <li><a href="AdminUserSystemTab.aspx">Update Category</a></li>
                             <li><a href="AdminUserSystemTab.aspx">Update Sub Category</a></li> <br/>
                         </ul>
-                    <li><a href="AdminAboutUs.aspx">About Us</li><br/>
+                    <li><a href="AboutUs.aspx">About Us</li><br/>
                     <li><a href="AdminHelpTab.aspx">Help</li><br/>
                     <li><a id="A2" href="#" runat="server" onserverclick="SignOutLink_clicked">Sign Out</a></li>
                </ul> 
@@ -120,7 +120,7 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="AdminAboutUs.aspx">About</a></li>
+                    <li><a href="AboutUs.aspx">About</a></li>
                     <li><a href="AdminHelpTab.aspx">Help</a></li>
                     <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>

@@ -205,13 +205,13 @@
 <!-- TransferassetState-->
             <div id="TransferassetState" runat="server">
                 <div class="row expand-item-row">
-                    <div class="expand-item-label">New location</div>
-                    <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    <div class="expand-item-label">New owner</div>
+                    <div id="TransferNewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
-                    <div class="expand-item-label">New owner</div>
-                    <div id="TransferNewowner" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    <div class="expand-item-label">New location</div>
+                    <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
