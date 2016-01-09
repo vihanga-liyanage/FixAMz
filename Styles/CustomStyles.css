@@ -316,7 +316,7 @@ a:focus {
 }
 
 .small-box {
-    border-radius: 2px;
+    border-radius: 6px;
     position: relative;
     display: block;
     margin-bottom: 20px;
@@ -347,15 +347,25 @@ a:focus {
     color: rgba(0,0,0,0.15);
 }
 .small-box>.inner {
-    padding: 10px;
+    padding: 13px;
     color: white;
 }
 
-.icon>img:hover
+.icon img
 {
+    width:100px;
+}
+
+.small-box:hover
+{
+    border-radius: 2px;
+}
+.small-box>.icon>img:hover
+{
+    width:98px;
     padding-left:2px;
     padding-bottom:2px;
-    width:80px;
+    
     
 }
 

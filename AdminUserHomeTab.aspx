@@ -81,7 +81,7 @@
                             <p style="padding-top: 15px;">Total Users</p>
                         </div>
                         <div class="icon">
-                            <img src="img/multy-user.png" style="width: 100px;" alt=""/>
+                            <img src="img/multy-user.png"  />
                         </div>
                     <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -96,7 +96,7 @@
                             <p style="padding-top: 15px;">Total Categories</p>
                         </div>
                         <div class="icon">
-                            <img src="img/Fixed-Assets-Icon.png" style="width: 95px;" alt=""/>
+                            <img src="img/Fixed-Assets-Icon.png" />
                         </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
@@ -111,7 +111,7 @@
                             <p style="padding-top: 15px;">Total Cost Centers</p>
                         </div>
                         <div class="icon">
-                            <img src="img/costcenter.png" style="width: 100px;" alt="" />
+                            <img src="img/costcenter.png"/>
                         </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
