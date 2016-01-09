@@ -37,21 +37,24 @@ namespace FixAMz_WebApplication
 
             if (!Page.IsPostBack)
             {
-                //System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=\"JavaScript\">alert(\"not postback\")</SCRIPT>");
-                costCenter();
-                personToRecommend();
-                Load_Location();
-                Load_Employee_Data();
-                Load_Category();
-                Load_SubCategory_for_register();
-                Load_Content();
-                Load_Content_for_cancel();
-                
+                calling_functions();
                 //Page.MaintainScrollPositionOnPostBack = true;
             }
             
         }
 
+        //page load function calling
+        protected void calling_functions() {
+            costCenter();
+            personToRecommend();
+            Load_Location();
+            Load_Employee_Data();
+            Load_Category();
+            Load_SubCategory_for_register();
+            Load_Content();
+            Load_Content_for_cancel();
+        }
+        
         //Checking if the user has access to the page
         protected void Authenticate_User()
         {
@@ -787,6 +790,8 @@ Request.ApplicationPath + "Login.aspx';", true);
                 try
                 {
                     Load_Content();
+                    Load_Content_for_cancel();
+                    //calling_functions();
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     String notID = setNotID();
@@ -823,8 +828,10 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 try
                 {
-                    Load_Content();
-                    Load_Content_for_cancel();
+                    Authenticate_User();
+                    setNavBar();
+                    setUserName();
+                    calling_functions();
                     SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                     conn.Open();
                     String notID = setNotID();
@@ -859,8 +866,7 @@ Request.ApplicationPath + "Login.aspx';", true);
         {
             try
             {
-                Load_Content();
-                Load_Content_for_cancel();
+                calling_functions();
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 DateTime curDate = DateTime.Now;
@@ -907,6 +913,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
 
                 //update asset table with changes
+                calling_functions();
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String assetID = AddNewAssetId.InnerHtml;
@@ -924,9 +931,9 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 //set new notification for new changes
 
+                //Load_Content();
                 //Load_Content_for_cancel();
-                Load_Content();
-                Load_Content_for_cancel();
+                //calling_functions();
                 String notID = setNotID();
                 String insertDisposeAsset = "INSERT INTO Notification (notID, type, action, assetID, notContent, sendUser, receiveUser, status) VALUES (@notid, @type, @action, @assetid, @notContent, @senduser, @receiveuser, @status)";
                 cmd = new SqlCommand(insertDisposeAsset, conn);
