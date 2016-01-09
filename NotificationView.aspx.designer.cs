@@ -76,6 +76,24 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
+        /// manageAssetUserNavBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manageAssetUserNavBar;
+        
+        /// <summary>
+        /// manageReportNavBar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl manageReportNavBar;
+        
+        /// <summary>
         /// responseBoxGreen control.
         /// </summary>
         /// <remarks>

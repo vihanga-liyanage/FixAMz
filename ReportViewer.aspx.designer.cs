@@ -148,39 +148,39 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddNewAssetContent;
         
         /// <summary>
-        /// Div2 control.
+        /// GeneralReportsContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GeneralReportsContent;
         
         /// <summary>
-        /// Div4 control.
+        /// AssetTransferContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetTransferContent;
         
         /// <summary>
-        /// Div6 control.
+        /// AssetUpgradeContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div6;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetUpgradeContent;
         
         /// <summary>
-        /// Div8 control.
+        /// AssetDisposeContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div8;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AssetDisposeContent;
     }
 }
