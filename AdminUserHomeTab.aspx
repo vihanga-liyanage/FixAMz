@@ -106,6 +106,21 @@
                     <!-- small box -->
                     <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
                         <div class="inner">
+                            <div id="totalsubcats" runat="server" class="custom-label newstyle" ></div>
+
+                            <p style="padding-top: 15px;">Total Sub Categories</p>
+                        </div>
+                        <div class="icon">
+                            <img src="img/sub.png"  />
+                        </div>
+                    <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
+                        <div class="inner">
                             <div id="totalcostcenter" runat="server" class="custom-label newstyle" ></div>
 
                             <p style="padding-top: 15px;">Total Cost Centers</p>
@@ -117,6 +132,7 @@
                     </div>
                 </div>
             </div>
+            
             
 <!--Footer-->
             <div id="footer" class="row">

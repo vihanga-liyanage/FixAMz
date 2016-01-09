@@ -72,6 +72,7 @@
     <Content Include="AdminSitemap.aspx" />
     <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
+    <Content Include="img\sub.png" />
     <Content Include="ManageAssetUserAboutUs.aspx" />
     <Content Include="GridView.aspx" />
     <Content Include="img\costcenter.png" />
@@ -357,7 +358,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6572</DevelopmentServerPort>
+          <DevelopmentServerPort>5659</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
