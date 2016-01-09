@@ -654,6 +654,42 @@ a:focus {
     z-index:-1;
 }
 
+/*==============================admin home category icon========================*/
+.admin-category-icon
+{
+    position:absolute;
+    background:url(/img/Fixed-Assets-Icon.png) no-repeat;
+    width:311px;
+    height:311px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================admin home subcategory icon========================*/
+.admin-subcategory-icon
+{
+    position:absolute;
+    background:url(/img/sub.png) no-repeat;
+    width:311px;
+    height:311px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
+/*==============================admin home cost center icon========================*/
+.admin-costcenter-icon
+{
+    position:absolute;
+    background:url(/img/costcenter.png) no-repeat;
+    width:311px;
+    height:311px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+
 /*================================footer styles===========================*/
 
 #footer

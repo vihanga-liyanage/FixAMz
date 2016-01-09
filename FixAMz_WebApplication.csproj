@@ -145,6 +145,10 @@
     <Content Include="img\ViewAssetUserHome.png" />
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
     <Content Include="ManageAssetsUser.aspx" />
+    <Content Include="MoreinfoCategory.aspx" />
+    <Content Include="MoreinfoCostcenter.aspx" />
+    <Content Include="MoreinfoSubcategory.aspx" />
+    <Content Include="ManageAssetUserSitemap.aspx" />
     <Content Include="NotificationView.aspx" />
     <Content Include="GeneralMasterReport.aspx" />
     <Content Include="ReportViewer.aspx" />
@@ -355,6 +359,34 @@
     </Compile>
     <Compile Include="ManageAssetsUser.aspx.designer.cs">
       <DependentUpon>ManageAssetsUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoreinfoCategory.aspx.cs">
+      <DependentUpon>MoreinfoCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoreinfoCategory.aspx.designer.cs">
+      <DependentUpon>MoreinfoCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoreinfoCostcenter.aspx.cs">
+      <DependentUpon>MoreinfoCostcenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoreinfoCostcenter.aspx.designer.cs">
+      <DependentUpon>MoreinfoCostcenter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoreinfoSubcategory.aspx.cs">
+      <DependentUpon>MoreinfoSubcategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoreinfoSubcategory.aspx.designer.cs">
+      <DependentUpon>MoreinfoSubcategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.designer.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="NotificationView.aspx.cs">
       <DependentUpon>NotificationView.aspx</DependentUpon>

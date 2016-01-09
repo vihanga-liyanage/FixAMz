@@ -11,7 +11,7 @@ namespace FixAMz_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("ForAdmin.pdf");
+            Response.Redirect("User Manual.pdf");
         }
     }
 }
