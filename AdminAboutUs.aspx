@@ -56,7 +56,7 @@
                             </div>
                             <div class="collapse navbar-collapse" style="float:right;">
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                    <li><a href="#">HOME</a> </li>
+                                    <li><a href="AdminUserHomeTab.aspx">HOME</a> </li>
                                     <li><a href="AdminUserPeopleTab.aspx">PEOPLE</a> </li>
                                     <li><a href="AdminUserSystemTab.aspx">SYSTEM</a> </li>
                                     <li><a href="AdminAboutUs.aspx"  class="active">ABOUT</a> </li>
@@ -121,9 +121,9 @@
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
-                    <li><a href="#">About</a></li>
+                    <li><a href="AdminAboutUs.aspx">About</a></li>
                     <li><a href="Help.aspx">Help</a></li>
-                    <li><a href="#">Site map</a></li>
+                    <li><a href="AdminSitemap.aspx">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

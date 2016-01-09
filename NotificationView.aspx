@@ -254,7 +254,7 @@
                     <asp:Button ID="Button13" runat="server" Text="Back" class="expand-item-btn"
                         OnClick="transferAssetBack_Click" />
                     <asp:Button ID="Button12" runat="server" Text="Edit" class="expand-item-btn"
-                         OnClientClick="return transferAssetEdit_Click" />
+                         OnClientClick="return transferAssetEdit_Click"  />
                 </div>
             </div>
 

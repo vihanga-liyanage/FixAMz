@@ -69,9 +69,12 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="AdminSitemap.aspx" />
+    <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
     <Content Include="ManageAssetUserAboutUs.aspx" />
     <Content Include="GridView.aspx" />
+    <Content Include="img\costcenter.png" />
     <Content Include="img\developerIcon.png" />
     <Content Include="img\logoSimble.png" />
     <Content Include="img\notification-bell.jpg" />
@@ -125,6 +128,7 @@
     <Content Include="img\ViewAssetUserHome.png" />
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
     <Content Include="ManageAssetsUser.aspx" />
+    <Content Include="ManageAssetUserSitemap.aspx" />
     <Content Include="NotificationView.aspx" />
     <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -196,6 +200,20 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSitemap.aspx.cs">
+      <DependentUpon>AdminSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSitemap.aspx.designer.cs">
+      <DependentUpon>AdminSitemap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminUserHomeTab.aspx.cs">
+      <DependentUpon>AdminUserHomeTab.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUserHomeTab.aspx.designer.cs">
+      <DependentUpon>AdminUserHomeTab.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdvancedUserSearch.aspx.cs">
       <DependentUpon>AdvancedUserSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -241,6 +259,13 @@
     </Compile>
     <Compile Include="ManageAssetsUser.aspx.designer.cs">
       <DependentUpon>ManageAssetsUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.designer.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
     </Compile>
     <Compile Include="NotificationView.aspx.cs">
       <DependentUpon>NotificationView.aspx</DependentUpon>
