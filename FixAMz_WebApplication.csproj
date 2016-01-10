@@ -72,6 +72,17 @@
     <Content Include="AdminSitemap.aspx" />
     <Content Include="AdminUserHomeTab.aspx" />
     <Content Include="AdvancedUserSearch.aspx" />
+    <Content Include="ApprovedDateBasedFinanceReport.aspx" />
+    <Content Include="AssetwiseTransferReport.aspx" />
+    <Content Include="AssetwiseUpgradeReport.aspx" />
+    <Content Include="CategorywiseFinanceReport.aspx" />
+    <Content Include="CostCenterwiseDisposeReport.aspx" />
+    <Content Include="CostCenterwiseFinanceReport.aspx" />
+    <Content Include="CostCenterwiseGeneralReport.aspx" />
+    <Content Include="CostCenterwiseTransferReport.aspx" />
+    <Content Include="CostCenterwiseUpgradeReport.aspx" />
+    <Content Include="DisposeMasterReport.aspx" />
+    <Content Include="FinanceMasterReport.aspx" />
     <Content Include="img\finance-report.png" />
     <Content Include="img\report-dispose.png" />
     <Content Include="img\report-genaral.png" />
@@ -83,6 +94,7 @@
     <Content Include="img\developerIcon.png" />
     <Content Include="img\logoSimble.png" />
     <Content Include="img\notification-bell.jpg" />
+    <Content Include="LocationwiseFinanceReport.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\1.png" />
@@ -133,7 +145,12 @@
     <Content Include="img\ViewAssetUserHome.png" />
     <Content Include="img\VisualEditor_-_Icon_-_Search.svg.png" />
     <Content Include="ManageAssetsUser.aspx" />
+    <Content Include="MoreinfoCategory.aspx" />
+    <Content Include="MoreinfoCostcenter.aspx" />
+    <Content Include="MoreinfoSubcategory.aspx" />
+    <Content Include="ManageAssetUserSitemap.aspx" />
     <Content Include="NotificationView.aspx" />
+    <Content Include="GeneralMasterReport.aspx" />
     <Content Include="ReportViewer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -157,6 +174,8 @@
     <Content Include="AdminUserPeopleTab.aspx" />
     <Content Include="AdminUserSystemTab.aspx" />
     <Content Include="testrept.aspx" />
+    <Content Include="TransferMasterReport.aspx" />
+    <Content Include="UpgradeMasterReport.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -225,6 +244,83 @@
     <Compile Include="AdvancedUserSearch.aspx.designer.cs">
       <DependentUpon>AdvancedUserSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApprovedDateBasedFinanceReport.aspx.cs">
+      <DependentUpon>ApprovedDateBasedFinanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovedDateBasedFinanceReport.aspx.designer.cs">
+      <DependentUpon>ApprovedDateBasedFinanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetwiseTransferReport.aspx.cs">
+      <DependentUpon>AssetwiseTransferReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetwiseTransferReport.aspx.designer.cs">
+      <DependentUpon>AssetwiseTransferReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetwiseUpgradeReport.aspx.cs">
+      <DependentUpon>AssetwiseUpgradeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetwiseUpgradeReport.aspx.designer.cs">
+      <DependentUpon>AssetwiseUpgradeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategorywiseFinanceReport.aspx.cs">
+      <DependentUpon>CategorywiseFinanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategorywiseFinanceReport.aspx.designer.cs">
+      <DependentUpon>CategorywiseFinanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterwiseDisposeReport.aspx.cs">
+      <DependentUpon>CostCenterwiseDisposeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CostCenterwiseDisposeReport.aspx.designer.cs">
+      <DependentUpon>CostCenterwiseDisposeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterwiseFinanceReport.aspx.cs">
+      <DependentUpon>CostCenterwiseFinanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CostCenterwiseFinanceReport.aspx.designer.cs">
+      <DependentUpon>CostCenterwiseFinanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterwiseGeneralReport.aspx.cs">
+      <DependentUpon>CostCenterwiseGeneralReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CostCenterwiseGeneralReport.aspx.designer.cs">
+      <DependentUpon>CostCenterwiseGeneralReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterwiseTransferReport.aspx.cs">
+      <DependentUpon>CostCenterwiseTransferReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CostCenterwiseTransferReport.aspx.designer.cs">
+      <DependentUpon>CostCenterwiseTransferReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterwiseUpgradeReport.aspx.cs">
+      <DependentUpon>CostCenterwiseUpgradeReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CostCenterwiseUpgradeReport.aspx.designer.cs">
+      <DependentUpon>CostCenterwiseUpgradeReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DisposeMasterReport.aspx.cs">
+      <DependentUpon>DisposeMasterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DisposeMasterReport.aspx.designer.cs">
+      <DependentUpon>DisposeMasterReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FinanceMasterReport.aspx.cs">
+      <DependentUpon>FinanceMasterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FinanceMasterReport.aspx.designer.cs">
+      <DependentUpon>FinanceMasterReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FixAMzDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -236,6 +332,13 @@
     </Compile>
     <Compile Include="GridView.aspx.designer.cs">
       <DependentUpon>GridView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LocationwiseFinanceReport.aspx.cs">
+      <DependentUpon>LocationwiseFinanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LocationwiseFinanceReport.aspx.designer.cs">
+      <DependentUpon>LocationwiseFinanceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -257,6 +360,34 @@
     <Compile Include="ManageAssetsUser.aspx.designer.cs">
       <DependentUpon>ManageAssetsUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MoreinfoCategory.aspx.cs">
+      <DependentUpon>MoreinfoCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoreinfoCategory.aspx.designer.cs">
+      <DependentUpon>MoreinfoCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoreinfoCostcenter.aspx.cs">
+      <DependentUpon>MoreinfoCostcenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoreinfoCostcenter.aspx.designer.cs">
+      <DependentUpon>MoreinfoCostcenter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MoreinfoSubcategory.aspx.cs">
+      <DependentUpon>MoreinfoSubcategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MoreinfoSubcategory.aspx.designer.cs">
+      <DependentUpon>MoreinfoSubcategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageAssetUserSitemap.aspx.designer.cs">
+      <DependentUpon>ManageAssetUserSitemap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NotificationView.aspx.cs">
       <DependentUpon>NotificationView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -265,6 +396,13 @@
       <DependentUpon>NotificationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GeneralMasterReport.aspx.cs">
+      <DependentUpon>GeneralMasterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GeneralMasterReport.aspx.designer.cs">
+      <DependentUpon>GeneralMasterReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReportViewer.aspx.cs">
       <DependentUpon>ReportViewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,6 +449,20 @@
     <Compile Include="Help.aspx.designer.cs">
       <DependentUpon>Help.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransferMasterReport.aspx.cs">
+      <DependentUpon>TransferMasterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransferMasterReport.aspx.designer.cs">
+      <DependentUpon>TransferMasterReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpgradeMasterReport.aspx.cs">
+      <DependentUpon>UpgradeMasterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpgradeMasterReport.aspx.designer.cs">
+      <DependentUpon>UpgradeMasterReport.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -355,7 +507,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5659</DevelopmentServerPort>
+          <DevelopmentServerPort>5769</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

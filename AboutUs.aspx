@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
-                        <img src="img/fixamz.png" class="logo" />
+                        <a href="AboutUs.aspx"><img src="img/fixamz.png" class="logo" /></a>
                     </div>
                     <div class="col-md-8 header-right">
                         <div class="col-sm-12" id="user-name-box">
@@ -153,7 +153,7 @@
                 <ul class="footer-nav">
                     <li><a href="AboutUs.aspx">About</a></li>
                     <li><a href="Help.aspx">Help</a></li>
-                    <li><a href="AdminSitemap.aspx">Site map</a></li>
+                    <li><a href="ManageAssetUserSitemap.aspx">Site map</a></li>
                 </ul>
             </div>
             <div class="row footer-down">

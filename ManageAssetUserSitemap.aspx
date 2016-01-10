@@ -60,7 +60,7 @@
                                 <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                     <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
                                     <li><a href="AboutUs.aspx">ABOUT</a> </li>
-                                    <li><a href="#">HELP</a> </li>
+                                    <li><a href="Help.aspx">HELP</a> </li>
                                 </ul>
                             </div>
 
@@ -105,15 +105,41 @@
                </ul> 
                            
             </div>
+<<<<<<< HEAD:Report1.aspx
+
+    <!--Report generation-->
+            <div class="col-md-12">
+                <div class="col-md-7">
+                                    <!--<asp:TextBox ID="AssetIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>-->
+                                     <asp:Button ID="Button1" runat="server" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
+                </div>
+                <div class="col-md-5">
+                    <!-- small box -->
+                  <div class="small-box bg-aqua">
+                    <div class="inner">
+                      <h3>150</h3>
+
+                      <p>New Orders</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-bag"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                  </div>
+               </div>
+
+            </div>
+=======
                             
         </div>
+>>>>>>> 350b4d502610f6bed76d66b512763325f2ac1757:ManageAssetUserSitemap.aspx
     
 <!--Footer-->
         <div id="footer" class="row">
             <div class="row footer-up">
                 <ul class="footer-nav">
                     <li><a href="AboutUs.aspx">About</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a href="Help.aspx">Help</a></li>
                     <li><a href="ManageAssetUserSitemap.aspx">Site map</a></li>
                 </ul>
             </div>

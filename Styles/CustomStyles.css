@@ -160,6 +160,7 @@ a:focus {
 {
     color:#39BBED;
 }
+
 .custom-nav-bar
 {
     font-size: 20px;
@@ -315,6 +316,41 @@ a:focus {
     
 }
 
+/*============================== Admin home page styles ==================================*/
+
+.admin-category-icon
+{
+    position:absolute;
+    background:url(/img/Fixed-Assets-Icon.png) no-repeat;
+    width:311px;
+    height:311px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+.admin-subcategory-icon
+{
+    position:absolute;
+    background:url(/img/sub.png) no-repeat;
+    width:311px;
+    height:311px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+.admin-costcenter-icon
+{
+    position:absolute;
+    background:url(/img/costcenter.png) no-repeat;
+    width:311px;
+    height:311px;
+    opacity:0.1;
+    background-size:contain;
+    z-index:-1;
+}
+.small-box:hover .icon {
+  font-size: 95px;
+}
 .small-box {
     border-radius: 6px;
     position: relative;
@@ -322,11 +358,9 @@ a:focus {
     margin-bottom: 20px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
-
-.bg-aqua{
+.aqua{
     background-color: rgba(53, 114, 158, 0.92) !important;
 }
-
 .newstyle {
     font-size: 38px;
     font-weight: bold;
@@ -334,7 +368,6 @@ a:focus {
     white-space: nowrap;
     padding: 0;
 }
-
 .small-box .icon {
     -webkit-transition: all .3s linear;
     -o-transition: all .3s linear;
@@ -342,7 +375,7 @@ a:focus {
     position: absolute;
     top: 10px;
     right: 18px;
-    z-index: 0;
+    z-index: 99;
     font-size: 90px;
     color: rgba(0,0,0,0.15);
 }
@@ -350,12 +383,10 @@ a:focus {
     padding: 13px;
     color: white;
 }
-
 .icon img
 {
     width:100px;
 }
-
 .small-box:hover
 {
     border-radius: 2px;
@@ -368,7 +399,6 @@ a:focus {
     
     
 }
-
 .small-box-footer
 {
     position:relative;
@@ -387,7 +417,7 @@ a:focus {
     background:rgba(0,0,0,0.15)
 }
 
-/*================================Add user================================*/
+/*========================= Admin people tab =============================*/
 .add-user-icon
 {
     position:absolute;
@@ -398,12 +428,11 @@ a:focus {
     background-size:contain;
     z-index:-1;
 }
-
 #AddUserLoginDetailContainer
 {
     display:none;
 }
-/*===============================Update user==============================*/
+
 .update-user-icon
 {
     position:absolute;
@@ -419,7 +448,6 @@ a:focus {
     display:none;
 }
 
-/*===========================Advanced user search=========================*/
 .adv-user-search-icon
 {
     position:absolute;
@@ -431,7 +459,6 @@ a:focus {
     z-index:-1;
 }  
 
-/*===============================Delete User==============================*/
 .delete-user-icon
 {
     position:absolute;
@@ -447,7 +474,7 @@ a:focus {
     display:none;
 }
 
-/*==============================Add location==============================*/
+/*========================= Admin system tab =============================*/
 .add-location-icon
 {
     position:absolute;
@@ -459,7 +486,6 @@ a:focus {
     z-index:-1;
 } 
 
-/*=============================update location============================*/
 .update-location-icon
 {
     position:absolute;
@@ -471,7 +497,6 @@ a:focus {
     z-index:-1;
 }
 
-/*===============================Add category=============================*/
 .add-categoy-icon
 {
     position:absolute;
@@ -594,65 +619,72 @@ a:focus {
     z-index:-1;
 }
 
-/*==============================Report finance icon========================*/
+/*============================== Report page styles ========================*/
 .report-finance-icon
 {
     position:absolute;
     background:url(/img/finance-report.png) no-repeat;
-    width:310px;
+    width:250px;
     height:310px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;
 }
-
-/*==============================Report genaral icon========================*/
 .report-general-icon
 {
     position:absolute;
     background:url(/img/report-genaral.png) no-repeat;
-    width:310px;
+    width:250px;
     height:310px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;
 }
-
-/*==============================Report transfer icon========================*/
 .report-transfer-icon
 {
     position:absolute;
     background:url(/img/report-transfer.png) no-repeat;
-    width:310px;
+    width:250px;
     height:310px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;
 }
-
-/*==============================Report upgrade icon========================*/
 .report-upgrade-icon
 {
     position:absolute;
     background:url(/img/report-upgrade.png) no-repeat;
-    width:310px;
+    width:250px;
     height:310px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;
 }
-
-/*==============================Report dispose icon========================*/
 .report-dispose-icon
 {
     position:absolute;
     background:url(/img/report-dispose.png) no-repeat;
-    width:270px;
+    width:250px;
     height:310px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;
 }
+.report-ul
+{
+    color: #337BAA;
+    list-style: none;
+}
+.report-label
+{
+    color: #337BAA;
+    padding: 0px 30px 0px 0px;
+    float: left;
+    font-size: 19px;
+    list-style: none;
+}
+
+
 
 /*================================footer styles===========================*/
 
@@ -784,33 +816,24 @@ a:focus {
 
 /*==============================Notification view styles=========================*/
 
-#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel,#TransferassetApproveState,#TransferassetCancelState
+#AddnewassetState, #UpgradeassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel
 {
     display:none;
 }
 .notification-icon
 {
     position:absolute;
-    background:url(/img/notification-bell.jpg) no-repeat;
+    background:url(/img/notification-bell.png) no-repeat;
     width:350px;
     height:350px;
     opacity:0.1;
     background-size:contain;
     z-index:-1;
 } 
+#TransferassetState,#TransferassetApproveState,#TransferassetCancelState
+{
+    display:none;
+}
 
-/*==============================Notification view styles=========================*/
-.report-ul
-{
-    color: #337BAA;
-    list-style: none;
-}
-.report-label
-{
-    color: #337BAA;
-    padding: 0px 30px 0px 0px;
-    float: left;
-    width: 37%;
-    font-size: 19px;
-    list-style: none;
-}
+
+
