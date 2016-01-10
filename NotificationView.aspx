@@ -157,7 +157,7 @@
                     <div class="row expand-item-row">
                         <div class="expand-item-label">Name</div>
                         <asp:TextBox ID="AssetNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
-                        <div class="validator" id="RegisterAssetNameValidator" runat="server">
+                        <div class="validator" id="AssetNameValidator" runat="server">
                         </div>
                     </div>
                     <div class="row expand-item-row">
@@ -199,7 +199,7 @@
                     </div>
                     <div class="row expand-item-row">
                         <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
-                            OnClick="SendForRecAgainBtn_click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
+                            OnClick="SendForRecAgainBtn_click" OnClientClick="return isValidAddAssetCancelNotification()" class="expand-item-btn" />
                         <asp:Button ID="Button14" runat="server" Text="Cancel" class="expand-item-btn" OnClick="AddNewAssetBack_Click" />
                     </div>
                 </div>
