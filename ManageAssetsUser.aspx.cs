@@ -33,7 +33,6 @@ namespace FixAMz_WebApplication
                 setAssetID();
                 Load_Location();
                 Load_Employee_Data();
-                Load_CostCenter();
 
                 TransferAssetIDTextBox.Text = "NWSDB/" + costID + "/";
                 UpgradeAssetIDTextBox.Text = "NWSDB/" + costID + "/";
@@ -368,30 +367,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 Response.Write("Load_Location_Data:" + ex.Message.ToString());
             }
         }
-
-        //loading CostCenters
-        protected void Load_CostCenter()
-        {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT name, costID FROM CostCenter", conn);
-                SqlDataReader data = cmd.ExecuteReader();
-
-                TransferCostCeneterDropDown.DataSource = data;
-                TransferCostCeneterDropDown.DataTextField = "name";
-                TransferCostCeneterDropDown.DataValueField = "costID";
-                TransferCostCeneterDropDown.DataBind();
-                //TransferCostCeneterDropDown.Items.Insert(0, new ListItem("-- Select a Cost Center --", ""));
-                data.Close();
-            }
-            catch (Exception ex)
-            {
-                Response.Write("Error:" + ex.Message.ToString());
-            }
-        }
-
+        
         //Loading employee data
         protected void Load_Employee_Data()
         {
@@ -871,9 +847,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                         TransferLocationDropDown.SelectedValue = transferAssetLocationID;
                         //Get owner name
                         TransferOwnerDropDown.SelectedValue = transferAssetOwnerID;
-                        //get costID
-                        TransferCostCeneterDropDown.SelectedValue = transferAssetCostID;
-
+                       
                         transferAssetInitState.Style.Add("display", "none");
                         transferAssetSecondState.Style.Add("display", "block");
                         TransferAssetContent.Style.Add("display", "block");
@@ -936,7 +910,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 cmd.Parameters.AddWithValue("@transid", transID);
                 cmd.Parameters.AddWithValue("@assetid", TransferAssetIDTextBox.Text);
-                cmd.Parameters.AddWithValue("@costID", TransferCostCeneterDropDown.SelectedValue);
+                cmd.Parameters.AddWithValue("@costID", " ");
                 cmd.Parameters.AddWithValue("@type", "0");
                 cmd.Parameters.AddWithValue("@status", "pendding");
                 cmd.Parameters.AddWithValue("@location", TransferLocationDropDown.SelectedValue);

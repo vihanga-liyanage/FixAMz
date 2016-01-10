@@ -32,6 +32,7 @@ namespace FixAMz_WebApplication
             Authenticate_User();
             setNavBar();
             setUserName();
+            viewApprover();
             Load_Notifications();
             //Load_Content_for_cancel();
 
@@ -62,7 +63,7 @@ namespace FixAMz_WebApplication
             string[] data = userData.Split(';');
 
 
-            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport"))
+            if ((data[1] != "manageAssetUser") && (data[1] != "manageReport") && (data[1] != "generateReportUser"))
             {
                 FormsAuthentication.SignOut();
 
@@ -421,6 +422,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                     NotificationHeader.InnerHtml = "Transfer Asset - Recommend";                  
                     TransferassetState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Transfer" && Action == "Approve")
@@ -448,6 +450,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                     NotificationHeader.InnerHtml = "Transfer Asset - Approve";
                     TransferassetApproveState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
                 if (Type == "Transfer" && Action == "Cancel")
                 {
@@ -474,6 +477,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                     NotificationHeader.InnerHtml = "Transfer Asset - Rejected";
                     TransferassetCancelState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
 //Update====================
@@ -497,6 +501,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     UpgradeCost.InnerHtml = updatevalue;
                     UpgradeDescription.InnerHtml = updatedescription;
                     UpgradeassetState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Update" && Action == "Approve")
@@ -517,12 +522,14 @@ Request.ApplicationPath + "Login.aspx';", true);
                     UpgradeCostApprove.InnerHtml = updatevalue;
                     UpgradeDescriptionApprove.InnerHtml = updatedescription;
                     UpgradeassetApprove.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Update" && Action == "Cancel")
                 {
                     NotificationHeader.InnerHtml = "Upgrade Asset - Rejected";
                     UpgradeassetStateApproveCancel.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
 //Dispose ====================================================
@@ -531,6 +538,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     NotificationHeader.InnerHtml = "Dispose Asset - Recommend";
                     DisposeDescription.InnerHtml = Content;
                     DisposeassetState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Delete" && Action == "Approve")
@@ -546,6 +554,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     conn1.Close();
                     DisposeassetApproveDescription.InnerHtml = Content;
                     DisposeassetApprove.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Delete" && Action == "Cancel")
@@ -561,6 +570,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     conn1.Close();
                     DisposeassetCancelDescription.InnerHtml = Content;
                     DisposeassetCancel.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
                 conn.Close();
             }
@@ -886,6 +896,19 @@ Request.ApplicationPath + "Login.aspx';", true);
 
         protected void AddNewAssetBack_Click(object sender, EventArgs e)
         {
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
+
+        protected void AddNewAssetcancel_Click(object sender, EventArgs e)
+        {
+            Load_Variables();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            //delete notification
+            String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+            SqlCommand cmd = new SqlCommand(deleteNotQuery, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
@@ -1345,6 +1368,22 @@ Request.ApplicationPath + "Login.aspx';", true);
         protected void DisposeAssetBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("ManageAssetsUser.aspx");
+        }
+
+        protected void viewApprover()
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            // Get owner name
+            String getnewOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Session["PRSN_TO_APP"].ToString() + "'";
+            SqlCommand cmd12 = new SqlCommand(getnewOwnerNameQuery, conn);
+            approvepersonaddnew.InnerHtml = cmd12.ExecuteScalar().ToString();
+            approvepersonupgrede.InnerHtml = cmd12.ExecuteScalar().ToString();
+            approvepersontransfer.InnerHtml = cmd12.ExecuteScalar().ToString();
+            approvepersondispose.InnerHtml = cmd12.ExecuteScalar().ToString();
+            cmd12.ExecuteNonQuery();
+
+            conn.Close();
         }
 
     }

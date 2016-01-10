@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="AdminUserHomeTab.aspx"><img src="img/fixamz.png" class="logo" /></a>
+                        <a href="ManageAssetsUser.aspx"><img src="img/fixamz.png" class="logo" /></a>
                     </div>
 
                     <div class="col-md-8 header-right">
@@ -122,7 +122,7 @@
                                         <asp:DropDownList ID="AssetSearchOwnerDropDown" class="expand-item-textbox" runat="server">
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="SearchAssetBtn" runat="server" Text="Search" class="expand-item-btn"
                                             OnClick="SearchAssetBtn_Click" />
                                         <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked" />
@@ -158,7 +158,7 @@
                     Copyright &copy; 2015 National Water Supply and Drainage Board.<br>
                     All Rights Reserved.</div>
                 <div class="col-md-7 developer-link">
-                    <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                    <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                 </div>
                 <img src="img/logoSimble.png" style="float: right; width: 47px; opacity: 0.25" />
             </div>

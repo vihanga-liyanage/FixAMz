@@ -331,6 +331,21 @@ function updateClearAll() {
     return false;
 }
 
+function isValidUpdates() {
+    //var confirmPassword = document.forms[0]["AddNewConfirmPasswordTextBox"].value;
+    //var password = document.forms[0]["AddNewPasswordTextBox"].value;
+
+    var isValidFirstName = requiredFieldValidator("UpdateFirstName", "First name cannot be empty.") && nameValidator("UpdateFirstName");
+    var isValidLastName = requiredFieldValidator("UpdateLastName", "Last name cannot be empty.") && nameValidator("UpdateLastName");
+    var isValidEmail = emailValidator("UpdateEmail");
+    var isValidContact = contactValidator("UpdateContact");
+    var isValidCostid = dropDownRequiredFieldValidator("UpdateCostCenter");
+    var isValidType = dropDownRequiredFieldValidator("UpdateType");
+
+    
+    return (isValidFirstName && isValidLastName && isValidEmail && isValidContact && isValidCostid && isValidType);
+}
+
 //Reset Password =============================================================================
 function resetPasswordClearAll() {
     document.forms[0]["ResetNewPasswordTextBox"].value = "";
@@ -770,3 +785,16 @@ function transferAssetEdit_Click() {
     //expandingItems["DisposeAssetContent"] = true;
     return true;
 }
+
+function isValidAddAssetCancelNotification() {
+    var isValidAssetName = requiredFieldValidator("AssetName", "Asset name cannot be empty.") && assetNameValidator("AssetName");
+    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidSalvageValue = requiredFieldValidatorSalvageValue("AddSalvageValue", "Salvage Value cannot be empty.");
+    var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
+    var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
+    var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
+    var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
+
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner);
+}
+
