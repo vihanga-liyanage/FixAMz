@@ -445,7 +445,7 @@
                     Copyright &copy; 2015 National Water Supply and Drainage Board.<br>
                     All Rights Reserved.</div>
                 <div class="col-md-7 developer-link">
-                    <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                    <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts ">Developer site<img src="img/developerIcon.png" /></a>
                 </div>
                 <img src="img/logoSimble.png" style="float: right; width: 47px; opacity: 0.25" />
             </div>
