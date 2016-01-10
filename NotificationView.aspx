@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <!-- Editable content for transfer asset--
+<!-- Editable content for transfer asset--
             <div id="TransferAssetEditableContent" runat="server">
                 <div class="col-md-8">
                     <div class="row expand-item-row">
@@ -465,7 +465,7 @@
                     <div class="col-md-5">Copyright &copy; 2015 National Water Supply and Drainage Board.<br>All Rights Reserved.</div>
 		        
                     <div class="col-md-7 developer-link">    
-                        <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                        <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                     </div>
                     <img src="img/logoSimble.png" style="float:right; width:47px; opacity:0.25" />
                 </div>

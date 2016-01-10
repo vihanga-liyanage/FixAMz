@@ -67,7 +67,7 @@
                                 <div class="collapse navbar-collapse" style="float:right;">
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                         <li><a href="" class="active">HOME</a> </li>
-                                        <li><a href="ReportViewer.aspx">Reports</a> </li>
+                                        <li><a href="ReportViewer.aspx">REPORTS</a> </li>
                                         <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                         <li><a href="Help.aspx">HELP</a> </li>
                                     </ul>
@@ -437,7 +437,7 @@
                     Copyright &copy; 2015 National Water Supply and Drainage Board.<br>
                     All Rights Reserved.</div>
                 <div class="col-md-7 developer-link">
-                    <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                    <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                 </div>
                 <img src="img/logoSimble.png" style="float: right; width: 47px; opacity: 0.25" />
             </div>
