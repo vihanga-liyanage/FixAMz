@@ -368,7 +368,6 @@ a:focus {
     
     
 }
-
 .small-box-footer
 {
     position:relative;
@@ -827,7 +826,7 @@ a:focus {
 .notification-icon
 {
     position:absolute;
-    background:url(/img/notification-bell.jpg) no-repeat;
+    background:url(/img/notification-bell.png) no-repeat;
     width:350px;
     height:350px;
     opacity:0.1;

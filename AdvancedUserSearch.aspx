@@ -124,7 +124,7 @@
                                         Username</div>
                                     <asp:TextBox ID="SearchUsernameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                 </div> -->
-                                <div class="row expand-item-row">
+                                <div class="row expand-item-row" style="padding-right: 8.7%;">
                                     <asp:Button ID="SearchUserBtn" runat="server" Text="Search" class="expand-item-btn"
                                         OnClick="SearchUserBtn_Click" OnClientClick="return isValidUserSearch()" />
                                     <asp:Button ID="CancelSearchBtn" runat="server" Text="Cancel" class="expand-item-btn"

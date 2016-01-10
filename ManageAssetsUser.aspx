@@ -160,7 +160,7 @@
                                     <div id="AddAssetPersonToRecommend" runat="server" class="custom-label">
                                     </div>
                                 </div>
-                                <div class="row expand-item-row">
+                                <div class="row expand-item-row" style="padding-right: 8.7%;">
                                     <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
                                         OnClick="AddAssetRecommendBtn_Click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
                                     <asp:Button ID="Button6" runat="server" Text="Cancel" class="expand-item-btn" onClick="cancel_clicked"/>
@@ -197,7 +197,7 @@
                                         <div class="validator" id="TransferAssetIDValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="TransferAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                             OnClientClick="return isValidAssetID()" OnClick="TransferAssetFindBtn_Click" />
                                     </div>
@@ -238,7 +238,7 @@
                                         <asp:DropDownList ID="TransAssetSendForRecommendDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                         <div class="validator" id="TransAssetSendForRecommendValidator" runat="server"></div>
                                     </div>-->
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="TransferAssetRecommend" runat="server" Text="Send for recommendation" 
                                              onClick="TransferAssetRecommendBtn_click" OnClientClick="return isValidTransferAsset()" class="expand-item-btn" />
                                         <asp:Button ID="TransferAssetcancel" runat="server" Text="Cancel" class="expand-item-btn"
@@ -269,7 +269,7 @@
                                         <div class="validator" id="UpgradeAssetIDValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="UpgradeAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                             OnClientClick="return isValidDeleteEmpID()" OnClick="UpgradeAssetFindBtn_Click" />
                                     </div>
@@ -320,13 +320,9 @@
                                     <div id="UpgradeAssetPersonToRecommend" runat="server" class="custom-label">
                                     </div>
                                 </div>
-                                <div class="row expand-item-row">
+                                <div class="row expand-item-row" style="padding-right: 8.7%;">
                                     <asp:Button ID="UpgradeAssetRecommendBtn" OnClick="UpgradeAssetRecommendBtn_Click" runat="server" Text="Send for recommendation" class="expand-item-btn" OnClientClick="return isValidUpgradeAsset()" />
-
                                     <asp:Button ID="Button8" runat="server" Text="Cancel" class="expand-item-btn" OnClick="cancel_clicked" />
-
-                                    
-
                                 </div>
                             </div>
                             </div>
@@ -353,7 +349,7 @@
                                         <div class="validator" id="DisposeAssetIDValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="DisposeAssetFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                             OnClientClick="return isValidDeleteEmpID()" OnClick="DisposeAssetFindBtn_Click" />
                                     </div>
@@ -410,7 +406,7 @@
                                         <div id="DisposeAssetPersonToRecommend" runat="server" class="custom-label">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="DisposeAssetRecommendBtn" OnClick="DisposeAssetRecommendBtn_Click"
                                             OnClientClick="return isValidDisposeAsset()" runat="server" Text="Send for recommendation"
                                             class="expand-item-btn" />

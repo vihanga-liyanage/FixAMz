@@ -422,6 +422,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                     NotificationHeader.InnerHtml = "Transfer Asset - Recommend";                  
                     TransferassetState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Transfer" && Action == "Approve")
@@ -449,6 +450,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                     NotificationHeader.InnerHtml = "Transfer Asset - Approve";
                     TransferassetApproveState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
                 if (Type == "Transfer" && Action == "Cancel")
                 {
@@ -475,6 +477,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                     NotificationHeader.InnerHtml = "Transfer Asset - Rejected";
                     TransferassetCancelState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
 //Update====================
@@ -498,6 +501,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     UpgradeCost.InnerHtml = updatevalue;
                     UpgradeDescription.InnerHtml = updatedescription;
                     UpgradeassetState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Update" && Action == "Approve")
@@ -518,12 +522,14 @@ Request.ApplicationPath + "Login.aspx';", true);
                     UpgradeCostApprove.InnerHtml = updatevalue;
                     UpgradeDescriptionApprove.InnerHtml = updatedescription;
                     UpgradeassetApprove.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Update" && Action == "Cancel")
                 {
                     NotificationHeader.InnerHtml = "Upgrade Asset - Rejected";
                     UpgradeassetStateApproveCancel.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
 //Dispose ====================================================
@@ -532,6 +538,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     NotificationHeader.InnerHtml = "Dispose Asset - Recommend";
                     DisposeDescription.InnerHtml = Content;
                     DisposeassetState.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Delete" && Action == "Approve")
@@ -547,6 +554,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     conn1.Close();
                     DisposeassetApproveDescription.InnerHtml = Content;
                     DisposeassetApprove.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
 
                 if (Type == "Delete" && Action == "Cancel")
@@ -562,6 +570,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     conn1.Close();
                     DisposeassetCancelDescription.InnerHtml = Content;
                     DisposeassetCancel.Style.Add("display", "block");
+                    EditableNotificationContent.Style.Add("display", "none");
                 }
                 conn.Close();
             }
