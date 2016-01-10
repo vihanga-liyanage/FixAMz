@@ -770,3 +770,16 @@ function transferAssetEdit_Click() {
     //expandingItems["DisposeAssetContent"] = true;
     return true;
 }
+
+function isValidAddAssetCancelNotification() {
+    var isValidAssetName = requiredFieldValidator("AssetName", "Asset name cannot be empty.") && assetNameValidator("AssetName");
+    var isValidValue = requiredFieldValidatorValue("AddValue", "Value cannot be empty.");
+    var isValidSalvageValue = requiredFieldValidatorSalvageValue("AddSalvageValue", "Salvage Value cannot be empty.");
+    var isValidSubcategory = dropDownRequiredFieldValidator("AddAssetSubCategory");
+    var isValidCategory = dropDownRequiredFieldValidator("AddAssetCategory");
+    var isValidLocation = dropDownRequiredFieldValidator("AddAssetLocation");
+    var isValidOwner = dropDownRequiredFieldValidator("AddAssetOwner");
+
+    return (isValidAssetName && isValidValue && isValidSalvageValue && isValidSubcategory && isValidCategory && isValidLocation && isValidOwner);
+}
+
