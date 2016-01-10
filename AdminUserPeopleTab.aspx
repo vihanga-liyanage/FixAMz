@@ -267,13 +267,12 @@
                                         <asp:ListItem Text="Asset Manager" Value="manageAssetUser"></asp:ListItem>
                                         <asp:ListItem Text="Report Generator" Value="generateReportUser"></asp:ListItem>
                                         <asp:ListItem Text="Asset Manager and Report Generator" Value="manageReport"></asp:ListItem>
-                                        <asp:ListItem Text="Asset Owner" Value="owner"></asp:ListItem>
                                     </asp:DropDownList>
                                     <div class="validator" id="UpdateTypeValidator" runat="server"></div>
                                     </div>
                                     <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
-                                            OnClientClick="return isValidUpdate()" OnClick="UpdateUserBtn_Click" />
+                                            OnClientClick="return isValidUpdates()" OnClick="UpdateUserBtn_Click" />
                                         <asp:Button ID="UpdateUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
                                             OnClick="cancel_clicked" />
                                     </div>
@@ -440,7 +439,7 @@
                     Copyright &copy; 2015 National Water Supply and Drainage Board.<br>
                     All Rights Reserved.</div>
                 <div class="col-md-7 developer-link">
-                    <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                    <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                 </div>
                 <img src="img/logoSimble.png" style="float: right; width: 47px; opacity: 0.25" />
             </div>

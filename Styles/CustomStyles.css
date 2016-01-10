@@ -41,7 +41,8 @@ a:focus {
     background: background: rgba(19, 99, 185, 0.65) none repeat scroll 0% 0%;
     padding: 1px 0px 0px 0px;
 }
-/*Notification css*/
+
+/*=============================== Notification css =======================================*/
 #notification_li a{
 	text-decoration: none;
 }
@@ -317,7 +318,10 @@ a:focus {
 }
 
 /*============================== Admin home page styles ==================================*/
+<<<<<<< HEAD
+=======
 
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .admin-category-icon
 {
     position:absolute;
@@ -417,7 +421,11 @@ a:focus {
     background:rgba(0,0,0,0.15)
 }
 
+<<<<<<< HEAD
+/*============================== Admin people tab styles ================================*/
+=======
 /*========================= Admin people tab =============================*/
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .add-user-icon
 {
     position:absolute;
@@ -474,7 +482,11 @@ a:focus {
     display:none;
 }
 
+<<<<<<< HEAD
+/*================================ Admin system tab styles ===============================*/
+=======
 /*========================= Admin system tab =============================*/
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .add-location-icon
 {
     position:absolute;
@@ -508,7 +520,6 @@ a:focus {
     z-index:-1;
 }  
 
-/*=============================update category============================*/
 .update-category-icon
 {
     position:absolute;
@@ -525,7 +536,6 @@ a:focus {
     display:none;
 }
 
-/*=============================Add sub category===========================*/
 .add-sub-categoy-icon
 {
     position:absolute;
@@ -537,7 +547,6 @@ a:focus {
     z-index:-1;
 }  
 
-/*============================update sub category=========================*/
 .update-sub-category-icon
 {
     position:absolute;
@@ -549,7 +558,7 @@ a:focus {
     z-index:-1;
 }
 
-/*===========================register new asset icon======================*/
+/*=============================== Manage assets page styles ==============================*/
 .register-new-asset-icon
 {
     position:absolute;
@@ -561,7 +570,6 @@ a:focus {
     z-index:-1;
 }
 
-/*==========================advanced assets search icon===================*/
 .advanced-asset-search-icon
 {
     position:absolute;
@@ -573,7 +581,6 @@ a:focus {
     z-index:-1;
 }
 
-/*===============================transfer asset===========================*/
 .transfer-asset-icon
 {
     position:absolute;
@@ -584,13 +591,11 @@ a:focus {
     background-size:contain;
     z-index:-1;
 }
-
 #transferAssetSecondState
 {
     display:none;
 }
 
-/*=============================upgrade asset icon=========================*/
 .upgrade-asset-icon
 {
     position:absolute;
@@ -601,13 +606,11 @@ a:focus {
     background-size:contain;
     z-index:-1;
 }
-
 #upgradeAssetSecondState
 {
     display:none;
 }
 
-/*==============================dispose asset icon========================*/
 .dispose-asset-icon
 {
     position:absolute;
@@ -619,7 +622,11 @@ a:focus {
     z-index:-1;
 }
 
+<<<<<<< HEAD
+/*================================= Report page styles ===================================*/
+=======
 /*============================== Report page styles ========================*/
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .report-finance-icon
 {
     position:absolute;
@@ -671,6 +678,20 @@ a:focus {
     z-index:-1;
 }
 .report-ul
+<<<<<<< HEAD
+{
+    color: #337BAA;
+    list-style: none;
+}
+.report-label
+{
+    color: #337BAA;
+    padding: 0px 30px 0px 0px;
+    float: left;
+    font-size: 19px;
+    list-style: none;
+}
+=======
 {
     color: #337BAA;
     list-style: none;
@@ -685,9 +706,9 @@ a:focus {
 }
 
 
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 
-/*================================footer styles===========================*/
-
+/*=================================== footer styles =====================================*/
 #footer
 {
     margin: 150px 0px 0px 0px;
@@ -739,8 +760,7 @@ a:focus {
 	text-decoration: none;
 }
 
-/*==============================Login page styles=========================*/
-
+/*=================================== Login page styles ================================*/
 .login-box-container
 {
     padding-left: 114px; 
@@ -814,8 +834,7 @@ a:focus {
     color:White;
 }
 
-/*==============================Notification view styles=========================*/
-
+/*============================== Notification view styles ==============================*/
 #AddnewassetState, #UpgradeassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel
 {
     display:none;
