@@ -68,12 +68,15 @@
                     </div>
                 </div>
             </div>
-<!--contain-->
+<!--Main contain-->
             <div  style="min-height: 500px;">
                 <div id="new" class="col-md-4 col-md-offset-1" style="min-height: 500px;">
-                    <div class="" id="AdvancedUserSearchHeader"><h3><span>All Sub Categories (<span id="totsubcats" runat="server" class="custom-label"></span></span>)</h3></div>
+                    <div class="" id="AdvancedUserSearchHeader">
+                        <h3>
+                            <span>All Sub Categories (<span id="totsubcats" runat="server" class="custom-label"></span>)</span>
+                        </h3>
+                    </div>
                     <asp:GridView ID="SubCategorySearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
-            
                 </div>
                 <div class="col-md-4 col-md-offset-2" style="position: relative; padding-left: 0px;">
                     <div class="admin-subcategory-icon hidden-sm hidden-xs" style="margin-top: 60px;"></div>

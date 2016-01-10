@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <!-- Editable content for transfer asset--
+<!-- Editable content for transfer asset--
             <div id="TransferAssetEditableContent" runat="server">
                 <div class="col-md-8">
                     <div class="row expand-item-row">
