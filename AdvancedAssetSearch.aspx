@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <div class="row header">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="AdminUserHomeTab.aspx"><img src="img/fixamz.png" class="logo" /></a>
+                        <a href="ManageAssetsUser.aspx"><img src="img/fixamz.png" class="logo" /></a>
                     </div>
 
                     <div class="col-md-8 header-right">

@@ -32,6 +32,7 @@ namespace FixAMz_WebApplication
             Authenticate_User();
             setNavBar();
             setUserName();
+            viewApprover();
             Load_Notifications();
             //Load_Content_for_cancel();
 
@@ -1345,6 +1346,22 @@ Request.ApplicationPath + "Login.aspx';", true);
         protected void DisposeAssetBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("ManageAssetsUser.aspx");
+        }
+
+        protected void viewApprover()
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            // Get owner name
+            String getnewOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Session["PRSN_TO_APP"].ToString() + "'";
+            SqlCommand cmd12 = new SqlCommand(getnewOwnerNameQuery, conn);
+            approvepersonaddnew.InnerHtml = cmd12.ExecuteScalar().ToString();
+            approvepersonupgrede.InnerHtml = cmd12.ExecuteScalar().ToString();
+            approvepersontransfer.InnerHtml = cmd12.ExecuteScalar().ToString();
+            approvepersondispose.InnerHtml = cmd12.ExecuteScalar().ToString();
+            cmd12.ExecuteNonQuery();
+
+            conn.Close();
         }
 
     }

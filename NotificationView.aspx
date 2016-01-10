@@ -216,6 +216,11 @@
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
                 <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersonaddnew" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
                     <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" OnClick="AddNewAssetSendapprove_Click" />
                     <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                          OnClick="AddNewAssetSendApproveCancel_Click" />
@@ -246,6 +251,11 @@
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Description</div>
                     <div id="UpgradeDescription" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersonupgrede" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
@@ -288,6 +298,11 @@
                 <div class="row expand-item-row">
                     <div class="expand-item-label">New location</div>
                     <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersontransfer" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">
@@ -339,6 +354,11 @@
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Description</div>
                     <div id="DisposeDescription" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersondispose" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row">

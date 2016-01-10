@@ -222,10 +222,6 @@
                                         <div id="TransferValue" runat="server" class="custom-label"></div>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <div class="expand-item-label">Cost Center</div>
-                                        <asp:DropDownList ID="TransferCostCeneterDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="row expand-item-row">
                                         <div class="expand-item-label">Location</div>
                                         <asp:DropDownList ID="TransferLocationDropDown" class="expand-item-textbox" runat="server"></asp:DropDownList>
                                     </div>

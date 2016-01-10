@@ -400,6 +400,15 @@ namespace FixAMz_WebApplication {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddnewassetState;
         
         /// <summary>
+        /// approvepersonaddnew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl approvepersonaddnew;
+        
+        /// <summary>
         /// AddNewAssetSendforapprove control.
         /// </summary>
         /// <remarks>
@@ -488,6 +497,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpgradeDescription;
+        
+        /// <summary>
+        /// approvepersonupgrede control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl approvepersonupgrede;
         
         /// <summary>
         /// UpgradeAssetsendforapprove control.
@@ -596,6 +614,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl TransferNewlocation;
+        
+        /// <summary>
+        /// approvepersontransfer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl approvepersontransfer;
         
         /// <summary>
         /// TransferAssetsendforapprove control.
@@ -722,6 +749,15 @@ namespace FixAMz_WebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DisposeDescription;
+        
+        /// <summary>
+        /// approvepersondispose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl approvepersondispose;
         
         /// <summary>
         /// DisposeAssetsendforapprove control.
