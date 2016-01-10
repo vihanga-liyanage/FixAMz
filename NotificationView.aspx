@@ -271,7 +271,16 @@
             </div>
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
+<<<<<<< HEAD
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersonaddnew" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+=======
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
+>>>>>>> 9a8d92c40965b147bbfbf43760b11da977a4e3aa
                     <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" OnClick="AddNewAssetSendapprove_Click" />
                     <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                          OnClick="AddNewAssetSendApproveCancel_Click" />
@@ -304,7 +313,16 @@
                     <div id="UpgradeDescription" runat="server" class="custom-label">
                     </div>
                 </div>
+<<<<<<< HEAD
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersonupgrede" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+=======
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
+>>>>>>> 9a8d92c40965b147bbfbf43760b11da977a4e3aa
                     <asp:Button ID="UpgradeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="UpgradeAssetsendapprove_Click" />
                     <asp:Button ID="UpgradeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
@@ -346,7 +364,16 @@
                     <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
+<<<<<<< HEAD
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersontransfer" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+=======
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
+>>>>>>> 9a8d92c40965b147bbfbf43760b11da977a4e3aa
                     <asp:Button ID="TransferAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="TransferAssetSendapprove_Click" />
                     <asp:Button ID="TransferAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClick="TransferAssetSendapprovecancel_Click" />
@@ -395,6 +422,11 @@
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Description</div>
                     <div id="DisposeDescription" runat="server" class="custom-label">
+                    </div>
+                </div>
+                <div class="row expand-item-row">
+                    <div class="expand-item-label">Approve person</div>
+                    <div id="approvepersondispose" runat="server" class="custom-label">
                     </div>
                 </div>
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
@@ -447,7 +479,7 @@
                     <div class="col-md-5">Copyright &copy; 2015 National Water Supply and Drainage Board.<br>All Rights Reserved.</div>
 		        
                     <div class="col-md-7 developer-link">    
-                        <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                        <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                     </div>
                     <img src="img/logoSimble.png" style="float:right; width:47px; opacity:0.25" />
                 </div>
