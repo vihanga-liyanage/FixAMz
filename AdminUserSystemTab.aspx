@@ -108,7 +108,7 @@
                                         <asp:TextBox ID="AddLocationContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="AddLocationContactValidator" runat="server"></div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="AddLocationUserBtn" runat="server" Text="Add Location" class="expand-item-btn"
                                             OnClick="AddLocationBtn_Click" OnClientClick="return isValidAddLoc()" />
                                         <asp:Button ID="AddLocationCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -139,7 +139,7 @@
                                             <asp:TextBox ID="UpdateLocationIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="UpdateLocationIDValidator" runat="server"></div>
                                         </div>
-                                        <div class="row expand-item-row">
+                                        <div class="row expand-item-row" style="padding-right: 8.7%;">
                                             <asp:Button ID="LocFindBtn" runat="server" Text="Go" class="expand-item-btn" 
                                             onclick="LocFindBtn_Click" OnClientClick="return isValidUpdateLocID()"/>
                                         </div>
@@ -165,7 +165,7 @@
                                             <asp:TextBox ID="UpdateLocContactTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="UpdateLocContactValidator" runat="server"></div>
                                         </div>
-                                        <div class="row expand-item-row">
+                                        <div class="row expand-item-row" style="padding-right: 8.7%;">
                                             <asp:Button ID="UpdateLocBtn" runat="server" Text="Update Location" class="expand-item-btn"
                                                 OnClientClick="return isValidUpdateLoc()" OnClick="UpdateLocBtn_click" />
                                             <asp:Button ID="updateLocCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -196,7 +196,7 @@
                                         <asp:TextBox ID="AddCategoryNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="AddCategoryNameValidator" runat="server"></div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="AddCategoryUserBtn" runat="server" Text="Add Category"
                                             class="expand-item-btn" OnClick="AddCategoryBtn_Click" OnClientClick="return isValidAddCat()" />
                                         <asp:Button ID="AddCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -224,7 +224,7 @@
                                         <asp:TextBox ID="UpdateCategoryIDTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                         <div class="validator" id="UpdateCategoryIDValidator" runat="server"></div>
                                     </div>
-                                    <div class="row expand-item-row"> 
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;"> 
                                         <asp:Button ID="UpdateCategoryGoBtn" runat="server" Text="Find" class="expand-item-btn" 
                                         OnClientClick="return isValidCategoryCatID()" onclick="UpdateCategoryGoBtn_click"  />
                                     </div>
@@ -239,7 +239,7 @@
                                             <asp:TextBox ID="UpdateCategoryNameTextBox" class="expand-item-textbox" runat="server"></asp:TextBox>
                                             <div class="validator" id="UpdateCategoryNameValidator" runat="server"></div>
                                         </div>
-                                        <div class="row expand-item-row">
+                                        <div class="row expand-item-row" style="padding-right: 8.7%;">
                                             <asp:Button ID="UpdateCatBtn" runat="server" Text="Update Category" class="expand-item-btn" 
                                                 OnClientClick="return isValidUpdateCat()"  onclick="UpdateCatBtn_click" />
                                             <asp:Button ID="updateCatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn" 
@@ -287,7 +287,7 @@
                                         years
                                         <div class="validator" id="AddSubCategoryLifetimeValidator" runat="server"></div>
                                     </div>
-                                    <div class="expand-item-row">
+                                    <div class="expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="AddSubCategoryBtn" runat="server" Text="Add Sub Category" OnClick="AddSubCategoryBtn_click"
                                             class="expand-item-btn" OnClientClick="return isValidAddSubCategory()" />
                                         <asp:Button ID="AddSubCategoryCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -316,7 +316,7 @@
                                             <div class="validator" id="UpdateSubCategoryIDValidator" runat="server">
                                             </div>
                                         </div>
-                                        <div class="row expand-item-row">
+                                        <div class="row expand-item-row" style="padding-right: 8.7%;">
                                             <asp:Button ID="UpdateSubCategoryFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                                 OnClientClick="return isValidUpdateSubCategoryID()" OnClick="UpdateSubCategoryFindBtn_Click" />
                                         </div>
@@ -345,7 +345,7 @@
                                             <asp:TextBox ID="UpdateLifetimeTextBox" class="expand-item-textbox" runat="server"></asp:TextBox> years
                                             <div class="validator" id="UpdateLifetimeValidator" runat="server"></div>
                                         </div>
-                                        <div class="row expand-item-row">
+                                        <div class="row expand-item-row" style="padding-right: 8.7%;">
                                             <asp:Button ID="UpdateScatBtn" runat="server" Text="Update Sub Category" class="expand-item-btn"
                                                 OnClientClick="return isValidUpdateScat()" OnClick="UpdateScatBtn_click" />
                                             <asp:Button ID="UpdateScatCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -367,7 +367,7 @@
                             <div class="expand-item-title" id="Div4">Year end Update</div>
                             <div class="expand-item-content" id="Div5" runat="server">
                                 <div class="col-md-8">
-                                    <div id="Div8" runat="server">
+                                    <div id="Div8" runat="server" style="padding-right: 8.7%;">
                                         <asp:Button ID="Button1" runat="server" style="float: left;margin-left: 120px;" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
                                     </div>
                                 </div>
@@ -394,7 +394,7 @@
                     <div class="col-md-5">Copyright &copy; 2015 National Water Supply and Drainage Board.<br>All Rights Reserved.</div>
 		        
                     <div class="col-md-7 developer-link">    
-                        <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                        <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                     </div>
                     <img src="img/logoSimble.png" style="float:right; width:47px; opacity:0.25" />
                 </div>

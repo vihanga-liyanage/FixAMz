@@ -170,7 +170,7 @@
                                     </div>
 
                                 </div>
-                                <div class="expand-item-row">
+                                <div class="expand-item-row" style="padding-right: 8.7%;">
                                     <asp:Button ID="AddUserBtn" runat="server" Text="Add User" OnClick="AddUserBtn_Click"
                                         class="expand-item-btn" OnClientClick="return isValidAddNew()" /> 
                                     <asp:Button ID="AddNewCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -213,7 +213,7 @@
                                         <div class="validator" id="UpdateEmpIDValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="UpdateUserFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                             OnClientClick="return isValidUpdateEmpID()" OnClick="UpdateUserFindBtn_Click" />
                                     </div>
@@ -270,7 +270,7 @@
                                     </asp:DropDownList>
                                     <div class="validator" id="UpdateTypeValidator" runat="server"></div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="UpdateUserBtn" runat="server" Text="Update User" class="expand-item-btn"
                                             OnClientClick="return isValidUpdates()" OnClick="UpdateUserBtn_Click" />
                                         <asp:Button ID="UpdateUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -305,7 +305,7 @@
                                         <div class="validator" id="ResetPasswordUsernameValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="ResetPasswordFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                             OnClientClick="return isValidResetPasswordUsername()" OnClick="ResetPasswordFindBtn_Click" />
                                     </div>
@@ -334,7 +334,7 @@
                                         </div>
                                     </div>
                                    
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="ResetPasswordBtn" runat="server" Text="Reset Password" class="expand-item-btn"
                                             OnClientClick="return isValidResetPassword()" OnClick="ResetPasswordBtn_Click" />
                                         <asp:Button ID="Button3" runat="server" Text="Cancel" class="expand-item-btn"
@@ -369,7 +369,7 @@
                                         <div class="validator" id="DeleteUserEmpIDValidator" runat="server">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="DeleteUserFindBtn" runat="server" Text="Go" class="expand-item-btn"
                                             OnClientClick="return isValidDeleteEmpID()" OnClick="DeleteUserFindBtn_Click" />
                                     </div>
@@ -405,7 +405,7 @@
                                         <div id="DeleteContact" runat="server" class="custom-label">
                                         </div>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <div class="row expand-item-row" style="padding-right: 8.7%;">
                                         <asp:Button ID="DeleteUserBtn" runat="server" Text="Delete User" class="expand-item-btn"
                                             OnClick="DeleteUserBtn_Click" OnClientClick="return window.confirm('Confirm user deletion.')" />
                                         <asp:Button ID="DeleteUserCancelBtn" runat="server" Text="Cancel" class="expand-item-btn"
@@ -439,7 +439,7 @@
                     Copyright &copy; 2015 National Water Supply and Drainage Board.<br>
                     All Rights Reserved.</div>
                 <div class="col-md-7 developer-link">
-                    <a href="#">Developer site<img src="img/developerIcon.png" /></a>
+                    <a href="https://www.facebook.com/FixAMzDevelopers/?fref=ts&__mref=message_bubble">Developer site<img src="img/developerIcon.png" /></a>
                 </div>
                 <img src="img/logoSimble.png" style="float: right; width: 47px; opacity: 0.25" />
             </div>
