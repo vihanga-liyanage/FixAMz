@@ -318,6 +318,10 @@ a:focus {
 }
 
 /*============================== Admin home page styles ==================================*/
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .admin-category-icon
 {
     position:absolute;
@@ -417,7 +421,11 @@ a:focus {
     background:rgba(0,0,0,0.15)
 }
 
+<<<<<<< HEAD
 /*============================== Admin people tab styles ================================*/
+=======
+/*========================= Admin people tab =============================*/
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .add-user-icon
 {
     position:absolute;
@@ -474,7 +482,11 @@ a:focus {
     display:none;
 }
 
+<<<<<<< HEAD
 /*================================ Admin system tab styles ===============================*/
+=======
+/*========================= Admin system tab =============================*/
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .add-location-icon
 {
     position:absolute;
@@ -610,7 +622,11 @@ a:focus {
     z-index:-1;
 }
 
+<<<<<<< HEAD
 /*================================= Report page styles ===================================*/
+=======
+/*============================== Report page styles ========================*/
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 .report-finance-icon
 {
     position:absolute;
@@ -662,6 +678,7 @@ a:focus {
     z-index:-1;
 }
 .report-ul
+<<<<<<< HEAD
 {
     color: #337BAA;
     list-style: none;
@@ -674,6 +691,22 @@ a:focus {
     font-size: 19px;
     list-style: none;
 }
+=======
+{
+    color: #337BAA;
+    list-style: none;
+}
+.report-label
+{
+    color: #337BAA;
+    padding: 0px 30px 0px 0px;
+    float: left;
+    font-size: 19px;
+    list-style: none;
+}
+
+
+>>>>>>> f8a25da0860b7b2d62b6adb8c4d3af20a5cab130
 
 /*=================================== footer styles =====================================*/
 #footer
