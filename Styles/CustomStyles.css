@@ -679,13 +679,14 @@ a:focus {
 /*=================================== footer styles =====================================*/
 #footer
 {
-    margin: 150px 0px 0px 0px;
+    margin: 118px 0px 0px 0px;
 }
 .footer-up
 {
+    
     background:#212429;
-    height:80px;
-    padding-top:30px;
+    height:44px;
+    padding-top:10px;
     font-size:18px;
 }
 .footer-down

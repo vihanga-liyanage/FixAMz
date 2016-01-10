@@ -71,7 +71,7 @@
             </div>
 
 <!--Main content-->
-            <div class="row" style="min-height: 270px;">
+            <div class="row" style="min-height: 430px;">
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
                     <div class="small-box aqua" style="margin-left: 30px;margin-top: 30px;">
@@ -135,7 +135,7 @@
             
             
 <!--Footer-->
-            <div id="footer" class="row">
+            <div id="footer" class="row" >
                 <div class="row footer-up">
                     <ul class="footer-nav">
 				        <li><a href="AboutUs.aspx">About</a></li>
@@ -143,7 +143,7 @@
 				        <li><a href="AdminSitemap.aspx">Site map</a></li>
 			        </ul>
                 </div>
-                <div class="row footer-down">
+                <div class="row footer-down" >
                     <div class="col-md-5">Copyright &copy; 2015 National Water Supply and Drainage Board.<br>All Rights Reserved.</div>
 		        
                     <div class="col-md-7 developer-link">    

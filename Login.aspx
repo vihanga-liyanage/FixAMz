@@ -65,7 +65,7 @@
 <!--Footer-->
         <div id="footer" class="row">
            
-            <div class="row footer-down">
+            <div class="row footer-down" style="margin-top: 60px;">
                 <div class="col-md-5">Copyright &copy; 2015 National Water Supply and Drainage Board.<br>All Rights Reserved.</div>
 		        
                 <div class="col-md-7 developer-link">    

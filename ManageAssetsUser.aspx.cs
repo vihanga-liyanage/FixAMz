@@ -417,7 +417,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
-// Regester new asset ==========================================================
+        // Regester new asset ==========================================================
         protected void setAssetID() 
         {
             //Getting cost center
@@ -554,7 +554,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String assetID = UpgradeAssetIDTextBox.Text;
 
                 string check = "SELECT count(*) from Asset WHERE assetID='" + assetID + "'AND status='1'";
-                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
+                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
