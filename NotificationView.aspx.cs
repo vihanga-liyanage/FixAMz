@@ -899,6 +899,19 @@ Request.ApplicationPath + "Login.aspx';", true);
             Response.Redirect("ManageAssetsUser.aspx");
         }
 
+        protected void AddNewAssetcancel_Click(object sender, EventArgs e)
+        {
+            Load_Variables();
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
+            conn.Open();
+            //delete notification
+            String deleteNotQuery = "DELETE FROM Notification WHERE notID = '" + notid + "'";
+            SqlCommand cmd = new SqlCommand(deleteNotQuery, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            Response.Redirect("ManageAssetsUser.aspx");
+        }
+
         //for editable part
         protected void Category_Selected_for_register(object sender, EventArgs e)
         {

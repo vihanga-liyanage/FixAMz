@@ -200,7 +200,7 @@
                     <div class="row expand-item-row" style="padding-right: 8.7%;">
                         <asp:Button ID="AddAssetRecommendBtn" runat="server" Text="Send for recommendation"
                             OnClick="SendForRecAgainBtn_click" OnClientClick="return isValidAddAssetCancelNotification()" class="expand-item-btn" />
-                        <asp:Button ID="Button14" runat="server" Text="Cancel" class="expand-item-btn" OnClick="AddNewAssetBack_Click" />
+                        <asp:Button ID="Button14" runat="server" Text="Cancel" class="expand-item-btn" OnClick="AddNewAssetcancel_Click" />
                     </div>
                 </div>
             </div>
@@ -260,7 +260,7 @@
                     <div class="row expand-item-row">
                         <asp:Button ID="Button15" runat="server" Text="Send for recommendation"
                             OnClick="SendForRecAgainBtn_click" OnClientClick="return isValidAddAsset()" class="expand-item-btn" />
-                        <asp:Button ID="Button16" runat="server" Text="Cancel" class="expand-item-btn" OnClick="AddNewAssetBack_Click" />
+                        <asp:Button ID="Button16" runat="server" Text="Cancel" class="expand-item-btn"  />
                     </div>
                 </div>
             </div>-->
@@ -271,16 +271,12 @@
             </div>
 <!-- AddnewassetState-->
             <div id="AddnewassetState" runat="server">
-<<<<<<< HEAD
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Approve person</div>
                     <div id="approvepersonaddnew" runat="server" class="custom-label">
                     </div>
                 </div>
-                <div class="row expand-item-row">
-=======
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
->>>>>>> 9a8d92c40965b147bbfbf43760b11da977a4e3aa
                     <asp:Button ID="AddNewAssetSendforapprove" runat="server" Text="Send for approve" class="expand-item-btn" OnClick="AddNewAssetSendapprove_Click" />
                     <asp:Button ID="AddNewAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                          OnClick="AddNewAssetSendApproveCancel_Click" />
@@ -313,16 +309,12 @@
                     <div id="UpgradeDescription" runat="server" class="custom-label">
                     </div>
                 </div>
-<<<<<<< HEAD
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Approve person</div>
                     <div id="approvepersonupgrede" runat="server" class="custom-label">
                     </div>
                 </div>
-                <div class="row expand-item-row">
-=======
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
->>>>>>> 9a8d92c40965b147bbfbf43760b11da977a4e3aa
                     <asp:Button ID="UpgradeAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="UpgradeAssetsendapprove_Click" />
                     <asp:Button ID="UpgradeAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClick="UpgradeAssetsendapprovecancel_Click" OnClientClick="return UpgradeAssetapprovecancel()"/>
@@ -364,16 +356,12 @@
                     <div id="TransferNewlocation" style="background-color:#DCDCDC;" runat="server" class="custom-label">
                     </div>
                 </div>
-<<<<<<< HEAD
                 <div class="row expand-item-row">
                     <div class="expand-item-label">Approve person</div>
                     <div id="approvepersontransfer" runat="server" class="custom-label">
                     </div>
                 </div>
-                <div class="row expand-item-row">
-=======
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
->>>>>>> 9a8d92c40965b147bbfbf43760b11da977a4e3aa
                     <asp:Button ID="TransferAssetsendforapprove" runat="server" Text="Send for approve"  class="expand-item-btn" OnClick="TransferAssetSendapprove_Click" />
                     <asp:Button ID="TransferAssetapprovecancel" runat="server" Text="Cancel" class="expand-item-btn"
                         OnClick="TransferAssetSendapprovecancel_Click" />
@@ -412,8 +400,6 @@
                 <div class="row expand-item-row" style="padding-right: 8.7%;">
                     <asp:Button ID="Button13" runat="server" Text="Back" class="expand-item-btn"
                         OnClick="transferAssetBack_Click" />
-                    <asp:Button ID="Button12" runat="server" Text="Edit" class="expand-item-btn"
-                         OnClientClick="return transferAssetEdit_Click"  />
                 </div>
             </div>
 
