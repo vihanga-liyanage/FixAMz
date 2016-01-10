@@ -323,7 +323,7 @@ a:focus {
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
-.bg-aqua{
+.aqua{
     background-color: rgba(53, 114, 158, 0.92) !important;
 }
 
@@ -342,7 +342,7 @@ a:focus {
     position: absolute;
     top: 10px;
     right: 18px;
-    z-index: 0;
+    z-index: 99;
     font-size: 90px;
     color: rgba(0,0,0,0.15);
 }
@@ -820,7 +820,7 @@ a:focus {
 
 /*==============================Notification view styles=========================*/
 
-#AddnewassetState, #UpgradeassetState, #TransferassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel,#TransferassetApproveState,#TransferassetCancelState
+#AddnewassetState, #UpgradeassetState, #DisposeassetState,#DisposeassetApprove,#DisposeassetCancel, #AddnewassetStateApprove, #AddnewassetStateApproveCancel, #UpgradeassetApprove,#UpgradeassetStateApproveCancel
 {
     display:none;
 }
@@ -834,6 +834,19 @@ a:focus {
     background-size:contain;
     z-index:-1;
 } 
+
+
+#TransferassetState,#TransferassetApproveState,#TransferassetCancelState
+{
+    display:none;
+}
+
+
+/*=====================================================================================*/
+
+.small-box:hover .icon {
+  font-size: 95px;
+}
 
 /*==============================Notification view styles=========================*/
 .report-ul
@@ -850,3 +863,4 @@ a:focus {
     font-size: 19px;
     list-style: none;
 }
+
