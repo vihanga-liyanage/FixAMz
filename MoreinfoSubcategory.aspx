@@ -69,7 +69,7 @@
                 </div>
             </div>
 <!--Main contain-->
-            <div  style="min-height: 500px;">
+            <div  style="min-height: 500px;" class="row">
                 <div id="new" class="col-md-4 col-md-offset-1" style="min-height: 500px;">
                     <div class="" id="AdvancedUserSearchHeader">
                         <h3>

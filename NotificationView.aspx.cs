@@ -14,7 +14,6 @@ namespace FixAMz_WebApplication
 {
     public partial class NotificationView : System.Web.UI.Page
     {
-
         private String Asset;
         private String Type;
         private String Category;
@@ -34,20 +33,18 @@ namespace FixAMz_WebApplication
             setUserName();
             viewApprover();
             Load_Notifications();
-            //Load_Content_for_cancel();
+            Update_Not_DB();
+            costCenter();
+            personToRecommend();
 
             if (!Page.IsPostBack)
             {
-                costCenter();
-                personToRecommend();
+                
                 Load_Location();
                 Load_Employee_Data();
                 Load_Category();
-                //Load_SubCategory_for_register();
                 Load_Variables();
                 Load_UI_Content();
-                //Load_Content_for_cancel();
-                //Page.MaintainScrollPositionOnPostBack = true;
             }
             
         }
@@ -132,6 +129,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
             dr2.Close();
             conn2.Close();
+            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('sessions added')", true);
         }
 
         //set costID by user login
@@ -202,11 +200,18 @@ Request.ApplicationPath + "Login.aspx';", true);
                     type = "Register";
                 }
 
+                //setting asset name
+                string assetName = dr["assetName"].ToString().Trim();
+                if (assetName.Length > 15)
+                {
+                    assetName = assetName.Substring(0, 12);
+                    assetName += "...";
+                }
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
+                    "       Asset <strong>" + assetName + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +
@@ -736,7 +741,6 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
-
         //Reads the last dispID from DB, calculates the next=============================
         protected String setdispID() //Reads the last dispID from DB, calculates the next and set it in the web page.
         {
@@ -784,7 +788,6 @@ Request.ApplicationPath + "Login.aspx';", true);
         }
 
         
-
 //Add new asset ==========================================
 
         protected void AddNewAssetSendApproveCancel_Click(object sender, EventArgs e)
@@ -1362,8 +1365,8 @@ Request.ApplicationPath + "Login.aspx';", true);
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
             conn.Open();
             // Get owner name
-            String getnewOwnerNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Session["PRSN_TO_APP"].ToString() + "'";
-            SqlCommand cmd12 = new SqlCommand(getnewOwnerNameQuery, conn);
+            String getApproveNameQuery = "SELECT [firstname]+ ' '+[lastname] AS [name] FROM Employee WHERE empID='" + Session["PRSN_TO_APP"].ToString() + "'";
+            SqlCommand cmd12 = new SqlCommand(getApproveNameQuery, conn);
             approvepersonaddnew.InnerHtml = cmd12.ExecuteScalar().ToString();
             approvepersonupgrede.InnerHtml = cmd12.ExecuteScalar().ToString();
             approvepersontransfer.InnerHtml = cmd12.ExecuteScalar().ToString();

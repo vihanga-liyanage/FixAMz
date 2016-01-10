@@ -124,11 +124,18 @@ Request.ApplicationPath + "Login.aspx';", true);
                     type = "Register";
                 }
 
+                //setting asset name
+                string assetName = dr["assetName"].ToString().Trim();
+                if (assetName.Length > 15)
+                {
+                    assetName = assetName.Substring(0, 12);
+                    assetName += "...";
+                }
                 output +=
                     "'>" +
                     "   <img class='col-md-3' src='img/" + dr["type"].ToString().Trim() + "Icon.png'/>" +
                     "   <div class='not-content-box col-md-10'>" +
-                    "       Asset <strong>" + dr["assetName"].ToString().Trim() + "</strong> has been " + action + " to " + type +
+                    "       Asset <strong>" + assetName + "</strong> has been " + action + " to " + type +
                     "       by <strong>" + dr["firstName"].ToString().Trim() + " " + dr["lastName"].ToString().Trim() + "</strong>." +
                     "       <div class='not-date col-md-offset-5 col-md-7'>" + dr["date"].ToString().Trim() + "</div>" +
                     "   </div>" +

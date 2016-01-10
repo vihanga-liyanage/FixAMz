@@ -368,7 +368,7 @@
                             <div class="expand-item-content" id="Div5" runat="server">
                                 <div class="col-md-8">
                                     <div id="Div8" runat="server" style="padding-right: 8.7%;">
-                                        <asp:Button ID="Button1" runat="server" style="float: left;margin-left: 120px;" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('Confirm Update asset value.')" class="expand-item-btn" /> 
+                                        <asp:Button ID="Button1" runat="server" style="float: left;margin-left: 120px;" Text="Update on Year End" OnClick="CalDepreciationBtn_Click"  OnClientClick="return window.confirm('All assets database will be updated to current date and time. Do you wish to continue?')" class="expand-item-btn" /> 
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="position: relative; padding-left: 0px;">

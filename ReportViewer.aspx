@@ -57,7 +57,7 @@
                             <div id="generateReportUserNavBar" runat="server" style="display:none;">
                                 <div class="collapse navbar-collapse" runat="server" style="float:right;">
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
-                                        <li><a href="" class="active">Reports</a> </li>
+                                        <li><a href="" class="active">REPORTS</a> </li>
                                         <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                         <li><a href="Help.aspx">HELP</a> </li>
                                     </ul>
@@ -67,7 +67,7 @@
                                 <div class="collapse navbar-collapse" runat="server" style="float:right;">
                                     <ul class="custom-nav-bar nav nav-tabs navbar-nav">
                                         <li><a href="ManageAssetsUser.aspx">HOME</a> </li>
-                                        <li><a href="" class="active">Reports</a> </li>
+                                        <li><a href="" class="active">REPORTS</a> </li>
                                         <li><a href="AboutUs.aspx">ABOUT</a> </li>
                                         <li><a href="Help.aspx">HELP</a> </li>
                                     </ul>

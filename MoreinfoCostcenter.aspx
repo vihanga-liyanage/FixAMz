@@ -69,7 +69,7 @@
                 </div>
             </div>
 <!--contain-->
-            <div  style="min-height: 500px;">
+            <div  style="min-height: 500px;" class="row">
                 <div id="new" class="col-md-4 col-md-offset-1" style="min-height: 500px;">
                     <div class="" id="AdvancedUserSearchHeader"><h3><span>All Cost Centers (<span id="totcostcenter" runat="server" class="custom-label"></span></span>)</h3></div>
                     <asp:GridView ID="costcenterSearchGridView" runat="server" CssClass="table table-hover table-bordered" ></asp:GridView>
