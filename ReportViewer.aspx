@@ -104,13 +104,19 @@
                             <div class="col-md-8">
                                 <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="FinanceMasterReport.aspx">Master Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="ApprovedDateBasedFinanceReport.aspx">Approved Datebased Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="CostCenterwiseFinanceReport.aspx">Cost Centerwise Report</a></li>
+                                    </div>
+                                    <div class="row expand-item-row">
+                                        <li><a class="report-label" href="LocationwiseFinanceReport.aspx">Locationwise Report</a></li>
+                                    </div>
+                                     <div class="row expand-item-row">
+                                        <li><a class="report-label" href="CategorywiseFinanceReport.aspx">Categorywise Report</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -131,14 +137,14 @@
                             <div class="col-md-8">
                                 <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="GeneralMasterReport.aspx">Master Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="CostCenterwiseGeneralReport.aspx">Cost Centerwise Report</a></li>
                                     </div>
-                                    <div class="row expand-item-row">
+                                    <!--<div class="row expand-item-row">
                                         <li><a class="report-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
+                                    </div>-->
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">
@@ -158,13 +164,13 @@
                             <div class="col-md-8">
                                 <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="TransferMasterReport.aspx">Master Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="CostCenterwiseTransferReport.aspx">Cost Centerwise Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AssetwiseTransferReport.aspx">Assetwise Report</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -185,13 +191,13 @@
                             <div class="col-md-8">
                                 <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="UpgradeMasterReport.aspx">Master Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="CostCenterwiseUpgradeReport.aspx">Cost Centerwise Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="AssetwiseUpgradeReport.aspx">Assetwise Report</a></li>
                                     </div>
                                 </ul>
                             </div>
@@ -212,14 +218,12 @@
                             <div class="col-md-8">
                                 <ul class="report-ul">
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="DisposeMasterReport.aspx">Master Report</a></li>
                                     </div>
                                     <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
+                                        <li><a class="report-label" href="CostCenterwiseDisposeReport.aspx">Cost Centerwise Report</a></li>
                                     </div>
-                                    <div class="row expand-item-row">
-                                        <li><a class="report-label" href="AboutUs.aspx">About</a></li>
-                                    </div>
+                                    
                                 </ul>
                             </div>
                             <div class="col-md-4" style="position: relative; padding-left: 0px;">

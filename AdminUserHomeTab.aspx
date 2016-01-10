@@ -74,22 +74,22 @@
             <div class="row" style="min-height: 270px;">
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
+                    <div class="small-box aqua" style="margin-left: 30px;margin-top: 30px;">
                         <div class="inner">
                             <div id="totalusers" runat="server" class="custom-label newstyle" ></div>
 
                             <p style="padding-top: 15px;">Total Users</p>
                         </div>
                         <div class="icon">
-                            <img src="img/multy-user.png"  />
+                            <img src="img/multy-user.png" />
                         </div>
-                    <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="AdvancedUserSearch.aspx" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
+                    <div class="small-box aqua" style="margin-left: 30px;margin-top: 30px;">
                         <div class="inner">
                             <div id="totalcats" runat="server" class="custom-label newstyle" ></div>
 
@@ -104,7 +104,7 @@
 
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
+                    <div class="small-box aqua" style="margin-left: 30px;margin-top: 30px;">
                         <div class="inner">
                             <div id="totalsubcats" runat="server" class="custom-label newstyle" ></div>
 
@@ -119,7 +119,7 @@
 
                 <div class="col-lg-3 col-xs-6">
                     <!-- small box -->
-                    <div class="small-box bg-aqua" style="margin-left: 30px;margin-top: 30px;">
+                    <div class="small-box aqua" style="margin-left: 30px;margin-top: 30px;">
                         <div class="inner">
                             <div id="totalcostcenter" runat="server" class="custom-label newstyle" ></div>
 
