@@ -33,7 +33,7 @@ namespace FixAMz_WebApplication
             setNavBar();
             setUserName();
             viewApprover();
-            //Load_Variables();
+            Load_Variables();
             Update_Not_DB();
             Load_Notifications();
             
@@ -328,6 +328,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                     receiveuser = dr["receiveUser"].ToString();
                 }
                 dr.Close();
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('loaded')", true);
             }
             catch (SqlException e)
             {
@@ -694,14 +695,14 @@ Request.ApplicationPath + "Login.aspx';", true);
             }
         }
 
-        // Signing out =================================================================
+        // Signing out ==================================================================
         protected void SignOutLink_clicked(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
         }
 
-        //Reads the last notID from DB, calculates the next=============================
+        //Reads the last notID from DB, calculates the next==============================
         protected String setNotID()
         {
             try
@@ -745,7 +746,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 return "";
             }
         }
-
 
         //Reads the last dispID from DB, calculates the next=============================
         protected String setdispID() //Reads the last dispID from DB, calculates the next and set it in the web page.
@@ -792,8 +792,6 @@ Request.ApplicationPath + "Login.aspx';", true);
                 return "";
             }
         }
-
-        
 
 //Add new asset ==========================================
 

@@ -554,13 +554,15 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String assetID = UpgradeAssetIDTextBox.Text;
 
                 string check = "SELECT count(*) from Asset WHERE assetID='" + assetID + "'AND status='1'";
-                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
-                SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
+                
                 if (res == 1)
                 {
+                    string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "'";
+                    SqlCommand cmd1 = new SqlCommand(getassetid, conn);
+                    int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
+
                     if (res1 == 0)
                     {
                         String query = "SELECT name, category, subcategory, owner, updatedValue FROM Asset WHERE assetID='" + assetID + "'";
@@ -603,15 +605,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                     }
                     else
                     {
-                        string gettype = "select type from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
-                        SqlCommand cmdtype = new SqlCommand(gettype, conn);
-                        string type = cmdtype.ExecuteScalar().ToString();
-                        cmdtype.ExecuteNonQuery();
-
                         upgradeAssetInitState.Style.Add("display", "block");
                         upgradeAssetSecondState.Style.Add("display", "none");
                         UpgradeAssetContent.Style.Add("display", "block");
-                        UpgradeAssetIDValidator.InnerHtml = "Asset already recommended to " + type + "!";
+                        UpgradeAssetIDValidator.InnerHtml = "Asset already involves in an operation!";
                         TransferItemName.Focus();
                     }
 
@@ -809,16 +806,17 @@ Request.ApplicationPath + "Login.aspx';", true);
                 String assetID = TransferAssetIDTextBox.Text;
 
                 string check = "select count(*) from Asset WHERE assetID='" + assetID + "' AND status='1'";
-                string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
+                
                 SqlCommand cmd = new SqlCommand(check, conn);
-                SqlCommand cmd1 = new SqlCommand(getassetid, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
-
                 cmd.ExecuteNonQuery();
-                cmd1.ExecuteNonQuery();
                 if (res == 1)
                 {
+                    string getassetid = "select count(*) from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
+                    SqlCommand cmd1 = new SqlCommand(getassetid, conn);
+                    int res1 = Convert.ToInt32(cmd1.ExecuteScalar().ToString());
+                    cmd1.ExecuteNonQuery();
+
                     if (res1 == 0)
                     {
                         String transferAssetCategoryID = "";
@@ -863,16 +861,10 @@ Request.ApplicationPath + "Login.aspx';", true);
                     }
                     else
                     {
-                        string gettype = "select type from Notification WHERE assetID='" + assetID + "' AND action='Recommend' ";
-                        SqlCommand cmdtype = new SqlCommand(gettype, conn);
-                        string type = cmdtype.ExecuteScalar().ToString();
-                        cmdtype.ExecuteNonQuery();
-
                         transferAssetInitState.Style.Add("display", "block");
                         transferAssetSecondState.Style.Add("display", "none");
                         TransferAssetContent.Style.Add("display", "block");
-                        TransferAssetIDValidator.InnerHtml = "Asset already recommended to "+ type +"!";
-                        TransferItemName.Focus();
+                        TransferAssetIDValidator.InnerHtml = "Asset already involves in an operation!";
                     }
 
                     conn.Close();
