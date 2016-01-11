@@ -253,7 +253,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                String query = "SELECT COUNT(*) FROM SystemUser WHERE username='" + Username + "'";
+                String query = "SELECT COUNT(*) FROM SystemUser WHERE status=1 AND username='" + Username + "'";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                 return res;
@@ -385,13 +385,13 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String empID = UpdateEmpIDTextBox.Text;
 
-                string check = "select count(*) from Employee WHERE empID='" + empID + "'";
+                string check = "select count(*) from Employee WHERE status=1 AND empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (res == 1)
                 {
-                    String query1 = "SELECT e.empID, e.firstName, e.lastName, e.contactNo, e.email, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE e.empID='" + empID + "'";
+                    String query1 = "SELECT e.empID, e.firstName, e.lastName, e.contactNo, e.email, s.type FROM Employee e INNER JOIN SystemUser s ON e.empID = s.empID WHERE e.status=1 AND s.status=1 AND e.empID='" + empID + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
                     while (dr1.Read())
@@ -493,13 +493,13 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String username = ResetPasswordUsernameTextBox.Text;
 
-                string check = "select count(*) from SystemUser WHERE username='" + username + "'";
+                string check = "select count(*) from SystemUser WHERE status=1 AND username='" + username + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
                 if (res == 1)
                 {
-                    String query1 = "SELECT username FROM SystemUser WHERE username='" + username + "'";
+                    String query1 = "SELECT username FROM SystemUser WHERE status=1 AND username='" + username + "'";
                     SqlCommand cmd1 = new SqlCommand(query1, conn);
                     SqlDataReader dr1 = cmd1.ExecuteReader();
                     
@@ -600,7 +600,7 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String empID = DeleteUserEmpIDTextBox.Text;
 
-                string check = "select count(*) from Employee WHERE empID='" + empID + "'";
+                string check = "select count(*) from Employee WHERE status=1 AND empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(cmd.ExecuteScalar().ToString());
 
@@ -651,8 +651,8 @@ Request.ApplicationPath + "Login.aspx';", true);
 
                 String empID = DeleteUserEmpIDTextBox.Text;
 
-                string deleteQuerySystemUser = "DELETE FROM SystemUser WHERE empID='" + empID + "'";
-                string deleteQueryEmployee = "DELETE FROM Employee WHERE empID='" + empID + "'";
+                string deleteQuerySystemUser = "UPDATE SystemUser SET status=0 WHERE empID='" + empID + "'";
+                string deleteQueryEmployee = "UPDATE Employee SET status=0 WHERE empID='" + empID + "'";
                 SqlCommand cmd = new SqlCommand(deleteQuerySystemUser, conn);
                 cmd.ExecuteNonQuery();
                 cmd = new SqlCommand(deleteQueryEmployee, conn);
@@ -671,11 +671,11 @@ Request.ApplicationPath + "Login.aspx';", true);
                 //updating expandingItems dictionary in javascript
                 ClientScript.RegisterStartupScript(this.GetType(), "setExpandingItem", "setExpandingItem('DeleteUserContent');", true);
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 responseBoxRed.Style.Add("display", "block");
                 responseMsgRed.InnerHtml = "There were some issues with the database. Please try again later.";
-                Response.Write(e.ToString());
+                Response.Write(ex.ToString());
             }
 
         }

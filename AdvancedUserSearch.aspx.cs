@@ -228,7 +228,7 @@ Request.ApplicationPath + "Login.aspx';", true);
             String query = "SELECT E.empID AS Employee_ID, C.name AS Cost_Center, (E.firstName+' '+E.lastName) AS Name, E.contactNo AS Contact, E.email AS Email " +
                 "FROM Employee E " +
                 "INNER JOIN CostCenter C ON E.costID=C.costID " +
-                "WHERE";
+                "WHERE E.status=1";
 
             if (costID != "")
             {

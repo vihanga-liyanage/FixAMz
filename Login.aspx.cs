@@ -29,7 +29,7 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
 
-                string query = "SELECT e.firstName, e.lastName, s.type, s.costID FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.username='" + username + "'";
+                string query = "SELECT e.firstName, e.lastName, s.type, s.costID FROM Employee e INNER JOIN SystemUser s ON e.empID=s.empID WHERE s.status=1 AND e.status=1 AND s.username='" + username + "'";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -90,7 +90,7 @@ namespace FixAMz_WebApplication
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
                 String encriptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
-                String check = "select count(*) from SystemUser where username='" + username + "' and password='" + encriptedPassword + "'";
+                String check = "select count(*) from SystemUser where status=1 AND username='" + username + "' AND password='" + encriptedPassword + "'";
                 SqlCommand com = new SqlCommand(check, conn);
                 int res = Convert.ToInt32(com.ExecuteScalar().ToString());
                 conn.Close();

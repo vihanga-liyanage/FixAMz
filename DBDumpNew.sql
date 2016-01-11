@@ -207,6 +207,7 @@ CREATE TABLE [dbo].[Employee](
 	[lastName] [varchar](15) NOT NULL,
 	[contactNo] [varchar](10) NOT NULL,
 	[email] [varchar](30) NOT NULL,
+	[status] [varchar](8) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[empID] ASC
@@ -298,6 +299,7 @@ CREATE TABLE [dbo].[SystemUser](
 	[username] [varchar](20) NOT NULL,
 	[password] [varchar](50) NOT NULL,
 	[type] [varchar](30) NOT NULL,
+	[status] [varchar](8) NULL,
  CONSTRAINT [PK_SystemUser] PRIMARY KEY CLUSTERED 
 (
 	[empID] ASC
@@ -355,6 +357,12 @@ CREATE TABLE [dbo].[UpgradeAsset](
 
 GO
 SET ANSI_PADDING OFF
+
+INSERT [dbo].[Asset] ([assetID], [costID], [name], [value], [salvageValue], [updatedValue], [category], [subcategory], [owner], [status], [location], [approvedDate], [recommend], [approve]) VALUES (N'NWSDB/CC002/A0000002', N'CC002          ', N'Damro Office Table', 18000, 8000, 18000, N'C00001         ', N'SC00001        ', N'E00004         ', N'1', N'L00009         ', CAST(0x0000A5890183E52C AS DateTime), N'E00004         ', N'E00005         ')
+INSERT [dbo].[Asset] ([assetID], [costID], [name], [value], [salvageValue], [updatedValue], [category], [subcategory], [owner], [status], [location], [approvedDate], [recommend], [approve]) VALUES (N'NWSDB/CC002/A0000003', N'CC002          ', N'Arpico Cushion Chair', 7500, 2500, 7500, N'C00001         ', N'SC00004        ', N'E00005         ', N'1', N'L00009         ', CAST(0x0000A5890183E9DC AS DateTime), N'E00004         ', N'E00005         ')
+INSERT [dbo].[Asset] ([assetID], [costID], [name], [value], [salvageValue], [updatedValue], [category], [subcategory], [owner], [status], [location], [approvedDate], [recommend], [approve]) VALUES (N'NWSDB/CC002/A0000004', N'CC002          ', N'Damro Sofa Model 3XG', 25000, 10000, 25000, N'C00001         ', N'SC00009        ', N'E00004         ', N'1', N'L00009         ', CAST(0x0000A5890183EE8C AS DateTime), N'E00004         ', N'E00005         ')
+INSERT [dbo].[Asset] ([assetID], [costID], [name], [value], [salvageValue], [updatedValue], [category], [subcategory], [owner], [status], [location], [approvedDate], [recommend], [approve]) VALUES (N'NWSDB/CC002/A0000005', N'CC002          ', N'LX 350 Impact Printer', 29000, 13500, 29000, N'C00002         ', N'SC00012        ', N'E00004         ', N'1', N'L00009         ', CAST(0x0000A5890183F33C AS DateTime), N'E00004         ', N'E00005         ')
+INSERT [dbo].[Asset] ([assetID], [costID], [name], [value], [salvageValue], [updatedValue], [category], [subcategory], [owner], [status], [location], [approvedDate], [recommend], [approve]) VALUES (N'NWSDB/CC002/A0000006', N'CC002          ', N'HP P1102 Wireless Scanner', 14500, 9000, 14500, N'C00002         ', N'SC00017        ', N'E00005         ', N'1', N'L00009         ', CAST(0x0000A5890183F6C0 AS DateTime), N'E00004         ', N'E00005         ')
 GO
 INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00001         ', N'CC001          ', N'Vihanga', N'Liyanage', N'0758598063', N'vihangaliyanage007@gmail.com')
 INSERT [dbo].[Employee] ([empID], [costID], [firstName], [lastName], [contactNo], [email]) VALUES (N'E00002         ', N'CC001          ', N'Thisara', N'Salgado', N'0712233445', N'mtysalgado@gmail.com')
@@ -445,6 +453,10 @@ GO
 ALTER TABLE [dbo].[TransferAsset] ADD  DEFAULT (getdate()) FOR [date]
 GO
 ALTER TABLE [dbo].[UpgradeAsset] ADD  DEFAULT (getdate()) FOR [date]
+GO
+ALTER TABLE [dbo].[Employee] ADD  DEFAULT (1) FOR [status]
+GO
+ALTER TABLE [dbo].SystemUser ADD  DEFAULT (1) FOR [status]
 GO
 ALTER TABLE [dbo].[Asset]  WITH CHECK ADD  CONSTRAINT [FK_Asset_costCenter_costID] FOREIGN KEY([costID])
 REFERENCES [dbo].[CostCenter] ([costID])

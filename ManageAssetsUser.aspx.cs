@@ -383,7 +383,7 @@ Request.ApplicationPath + "Login.aspx';", true);
                 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SystemUserConnectionString"].ConnectionString);
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT [firstname]+' '+[lastname] AS [name], empID FROM Employee WHERE costID='" + Session["COST_ID_MNG_ASST"] + "'", conn);
+                SqlCommand cmd = new SqlCommand("SELECT [firstname]+' '+[lastname] AS [name], empID FROM Employee WHERE status=1 AND costID='" + Session["COST_ID_MNG_ASST"] + "'", conn);
                 SqlDataReader data = cmd.ExecuteReader();
                 
                 //Register new asset owner drop down
